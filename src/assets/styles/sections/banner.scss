@@ -1,0 +1,13 @@
+.section-banner {
+  display: flex;
+  justify-content: space-around;
+  align-items: flex-end;
+}
+
+.banner-text {
+  max-width: 400px;
+  padding: 10em 0;
+  h2 {
+    margin-bottom: 20px;
+  }
+}

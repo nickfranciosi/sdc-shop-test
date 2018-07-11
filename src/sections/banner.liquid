@@ -2,7 +2,6 @@
 {%- assign bannerIamge = section.settings.banner_image -%}
 
 <section class="section section-banner" style="background-color: {{bg_color}};">
-	<div class="shell">
     	<div class="banner-text">
         <h2>{{ section.settings.title | escape }}</h2>
         {{ section.settings.text }}
@@ -12,7 +11,6 @@
           {{ bannerIamge | img_tag }}
         {%- endif -%}
       </div>
-	</div><!-- /.shell -->
 </section><!-- /.section section-intro -->
 
 {% schema %}

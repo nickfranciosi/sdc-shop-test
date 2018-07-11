@@ -47,3 +47,14 @@ button {
 .section {
   margin-bottom: 40px;
 }
+
+.container {
+  max-width: 940px;
+  padding-left: 20px;
+  padding-right: 20px;
+  margin: 0 auto;
+  @media (min-width: 981px) {
+    padding-left: 0;
+    padding-right: 0;
+  }
+}
