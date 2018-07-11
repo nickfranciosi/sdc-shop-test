@@ -1,0 +1,53 @@
+{%- assign bg_color = section.settings.background_color -%}
+{%- assign bannerIamge = section.settings.banner_image -%}
+
+<section class="section section-banner" style="background-color: {{bg_color}};">
+	<div class="shell">
+    	<div class="banner-text">
+        <h2>{{ section.settings.title | escape }}</h2>
+        {{ section.settings.text }}
+      </div>
+      <div class="banner-image">
+        {%- if bannerIamge -%}
+          {{ bannerIamge | img_tag }}
+        {%- endif -%}
+      </div>
+	</div><!-- /.shell -->
+</section><!-- /.section section-intro -->
+
+{% schema %}
+{
+	"name": "Banner",
+  "settings": [
+    {
+      "type": "color",
+      "id": "background_color",
+      "label": "Background Color",
+      "default": "#F7F5F2"
+    },
+    {
+      "type": "image_picker",
+      "id": "banner_image",
+      "label": "Image"
+    },
+    {
+      "type": "text",
+      "id": "title",
+      "label": "Heading",
+      "default": "Bright Boost formula"
+    },
+    {
+      "type": "richtext",
+      "id": "text",
+      "label": "Text",
+      "default": "<p>Our proprietary formula is designed to work, in just 5 minutes, on even the most sensitive teeth. So everyone can achieve their brightest bright.</p>"
+    }
+  ],
+	"presets": [
+		{
+			"name": "Banner",
+			"category": "content"
+		}
+	]
+}
+{% endschema %}

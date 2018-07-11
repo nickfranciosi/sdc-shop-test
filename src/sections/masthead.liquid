@@ -1,0 +1,45 @@
+{%- assign bg_color = section.settings.background_color -%}
+{%- assign logoImage = section.settings.logo_image -%}
+{%- assign personImage = section.settings.person_image -%}
+
+
+<section class="section section-masthead" style="background-color: {{bg_color}};">
+	<div class="shell">
+    	{%- if logoImage -%}
+				{{ logoImage | img_tag }}
+			{%- endif -%}
+      	{%- if personImage -%}
+				{{ personImage | img_tag }}
+			{%- endif -%}
+	</div><!-- /.shell -->
+</section><!-- /.section section-intro -->
+
+{% schema %}
+{
+	"name": "Masthead",
+  "settings": [
+    {
+      "type": "color",
+      "id": "background_color",
+      "label": "Background Color",
+      "default": "#F7F5F2"
+    },
+    {
+      "type": "image_picker",
+      "id": "logo_image",
+      "label": "Logo image"
+    },
+    {
+      "type": "image_picker",
+      "id": "person_image",
+      "label": "Person image"
+    }
+  ],
+	"presets": [
+		{
+			"name": "Masthead",
+			"category": "content"
+		}
+	]
+}
+{% endschema %}
