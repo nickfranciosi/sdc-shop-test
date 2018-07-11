@@ -20,4 +20,12 @@
     --font-body-style: {{ settings.font_body.style }};
     --font-body-bold-weight: {{ font_body_bold.weight | default: 'bold' }};
   }
+
+
+.logo {
+  display: block;
+  width: 89px;
+  height: 68px;
+  background: url({{ 'logo.svg' | asset_url }}) no-repeat center center;
+  background-size: contain; }
 </style>

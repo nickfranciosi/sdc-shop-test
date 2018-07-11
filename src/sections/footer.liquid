@@ -1,74 +1,70 @@
-<footer>
+{%- assign _section = section.settings -%}
+<footer class="footer">
+	<div class="shell">
+		<a href="/" class="logo footer__logo notext">{{ shop.name }}</a>
 
-  {%- assign social_accounts = 'Facebook, Twitter, Pinterest, Instagram, Snapchat, Tumblr, YouTube, Vimeo,' | split: ', ' -%}
-  <ul>
-    {% for social in social_accounts %}
-      {%- assign social_handle = social | handleize -%}
-      {% capture social_link %}social_{{ social_handle }}_link{% endcapture %}
-      {% capture social_icon %}icon-{{ social_handle }}{% endcapture %}
+		{%- if _section.nav != empty -%}
+			<div class="footer__nav">
+				{%- include 'menu', handle: _section.nav -%}
+			</div><!-- /.footer__nav -->
+		{%- endif -%}
 
-      {% if settings[social_link] != blank %}
-        <li>
-          <a href="{{ settings[social_link] }}" title="{{ 'layout.footer.social_platform' | t: name: shop.name, platform: social }}">
-            {% include social_icon %}
-            <span class="icon-fallback-text">{{ social }}</span>
-          </a>
-        </li>
-      {% endif %}
+		{%- capture socials -%}
+			social_facebook_link|fa-facebook-f
+			social_instagram_link|fa-instagram
+			social_pinterest_link|fa-pinterest-p
+			social_twitter_link|fa-twitter
+			social_youtube_link|fa-youtube
+			social_snapchat_link|fa-snapchat
+		{%- endcapture -%}
+		{%- assign socialsArray = socials | newline_to_br | split: '<br />' -%}
 
-    {% endfor %}
-  </ul>
+		<div class="footer__socials">
+			<ul>
+				{%- for social in socialsArray -%}
+					{%- assign socialArray = social | split: "|" -%}
+					{%- assign socialUrl = socialArray[0] | strip -%}
+					{%- assign socialIcon = socialArray[1] | strip -%}
 
-  {% if section.settings.show_payment_icons %}
-    {% unless shop.enabled_payment_types == empty %}
-      {%- assign payment_icons_available = 'amazon_payments,american_express,apple_pay,bitcoin,cirrus,dankort,diners_club,discover,dogecoin,dwolla,forbrugsforeningen,google_pay,interac,jcb,litecoin,maestro,master,paypal,visa' | split: ',' -%}
+					{%- if settings[socialUrl] == empty -%}
+						{%- continue -%}
+					{%- endif -%}
 
-      <span class="visually-hidden">{{ 'layout.footer.payment_methods' | t }}</span>
-      <ul class="payment-icons">
-        {% for type in shop.enabled_payment_types %}
-          {% if payment_icons_available contains type %}
-            <li>
-              {%- assign icon_name = type | prepend: 'icon-' -%}
-              {% include icon_name %}
-              <span class="visually-hidden">{{ type | capitalize | replace: '_', ' ' }}</span>
-            </li>
-          {% endif %}
-        {% endfor %}
-      </ul>
-    {% endunless %}
-  {% endif %}
+					<li>
+						<a href="{{ settings[socialUrl] }}">
+							<i class="fab {{ socialIcon }}"></i>
+						</a>
+					</li>
+				{%- endfor -%}
+			</ul>
+		</div><!-- /.footer__socials -->
 
-  {%- assign footer_linklist = section.settings.footer_linklist -%}
-  {% if linklists[footer_linklist].links.size > 0 %}
-    <ul>
-      {% for link in linklists[footer_linklist].links %}
-        <li><a href="{{ link.url }}">{{ link.title }}</a></li>
-      {% endfor %}
-    </ul>
-  {% endif %}
+		<div class="footer__copyright copyright">
+			<p>{{ 'layout.footer.copyright' | t }}</p>
+		</div><!-- /.copyright -->
 
-  <div>
-    <small>{{ 'layout.footer.copyright' | t }} &copy; {{ 'now' | date: "%Y" }}, {{ shop.name | link_to: '/' }}. {{ powered_by_link }}</small>
-  </div>
-</footer>
+		{%- if _section.links != empty -%}
+			<div class="footer__links">
+				{%- include 'menu', handle: _section.links -%}
+			</div><!-- /.footer__links -->
+		{%- endif -%}
+	</div><!-- /.shell -->
+</footer><!-- /.footer -->
 
 {% schema %}
-  {
-    "name": "Footer",
-    "settings": [
-      {
-        "type": "link_list",
-        "id": "footer_linklist",
-        "label": "First menu",
-        "default": "footer"
-      },
-      {
-        "type": "checkbox",
-        "id": "show_payment_icons",
-        "label": "Show payment icons",
-        "default": false
-      }
-    ]
-  }
-
+{
+	"name": "Footer",
+	"settings": [
+		{
+			"type": "link_list",
+			"id": "nav",
+			"label": "Navigation"
+		},
+		{
+			"type": "link_list",
+			"id": "links",
+			"label": "Links"
+		}
+	]
+}
 {% endschema %}

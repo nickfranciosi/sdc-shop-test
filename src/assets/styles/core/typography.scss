@@ -1,3 +1,67 @@
+/* SofiaPro */
+@font-face {
+  font-family: 'SofiaPro';
+  src: url("//cdn.shopify.com/s/files/1/0005/5354/9942/t/2/assets/sofia_pro_regular-webfont.woff2?12214106982975796308") format("woff2"), url("//cdn.shopify.com/s/files/1/0005/5354/9942/t/2/assets/sofia_pro_regular-webfont.woff?12214106982975796308") format("woff");
+  font-weight: normal;
+  font-style: normal; }
+@font-face {
+  font-family: 'SofiaPro';
+  src: url("//cdn.shopify.com/s/files/1/0005/5354/9942/t/2/assets/sofia_pro_italic-webfont.woff2?12214106982975796308") format("woff2"), url("//cdn.shopify.com/s/files/1/0005/5354/9942/t/2/assets/sofia_pro_italic-webfont.woff?12214106982975796308") format("woff");
+  font-weight: normal;
+  font-style: italic; }
+@font-face {
+  font-family: 'SofiaPro';
+  src: url("//cdn.shopify.com/s/files/1/0005/5354/9942/t/2/assets/sofia_pro_semi_bold-webfont.woff2?12214106982975796308") format("woff2"), url("//cdn.shopify.com/s/files/1/0005/5354/9942/t/2/assets/sofia_pro_semi_bold-webfont.woff?12214106982975796308") format("woff");
+  font-weight: bold;
+  font-style: normal; }
+@font-face {
+  font-family: 'SofiaPro';
+  src: url("//cdn.shopify.com/s/files/1/0005/5354/9942/t/2/assets/sofia_pro_semi_bold_italic-webfont.woff2?12214106982975796308") format("woff2"), url("//cdn.shopify.com/s/files/1/0005/5354/9942/t/2/assets/sofia_pro_semi_bold_italic-webfont.woff?12214106982975796308") format("woff");
+  font-weight: 700;
+  font-style: italic; }
+@font-face {
+  font-family: 'SofiaPro';
+  src: url("//cdn.shopify.com/s/files/1/0005/5354/9942/t/2/assets/sofia_pro_bold-webfont.woff2?12214106982975796308") format("woff2"), url("//cdn.shopify.com/s/files/1/0005/5354/9942/t/2/assets/sofia_pro_bold-webfont.woff?12214106982975796308") format("woff");
+  font-weight: 700;
+  font-style: normal; }
+@font-face {
+  font-family: 'SofiaPro';
+  src: url("//cdn.shopify.com/s/files/1/0005/5354/9942/t/2/assets/sofia_pro_bold_italic-webfont.woff2?12214106982975796308") format("woff2"), url("//cdn.shopify.com/s/files/1/0005/5354/9942/t/2/assets/sofia_pro_bold_italic-webfont.woff?12214106982975796308") format("woff");
+  font-weight: bold;
+  font-style: italic; }
+@font-face {
+  font-family: 'SofiaPro';
+  src: url("//cdn.shopify.com/s/files/1/0005/5354/9942/t/2/assets/sofia_pro_black-webfont.woff2?12214106982975796308") format("woff2"), url("//cdn.shopify.com/s/files/1/0005/5354/9942/t/2/assets/sofia_pro_black-webfont.woff?12214106982975796308") format("woff");
+  font-weight: 900;
+  font-style: normal; }
+@font-face {
+  font-family: 'SofiaPro';
+  src: url("//cdn.shopify.com/s/files/1/0005/5354/9942/t/2/assets/sofia_pro_black_italic-webfont.woff2?12214106982975796308") format("woff2"), url("//cdn.shopify.com/s/files/1/0005/5354/9942/t/2/assets/sofia_pro_black_italic-webfont.woff?12214106982975796308") format("woff");
+  font-weight: 900;
+  font-style: italic; }
+/* Proxima Nova */
+@font-face {
+  font-family: 'ProximaNova';
+  src: url("//cdn.shopify.com/s/files/1/0005/5354/9942/t/2/assets/proxima_nova_regular-webfont.woff2?12214106982975796308") format("woff2"), url("//cdn.shopify.com/s/files/1/0005/5354/9942/t/2/assets/proxima_nova_regular-webfont.woff?12214106982975796308") format("woff");
+  font-weight: normal;
+  font-style: normal; }
+@font-face {
+  font-family: 'ProximaNova';
+  src: url("//cdn.shopify.com/s/files/1/0005/5354/9942/t/2/assets/proxima_nova_regular_italic-webfont.woff2?12214106982975796308") format("woff2"), url("//cdn.shopify.com/s/files/1/0005/5354/9942/t/2/assets/proxima_nova_regular_italic-webfont.woff?12214106982975796308") format("woff");
+  font-weight: normal;
+  font-style: italic; }
+@font-face {
+  font-family: 'ProximaNova';
+  src: url("//cdn.shopify.com/s/files/1/0005/5354/9942/t/2/assets/proxima_nova_bold-webfont.woff2?12214106982975796308") format("woff2"), url("//cdn.shopify.com/s/files/1/0005/5354/9942/t/2/assets/proxima_nova_bold-webfont.woff?12214106982975796308") format("woff");
+  font-weight: bold;
+  font-style: normal; }
+@font-face {
+  font-family: 'ProximaNova';
+  src: url("//cdn.shopify.com/s/files/1/0005/5354/9942/t/2/assets/proxima_nova_bold_italic-webfont.woff2?12214106982975796308") format("woff2"), url("//cdn.shopify.com/s/files/1/0005/5354/9942/t/2/assets/proxima_nova_bold_italic-webfont.woff?12214106982975796308") format("woff");
+  font-weight: bold;
+  font-style: italic; }
+
+
 html {
   font-size: 62.5%;
 }
@@ -30,3 +94,5 @@ select {
 a:focus {
   color: inherit;
 }
+
+

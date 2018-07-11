@@ -13,3 +13,33 @@ body,
 html {
   height: 100%;
 }
+
+
+body {
+  min-width: 320px;
+  background: #fff;
+  font-family: "Proxima Nova", "ProximaNova", Arial, Helvetica, sans-serif;
+  font-size: 15px;
+  line-height: 1.67;
+  color: #333; }
+a {
+  color: inherit;
+  text-decoration: underline; }
+a:hover, a[href^='tel'] {
+    text-decoration: none; }
+h3 {
+  font-family: "SofiaPro", Arial, Helvetica, sans-serif;
+  font-size: 22px;
+  font-weight: 900;
+  color: #5700ff; }
+p {
+  margin-bottom: 1.67em; }
+p:last-child {
+    margin-bottom: 0; }
+a,
+input[type='submit'],
+input[type='button'],
+button {
+  -webkit-transition: opacity 0.4s, background 0.4s, color 0.4s;
+  -o-transition: opacity 0.4s, background 0.4s, color 0.4s;
+  transition: opacity 0.4s, background 0.4s, color 0.4s; }

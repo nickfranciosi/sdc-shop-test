@@ -75,3 +75,9 @@
   /* stylelint-disable declaration-no-important */
   display: none !important;
 }
+
+.notext {
+  overflow: hidden;
+  text-indent: 101%;
+  white-space: nowrap;
+}
