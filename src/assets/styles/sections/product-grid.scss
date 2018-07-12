@@ -1,0 +1,11 @@
+.section-product-grid {
+  display: block;
+  @media (min-width: 768px) {
+    display: flex;
+  }
+}
+
+.product-grid-item {
+  flex: 0 0 50%;
+  text-align: center;
+}
