@@ -5,18 +5,18 @@
 
 <div class="section section-gap-large section-product-grid">
   {%- if product1 -%}
-    <div class="product-grid-item">
+    <a href="{{ product1.url | default: "#" }}" class="product-grid-item">
       {{ product1.featured_image | img_tag }}
       <h3>{{ product1.title | default: "Product Title" }}</h3>
       <p>{{ product1.price | money | default: "$1.99" }}</p>
-    </div>
+    </a>
 	{%- endif -%}
   {%- if product2 -%}
-    <div class="product-grid-item">
+    <a href="{{ product2.url | default: "#" }}" class="product-grid-item">
       {{ product2.featured_image| img_tag }}
       <h3>{{ product2.title | default: "Product Title" }}</h3>
       <p>{{ product2.price | money | default: "$1.99" }}</p>
-    </div>
+    </a>
 	{%- endif -%}
 </div>
 

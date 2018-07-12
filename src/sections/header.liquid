@@ -47,10 +47,40 @@
       </div>
     {% endif %}
 
-    <a href="/cart">
-      {% include 'icon-cart' %}
+      <nav role="navigation">
+      <ul>
+        {% for link in linklists[section.settings.menu].links %}
+          {% if link.links != blank %}
+            <li>
+              <a href="{{ link.url }}">
+                {{ link.title }}
+                {% include 'icon-arrow-down' %}
+              </a>
+              <ul>
+                {% for childlink in link.links %}
+                  <li>
+                    <a href="{{ childlink.url }}">
+                      {{ childlink.title }}
+                    </a>
+                  </li>
+                {% endfor %}
+              </ul>
+            </li>
+          {% else %}
+            <li>
+              <a href="{{ link.url }}">
+                {{ link.title }}
+              </a>
+            </li>
+          {% endif %}
+        {% endfor %}
+      </ul>
+    </nav>
+
+    <a href="/cart" class="cart-wrapper">
+      {% comment %} {% include 'icon-cart' %} {% endcomment %}
       {{ 'layout.cart.title' | t }}
-      ({{ cart.item_count }} {{ 'layout.cart.items_count' | t: count: cart.item_count }})
+      ({{ cart.item_count }})
     </a>
 
     {% if shop.customer_accounts_enabled %}
@@ -78,7 +108,7 @@
       </ul>
     {% endif %}
 
-    <form action="/search" method="get" role="search">
+    {% comment %} <form action="/search" method="get" role="search">
       <label for="Search" class="label-hidden">
         {{ 'general.search.placeholder' | t }}
       </label>
@@ -93,38 +123,9 @@
         {% include 'icon-search' %}
         <span class="icon-fallback-text">{{ 'general.search.submit' | t }}</span>
       </button>
-    </form>
+    </form> {% endcomment %}
   </header>
 
-  <nav role="navigation">
-    <ul>
-      {% for link in linklists[section.settings.menu].links %}
-        {% if link.links != blank %}
-          <li>
-            <a href="{{ link.url }}">
-              {{ link.title }}
-              {% include 'icon-arrow-down' %}
-            </a>
-            <ul>
-              {% for childlink in link.links %}
-                <li>
-                  <a href="{{ childlink.url }}">
-                    {{ childlink.title }}
-                  </a>
-                </li>
-              {% endfor %}
-            </ul>
-          </li>
-        {% else %}
-          <li>
-            <a href="{{ link.url }}">
-              {{ link.title }}
-            </a>
-          </li>
-        {% endif %}
-      {% endfor %}
-    </ul>
-  </nav>
 </section>
 
 {% if section.settings.logo != blank %}
