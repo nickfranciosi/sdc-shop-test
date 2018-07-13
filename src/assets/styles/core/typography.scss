@@ -82,12 +82,22 @@ h6 {
   font-family: $font-heading;
 }
 
-h2 {
+h2, h3 {
   font-family: SofiaPro, Arial, Helvetica, sans-serif;
   color: #5700FF;
+
+}
+
+h2 {
   font-size: 50px;
   letter-spacing: -0.5px;
   line-height: 1.12;
+}
+
+h3 {
+  font-size: 18px;
+  letter-spacing: 0.45px;
+  line-height: 1.77;
 }
 
 p {

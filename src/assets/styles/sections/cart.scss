@@ -1,0 +1,36 @@
+#modalCart {
+  position: absolute;
+  right: 0;
+  height: 100vh;
+  background: white;
+  z-index: 5;
+  transform: translateX(100%);
+  transition: transform 300ms ease-in;
+  &.isOpen {
+    transform: translateX(0);
+  }
+}
+
+body{
+  overflow-x: hidden;
+  &:after {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    display: block;
+    opacity: 0;
+    background-color: rgba(0, 0, 0, .3);
+    z-index: -1;
+    transition: opacity 250ms ease-in;
+  }
+}
+body.modalOpen{
+  overflow: hidden;
+  &:after{
+    opacity: 1;
+    z-index: 1;
+  }
+};

@@ -2,22 +2,23 @@
 {%- assign product2 = all_products[section.settings.product_two] -%}
 
 
-
-<div class="section section-gap-large section-product-grid">
-  {%- if product1 -%}
-    <a href="{{ product1.url | default: "#" }}" class="product-grid-item">
-      {{ product1.featured_image | img_tag }}
-      <h3>{{ product1.title | default: "Product Title" }}</h3>
-      <p>{{ product1.price | money | default: "$1.99" }}</p>
-    </a>
-	{%- endif -%}
-  {%- if product2 -%}
-    <a href="{{ product2.url | default: "#" }}" class="product-grid-item">
-      {{ product2.featured_image| img_tag }}
-      <h3>{{ product2.title | default: "Product Title" }}</h3>
-      <p>{{ product2.price | money | default: "$1.99" }}</p>
-    </a>
-	{%- endif -%}
+<div class="container">
+  <div class="section section-gap-large section-product-grid">
+    {%- if product1 -%}
+      <a href="{{ product1.url | default: "#" }}" class="product-grid-item">
+        <img src="{{ product1.featured_image |  img_url: '1000x' }}" alt="">
+        <h3>{{ product1.title | default: "Product Title" }}</h3>
+        <p>{{ product1.price | money | default: "$1.99" }}</p>
+      </a>
+    {%- endif -%}
+    {%- if product2 -%}
+      <a href="{{ product2.url | default: "#" }}" class="product-grid-item">
+        <img src="{{ product2.featured_image |  img_url: '1000x' }}" alt="">
+        <h3>{{ product2.title | default: "Product Title" }}</h3>
+        <p>{{ product2.price | money | default: "$1.99" }}</p>
+      </a>
+    {%- endif -%}
+  </div>
 </div>
 
 {% schema %}

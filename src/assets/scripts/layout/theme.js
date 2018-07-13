@@ -52,3 +52,16 @@ $(document).ready(() => {
     );
   }
 });
+
+
+$(document).ready(() => {
+  $('.modalCartTrigger').on('click', (event) => {
+    event.preventDefault();
+    const $cartModal = $('#modalCart');
+    const $body = $('body');
+
+    $body.toggleClass('modalOpen');
+    $cartModal.toggleClass('isOpen');
+  });
+});
+

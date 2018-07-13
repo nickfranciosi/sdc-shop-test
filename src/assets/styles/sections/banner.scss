@@ -2,6 +2,9 @@
   display: flex;
   justify-content: space-around;
   align-items: flex-end;
+  img {
+    max-height: 448px;
+  }
 }
 
 .banner-text {
