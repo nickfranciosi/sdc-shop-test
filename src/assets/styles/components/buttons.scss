@@ -8,4 +8,14 @@
   text-decoration: none;
   user-select: none;
   appearance: none;
+  background: #5700FF;
+  border-radius: 4px;
+  font-size: 15px;
+  color: #FFFFFF;
+  letter-spacing: 0.2px;
+  height: 48px;
+  &--text {
+    background: transparent;
+    color: #5700FF;
+  }
 }

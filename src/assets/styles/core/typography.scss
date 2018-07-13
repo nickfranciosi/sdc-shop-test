@@ -82,10 +82,9 @@ h6 {
   font-family: $font-heading;
 }
 
-h2, h3 {
+h2, h3, h4, button {
   font-family: SofiaPro, Arial, Helvetica, sans-serif;
   color: #5700FF;
-
 }
 
 h2 {
@@ -100,7 +99,14 @@ h3 {
   line-height: 1.77;
 }
 
+h4 {
+  font-size: 16px;
+  font-weight: 600;
+  line-height: 1.375;
+}
+
 p {
+  font-family: ProximaNova,  Arial, Helvetica, sans-serif;
   color: #333333;
   font-size: 15px;
   line-height: 1.86;

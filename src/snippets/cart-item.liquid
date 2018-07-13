@@ -1,0 +1,15 @@
+<div class="cart-item">
+  {{ item | img_url: '110X110' | img_tag: item.title }}
+  <div class="cart-item--content">
+    <h4>{{ item.product.title }}</h4>
+    <p>{{ item.price | money }}</p>
+    <input
+      type="number"
+      name="updates[]"
+      id="updates_{{ item.key }}"
+      value="{{ item.quantity }}"
+      min="0"
+      aria-label="{{ 'cart.general.item_quantity' | t }}"
+    >
+  </div>
+</div>
