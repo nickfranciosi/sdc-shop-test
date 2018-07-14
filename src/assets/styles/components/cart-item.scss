@@ -11,4 +11,14 @@
   &--content {
     flex: 2 2 65%;
   }
+  &--incrementer {
+    display: flex;
+    align-items: center;
+    p {
+      padding: 0 10px;
+    }
+    .button {
+      height: auto;
+    }
+  }
 }

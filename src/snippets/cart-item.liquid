@@ -3,13 +3,10 @@
   <div class="cart-item--content">
     <h4>{{ item.product.title }}</h4>
     <p>{{ item.price | money }}</p>
-    <input
-      type="number"
-      name="updates[]"
-      id="updates_{{ item.key }}"
-      value="{{ item.quantity }}"
-      min="0"
-      aria-label="{{ 'cart.general.item_quantity' | t }}"
-    >
+    <div class="cart-item--incrementer">
+      <button class="button button--text" data-product-id="{{item.id}}">-</button>
+      <p>{{ item.quantity }}</p>
+      <button class="button button--text" data-product-id="{{item.id}}">+</button>
+    </div>
   </div>
 </div>

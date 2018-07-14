@@ -63,5 +63,23 @@ $(document).ready(() => {
     $body.toggleClass('modalOpen');
     $cartModal.toggleClass('isOpen');
   });
+
+  $('.cart-item--incrementer button').on('click', (e) => {
+    e.preventDefault();
+    const $item = $(e.target);
+    const $itemData = $item.data();
+    $.post('/cart/add.js', {
+      quantity: 3,
+      id: $itemData.productId,
+    });
+  });
+
+  console.log(Shopify);
+  Shopify.onItemAdded = function(cart) {
+    $.getJSON('/cart.js', (cart) => {
+      console.log('car cart carrtt', cart.item_count);
+      $('#cartCount').html(cart.item_count);
+    });
+  };
 });
 

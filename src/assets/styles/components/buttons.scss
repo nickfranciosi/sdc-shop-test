@@ -14,8 +14,17 @@
   color: #FFFFFF;
   letter-spacing: 0.2px;
   height: 48px;
+  &:hover {
+    background: transparent;
+    border: 2px solid #5700FF;
+    color: #5700FF;
+  }
   &--text {
     background: transparent;
     color: #5700FF;
+    &:hover {
+      border: 0;
+      color: #808080;
+    }
   }
 }

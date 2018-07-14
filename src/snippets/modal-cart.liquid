@@ -20,7 +20,7 @@
         <p>{{ 'cart.general.savings' | t }} {{ cart.total_discounts | money }}</p>
       {% endif %}
       <button class="button">Checkout</button>
-      <button class="button button--text">Continue shopping</button>
+      <button class="button button--text modalCartTrigger">Continue shopping</button>
     </div>
 {% else %}
   <h1>{{ 'cart.general.title' | t }}</h1>
