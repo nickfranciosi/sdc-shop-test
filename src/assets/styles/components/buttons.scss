@@ -27,4 +27,20 @@
       color: #808080;
     }
   }
+  &--transparent {
+    background: transparent;
+    border: 2px solid #5700FF;
+    color: #5700FF;
+    &:hover {
+      background: #5700FF;
+      color: #FFFFFF;
+    }
+  }
+}
+
+a.button {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  max-width: 140px;
 }

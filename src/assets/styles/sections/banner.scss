@@ -1,16 +1,74 @@
 .section-banner {
   display: flex;
-  justify-content: space-around;
-  align-items: flex-end;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+  padding-top: 30px;
+  @media (min-width: 768px) {
+    padding-top: 0;
+    flex-direction: row;
+    justify-content: space-around;
+    align-items: flex-end;
+  }
   img {
-    max-height: 448px;
+    height: 55vw;
+    min-height: 260px;
+    max-height: 390px;
+    object-fit: cover;
+  }
+  &.swap {
+    @media (min-width: 768px) {
+      .banner-image {
+        order: -1;
+      }
+      .banner-text {
+        padding-left: 0;
+        padding-right: 6vw;
+      }
+    }
   }
 }
 
+.banner-segment {
+  flex: 0 0 50%;
+}
+
 .banner-text {
-  max-width: 400px;
-  padding: 10em 0;
+  align-self: center;
+  padding: 0 6vw;
+  @media (min-width: 768px) {
+    padding-right: 0;
+  }
   h2 {
-    margin-bottom: 20px;
+    margin-bottom: 10px;
+    width: 90%;
+    @media (min-width: 768px) {
+      margin-bottom: 20px;
+      width: 100%;
+    }
+  }
+}
+
+.banner-image {
+  display: flex;
+  justify-content: center;
+  padding-top: 10px;
+  @media (min-width: 768px) {
+    padding-top: 80px;
+  }
+}
+
+.banner-cta {
+  margin-top: 20px;
+  @media (min-width: 768px) {
+    margin-top: 30px;
+  }
+}
+
+// overrides
+
+.whitening-banner {
+  .banner-image {
+    align-self: flex-end;
   }
 }

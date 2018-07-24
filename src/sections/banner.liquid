@@ -1,13 +1,23 @@
 {%- assign bg_color = section.settings.background_color -%}
 {%- assign bannerImage = section.settings.banner_image -%}
+{%- assign isSwapped = section.settings.swap -%}
+{%- assign ctaLink = section.settings.cta_link -%}
+{%- assign extraClasses = section.settings.extra_class -%}
+
 
 <div class="container">
-  <section class="section section-banner" style="background-color: {{bg_color}};">
-        <div class="banner-text">
+  <section
+    class="section section-banner {% if isSwapped %}swap{% endif %} {% if extraClasses %}{{extraClasses}}{% endif %}"
+    style="background-color: {{bg_color}};"
+  >
+        <div class="banner-segment banner-text">
           <h2>{{ section.settings.title | escape }}</h2>
           {{ section.settings.text }}
+          {% if ctaLink %}
+            <a href="{{ctaLink}}" class="banner-cta button button--transparent">Shop Now</a>
+          {% endif %}
         </div>
-        <div class="banner-image">
+        <div class="banner-segment banner-image">
           {%- if bannerImage -%}
             <img src="{{ bannerImage |  img_url: '1000x' }}" alt="">
           {%- endif -%}
@@ -40,6 +50,22 @@
       "id": "text",
       "label": "Text",
       "default": "<p>Our proprietary formula is designed to work, in just 5 minutes, on even the most sensitive teeth. So everyone can achieve their brightest bright.</p>"
+    },
+    {
+      "type": "url",
+      "id": "cta_link",
+      "label": "CTA Link"
+    },
+    {
+      "type": "checkbox",
+      "id": "swap",
+      "label": "Swap image order",
+      "default": false
+    },
+    {
+      "type": "text",
+      "id": "extra_class",
+      "label": "Extra Classes"
     }
   ],
 	"presets": [
