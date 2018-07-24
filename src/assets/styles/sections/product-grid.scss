@@ -7,11 +7,19 @@
   text-align: center;
   text-decoration: none;
   display: block;
+
+  // transform: translateY(0);
+  &:hover {
+    img {
+      transform: translateY(-10px);
+    }
+  }
   img {
     max-height: 308px;
     min-height: 158px;
     height: 30vw;
     margin-bottom: 36px;
+    transition: transform 300ms ease;
   }
   p {
     font-family: SofiaPro, Arial, Helvetica, sans-serif;
