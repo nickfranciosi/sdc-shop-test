@@ -1,0 +1,63 @@
+{%- assign bg_color = section.settings.background_color -%}
+{%- assign image = section.settings.offramp_image -%}
+{%- assign ctaLink = section.settings.cta_link -%}
+{%- assign extraClasses = section.settings.extra_class -%}
+
+
+<div class="container">
+  <section class="section section-gap-xlarge section-offramp">
+        <div class="offramp-segment offramp-image">
+          {%- if image -%}
+            <img src="{{ image |  img_url: '1000x' }}" alt="">
+          {%- endif -%}
+        </div>
+        <div class="offramp-segment offramp-text">
+          <h2>{{ section.settings.title | escape }}</h2>
+          {{ section.settings.text }}
+          {% if ctaLink %}
+            <a href="{{ctaLink}}" class="offramp-cta button button--transparent">{{ section.settings.cta_text}}</a>
+          {% endif %}
+        </div>
+  </section><!-- /.section section-intro -->
+</div>
+{% schema %}
+{
+	"name": "Off Ramp",
+  "settings": [
+    {
+      "type": "image_picker",
+      "id": "offramp_image",
+      "label": "Image"
+    },
+    {
+      "type": "text",
+      "id": "title",
+      "label": "Heading",
+      "default": "Want straighter teeth too?"
+    },
+    {
+      "type": "richtext",
+      "id": "text",
+      "label": "Text",
+      "default": "<p>Straighten your teeth, for 60% less than braces, with invisible aligners that are sent directly to you. No more braces. No monthly office visits. No paying a fortune.</p>"
+    },
+    {
+      "type": "url",
+      "id": "cta_link",
+      "label": "CTA Link"
+    },
+    {
+      "type": "text",
+      "id": "cta_text",
+      "label": "CTA Text",
+      "default": "Am I a candidate?"
+    }
+  ],
+	"presets": [
+		{
+			"name": "Off Ramp",
+			"category": "content"
+		}
+	]
+}
+{% endschema %}

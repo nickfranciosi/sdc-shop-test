@@ -48,8 +48,17 @@ button {
   &.section-gap-large{
     margin-top: 40px;
     @media (min-width: 768px){
-       margin-top: 80px;
+      margin-top: 80px;
       margin-bottom: 80px;
+    }
+  }
+
+  &.section-gap-xlarge{
+    margin-top: 60px;
+    margin-bottom: 60px;
+    @media (min-width: 768px){
+      margin-top: 140px;
+      margin-bottom: 140px;
     }
   }
 }
