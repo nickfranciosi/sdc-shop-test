@@ -68,7 +68,11 @@
 // overrides
 
 .whitening-banner {
+  overflow: hidden;
   .banner-image {
     align-self: flex-end;
+    img {
+      max-width: 135%;
+    }
   }
 }

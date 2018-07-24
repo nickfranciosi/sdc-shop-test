@@ -1,25 +1,23 @@
 .section-product-grid {
   display: flex;
+  justify-content: space-around;
 }
 
 .product-grid-item {
-  flex: 0 0 50%;
+  flex: 0 0 47%;
   text-align: center;
   text-decoration: none;
   display: block;
 
   // transform: translateY(0);
-  &:hover {
-    img {
-      transform: translateY(-10px);
-    }
-  }
+
   img {
     max-height: 308px;
     min-height: 158px;
     height: 30vw;
     margin-bottom: 36px;
-    transition: transform 300ms ease;
+    transform: translateZ(0);
+    transition: transform 300ms cubic-bezier(.5, 0, .5, 1);
   }
   p {
     font-family: SofiaPro, Arial, Helvetica, sans-serif;
@@ -28,5 +26,11 @@
     font-weight: 600;
     line-height: 1.77;
     letter-spacing: 0.45px;
+  }
+
+  &:hover {
+    img {
+      transform: translateY(-10px);
+    }
   }
 }
