@@ -1,8 +1,5 @@
 .section-product-grid {
-  display: block;
-  @media (min-width: 768px) {
-    display: flex;
-  }
+  display: flex;
 }
 
 .product-grid-item {
@@ -11,9 +8,10 @@
   text-decoration: none;
   display: block;
   img {
-    height: 308px;
+    max-height: 308px;
+    min-height: 158px;
+    height: 40vw;
     margin-bottom: 36px;
-    transition: transform 300ms cubic-bezier(.78,.52,.61,.92);
   }
   p {
     font-family: SofiaPro, Arial, Helvetica, sans-serif;
@@ -22,10 +20,5 @@
     font-weight: 600;
     line-height: 1.77;
     letter-spacing: 0.45px;
-  }
-  &:hover {
-    img {
-     transform: translateY(-5px);
-    }
   }
 }
