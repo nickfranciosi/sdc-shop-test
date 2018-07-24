@@ -48,7 +48,7 @@
     {% endif %}
 
       <nav role="navigation">
-      <ul>
+      {% comment %} <ul>
         {% for link in linklists[section.settings.menu].links %}
           {% if link.links != blank %}
             <li>
@@ -74,7 +74,7 @@
             </li>
           {% endif %}
         {% endfor %}
-      </ul>
+      </ul> {% endcomment %}
     </nav>
 
     <a href="#" class="modalCartTrigger cart-wrapper">

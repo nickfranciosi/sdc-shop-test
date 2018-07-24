@@ -1,9 +1,40 @@
 .section-masthead {
+  min-height: 390px;
+  display: flex;
+  align-items: flex-end;
+  @media (min-width: 768px) {
+    min-height: 470px
+  }
   .container {
     display: flex;
-    img {
-      width: 50%;
-      object-fit:contain;
+    flex-direction: column;
+    align-items: center;
+    padding-top: 60px;
+    @media (min-width: 768px) {
+      flex-direction: row;
+      padding-top: 0;
+    }
+    .image-wrapper {
+      width: 100%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+    .logo-image-wrapper {
+      max-width: 295px;
+      margin-bottom: 20px;
+      margin-right: 0;
+      @media (min-width: 768px) {
+        margin-bottom: 0;
+        margin-right: 30px;
+        max-width: 417px;
+      }
+    }
+    .person-image-wrapper {
+      max-width: 295px;
+      @media (min-width: 768px) {
+        max-width: 440px;
+      }
     }
   }
 }

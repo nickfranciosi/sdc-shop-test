@@ -6,10 +6,14 @@
 <section class="section section-masthead full-width" style="background-color: {{bg_color}};">
     <div class="container">
     	{%- if logoImage -%}
-        <img src="{{ logoImage |  img_url: '1000x' }}" alt="">
+        <div class="image-wrapper logo-image-wrapper">
+          <img src="{{ logoImage |  img_url: '1000x' }}" alt="">
+        </div>
 			{%- endif -%}
       	{%- if personImage -%}
-        <img src="{{ personImage |  img_url: '1000x' }}" alt="">
+        <div class="image-wrapper person-image-wrapper">
+          <img src="{{ personImage |  img_url: '1000x' }}" alt="">
+        </div>
 			{%- endif -%}
     </div>
 </section><!-- /.section section-intro -->
