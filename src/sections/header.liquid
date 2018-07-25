@@ -49,9 +49,9 @@
       </div>
     {% endif %} {% endcomment %}
       <div class="hamburger"></div>
-      <h1 class="text-logo">
+      <h2 class="text-logo">
         <a href="/">SmileDirectClub <span>Shop</span></a>
-      </h1>
+      </h2>
       <nav role="navigation">
         <ul>
         {% for link in linklists[section.settings.menu].links %}
@@ -130,9 +130,36 @@
       </button>
     </form> {% endcomment %}
   </header>
-
 </section>
-
+<section id="mobile-menu" class="mobile-menu">
+    <ul>
+      {% for link in linklists[section.settings.menu].links %}
+        {% if link.links != blank %}
+          <li>
+            <a href="{{ link.url }}">
+              {{ link.title }}
+              {% include 'icon-arrow-down' %}
+            </a>
+            <ul>
+              {% for childlink in link.links %}
+                <li>
+                  <a href="{{ childlink.url }}">
+                    {{ childlink.title }}
+                  </a>
+                </li>
+              {% endfor %}
+            </ul>
+          </li>
+        {% else %}
+          <li>
+            <a href="{{ link.url }}">
+              {{ link.title }}
+            </a>
+          </li>
+        {% endif %}
+      {% endfor %}
+    </ul>
+  </section>
 {% if section.settings.logo != blank %}
   <style>
     .logo-image {

@@ -53,6 +53,12 @@ $(document).ready(() => {
   }
 });
 
+$(document).ready(() => {
+  $('.hamburger').on('click', (e) => {
+    $('#mobile-menu').toggleClass('open');
+  });
+});
+
 
 $(document).ready(() => {
   $('.modalCartTrigger').on('click', (event) => {

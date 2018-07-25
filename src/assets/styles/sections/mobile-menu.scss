@@ -1,0 +1,46 @@
+.mobile-menu {
+  background: #F5F5F5;
+  height: calc(100vh - 96px);
+  display: flex;
+  justify-content: center;
+  text-align: center;
+  position: absolute;
+  width: 100%;
+  z-index: 10;
+  transform: translateY(-120%);
+  transition: transform 400ms cubic-bezier(.5, 0, .5, 1);
+  ul {
+    margin-top: 40px;
+    list-style-type: none;
+    li {
+      padding-bottom: 30px;
+      transform: translateY(-100%);
+      opacity: 0;
+      transition: transform 350ms cubic-bezier(.5, 0, .5, 1), opacity 350ms cubic-bezier(.5, 0, .5, 1);
+    }
+  }
+  a {
+    text-decoration: none;
+    font-size: 24px;
+    font-weight: bold;
+  }
+  &.open {
+    transform: translateY(0);
+    ul {
+      li {
+        transform: translateY(0);
+        opacity: 1;
+      }
+    }
+  }
+
+  @media (min-width: 768px) {
+    display:none;
+  }
+
+}
+
+// timing delay for menu item animation
+@for $i from 1 to 6 {
+  .mobile-menu ul li:nth-child(#{$i}) { transition-delay: $i * 150ms; }
+}

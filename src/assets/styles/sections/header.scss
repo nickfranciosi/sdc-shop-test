@@ -35,7 +35,7 @@ header {
     }
     .cart-icon-wrapper {
       display: flex;
-      padding: 2px 2px 0 0;
+      padding: 2px 4px 0 0;
     }
     @media (min-width: 768px) {
       color: #808080;
@@ -49,7 +49,6 @@ header {
     }
   }
 }
-
 
 nav{
   ul{
@@ -122,4 +121,11 @@ nav{
       }
     }
   }
+}
+
+// For mobile menu transition
+[data-section-type="header"]{
+  z-index: 15;
+  position: relative;
+  background: white;
 }
