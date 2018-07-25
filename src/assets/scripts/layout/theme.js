@@ -55,6 +55,8 @@ $(document).ready(() => {
 
 $(document).ready(() => {
   $('.hamburger').on('click', (e) => {
+    $('body').toggleClass('modalOpen');
+    $('.hamburger').toggleClass('open');
     $('#mobile-menu').toggleClass('open');
   });
 });
