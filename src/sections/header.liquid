@@ -24,9 +24,11 @@
       {%- endif -%}
     </div>
   {%- endif -%}
-
+  <div class="main-site-link">
+    <a href="https://smiledirectclub.com/">SmileDirectClub.com <span>&rarr;</span></a>
+  </div>
   <header role="banner">
-    {% if template.name == 'index' %}
+    {% comment %} {% if template.name == 'index' %}
       <h1>
     {% else %}
       <div class="h1">
@@ -45,10 +47,13 @@
       </h1>
     {% else %}
       </div>
-    {% endif %}
-
+    {% endif %} {% endcomment %}
+      <div class="hamburger"></div>
+      <h1 class="text-logo">
+        <a href="/">SmileDirectClub <span>Shop</span></a>
+      </h1>
       <nav role="navigation">
-      {% comment %} <ul>
+        <ul>
         {% for link in linklists[section.settings.menu].links %}
           {% if link.links != blank %}
             <li>
@@ -74,13 +79,13 @@
             </li>
           {% endif %}
         {% endfor %}
-      </ul> {% endcomment %}
+      </ul>
     </nav>
 
-    <a href="#" class="modalCartTrigger cart-wrapper">
-      {% comment %} {% include 'icon-cart' %} {% endcomment %}
-      {{ 'layout.cart.title' | t }}
-      ({{ cart.item_count }})
+    <a href="/cart" class="cart-wrapper">
+      <span class="cart-icon-wrapper">{% include 'shopping_cart' %}</span>
+      <span class="cart-title-wrapper">{{ 'layout.cart.title' | t }}</span>
+      <span class="cart-count-wrapper">({{ cart.item_count }})</span>
     </a>
 
     {% if shop.customer_accounts_enabled %}

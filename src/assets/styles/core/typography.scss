@@ -82,9 +82,13 @@ h6 {
   font-family: $font-heading;
 }
 
-h2, h3, h4, button, a.button {
+h2, h3, h4, button, a.button, span, .text-logo {
   font-family: SofiaPro, Arial, Helvetica, sans-serif;
   color: #5700FF;
+}
+
+span {
+  color: inherit;
 }
 
 h2 {
@@ -139,4 +143,10 @@ a:focus {
   color: inherit;
 }
 
+nav a {
+  font-family: SofiaPro, Arial, Helvetica, sans-serif;
+  font-weight: bold;
+  font-size: 15px;
+  color: #808080;
+}
 
