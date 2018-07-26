@@ -18,6 +18,14 @@ window.theme = window.theme || {};
 
 $(document).ready(() => {
   // Common a11y fixes
+  // Shopify.onItemAdded = function(cart) {
+  //   $.getJSON('/cart.js', (cart) => {
+  //     // console.log('hi');
+  //     // console.log('car cart carrtt', cart.item_count);
+  //     // $('#cartCount').html(cart.item_count);
+  //   });
+  // };
+
   if (window.location.hash !== '#') {
     pageLinkFocus($(window.location.hash));
   }
@@ -63,12 +71,17 @@ $(document).ready(() => {
 
 
 $(document).ready(() => {
+
   $('.modalCartTrigger').on('click', (event) => {
     event.preventDefault();
     const $cartModal = $('#modalCart');
     const $body = $('body');
+    // close mobile menu if open
+    $('#mobile-menu').removeClass('open');
+    $body.removeClass('modalOpen');
+    $('.hamburger').removeClass('open');
 
-    $body.toggleClass('modalOpen');
+    $body.toggleClass('modalDesktop');
     $cartModal.toggleClass('isOpen');
   });
 
@@ -77,17 +90,9 @@ $(document).ready(() => {
     const $item = $(e.target);
     const $itemData = $item.data();
     $.post('/cart/add.js', {
-      quantity: 3,
+      quantity: 1,
       id: $itemData.productId,
     });
   });
-
-  console.log(Shopify);
-  Shopify.onItemAdded = function(cart) {
-    $.getJSON('/cart.js', (cart) => {
-      console.log('car cart carrtt', cart.item_count);
-      $('#cartCount').html(cart.item_count);
-    });
-  };
 });
 

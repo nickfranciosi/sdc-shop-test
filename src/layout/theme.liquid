@@ -53,13 +53,7 @@
   {{ content_for_header }}
 </head>
 
-{% comment %} <div id="modalCart">
-  {% include 'modal-cart' %}
-
-</div> {% endcomment %}
-
 <body id="{{ page_title | handle }}" class="template-{{ template.name | handle }}">
-
   <a class="in-page-link visually-hidden skip-link" href="#MainContent">{{ 'general.accessibility.skip_to_content' | t }}</a>
 
   {% section 'header' %}
@@ -69,6 +63,6 @@
   </main>
 
   {% section 'footer' %}
-
+  <div class="modal-overlay modalCartTrigger"></div>
 </body>
 </html>

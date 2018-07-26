@@ -86,7 +86,7 @@
       </ul>
     </nav>
 
-    <a href="/cart" class="cart-wrapper">
+    <a href="#cart" class="cart-wrapper modalCartTrigger">
       <span class="cart-icon-wrapper">{% include 'shopping_cart' %}</span>
       <span class="cart-title-wrapper">{{ 'layout.cart.title' | t }}</span>
       <span class="cart-count-wrapper">({{ cart.item_count }})</span>
@@ -137,6 +137,8 @@
 </section>
 
 {% include 'mobile-menu'%}
+
+{% include 'modal-cart' %}
 
 {% if section.settings.logo != blank %}
   <style>

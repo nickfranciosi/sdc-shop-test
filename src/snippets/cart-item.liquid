@@ -1,8 +1,10 @@
 <div class="cart-item">
   {{ item | img_url: '110X110' | img_tag: item.title }}
   <div class="cart-item--content">
-    <h4>{{ item.product.title }}</h4>
-    <p>{{ item.price | money }}</p>
+    <div class="cart-item--info">
+      <h4>{{ item.product.title }}</h4>
+      <p>{{ item.price | money }}</p>
+    </div>
     <div class="cart-item--incrementer">
       <button class="button button--text" data-product-id="{{item.id}}">-</button>
       <p>{{ item.quantity }}</p>

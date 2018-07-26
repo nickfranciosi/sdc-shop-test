@@ -9,13 +9,24 @@
     margin-right: 20px;
   }
   &--content {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
     flex: 2 2 65%;
+    .cart-item--info {
+      p {
+        color: #808080;
+        font-weight: 600;
+        font-family: SofiaPro, Arial, Helvetica, sans-serif;
+      }
+    }
   }
   &--incrementer {
     display: flex;
     align-items: center;
     p {
       padding: 0 10px;
+      font-family: SofiaPro, Arial, Helvetica, sans-serif;
     }
     .button {
       height: auto;
