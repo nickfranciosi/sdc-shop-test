@@ -107,8 +107,11 @@
 }
 
 // Overlay styles
-body{
+
+.app-wrapper {
   overflow-x: hidden;
+  position: relative;
+  height: 100%;
 }
 
 .modal-overlay {
@@ -123,15 +126,20 @@ body{
   transition: opacity 250ms ease-in;
   cursor: pointer;
 }
-body.modalOpen{
-  overflow: hidden;
+body.modalOpen {
+  .app-wrapper {
+    overflow: hidden;
+    position: relative;
+  }
   .modal-overlay{
     opacity: 1;
     z-index: 10;
     left: 0;
   }
   @media (min-width: 768px) {
-    overflow: auto;
+    .app-wrapper {
+      overflow: auto;
+    }
     .modal-overlay {
       opacity: 0;
       z-index: 0;
@@ -141,11 +149,17 @@ body.modalOpen{
 
 };
 
+
+
 body.modalDesktop {
-  overflow: hidden;
+  .app-wrapper {
+    overflow: hidden;
+    position: relative;
+  }
   .modal-overlay{
     opacity: 1;
     z-index: 15;
     left: 0;
   }
 }
+
