@@ -8,7 +8,9 @@
   <section class="section section-gap-xlarge section-offramp">
         <div class="offramp-segment offramp-image">
           {%- if image -%}
-            <img src="{{ image |  img_url: '1000x' }}" alt="">
+            <img src="{{ image |  img_url: '1000x'}}" alt="">
+          {% else -%}
+            <img src="{{ images['05-aligner-box-02-main.png'] |  img_url: '1000x'}}" alt="">
           {%- endif -%}
         </div>
         <div class="offramp-segment offramp-text">
@@ -16,7 +18,9 @@
           {{ section.settings.text }}
           {% if ctaLink %}
             <a href="{{ctaLink}}" class="offramp-cta button button--transparent">{{ section.settings.cta_text}}</a>
-          {% endif %}
+          {% else -%}
+            <a href="https://smiledirectclub.com/smile_assessment" class="offramp-cta button button--transparent">{{ section.settings.cta_text}}</a>
+          {%- endif -%}
         </div>
   </section><!-- /.section section-intro -->
 </div>

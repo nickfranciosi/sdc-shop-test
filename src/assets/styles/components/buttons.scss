@@ -15,6 +15,10 @@
   letter-spacing: 0.2px;
   height: 48px;
   font-weight: 600;
+  padding: 3px 2.25em 0;
+  &--no-padding {
+    padding: 0;
+  }
   &:hover {
     background: transparent;
     border: 2px solid #5700FF;
@@ -37,11 +41,22 @@
       color: #FFFFFF;
     }
   }
+  &--full-width {
+    width: 100%;
+  }
+  &.not-selected {
+    color: #999999;
+    border-color: #999999;
+    &:hover {
+      background: #5700FF;
+      border-color: #5700FF;
+      color: #FFFFFF;
+    }
+  }
 }
 
 a.button {
   display: inline-flex;
   align-items: center;
   justify-content: center;
-  padding: 3px 2.25em 0;
 }
