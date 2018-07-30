@@ -112,7 +112,7 @@
   overflow-x: hidden;
   overflow-y: auto;
   position: relative;
-  height: 100%;
+  height: auto;
 }
 
 .modal-overlay {
@@ -130,7 +130,7 @@
 body.modalOpen {
   .app-wrapper {
     overflow: hidden;
-    position: relative;
+    height: 100%;
   }
   .modal-overlay{
     opacity: 1;
@@ -155,7 +155,7 @@ body.modalOpen {
 body.modalDesktop {
   .app-wrapper {
     overflow: hidden;
-    position: relative;
+    height: 100%;
   }
   .modal-overlay{
     opacity: 1;
