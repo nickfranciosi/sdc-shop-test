@@ -63,7 +63,7 @@ nav{
       a {
         text-decoration: none;
         transition: color 200ms linear;
-        &:hover {
+        &:hover, &:focus {
           color: #5700FF;
         }
       }

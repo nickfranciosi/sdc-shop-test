@@ -23,14 +23,29 @@
       font-size: 36px;
     }
   }
+  .product-info-breadcrumbs {
+    p {
+      color: #808080;
+      font-size: 12px;
+      font-family: SofiaPro, Arial, Helvetica, sans-serif;
+    }
+  }
 }
 
 .product-info-gallery {
+  margin-bottom: 40px;
+  @media (min-width: 768px) {
+    margin-bottom: 0;
+  }
   .photo-main-image {
     width: auto;
     height: 600px;
+    max-height: 45vh;
     overflow: hidden;
     text-align: center;
+    @media (min-width: 768px) {
+      max-height: max-content;
+    }
     img {
       object-fit: contain;
       width: 100%;
@@ -40,6 +55,10 @@
   .photo-thumbnails {
     list-style-type: none;
     display: flex;
+    justify-content: center;
+    @media (min-width: 768px) {
+      justify-content: flex-start;
+    }
     li {
       border: 2px solid rgba(0,0,0,0.04);
       width: 60px;
