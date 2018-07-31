@@ -107,31 +107,34 @@ function updateExistingCartItem(id, quantity) {
 
 function addNewCartItem(product) {
   const prodTemplate = `
-    <div class="cart-item" id="product-${product.id}">
+    <div class="cart-item" id="product-${product.id}" data-product-id="${product.id}">
       <img src="${product.image}" alt="${product.title}" />
       <div class="cart-item--content">
         <div class="cart-item--info">
           <h4>${product.product_title}</h4>
           <p>${formatMoney(product.price)}</p>
         </div>
-        <div class="cart-item--incrementer">
-          <button
-            class="button button--text button--no-padding"
-            data-product-id="${product.id}"
-            data-product-current-quantity="${product.quantity}"
-            data-product-increment-type="decrement"
-          >
-            -
-          </button>
-          <p data-product-quantity>${product.quantity}</p>
-          <button
-            class="button button--text button--no-padding"
-            data-product-id="${product.id}"
-            data-product-current-quantity="${product.quantity}"
-            data-product-increment-type="increment"
-          >
-            +
-          </button>
+        <div class="cart-item--actions">
+          <div class="cart-item--incrementer">
+            <button
+              class="button button--text button--no-padding"
+              data-product-id="${product.id}"
+              data-product-current-quantity="${product.quantity}"
+              data-product-increment-type="decrement"
+            >
+              -
+            </button>
+            <p data-product-quantity>${product.quantity}</p>
+            <button
+              class="button button--text button--no-padding"
+              data-product-id="${product.id}"
+              data-product-current-quantity="${product.quantity}"
+              data-product-increment-type="increment"
+            >
+              +
+            </button>
+          </div>
+          <a href="#">Remove</a>
         </div>
       </div>
     </div>
@@ -193,7 +196,6 @@ $(document).ready(() => {
     e.preventDefault();
     const $item = $(e.target);
     const $itemData = $item.data();
-    console.log($itemData);
     const updatedQuantity = $itemData.productIncrementType === 'increment' ? $itemData.productCurrentQuantity + 1 : $itemData.productCurrentQuantity - 1;
 
     const data = {
@@ -210,7 +212,38 @@ $(document).ready(() => {
         success: updateCartSuccess,
         error: addToCartFail,
       });
+    } else {
+      updateExistingCartItem($itemData.productId, 0);
+      const $cartItem = $item.closest('.cart-item');
+      removeCartItem($cartItem);
     }
+  });
+
+  function removeCartItem($item) {
+    const $itemData = $item.data();
+    $item.addClass('removing');
+    setTimeout(() => {
+      $item.remove();
+    }, 550);
+    const data = {
+      quantity: 0,
+      id: $itemData.productId,
+    };
+
+    $.ajax({
+      type: 'POST',
+      url: '/cart/change.js',
+      dataType: 'json',
+      data,
+      success: updateCartSuccess,
+      error: addToCartFail,
+    });
+  }
+
+  $('.cart-items').on('click', '.cart-item--actions a', function(e) {
+    e.preventDefault();
+    const $cartItem = $(this).closest('.cart-item');
+    removeCartItem($cartItem);
   });
 });
 
