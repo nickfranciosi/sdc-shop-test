@@ -18,14 +18,6 @@ window.slate = window.slate || {};
 window.theme = window.theme || {};
 
 $(document).ready(() => {
-  // Common a11y fixes
-  // Shopify.onItemAdded = function(cart) {
-  //   $.getJSON('/cart.js', (cart) => {
-  //     // console.log('hi');
-  //     // console.log('car cart carrtt', cart.item_count);
-  //     // $('#cartCount').html(cart.item_count);
-  //   });
-  // };
 
   if (window.location.hash !== '#') {
     pageLinkFocus($(window.location.hash));
