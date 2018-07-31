@@ -186,3 +186,16 @@ sections.register('product', {
     this.$container.off(this.namespace);
   },
 });
+
+$(document).ready(() => {
+  const $hiddenSelect = $('.hidden-selector select');
+  const $variantButtons = $('.product-info-variant-options a');
+  $variantButtons.on('click', function(e) {
+    e.preventDefault();
+    const $this = $(this);
+    $variantButtons.removeClass('selected');
+    $this.addClass('selected');
+    $hiddenSelect.val($this.data('value'));
+    $hiddenSelect.change();
+  });
+});

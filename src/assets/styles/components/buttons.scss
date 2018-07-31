@@ -19,7 +19,7 @@
   &--no-padding {
     padding: 0;
   }
-  &:hover {
+  &:hover, &:focus {
     background: transparent;
     border: 2px solid #5700FF;
     color: #5700FF;
@@ -27,7 +27,7 @@
   &--text {
     background: transparent;
     color: #5700FF;
-    &:hover {
+    &:hover, &:focus {
       border: 0;
       color: #808080;
     }
@@ -36,22 +36,13 @@
     background: transparent;
     border: 2px solid #5700FF;
     color: #5700FF;
-    &:hover {
+    &:hover, &:focus {
       background: #5700FF;
       color: #FFFFFF;
     }
   }
   &--full-width {
     width: 100%;
-  }
-  &.not-selected {
-    color: #999999;
-    border-color: #999999;
-    &:hover {
-      background: #5700FF;
-      border-color: #5700FF;
-      color: #FFFFFF;
-    }
   }
 }
 

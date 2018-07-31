@@ -30,6 +30,34 @@
       font-family: SofiaPro, Arial, Helvetica, sans-serif;
     }
   }
+
+  .hidden-selector {
+    display: none;
+  }
+
+  input[type=number]::-webkit-inner-spin-button,
+  input[type=number]::-webkit-outer-spin-button {
+    -webkit-appearance: none;
+    margin: 0;
+  }
+  .product-quantity {
+    font-size: 12px;
+    label {
+      color: #808080;
+      padding-right: 10px;
+      font-weight: bold;
+      font-family: SofiaPro, Arial, Helvetica, sans-serif;
+    }
+    input {
+      font-weight: bold;
+      width: 48px;
+      height: 48px;
+      font-size: 12px;
+      border: 2px solid #CCCCCC;
+      border-radius: 4px;
+      text-align: center;
+    }
+  }
 }
 
 .product-info-gallery {
@@ -78,7 +106,8 @@
 }
 
 .product-info-description,
-.product-info-variant-options {
+.product-info-variant-options,
+.product-quantity {
   margin-bottom: 20px;
 }
 
@@ -87,6 +116,15 @@
   justify-content: flex-start;
   .button {
     margin-right: 10px;
+    &:not(.selected) {
+      color: #999999;
+      border-color: #999999;
+      &:hover {
+        background: #5700FF;
+        border-color: #5700FF;
+        color: #FFFFFF;
+      }
+    }
   }
   @media (min-width: 768px) {
     justify-content: space-between;
