@@ -9,11 +9,13 @@ import '../../styles/theme.scss';
 import '../../styles/theme.scss.liquid';
 
 import $ from 'jquery';
+import slick from 'slick-carousel';
 import {pageLinkFocus} from '@shopify/theme-a11y';
 import {cookiesEnabled} from '@shopify/theme-cart';
 import {formatMoney} from '@shopify/theme-currency';
 import {wrapTable, wrapIframe} from '@shopify/theme-rte';
 
+console.log({slick});
 window.slate = window.slate || {};
 window.theme = window.theme || {};
 
@@ -247,3 +249,30 @@ $(document).ready(() => {
   });
 });
 
+// Slick settings
+$(document).ready(() => {
+  $('#slickCar').slick({
+    infinite: true,
+    speed: 300,
+    // fade: true,
+    arrows: true,
+    cssEase: 'ease-in-out',
+    draggable: true,
+    asNavFor: '#slickThumbs',
+    responsive: [
+      {
+        breakpoint: 768,
+        settings: {
+          draggable: true,
+          fade: false,
+        },
+      },
+    ],
+  });
+
+  $('#slickThumbs').slick({
+    asNavFor: '#slickCar',
+    slidesToShow: 2,
+    focusOnSelect: true,
+  });
+});
