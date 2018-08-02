@@ -17,10 +17,15 @@
     text-transform: none;
     display: flex;
     align-items: center;
+    justify-content: center;
     font-size: 15px !important;
     padding: 3px 2.25em 0;
     height: 48px;
     letter-spacing: .2px;
-    width: fit-content;
+    width: auto;
+    max-width: 160px;
+    @media (min-width: 768px) {
+      width: fit-content;
+    }
   }
 }
