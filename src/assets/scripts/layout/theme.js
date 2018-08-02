@@ -276,3 +276,35 @@ $(document).ready(() => {
     focusOnSelect: true,
   });
 });
+
+// First we get the viewport height and we multiple it by 1% to get a value for a vh unit
+const vh = window.innerHeight * 0.01;
+// Then we set the value in the --vh custom property to the root of the document
+document.documentElement.style.setProperty('--vh', `${vh}px`);
+
+
+(function() {
+
+  window.addEventListener('resize', resizeThrottler, false);
+
+  let resizeTimeout;
+  function resizeThrottler() {
+    // ignore resize events as long as an actualResizeHandler execution is in the queue
+    if (!resizeTimeout) {
+      resizeTimeout = setTimeout(() => {
+        resizeTimeout = null;
+        actualResizeHandler();
+
+        // The actualResizeHandler will execute at a rate of 15fps
+      }, 66);
+    }
+  }
+
+  function actualResizeHandler() {
+    // First we get the viewport height and we multiple it by 1% to get a value for a vh unit
+    const vh = window.innerHeight * 0.01;
+    // Then we set the value in the --vh custom property to the root of the document
+    document.documentElement.style.setProperty('--vh', `${vh}px`);
+  }
+
+})();
