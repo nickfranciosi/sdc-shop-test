@@ -25,6 +25,10 @@
         <p>Shop / bright on<sup>&trade;</sup> / {{ product.title }} </p>
       </div>
       <h1>{{ product.title }}</h1>
+      <div
+        class="yotpo bottomLine yotpo-rating-info"
+        data-product-id="{{ product.id }}">
+      </div>
       <div class="rte product-info-description">
         {{ product.description }}
       </div>
@@ -117,6 +121,9 @@
       {% endunless %}
       </div>
   </div>
+
+{% include 'social-gallery' %}
+{% include 'yotpo-product' %}
 
 {%- assign  showBanner = true -%}
 {% case product.id %}

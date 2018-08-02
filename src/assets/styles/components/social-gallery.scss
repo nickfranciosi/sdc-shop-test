@@ -1,0 +1,26 @@
+.social-gallery-section {
+  text-align: center;
+  background: #F7F5F2;
+  padding: 40px 0 10px;
+  margin-bottom: 40px;
+  @media (min-width: 600px) {
+    padding: 40px 40px 10px;
+  }
+  @media (min-width: 768px) {
+    padding: 80px 100px 0;
+    margin-bottom: 80px;
+  }
+
+
+  #olapic-wall-widget#olapic-wall-widget .olapic-loadmore {
+    font-family: SofiaPro, Arial, Helvetica, sans-serif;
+    text-transform: none;
+    display: flex;
+    align-items: center;
+    font-size: 15px !important;
+    padding: 3px 2.25em 0;
+    height: 48px;
+    letter-spacing: .2px;
+    width: fit-content;
+  }
+}
