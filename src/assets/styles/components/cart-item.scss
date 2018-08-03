@@ -59,11 +59,18 @@
     display: flex;
     align-items: center;
     p {
-      padding: 0 10px;
+      padding: 0 20px;
       font-family: SofiaPro, Arial, Helvetica, sans-serif;
+      @media (min-width: 768px) {
+        padding: 0 10px;
+      }
     }
     .button {
+      font-size: 25px;
       height: auto;
+      @media (min-width: 768px) {
+        font-size: 20px;
+      }
     }
   }
 
