@@ -65,6 +65,10 @@
       border: 2px solid #CCCCCC;
       border-radius: 4px;
       text-align: center;
+      transition: border-color 250ms ease-in;
+      &:focus {
+        border-color: #808080;
+      }
     }
   }
 }

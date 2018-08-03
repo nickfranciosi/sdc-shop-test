@@ -2,7 +2,7 @@
   {{ item | img_url: '110X110' | img_tag: item.title }}
   <div class="cart-item--content">
     <div class="cart-item--info">
-      <h4>{{ item.product.title }}</h4>
+      <h4>{{ item.product.title }}{% if item.product.has_only_default_variant == false %} ({{item.variant.title}}) {% endif %}</h4>
       <p>{{ item.price | money }}</p>
     </div>
     <div class="cart-item--actions">
