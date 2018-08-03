@@ -1,15 +1,15 @@
 header {
+  border-top: 1px solid rgba(0, 0, 0, 0.04);
+}
+header .container {
   display: flex;
   justify-content: space-between;
   align-items: center;
-  padding: 0 20px;
   min-height: 54px;
-  border-top: 1px solid rgba(0, 0, 0, 0.04);
   nav {
     display: none;
   }
   @media (min-width: 768px){
-    padding: 0 30px;
     min-height: 75px;
     .hamburger {
       display: none;
@@ -127,9 +127,9 @@ nav{
 }
 
 .main-site-link {
-  padding: 8px 20px;
+  padding: 8px 0;
   @media (min-width: 768px) {
-    padding: 12px 30px;
+    padding: 12px 0;
   }
   a {
     font-family: ProximaNova,  Arial, Helvetica, sans-serif;
