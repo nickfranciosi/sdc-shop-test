@@ -31,9 +31,7 @@ header {
     font-weight: bold;
     text-decoration: none;
     font-family: SofiaPro, Arial, Helvetica, sans-serif;
-    .cart-title-wrapper {
-      display: none;
-    }
+    fill: currentColor;
     .cart-icon-wrapper {
       display: flex;
       padding: 2px 4px 0 0;
@@ -43,13 +41,6 @@ header {
       transition: color 200ms linear;
       &:hover {
         color: #5700FF;
-      }
-      .cart-title-wrapper {
-        display: block;
-        padding-right: 4px;
-      }
-      .cart-icon-wrapper {
-        display: none;
       }
     }
   }

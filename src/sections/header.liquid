@@ -68,7 +68,6 @@
 
     <a href="#cart" class="cart-wrapper  {% if template != 'cart' %}modalCartTrigger{% endif %}">
       <span class="cart-icon-wrapper">{% include 'shopping_cart' %}</span>
-      <span class="cart-title-wrapper">{{ 'layout.cart.title' | t }}</span>
       <span class="cart-count-wrapper">({{ cart.item_count }})</span>
     </a>
 
