@@ -284,7 +284,7 @@ document.documentElement.style.setProperty('--vh', `${vh}px`);
 
 
 (function() {
-
+  createSticky($('header'));
   window.addEventListener('resize', resizeThrottler, false);
 
   let resizeTimeout;
@@ -308,3 +308,16 @@ document.documentElement.style.setProperty('--vh', `${vh}px`);
   }
 
 })();
+
+function createSticky(sticky) {
+
+  if (typeof sticky !== 'undefined') {
+
+    let pos = sticky.offset().top,
+      win = $(window);
+
+    win.on('scroll', () => {
+      win.scrollTop() >= pos ? sticky.addClass('fixed') : sticky.removeClass('fixed');
+    });
+  }
+}
