@@ -153,6 +153,20 @@ function syncCartItems(product) {
   }
 }
 
+function toggleEmptyCartMessage(itemCount) {
+  const $cartContainer = $('.modal-content-container');
+  if (itemCount > 0) {
+    $cartContainer.removeClass('--empty');
+  } else {
+    $cartContainer
+      .delay(200)
+      .queue(function(next) {
+        $(this).addClass('--empty');
+        next();
+      });
+  }
+}
+
 function addToCartSuccess(product) {
   console.log('success', product);
   updateCartInfo();
@@ -167,6 +181,7 @@ function updateCartSuccess(cart) {
 
 function cartFetchSuccess(cart) {
   console.log({cart});
+  toggleEmptyCartMessage(cart.item_count);
   $('.cart-subtotal p:last-of-type').text(formatMoney(cart.total_price));
   $('.cart-count-wrapper').text(`(${cart.item_count})`);
 }

@@ -101,6 +101,9 @@
   padding-top: 30px;
   min-height: 20vh;
   min-height: calc(var(--vh, 1vh) * 20);
+  opacity: 1;
+  transform: translateY(0);
+  transition: transform, 250ms cubic-bezier(.5,0,.5,1),opacity 250ms linear;
   .cart-subtotal {
     display: flex;
     justify-content: space-between;
@@ -118,6 +121,35 @@
       color: #5700FF;
       font-size: 28px;
     }
+  }
+}
+
+
+// empty cart state
+.cart-empty-message {
+  text-align: center;
+  opacity: 1;
+  transition: opacity 250ms 50ms linear;
+  height: 100%;
+  p {
+    margin-bottom: 10px;
+  }
+}
+
+.modal-content-container:not(.--empty) {
+  .cart-empty-message {
+    transition: none;
+    opacity: 0;
+    height: 0;
+  }
+}
+
+.modal-content-container.--empty{
+  justify-content: flex-start;
+  overflow: hidden;
+  .cart-summary {
+    transform: translateY(100%);
+    opacity: 0;
   }
 }
 
@@ -164,8 +196,6 @@ body.modalOpen {
   }
 
 };
-
-
 
 body.modalDesktop {
   .app-wrapper {

@@ -44,6 +44,16 @@
   &--full-width {
     width: 100%;
   }
+  &:disabled {
+    border: 2px solid rgba(#808080, .5);
+    color: rgba(#808080, .5);
+    background: transparent;
+    cursor: not-allowed;
+    &:hover {
+      background: inherit;
+      color: rgba(#808080, .5);
+    }
+  }
 }
 
 a.button {

@@ -2,7 +2,7 @@
   <p class="modalCartTrigger cart-close">
     &#x2715;
   </p>
-  <div class="modal-content-container">
+  <div class="modal-content-container {% if cart.item_count <= 0 %}--empty{% endif %}">
     <div class="cart-item-container">
       <div class="cart-title">
         <h3>{{ 'cart.general.title' | t }}</h3>
@@ -16,11 +16,13 @@
       </div>
     </div>
 
-    {% if cart.item_count <= 0 %}
+    <div class="cart-empty-message">
+      <p>Your cart is empty.</p>
+      <button class="button button--transparent modalCartTrigger">Continue shopping</button>
       <div class="supports-no-cookies">
         <p>{{ 'cart.general.cookies_required' | t }}</p>
       </div>
-    {% endif %}
+    </div>
 
     <div class="cart-summary">
       <div class="cart-subtotal">
@@ -31,7 +33,12 @@
         <p>{{ 'cart.general.savings' | t }} {{ cart.total_discounts | money }}</p>
       {% endif %}
       <form action="/cart" method="post" novalidate>
-        <input type="submit" name="checkout" class="button button--full-width" value="Checkout">
+        <input
+          type="submit"
+          name="checkout"
+          class="button button--full-width"
+          value="Checkout"
+        >
       </form>
       <button class="button button--text modalCartTrigger">Continue shopping</button>
     </div>
