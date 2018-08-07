@@ -1,13 +1,18 @@
 {%- assign bg_color = section.settings.background_color -%}
 {%- assign logoImage = section.settings.logo_image -%}
 {%- assign personImage = section.settings.person_image -%}
-
+{%- assign ctaLink = section.settings.cta_link -%}
+{%- assign ctaText = section.settings.cta_text -%}
 
 <section class="section section-masthead full-width" style="background-color: {{bg_color}};">
     <div class="container">
     	{%- if logoImage -%}
         <div class="image-wrapper logo-image-wrapper">
           <img src="{{ logoImage |  img_url: '1000x' }}" alt="">
+          {{ section.settings.text }}
+          {% if ctaLink %}
+            <a href="{{ctaLink}}" class="button button--transparent">{{ctaText}}</a>
+          {% endif %}
         </div>
 			{%- endif -%}
       	{%- if personImage -%}
@@ -29,6 +34,12 @@
       "default": "#F7F5F2"
     },
     {
+      "type": "richtext",
+      "id": "text",
+      "label": "Text",
+      "default": "<p>Our proprietary formula is designed to work, in just 5 minutes, on even the most sensitive teeth. So everyone can achieve their brightest bright.</p>"
+    },
+    {
       "type": "image_picker",
       "id": "logo_image",
       "label": "Logo image"
@@ -37,6 +48,17 @@
       "type": "image_picker",
       "id": "person_image",
       "label": "Person image"
+    },
+    {
+      "type": "url",
+      "id": "cta_link",
+      "label": "CTA Link"
+    },
+    {
+      "type": "text",
+      "id": "cta_text",
+      "label": "CTA Text",
+      "default": "Shop now"
     }
   ],
 	"presets": [

@@ -3,7 +3,9 @@
   display: flex;
   align-items: flex-end;
   @media (min-width: 768px) {
-    min-height: 470px
+    max-height: 540px;
+    height: 50vw;
+    min-height: 390px;
   }
   .container {
     display: flex;
@@ -18,25 +20,43 @@
       width: 100%;
       display: flex;
       align-items: center;
+      text-align: center;
+      flex-direction: column;
       justify-content: center;
+      @media (min-width: 768px) {
+        align-items: flex-start;
+        text-align: left;
+      }
       img {
         width: 100%;
       }
     }
     .logo-image-wrapper {
-      max-width: 295px;
       margin-bottom: 20px;
       margin-right: 0;
       @media (min-width: 768px) {
         margin-bottom: 0;
         margin-right: 30px;
-        max-width: 417px;
+      }
+      img {
+        max-width: 240px;
+        margin-bottom: 20px;
+        @media (min-width: 768px) {
+          max-width: 280px;
+        }
+      }
+      p {
+        font-size: 21px;
+        line-height: 1.52;
+        margin-bottom: 40px;
+        width: 85%;
       }
     }
+
     .person-image-wrapper {
       max-width: 295px;
       @media (min-width: 768px) {
-        max-width: 440px;
+        max-width: 540px;
       }
     }
   }
