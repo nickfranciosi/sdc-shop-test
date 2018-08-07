@@ -8,20 +8,27 @@
     text-align: left;
     padding-left: 0;
     padding-right: 0;
+    max-height: 480px;
+    height: 50vw;
+    min-height: 400px
   }
 }
 
 .offramp-image {
-  margin-bottom: 20px;
+  align-self: flex-end;
+  text-align: center;
   @media (min-width: 768px) {
+    text-align: right;
     margin-bottom: 0;
     flex: 0 0 53%;
   }
   img {
     min-height: 170px;
-    max-height: 370px;
-    height: 45vw;
+    max-height: 300px;
     object-fit: contain;
+    @media (min-width: 768px) {
+      max-height: 500px;
+    }
   }
 }
 
@@ -29,12 +36,12 @@
   display: flex;
   flex-direction: column;
   align-items: center;
+  padding: 30px 0;
   @media (min-width: 768px) {
     margin-bottom: 0;
+    padding: 0;
     flex: 0 0 47%;
-    align-self: flex-start;
     align-items: flex-start;
-    padding: 20px 0 0 60px;
   }
   h2 {
     margin-bottom: 10px;
@@ -42,14 +49,16 @@
     @media (min-width: 768px){
       font-size: 36px;
       line-height: 1.22;
+      width: 70%;
     }
   }
   p {
-    color: #808080;
     margin-bottom: 20px;
+    width: 100%;
     @media (min-width: 768px) {
       margin-bottom: 30px;
       line-height: 1.66;
+      width: 70%;
     }
   }
 }

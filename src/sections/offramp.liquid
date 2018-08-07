@@ -3,16 +3,9 @@
 {%- assign ctaLink = section.settings.cta_link -%}
 {%- assign extraClasses = section.settings.extra_class -%}
 
-
-<div class="container">
-  <section class="section section-gap-xlarge section-offramp">
-        <div class="offramp-segment offramp-image">
-          {%- if image -%}
-            <img src="{{ image |  img_url: '1000x'}}" alt="">
-          {% else -%}
-            <img src="{{ images['05-aligner-box-02-main.png'] |  img_url: '1000x'}}" alt="">
-          {%- endif -%}
-        </div>
+<section class="full-width" style="background-color: {{bg_color}};">
+  <div class="container">
+    <div class="section-offramp">
         <div class="offramp-segment offramp-text">
           <h2>{{ section.settings.title | escape }}</h2>
           {{ section.settings.text }}
@@ -22,12 +15,26 @@
             <a href="https://smiledirectclub.com/smile_assessment" class="offramp-cta button button--transparent">{{ section.settings.cta_text}}</a>
           {%- endif -%}
         </div>
-  </section><!-- /.section section-intro -->
-</div>
+        <div class="offramp-segment offramp-image">
+          {%- if image -%}
+            <img src="{{ image |  img_url: '1000x'}}" alt="">
+          {% else -%}
+            <img src="{{ images['05-aligner-box-02-main.png'] |  img_url: '1000x'}}" alt="">
+          {%- endif -%}
+        </div>
+    </div>
+  </div>
+</section>
 {% schema %}
 {
 	"name": "Off Ramp",
   "settings": [
+    {
+      "type": "color",
+      "id": "background_color",
+      "label": "Background Color",
+      "default": "#F7F5F2"
+    },
     {
       "type": "image_picker",
       "id": "offramp_image",
