@@ -113,7 +113,7 @@ function addNewCartItem(product) {
       <img src="${product.image}" alt="${product.title}" />
       <div class="cart-item--content">
         <div class="cart-item--info">
-          <h4>${product.product_title}</h4>
+          <h4>${product.product_title}${product.variant_title ? ` (${product.variant_title})` : ''}</h4>
           <p>${formatMoney(product.price)}</p>
         </div>
         <div class="cart-item--actions">

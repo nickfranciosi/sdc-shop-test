@@ -1,21 +1,29 @@
 {%- assign product1 = all_products[section.settings.product_one] -%}
 {%- assign product2 = all_products[section.settings.product_two] -%}
+{%- assign product3 = all_products[section.settings.product_three] -%}
 
 
 <div class="container">
-  <div class="section section-gap-large section-product-grid">
-    {%- if product1 -%}
+  <div class="section section-gap-large section-product-grid" data-col="{% if section.settings.product_three != "" %}3{% else %}2{% endif %}">
+    {%- if section.settings.product_one != ""-%}
       <a href="{{ product1.url | default: "#" }}" class="product-grid-item">
-        <img src="{{ product1.featured_image |  img_url: '1000x' }}" alt="">
+        <img src="{{ images["product-grid-fpo.jpg"] |  img_url: '1000x' }}" />
         <h3>{{ product1.title | default: "Product Title" }}</h3>
         <p>{{ product1.price | money | default: "$1.99" }}</p>
       </a>
     {%- endif -%}
-    {%- if product2 -%}
+    {%- if section.settings.product_two != ""-%}
       <a href="{{ product2.url | default: "#" }}" class="product-grid-item">
-        <img src="{{ product2.featured_image |  img_url: '1000x' }}" alt="">
+        <img src="{{ images["product-grid-fpo.jpg"] |  img_url: '1000x' }}" />
         <h3>{{ product2.title | default: "Product Title" }}</h3>
         <p>{{ product2.price | money | default: "$1.99" }}</p>
+      </a>
+    {%- endif -%}
+    {%- if section.settings.product_three != ""-%}
+      <a href="{{ product3.url | default: "#" }}" class="product-grid-item">
+        <img src="{{ images["product-grid-fpo.jpg"] |  img_url: '1000x' }}" />
+        <h3>{{ product3.title | default: "Product Title" }}</h3>
+        <p>{{ product3.price | money | default: "$1.99" }}</p>
       </a>
     {%- endif -%}
   </div>
@@ -34,6 +42,11 @@
         "type": "product",
         "id": "product_two",
         "label": "Product 2"
+      },
+      {
+        "type": "product",
+        "id": "product_three",
+        "label": "Product 3"
       }
     ],
     "presets": [
@@ -44,63 +57,3 @@
     ]
   }
 {% endschema %}
-
-<script type="application/ld+json">
-{
-  "@context": "http://schema.org/",
-  "@type": "Product",
-  "name": "{{ product.title | escape }}",
-  "url": "{{ shop.url }}{{ product.url }}",
-  {% if product.featured_image %}
-    {% assign image_size = product.featured_image.width | append: 'x' %}
-    "image": [
-      "https:{{ product.featured_image.src | img_url: image_size }}"
-    ],
-  {% endif %}
-  "description": "{{ product.description | strip_html | escape }}",
-  {% if current_variant.sku != blank %}
-    "sku": "{{ current_variant.sku }}",
-  {% endif %}
-  "brand": {
-    "@type": "Thing",
-    "name": "{{ product.vendor | escape }}"
-  },
-  {% if product.variants %}
-    "offers": [
-      {% for variant in product.variants %}
-        {
-          "@type" : "Offer",
-          "availability" : "http://schema.org/{% if product.available %}InStock{% else %}OutOfStock{% endif %}",
-          "price" : "{{ variant.price | divided_by: 100.00 }}",
-          "priceCurrency" : "{{ shop.currency }}",
-          "url" : "{{ shop.url }}{{ variant.url }}",
-          "itemOffered" :
-          {
-              "@type" : "Product",
-              {% if variant.image %}
-                {% assign variant_image_size = variant.image.width | append: 'x' %}
-                "image": "http:{{ variant.image.src | img_url: variant_image_size }}",
-              {% endif %}
-              {% if variant.title != blank %}
-                "name" : "{{ variant.title | escape }}",
-              {% endif %}
-              {% if variant.sku != blank %}
-                "sku": "{{ variant.sku }}",
-              {% endif %}
-              {% if variant.weight != blank %}
-                "weight": {
-                  "@type": "QuantitativeValue",
-                  {% if variant.weight_unit != blank %}
-                    "unitCode": "{{ variant.weight_unit }}",
-                  {% endif %}
-                  "value": "{{ variant.weight | weight_with_unit: variant.weight_unit }}"
-                },
-              {% endif %}
-              "url": "{{ shop.url }}{{ variant.url }}"
-          }
-        }{% unless forloop.last %},{% endunless %}
-      {% endfor %}
-    ]
-  {% endif %}
-}
-</script>
