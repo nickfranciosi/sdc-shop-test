@@ -169,17 +169,19 @@
     &:not(.selected) {
       color: #999999;
       border-color: #999999;
-      &:hover {
-        background: #5700FF;
-        border-color: #5700FF;
-        color: #FFFFFF;
+      &:hover, &:active {
+        background: transparent;
+        border: 2px solid #5700FF;
+        color: #5700FF;
       }
     }
-  }
-  @media (min-width: 768px) {
-    justify-content: space-between;
-    .button {
-      margin-right: 0;
+    &:focus {
+      background: transparent;
+      border: 2px solid #5700FF;
+      color: #5700FF;
+    }
+    &.selected{
+      pointer-events: none;
     }
   }
 }

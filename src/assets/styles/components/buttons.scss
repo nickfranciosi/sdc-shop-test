@@ -16,6 +16,7 @@
   height: 48px;
   font-weight: 600;
   padding: 3px 2.25em 0;
+  transition: background 0.13s cubic-bezier(.2,.51,.76,.72) 0s, color 0.13s cubic-bezier(.2,.51,.76,.72) 0.025s;
   &--no-padding {
     padding: 0;
   }
@@ -41,6 +42,13 @@
       color: #FFFFFF;
     }
   }
+  &--outline-hover{
+    &:hover {
+      background: transparent;
+      border: 2px solid #5700FF;
+      color: #5700FF;
+    }
+  }
   &--full-width {
     width: 100%;
   }
@@ -61,3 +69,4 @@ a.button {
   align-items: center;
   justify-content: center;
 }
+

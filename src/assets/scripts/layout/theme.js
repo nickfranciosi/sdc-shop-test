@@ -159,7 +159,7 @@ function toggleEmptyCartMessage(itemCount) {
     $cartContainer.removeClass('--empty');
   } else {
     $cartContainer
-      .delay(200)
+      .delay(250)
       .queue(function(next) {
         $(this).addClass('--empty');
         next();

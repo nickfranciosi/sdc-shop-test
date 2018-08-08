@@ -37,6 +37,10 @@
       @media (min-width: 768px) {
         margin-bottom: 0;
         margin-right: 30px;
+        margin-left: 5vw;
+      }
+      @media (min-width: 1050px) {
+        margin-left: 0;
       }
       img {
         max-width: 240px;
@@ -50,8 +54,11 @@
         font-size: 16px;
         line-height: 1.52;
         margin-bottom: 20px;
-        width: 85%;
+        width: 82%;
         @media (min-width: 768px) {
+          font-size: 18px;
+        }
+        @media (min-width: 1050px) {
           font-size: 21px;
           margin-bottom: 40px;
         }

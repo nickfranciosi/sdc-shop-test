@@ -24,7 +24,7 @@
     img {
       margin-bottom: 36px;
       transform: translateZ(0);
-      transition: transform 300ms cubic-bezier(.5, 0, .5, 1);
+      transition: transform 200ms cubic-bezier(.5, 0, .5, 1);
     }
     p {
       font-family: SofiaPro, Arial, Helvetica, sans-serif;
@@ -33,11 +33,15 @@
       font-weight: 600;
       line-height: 1.77;
       letter-spacing: 0.45px;
+      transition: color 200ms linear;
     }
 
     &:hover {
       img {
-        transform: translateY(-10px);
+        transform: scale(1.03);
+      }
+      p{
+        color: #5700ff;
       }
     }
 
