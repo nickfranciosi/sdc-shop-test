@@ -1,9 +1,12 @@
+$statsMediumBreakpoint: 936px;
+
 .section-banner {
   display: flex;
   justify-content: center;
   align-items: center;
   flex-direction: column;
   padding-top: 30px;
+  position: relative;
   @media (min-width: 768px) {
     padding-top: 0;
     flex-direction: row;
@@ -24,6 +27,38 @@
       .banner-text {
         padding-left: 0;
         padding-right: 5vw;
+      }
+    }
+  }
+  &--stats{
+    justify-content: flex-start;
+    overflow: hidden;
+    padding-right: 0;
+    flex-direction: column;
+    align-items: center;
+    img {
+      max-height: 440px;
+      max-width: 125%;
+    }
+    .banner-segment.banner-image {
+      flex: 1;
+      padding-top: 10px;
+    }
+    .banner-segment.banner-stats {
+      order: -1;
+      flex: 0;
+    }
+
+    @media( min-width: $statsMediumBreakpoint) {
+      flex-direction: row;
+      padding-right: 40px;
+      .banner-segment.banner-image {
+        flex: 0 0 60%;
+        padding-top: 80px;
+      }
+      .banner-segment.banner-stats {
+        flex: 0 0 40%;
+        order: 1;
       }
     }
   }
@@ -62,6 +97,58 @@
   margin-top: 20px;
   @media (min-width: 768px) {
     margin-top: 30px;
+  }
+}
+
+.banner-stats {
+  display: flex;
+  flex-direction: column;
+  background: #fff;
+  border-radius: 4px;
+  width: 85%;
+  padding: 40px;
+  align-self: center;
+  text-align: center;
+  margin: 20px 0;
+  &__headline {
+    font-size: 28px;
+    width: 100%;
+    margin-bottom: 20px;
+  }
+  @media( min-width: $statsMediumBreakpoint) {
+    width: 40%;
+    text-align: left;
+    margin: 0;
+    &__headline {
+      width: 90%;
+    }
+  }
+}
+
+.banner-stat {
+  display: flex;
+  flex-direction: column;
+  max-width: 420px;
+  margin: 0 auto;
+  &:not(:last-of-type) {
+    margin-bottom: 20px;
+  }
+  &__text {
+    flex: 1;
+  }
+  &__icon {
+    padding-right: 0;
+  }
+  p {
+    font-size: 13px;
+    line-height: 1.46;
+  }
+  @media( min-width: $statsMediumBreakpoint) {
+    flex-direction: row;
+    max-width: 100%;
+    &__icon {
+      padding-right: 10px;
+    }
   }
 }
 

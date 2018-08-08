@@ -1,0 +1,103 @@
+{%- assign bg_color = section.settings.background_color -%}
+{%- assign bannerImage = section.settings.banner_image -%}
+{%- assign isSwapped = section.settings.swap -%}
+{%- assign ctaLink = section.settings.cta_link -%}
+{%- assign extraClasses = section.settings.extra_class -%}
+
+
+<div class="container">
+  <section
+    class="section section-banner section-banner--stats{% if isSwapped %}swap{% endif %} {% if extraClasses %}{{extraClasses}}{% endif %}"
+    style="background-color: {{bg_color}};"
+  >
+        <div class="banner-segment banner-image">
+          {%- if bannerImage -%}
+            <img src="{{ bannerImage |  img_url: '1000x' }}" alt="">
+          {%- endif -%}
+        </div>
+        <div class="banner-segment banner-stats">
+          <h2 class="banner-stats__headline">Harness the power of the bright.</h2>
+          <div class="banner-stat__list">
+            <div class="banner-stat">
+              <div class="banner-stat__icon">
+                {% include 'smile' %}
+              </div>
+              <div class="banner-stat__text">
+                <h5>Bright Boost™ formula</h5>
+                <p>A mint flavored formula that’s designed to work on even the most sensitive teeth. It’s also safe for crowns, veneers, or caps.</p>
+              </div>
+            </div>
+            <div class="banner-stat">
+              <div class="banner-stat__icon">
+                {% include 'pen' %}
+              </div>
+              <div class="banner-stat__text">
+                <h5>Acheive full enbrightenment</h5>
+                <p>Use 4 pens to achieve your whitest white. You can use as many pens as you need to brighten even the deepest, darkest stains.</p>
+              </div>
+            </div>
+            <div class="banner-stat">
+              <div class="banner-stat__icon">
+                {% include 'clock' %}
+              </div>
+              <div class="banner-stat__text">
+                <h5>Quick and easy</h5>
+                <p>The no-mess applicator keeps gel off your hands and on your teeth, where it starts to brighten your smile in just 5 minutes.</p>
+              </div>
+            </div>
+          </div>
+        </div>
+  </section><!-- /.section section-intro -->
+</div>
+{% schema %}
+{
+	"name": "Stat Banner",
+  "settings": [
+    {
+      "type": "color",
+      "id": "background_color",
+      "label": "Background Color",
+      "default": "#F7F5F2"
+    },
+    {
+      "type": "image_picker",
+      "id": "banner_image",
+      "label": "Image"
+    },
+    {
+      "type": "text",
+      "id": "title",
+      "label": "Heading",
+      "default": "Bright Boost formula"
+    },
+    {
+      "type": "richtext",
+      "id": "text",
+      "label": "Text",
+      "default": "<p>Our proprietary formula is designed to work, in just 5 minutes, on even the most sensitive teeth. So everyone can achieve their brightest bright.</p>"
+    },
+    {
+      "type": "url",
+      "id": "cta_link",
+      "label": "CTA Link"
+    },
+    {
+      "type": "checkbox",
+      "id": "swap",
+      "label": "Swap image order",
+      "default": false
+    },
+    {
+      "type": "text",
+      "id": "extra_class",
+      "label": "Extra Classes"
+    }
+  ],
+	"presets": [
+		{
+			"name": "Stat Banner",
+			"category": "content"
+		}
+	]
+}
+{% endschema %}
