@@ -8,10 +8,10 @@
   text-decoration: none;
   user-select: none;
   appearance: none;
-  background: #5700FF;
+  background: $blurple;
   border-radius: 4px;
   font-size: 15px;
-  color: #FFFFFF;
+  color: $white;
   letter-spacing: 0.2px;
   height: 48px;
   font-weight: 600;
@@ -22,44 +22,44 @@
   }
   &:hover, &:focus {
     background: transparent;
-    border: 2px solid #5700FF;
-    color: #5700FF;
+    border: 2px solid $blurple;
+    color: $blurple;
   }
   &--text {
     background: transparent;
-    color: #5700FF;
+    color: $blurple;
     &:hover, &:focus {
       border: 0;
-      color: #808080;
+      color: $colorTextSecondary;
     }
   }
   &--transparent {
     background: transparent;
-    border: 2px solid #5700FF;
-    color: #5700FF;
+    border: 2px solid $blurple;
+    color: $blurple;
     &:hover, &:focus {
-      background: #5700FF;
-      color: #FFFFFF;
+      background: $blurple;
+      color: $white;
     }
   }
   &--outline-hover{
     &:hover {
       background: transparent;
-      border: 2px solid #5700FF;
-      color: #5700FF;
+      border: 2px solid $blurple;
+      color: $blurple;
     }
   }
   &--full-width {
     width: 100%;
   }
   &:disabled {
-    border: 2px solid rgba(#808080, .5);
-    color: rgba(#808080, .5);
+    border: 2px solid rgba($colorTextSecondary, .5);
+    color: rgba($colorTextSecondary, .5);
     background: transparent;
     cursor: not-allowed;
     &:hover {
       background: inherit;
-      color: rgba(#808080, .5);
+      color: rgba($colorTextSecondary, .5);
     }
   }
 }

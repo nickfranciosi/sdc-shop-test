@@ -34,9 +34,9 @@
   }
   .product-info-breadcrumbs {
     p {
-      color: #808080;
+      color: $colorTextSecondary;
       font-size: 12px;
-      font-family: SofiaPro, Arial, Helvetica, sans-serif;
+      font-family: $headlineFont;
     }
   }
 
@@ -52,10 +52,10 @@
   .product-quantity {
     font-size: 12px;
     label {
-      color: #808080;
+      color: $colorTextSecondary;
       padding-right: 10px;
       font-weight: bold;
-      font-family: SofiaPro, Arial, Helvetica, sans-serif;
+      font-family: $headlineFont;
     }
     input {
       font-weight: bold;
@@ -67,7 +67,7 @@
       text-align: center;
       transition: border-color 250ms ease-in;
       &:focus {
-        border-color: #808080;
+        border-color: $colorTextSecondary;
       }
     }
   }
@@ -181,14 +181,14 @@
       border-color: #999999;
       &:hover, &:active {
         background: transparent;
-        border: 2px solid #5700FF;
-        color: #5700FF;
+        border: 2px solid $blurple;
+        color: $blurple;
       }
     }
     &:focus {
       background: transparent;
-      border: 2px solid #5700FF;
-      color: #5700FF;
+      border: 2px solid $blurple;
+      color: $blurple;
     }
     &.selected{
       pointer-events: none;
@@ -198,9 +198,9 @@
 
 .product-info-price {
   font-weight: 900;
-  font-family: SofiaPro, Arial, Helvetica, sans-serif;
+  font-family: $headlineFont;
   font-size: 28px;
-  color: #5700FF;
+  color: $blurple;
   display: inline-block;
   margin-bottom: 20px;
 }

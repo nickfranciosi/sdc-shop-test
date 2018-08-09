@@ -34,22 +34,22 @@ header .container {
     display: flex;
     justify-content: flex-end;
     text-align: right;
-    color: #5700FF;
+    color: $blurple;
     font-size: 14px;
     line-height: 1.8;
     font-weight: bold;
     text-decoration: none;
-    font-family: SofiaPro, Arial, Helvetica, sans-serif;
+    font-family: $headlineFont;
     fill: currentColor;
     .cart-icon-wrapper {
       display: flex;
       padding: 2px 4px 0 0;
     }
     @media (min-width: 768px) {
-      color: #808080;
+      color: $colorTextSecondary;
       transition: color 200ms linear;
       &:hover {
-        color: #5700FF;
+        color: $blurple;
       }
     }
   }
@@ -69,7 +69,7 @@ nav{
         text-decoration: none;
         transition: color 200ms linear;
         &:hover, &:focus {
-          color: #5700FF;
+          color: $blurple;
         }
       }
     }
@@ -104,7 +104,7 @@ nav{
   .hamburger-line{
     width: 100%;
     height: 2px;
-    background: #5700FF;
+    background: $blurple;
     position: absolute;
     transition:
       transform 300ms cubic-bezier(.5, 0, .5, 1),
@@ -147,8 +147,8 @@ nav{
     padding: 12px 0;
   }
   a {
-    font-family: ProximaNova,  Arial, Helvetica, sans-serif;
-    color: #808080;
+    font-family: $bodyFont;
+    color: $colorTextSecondary;
     font-size: 13px;
     font-weight: normal;
     text-decoration: none;

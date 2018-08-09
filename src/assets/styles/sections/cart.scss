@@ -7,7 +7,7 @@
   height: calc(var(--vh, 1vh) * 100);
   transform: translateX(100%) translateZ(0);
   transition: transform 250ms cubic-bezier(.5,0,.5,1);
-  background: #F5F5F5;
+  background: $backgroundPrimary;
   width: 100vw;
   @media (min-width: 768px) {
     width: 420px;
@@ -22,16 +22,16 @@
 .desktop-cart-wrapper {
   max-width: 500px;
   margin: 40px auto;
-  background: #F5F5F5;
+  background: $backgroundPrimary;
 }
 
 .template-cart{
-  background: #F5F5F5;
+  background: $backgroundPrimary;
   .app-wrapper {
-    background: #F5F5F5;
+    background: $backgroundPrimary;
   }
   #shopify-section-footer {
-    background: #fff;
+    background: $backgroundLight;
   }
 }
 
@@ -57,7 +57,7 @@
   text-align: center;
   margin: 20px 0;
   h3 {
-    color: #808080;
+    color: $colorTextSecondary;
     font-size: 17px;
   }
   @media (min-width: 768px){
@@ -88,7 +88,7 @@
   align-items: center;
   justify-content: center;
   transform: scale(1) rotate(0) translateZ(0);
-  color: #808080;
+  color: $colorTextSecondary;
   transition: transform 200ms cubic-bezier(.23,1.29,1,1);
   font-weight: 600;
   cursor: pointer;
@@ -99,7 +99,7 @@
 
   &:hover {
     transform: scale(1.1) rotate(90deg);
-    color: #5700FF;
+    color: $blurple;
   }
 }
 
@@ -121,14 +121,14 @@
     margin-bottom: 20px;
     p {
       font-weight: 900;
-      font-family: SofiaPro, Arial, Helvetica, sans-serif;
+      font-family: $headlineFont;
     }
     p:first-of-type {
-      color: #808080;
+      color: $colorTextSecondary;
       text-transform: uppercase;
     }
     p:last-of-type {
-      color: #5700FF;
+      color: $blurple;
       font-size: 28px;
     }
   }

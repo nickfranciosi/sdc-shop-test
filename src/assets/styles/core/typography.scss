@@ -92,12 +92,12 @@ a.button,
 .mobile-menu,
 .button
 {
-  font-family: SofiaPro, Arial, Helvetica, sans-serif;
-  color: #5700FF;
+  font-family: $headlineFont;
+  color: $blurple;
 }
 
 input {
-  font-family: SofiaPro, Arial, Helvetica, sans-serif;
+  font-family: $headlineFont;
 }
 
 span {
@@ -135,16 +135,16 @@ h4 {
 }
 
 h5 {
-  font-family: SofiaPro, Arial, Helvetica, sans-serif;
-  color: #333333;
+  font-family: $headlineFont;
+  color: $colorTextBody;
   font-size: 14px;
   font-weight: 600;
   line-height: 1.85;
 }
 
 p {
-  font-family: ProximaNova,  Arial, Helvetica, sans-serif;
-  color: #333333;
+  font-family: $bodyFont;
+  color: $colorTextBody;
   font-size: 15px;
   line-height: 1.6;
   @media (min-width: 768px){
@@ -166,8 +166,8 @@ a:focus {
 }
 
 nav a {
-  font-family: SofiaPro, Arial, Helvetica, sans-serif;
+  font-family: $headlineFont;
   font-weight: bold;
   font-size: 15px;
-  color: #808080;
+  color: $colorTextSecondary;
 }

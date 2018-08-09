@@ -27,8 +27,8 @@
       transition: transform 200ms cubic-bezier(.5, 0, .5, 1);
     }
     p {
-      font-family: SofiaPro, Arial, Helvetica, sans-serif;
-      color: #808080;
+      font-family: $headlineFont;
+      color: $colorTextSecondary;
       font-size: 18px;
       font-weight: 600;
       line-height: 1.77;
@@ -41,7 +41,7 @@
         transform: scale(1.03);
       }
       p{
-        color: #5700ff;
+        color: $blurple;
       }
     }
 

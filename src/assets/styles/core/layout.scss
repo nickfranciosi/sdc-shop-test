@@ -17,21 +17,21 @@ html {
 
 body {
   min-width: 320px;
-  background: #fff;
-  font-family: "Proxima Nova", "ProximaNova", Arial, Helvetica, sans-serif;
+  background: $backgroundLight;
+  font-family: $bodyFont;
   font-size: 15px;
   line-height: 1.67;
-  color: #333; }
+  color: $colorTextBody; }
 a {
   color: inherit;
   text-decoration: underline; }
 a:hover, a[href^='tel'] {
     text-decoration: none; }
 h3 {
-  font-family: "SofiaPro", Arial, Helvetica, sans-serif;
+  font-family: $headlineFont;
   font-size: 22px;
   font-weight: 900;
-  color: #5700ff; }
+  color: $blurple; }
 
 p:last-child {
     margin-bottom: 0; }
