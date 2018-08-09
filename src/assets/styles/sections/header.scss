@@ -13,12 +13,12 @@ header .container {
   display: flex;
   justify-content: space-between;
   align-items: center;
-  min-height: 54px;
+  height: 54px;
   nav {
     display: none;
   }
   @media (min-width: 768px){
-    min-height: 75px;
+    height: 75px;
     .hamburger {
       display: none;
     }
@@ -59,6 +59,9 @@ nav{
   ul{
     display: flex;
     flex: 1;
+
+    // fallback for ie bug
+    justify-content: space-around;
     justify-content: space-evenly;
     li {
       padding: 0 10px;
