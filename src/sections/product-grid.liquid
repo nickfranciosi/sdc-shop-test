@@ -7,21 +7,24 @@
   <div class="section section-gap-large section-product-grid" data-col="{% if section.settings.product_three != "" %}3{% else %}2{% endif %}">
     {%- if section.settings.product_one != ""-%}
       <a href="{{ product1.url | default: "#" }}" class="product-grid-item">
-        <img src="{{ images["product-grid-fpo.jpg"] |  img_url: '1000x' }}" />
+        {% assign imagePath = 'product-grid-' | append: product1.handle | append: '.jpg' %}
+        <img src="{{ images[imagePath] |  img_url: '1000x' }}" />
         <h3>{{ product1.title | default: "Product Title" }}</h3>
         <p>{{ product1.price | money | default: "$1.99" }}</p>
       </a>
     {%- endif -%}
-    {%- if section.settings.product_two != ""-%}
+    {%- if section2.settings.product_two != ""-%}
       <a href="{{ product2.url | default: "#" }}" class="product-grid-item">
-        <img src="{{ images["product-grid-fpo.jpg"] |  img_url: '1000x' }}" />
+        {% assign imagePath = 'product-grid-' | append: product2.handle | append: '.jpg' %}
+        <img src="{{ images[imagePath] |  img_url: '1000x' }}" />
         <h3>{{ product2.title | default: "Product Title" }}</h3>
         <p>{{ product2.price | money | default: "$1.99" }}</p>
       </a>
     {%- endif -%}
-    {%- if section.settings.product_three != ""-%}
+    {%- if section3.settings.product_three != ""-%}
       <a href="{{ product3.url | default: "#" }}" class="product-grid-item">
-        <img src="{{ images["product-grid-fpo.jpg"] |  img_url: '1000x' }}" />
+        {% assign imagePath = 'product-grid-' | append: product3.handle | append: '.jpg' %}
+        <img src="{{ images[imagePath] |  img_url: '1000x' }}" />
         <h3>{{ product3.title | default: "Product Title" }}</h3>
         <p>{{ product3.price | money | default: "$1.99" }}</p>
       </a>
