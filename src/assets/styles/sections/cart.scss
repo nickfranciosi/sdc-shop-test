@@ -17,13 +17,22 @@
   }
 }
 
+// Desktop cart page
+
 .desktop-cart-wrapper {
-  max-width: 600px;
-  margin: 20px auto;
+  max-width: 500px;
+  margin: 40px auto;
   background: #F5F5F5;
-  border-radius: 4px;
-  box-shadow: -6px 13px 24px -22px;
-  padding: 20px;
+}
+
+.template-cart{
+  background: #F5F5F5;
+  .app-wrapper {
+    background: #F5F5F5;
+  }
+  #shopify-section-footer {
+    background: #fff;
+  }
 }
 
 
