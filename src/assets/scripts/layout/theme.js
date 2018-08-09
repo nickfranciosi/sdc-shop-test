@@ -266,6 +266,10 @@ $(document).ready(() => {
 
 // Slick settings
 $(document).ready(() => {
+  $('#slickCar').on('init', (event, slick) => {
+    $('.product-info-gallery').addClass('loaded');
+  });
+
   $('#slickCar').slick({
     infinite: true,
     speed: 300,
@@ -290,6 +294,7 @@ $(document).ready(() => {
     slidesToShow: 2,
     focusOnSelect: true,
   });
+
 });
 
 // First we get the viewport height and we multiple it by 1% to get a value for a vh unit

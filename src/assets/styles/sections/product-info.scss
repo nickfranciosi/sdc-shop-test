@@ -75,6 +75,11 @@
 
 .product-info-gallery {
   margin-bottom: 40px;
+  opacity: 0;
+  transition: opacity 300ms 300ms linear;
+  &.loaded {
+    opacity: 1;
+  }
   @media (min-width: 768px) {
     margin-bottom: 0;
   }
@@ -86,6 +91,7 @@
     text-align: center;
     cursor: grab;
     margin-bottom: 30px;
+
     &:active {
       cursor: grabbing;
     }
