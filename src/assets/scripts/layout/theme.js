@@ -1,10 +1,3 @@
-import 'lazysizes/plugins/object-fit/ls.object-fit';
-import 'lazysizes/plugins/parent-fit/ls.parent-fit';
-import 'lazysizes/plugins/rias/ls.rias';
-import 'lazysizes/plugins/bgset/ls.bgset';
-import 'lazysizes';
-import 'lazysizes/plugins/respimg/ls.respimg';
-
 import '../../styles/theme.scss';
 import '../../styles/theme.scss.liquid';
 
@@ -12,7 +5,6 @@ import $ from 'jquery';
 import {pageLinkFocus} from '@shopify/theme-a11y';
 import {cookiesEnabled} from '@shopify/theme-cart';
 import {formatMoney} from '@shopify/theme-currency';
-import {wrapTable, wrapIframe} from '@shopify/theme-rte';
 
 import createSticky from './stickyElement';
 import setupVhHelper from './vhHelper';
@@ -22,30 +14,15 @@ window.theme = window.theme || {};
 
 $(document).ready(() => {
 
+  createSticky($('header'));
+  setupVhHelper();
+
   if (window.location.hash !== '#') {
     pageLinkFocus($(window.location.hash));
   }
 
   $('.in-page-link').on('click', (evt) => {
     pageLinkFocus($(evt.currentTarget.hash));
-  });
-
-  // Target tables to make them scrollable
-  const tableSelectors = '.rte table';
-
-  wrapTable({
-    $tables: $(tableSelectors),
-    tableWrapperClass: 'rte__table-wrapper',
-  });
-
-  // Target iframes to make them responsive
-  const iframeSelectors =
-    '.rte iframe[src*="youtube.com/embed"],' +
-    '.rte iframe[src*="player.vimeo"]';
-
-  wrapIframe({
-    $iframes: $(iframeSelectors),
-    iframeWrapperClass: 'rte__video-wrapper',
   });
 
   // Apply a specific class to the html element for browser support of cookies.
@@ -60,44 +37,50 @@ $(document).ready(() => {
 
 // Modal Actions
 
+// Selector Cache
+
+
+const $mobileMenu = $('#mobile-menu');
+const $body = $('body');
+const $hamburger = $('.hamburger');
+const $modalCart = $('#modalCart');
+const $cartTriggers = $('.modalCartTrigger');
+
 function hideMobileMenu() {
-  $('#mobile-menu').removeClass('open');
-  $('body').removeClass('modalOpen');
-  $('.hamburger').removeClass('open');
+  $mobileMenu.removeClass('open');
+  $body.removeClass('modalOpen');
+  $hamburger.removeClass('open');
 }
 
 function toggleCart() {
   // close mobile menu if open
   hideMobileMenu();
-  $('body').toggleClass('modalDesktop');
-  $('#modalCart').toggleClass('isOpen');
+  $body.toggleClass('modalDesktop');
+  $modalCart.toggleClass('isOpen');
 }
 
 function toggleMobileMenu() {
-  $('body').toggleClass('modalOpen');
-  $('.hamburger').toggleClass('open');
-  $('#mobile-menu').toggleClass('open');
+  $body.toggleClass('modalOpen');
+  $hamburger.toggleClass('open');
+  $mobileMenu.toggleClass('open');
 }
 
 $(document).ready(() => {
-  $('.hamburger').on('click', (e) => {
+  $hamburger.on('click', () => {
     toggleMobileMenu();
   });
-});
 
-$(document).ready(() => {
-
-  $('.modalCartTrigger').on('click', (event) => {
+  $cartTriggers.on('click', (event) => {
     event.preventDefault();
     toggleCart();
   });
-
 });
+
 
 // Product Cart actions
 
 function addToCartFail(error) {
-  console.log('fail', error);
+  window.console.log('fail', error);
 }
 
 function updateExistingCartItem(id, quantity) {
@@ -147,7 +130,6 @@ function addNewCartItem(product) {
 
 function syncCartItems(product) {
   if ($(`#product-${product.id}`).length) {
-    console.log('item exists, update values');
     updateExistingCartItem(product.id, product.quantity);
   } else {
     addNewCartItem(product);
@@ -169,19 +151,12 @@ function toggleEmptyCartMessage(itemCount) {
 }
 
 function addToCartSuccess(product) {
-  console.log('success', product);
   updateCartInfo();
   syncCartItems(product);
   toggleCart();
 }
 
-function updateCartSuccess(cart) {
-  console.log('cart success', cart);
-  updateCartInfo();
-}
-
 function cartFetchSuccess(cart) {
-  console.log({cart});
   toggleEmptyCartMessage(cart.item_count);
   $('.cart-subtotal p:last-of-type').text(formatMoney(cart.total_price));
   $('.cart-count-wrapper').text(`(${cart.item_count})`);
@@ -193,13 +168,13 @@ function updateCartInfo() {
     url: '/cart.js',
     dataType: 'json',
     success: cartFetchSuccess,
-    error: (error) => console.log({error}),
+    error: (error) => window.console.log({error}),
   });
 }
 
 $(document).ready(() => {
-  $('#product-form').on('submit', (e) => {
-    e.preventDefault();
+  $('#product-form').on('submit', (event) => {
+    event.preventDefault();
     $.ajax({
       type: 'POST',
       url: '/cart/add.js',
@@ -210,9 +185,9 @@ $(document).ready(() => {
     });
   });
 
-  $('.cart-items').on('click', '.cart-item--incrementer button', (e) => {
-    e.preventDefault();
-    const $item = $(e.target);
+  $('.cart-items').on('click', '.cart-item--incrementer button', (event) => {
+    event.preventDefault();
+    const $item = $(event.target);
     const $itemData = $item.data();
     const updatedQuantity = $itemData.productIncrementType === 'increment' ? $itemData.productCurrentQuantity + 1 : $itemData.productCurrentQuantity - 1;
 
@@ -227,7 +202,7 @@ $(document).ready(() => {
         url: '/cart/change.js',
         dataType: 'json',
         data,
-        success: updateCartSuccess,
+        success: cartFetchSuccess,
         error: addToCartFail,
       });
     } else {
@@ -240,7 +215,7 @@ $(document).ready(() => {
   function removeCartItem($item) {
     const $itemData = $item.data();
     $item.addClass('removing');
-    setTimeout(() => {
+    window.setTimeout(() => {
       $item.remove();
     }, 550);
     const data = {
@@ -253,20 +228,14 @@ $(document).ready(() => {
       url: '/cart/change.js',
       dataType: 'json',
       data,
-      success: updateCartSuccess,
+      success: cartFetchSuccess,
       error: addToCartFail,
     });
   }
 
-  $('.cart-items').on('click', '.cart-item--actions a', function(e) {
-    e.preventDefault();
+  $('.cart-items').on('click', '.cart-item--actions a', function(event) {
+    event.preventDefault();
     const $cartItem = $(this).closest('.cart-item');
     removeCartItem($cartItem);
   });
 });
-
-
-(function() {
-  createSticky($('header'));
-  setupVhHelper();
-})();
