@@ -8,7 +8,7 @@
     {%- if section.settings.product_one != ""-%}
       <a href="{{ product1.url | default: "#" }}" class="product-grid-item">
         {% assign imagePath = 'product-grid-' | append: product1.handle | append: '.jpg' %}
-        <img src="{{ images[imagePath] |  img_url: '600x' }}" />
+        <img src="{{ images[imagePath] |  img_url: '600x' }}" alt="{{product1.title}}"/>
         <h3>{{ product1.title | default: "Product Title" }}</h3>
         <p>{{ product1.price | money | default: "$1.99" }}</p>
       </a>
@@ -16,7 +16,7 @@
     {%- if section2.settings.product_two != ""-%}
       <a href="{{ product2.url | default: "#" }}" class="product-grid-item">
         {% assign imagePath = 'product-grid-' | append: product2.handle | append: '.jpg' %}
-        <img src="{{ images[imagePath] |  img_url: '600x' }}" />
+        <img src="{{ images[imagePath] |  img_url: '600x' }}" alt="{{product2.title}}"/>
         <h3>{{ product2.title | default: "Product Title" }}</h3>
         <p>{{ product2.price | money | default: "$1.99" }}</p>
       </a>
@@ -24,7 +24,7 @@
     {%- if section3.settings.product_three != ""-%}
       <a href="{{ product3.url | default: "#" }}" class="product-grid-item">
         {% assign imagePath = 'product-grid-' | append: product3.handle | append: '.jpg' %}
-        <img src="{{ images[imagePath] |  img_url: '600x' }}" />
+        <img src="{{ images[imagePath] |  img_url: '600x' }}" alt="{{product3.title}}"/>
         <h3>{{ product3.title | default: "Product Title" }}</h3>
         <p>{{ product3.price | money | default: "$1.99" }}</p>
       </a>
