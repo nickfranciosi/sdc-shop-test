@@ -9,13 +9,14 @@ import '../../styles/theme.scss';
 import '../../styles/theme.scss.liquid';
 
 import $ from 'jquery';
-import slick from 'slick-carousel';
 import {pageLinkFocus} from '@shopify/theme-a11y';
 import {cookiesEnabled} from '@shopify/theme-cart';
 import {formatMoney} from '@shopify/theme-currency';
 import {wrapTable, wrapIframe} from '@shopify/theme-rte';
 
-console.log({slick});
+import createSticky from './stickyElement';
+import setupVhHelper from './vhHelper';
+
 window.slate = window.slate || {};
 window.theme = window.theme || {};
 
@@ -264,82 +265,8 @@ $(document).ready(() => {
   });
 });
 
-// Slick settings
-$(document).ready(() => {
-  $('#slickCar').on('init', (event, slick) => {
-    $('.product-info-gallery').addClass('loaded');
-  });
-
-  $('#slickCar').slick({
-    infinite: true,
-    speed: 300,
-    // fade: true,
-    arrows: true,
-    cssEase: 'ease-in-out',
-    draggable: true,
-    asNavFor: '#slickThumbs',
-    responsive: [
-      {
-        breakpoint: 768,
-        settings: {
-          draggable: true,
-          fade: false,
-        },
-      },
-    ],
-  });
-
-  $('#slickThumbs').slick({
-    asNavFor: '#slickCar',
-    slidesToShow: 2,
-    focusOnSelect: true,
-  });
-
-});
-
-// First we get the viewport height and we multiple it by 1% to get a value for a vh unit
-const vh = window.innerHeight * 0.01;
-// Then we set the value in the --vh custom property to the root of the document
-const $modalWrapper = document.querySelector('#modalCart');
-$modalWrapper.style.setProperty('--vh', `${vh}px`);
-
 
 (function() {
   createSticky($('header'));
-  window.addEventListener('resize', resizeThrottler, false);
-
-  let resizeTimeout;
-  function resizeThrottler() {
-    // ignore resize events as long as an actualResizeHandler execution is in the queue
-    if (!resizeTimeout) {
-      resizeTimeout = setTimeout(() => {
-        resizeTimeout = null;
-        actualResizeHandler();
-
-        // The actualResizeHandler will execute at a rate of 15fps
-      }, 66);
-    }
-  }
-
-  function actualResizeHandler() {
-    // First we get the viewport height and we multiple it by 1% to get a value for a vh unit
-    const vh = window.innerHeight * 0.01;
-    // Then we set the value in the --vh custom property to the root of the document
-    const $modalWrapper = document.querySelector('#modalCart');
-    $modalWrapper.style.setProperty('--vh', `${vh}px`);
-  }
-
+  setupVhHelper();
 })();
-
-function createSticky(sticky) {
-
-  if (typeof sticky !== 'undefined') {
-
-    let pos = sticky.offset().top,
-      win = $(window);
-
-    win.on('scroll', () => {
-      win.scrollTop() >= pos ? sticky.addClass('fixed') : sticky.removeClass('fixed');
-    });
-  }
-}

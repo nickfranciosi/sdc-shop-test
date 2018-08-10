@@ -7,6 +7,7 @@
  */
 
 import $ from 'jquery';
+import slick from 'slick-carousel';
 import Variants from '@shopify/theme-variants';
 import {formatMoney} from '@shopify/theme-currency';
 import sections from '@shopify/theme-sections';
@@ -190,12 +191,46 @@ sections.register('product', {
 $(document).ready(() => {
   const $hiddenSelect = $('.hidden-selector select');
   const $variantButtons = $('.product-info-variant-options a');
-  $variantButtons.on('click', function(e) {
-    e.preventDefault();
+  $variantButtons.on('click', function(event) {
+    event.preventDefault();
     const $this = $(this);
     $variantButtons.removeClass('selected');
     $this.addClass('selected');
     $hiddenSelect.val($this.data('value'));
     $hiddenSelect.change();
   });
+});
+
+
+// Slick sldier settings
+$(document).ready(() => {
+  $('#slickCar').on('init', () => {
+    $('.product-info-gallery').addClass('loaded');
+  });
+
+  $('#slickCar').slick({
+    infinite: true,
+    speed: 300,
+    cssEase: 'ease-in-out',
+    draggable: true,
+    asNavFor: '#slickThumbs',
+    responsive: [
+      {
+        breakpoint: 768,
+        settings: {
+          draggable: true,
+          fade: false,
+        },
+      },
+    ],
+  });
+
+  // number of images is calculated
+  // in the product template
+  $('#slickThumbs').slick({
+    asNavFor: '#slickCar',
+    slidesToShow: window.numberOfImages,
+    focusOnSelect: true,
+  });
+
 });

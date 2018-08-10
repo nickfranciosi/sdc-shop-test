@@ -171,6 +171,14 @@
 {% endif %}
 </div>
 
+<script>
+// used to tell slick slider how many thumbnails to show
+{% assign imageCount = 0 %}
+{% for image in product.images %}
+  {% assign imageCount = imageCount | plus: 1 %}
+{% endfor %}
+  window.numberOfImages = {{ imageCount }};
+</script>
 {% schema %}
   {
     "name": "Product pages",
