@@ -37,9 +37,6 @@ $(document).ready(() => {
 
 // Modal Actions
 
-// Selector Cache
-
-
 const $mobileMenu = $('#mobile-menu');
 const $body = $('body');
 const $hamburger = $('.hamburger');
