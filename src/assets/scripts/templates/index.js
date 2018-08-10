@@ -1,10 +1,10 @@
-import '../sections/product';
+// import '../sections/product';
 
-import $ from 'jquery';
-import sections from '@shopify/theme-sections';
+// import $ from 'jquery';
+// import sections from '@shopify/theme-sections';
 
-$(document).ready(() => {
-  sections.load([
-    'product',
-  ]);
-});
+// $(document).ready(() => {
+//   sections.load([
+//     'product',
+//   ]);
+// });
