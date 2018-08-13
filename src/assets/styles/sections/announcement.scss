@@ -1,0 +1,17 @@
+.announcement-bar {
+  background: $blurple;
+  text-align: center;
+  padding: 10px 0;
+  p, a {
+    font-family: $headlineFont;
+    color: $white;
+  }
+  a {
+    transition: opacity 250ms linear;
+    opacity: 0.85;
+  }
+  a:hover {
+    opacity: 1;
+    text-decoration: underline;
+  }
+}
