@@ -7,7 +7,7 @@ import {cookiesEnabled} from '@shopify/theme-cart';
 import {formatMoney} from '@shopify/theme-currency';
 
 import createSticky from './stickyElement';
-import setupVhHelper from './vhHelper';
+import setupVhHelper, {setVhProperty} from './vhHelper';
 
 window.slate = window.slate || {};
 window.theme = window.theme || {};
@@ -54,6 +54,11 @@ function toggleCart() {
   hideMobileMenu();
   $body.toggleClass('modalDesktop');
   $modalCart.toggleClass('isOpen');
+
+  // recalc the window height due to an issue
+  // when the keyboard is open on ios
+  // and the user opens the cart
+  setVhProperty();
 }
 
 function toggleMobileMenu() {
