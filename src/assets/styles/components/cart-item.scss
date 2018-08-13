@@ -3,6 +3,9 @@
   background: $backgroundLight;
   margin-bottom: 10px;
   padding: 20px;
+  transform: scale(1);
+  opacity: 1;
+  transition: opacity 250ms cubic-bezier(.22,1,1,1), transform 250ms cubic-bezier(.22,1,1,1);
   img {
     flex: 1 1 33%;
     object-fit: contain;
@@ -77,19 +80,8 @@
 
   // removal animations
   &.removing {
-    animation: scaleOut 250ms cubic-bezier(.22,1,1,1) both;
-    @keyframes scaleOut {
-      0% {
-        transform: scale(1);
-        opacity: 1;
-      }
-      100% {
-        transform: scale(0);
-        opacity: 0;
-      }
-    }
-
-
+    transform: scale(0);
+    opacity: 0;
   }
 
   &.removed {
