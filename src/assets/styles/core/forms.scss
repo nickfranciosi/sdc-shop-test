@@ -36,7 +36,7 @@ input[type="email"] {
     border-radius: 4px;
     text-align: center;
     transition: border-color 250ms ease-in;
-    padding: 14px;
+    padding: 16px 14px 14px;
     &:focus {
       border-color: $colorTextSecondary;
     }

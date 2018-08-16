@@ -98,9 +98,53 @@
       height: 48px;
       display: flex;
       align-items: center;
-      justify-content: center;
+      justify-content: space-between;
       background: $backgroundPrimary;
       border-radius: 4px;
       font-weight: bold;
+      padding: 0 20px;
+      .copy-button {
+        color: grey;
+        opacity: .5;
+        cursor: pointer;
+        transition: opacity 150ms linear;
+        &:hover {
+          opacity: 1;
+        }
+      }
+    }
+
+    .copy-messages {
+      display: flex;
+      overflow: hidden;
+      padding: 0 20px;
+      margin-top: 10px;
+      .copy-message {
+        width: 100%;
+        margin-right: -100%;
+        opacity: 0;
+        transform: translateY(-100%);
+        transition: opacity 300ms linear, transform 300ms cubic-bezier(.175,.885,.32,1.175);
+        color: $blurple;
+        font-family: $headlineFont;
+        line-height: 1.2;
+        &--error {
+          color: $colorWarning;
+        }
+      }
+
+      &.copy__success {
+        .copy-message--success{
+          opacity: 1;
+          transform: translateY(0);
+        }
+      }
+
+      &.copy__error {
+        .copy-message--error{
+          opacity: 1;
+          transform: translateY(0);
+        }
+      }
     }
 }

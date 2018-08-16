@@ -67,7 +67,32 @@ function toggleMobileMenu() {
   $mobileMenu.toggleClass('open');
 }
 
+// Clipboard logic
+
+function showClipboardMessage(classToAdd, removeDelay = 1000) {
+  $('.copy-messages').addClass(classToAdd);
+  window.setTimeout(() => {
+    $('.copy-messages').removeClass(classToAdd);
+  }, removeDelay);
+}
+
+function bindClipboardEvents() {
+  const clipboard = new ClipboardJS('.copy-button');
+  clipboard.on('success', (e) => {
+    showClipboardMessage('copy__success');
+    e.clearSelection();
+  });
+
+  clipboard.on('error', (e) => {
+    showClipboardMessage('copy__error', 2000);
+  });
+}
+
+
+// Promo modal logic
+
 function showPromoSuccess() {
+  bindClipboardEvents();
   $('.modal').addClass('showSuccess');
 }
 
@@ -111,6 +136,7 @@ $(document).ready(() => {
     $modalCart.removeClass('isOpen');
   });
 
+  // Promo modal logic
   $('#promoEntry').on('submit', (e) => {
     e.preventDefault();
     showPromoSuccess();

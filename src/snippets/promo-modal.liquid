@@ -22,9 +22,17 @@
     </div>
     <div class="success">
       <h3 class="title">{{section.settings.promo_modal_success_heading}}</h3>
-      <p class="promo-code">
-        {{section.settings.promo_modal_code}}
+      <p
+        class="promo-code"
+      >
+        <span id="promo-code-value">{{section.settings.promo_modal_code}}</span>
+        <span class="copy-button" data-clipboard-target="#promo-code-value">Copy</span>
       </p>
+      <div class="copy-messages">
+        <p class="copy-message copy-message--success">Copied!</p>
+        <p class="copy-message copy-message--error">Darn. Copy failed.</p>
+      </div>
+
     </div>
   </div>
 </div>
