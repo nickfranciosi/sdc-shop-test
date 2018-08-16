@@ -1,5 +1,9 @@
 
-<div id="promo-modal" class="modal promo-modal">
+<div
+  id="promo-modal"
+  class="modal promo-modal"
+  data-promo="{{section.settings.promo_modal_code}}"
+>
   <p class="modalCloseTrigger close-action">
     &#x2715;
   </p>
@@ -12,7 +16,7 @@
     <div class="default">
       <h3 class="title">{{section.settings.promo_modal_heading}}</h3>
       <form action="#" id="promoEntry">
-        <input type="text" class="email-input"placeholder="Enter your email address">
+        <input type="email" class="email-input" placeholder="Enter your email address" required>
         <input type="submit" class="button button--transparent"value="{{section.settings.promo_modal_cta_text}}">
       </form>
     </div>

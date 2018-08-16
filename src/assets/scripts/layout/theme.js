@@ -5,7 +5,7 @@ import $ from 'jquery';
 import {pageLinkFocus} from '@shopify/theme-a11y';
 import {cookiesEnabled} from '@shopify/theme-cart';
 import {formatMoney} from '@shopify/theme-currency';
-
+import Cookies from 'js-cookie';
 import createSticky from './stickyElement';
 import setupVhHelper, {setVhProperty} from './vhHelper';
 
@@ -74,6 +74,20 @@ function showPromoSuccess() {
 function showPromoModal() {
   $body.addClass('modalDesktop');
   $('.modal').addClass('open');
+  const promoCode = $('.modal').data('promo');
+  Cookies.set(`sdc_seen_promo_${promoCode}`, true, {expires: 365});
+}
+
+function shouldShowPromoModal() {
+  const $promoModal = $('#promo-modal');
+  if ($promoModal.length) {
+    const promoCode = $promoModal.data('promo');
+    const hasCookie = Cookies.get(`sdc_seen_promo_${promoCode}`);
+    return !hasCookie;
+  }
+
+  return false;
+
 }
 
 $(document).ready(() => {
@@ -102,7 +116,7 @@ $(document).ready(() => {
     showPromoSuccess();
   });
 
-  if ($('#promo-modal').length) {
+  if (shouldShowPromoModal()) {
     setTimeout(() => {
       showPromoModal();
     }, 1000);
