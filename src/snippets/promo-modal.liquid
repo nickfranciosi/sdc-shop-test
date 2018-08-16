@@ -1,0 +1,26 @@
+
+<div id="promo-modal" class="modal promo-modal">
+  <p class="modalCloseTrigger close-action">
+    &#x2715;
+  </p>
+  <div
+    class="promo-modal--image-wrapper"
+    style="background-image: url({{ section.settings.promo_modal_image |  img_url: '500x' }})"
+  >
+  </div>
+  <div class="promo-modal--content">
+    <div class="default">
+      <h3 class="title">{{section.settings.promo_modal_heading}}</h3>
+      <form action="#" id="promoEntry">
+        <input type="text" class="email-input"placeholder="Enter your email address">
+        <input type="submit" class="button button--transparent"value="{{section.settings.promo_modal_cta_text}}">
+      </form>
+    </div>
+    <div class="success">
+      <h3 class="title">{{section.settings.promo_modal_success_heading}}</h3>
+      <p class="promo-code">
+        {{section.settings.promo_modal_code}}
+      </p>
+    </div>
+  </div>
+</div>

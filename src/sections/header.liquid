@@ -28,6 +28,9 @@
     <div class="container">
       <a href="https://smiledirectclub.com/">SmileDirectClub.com <span>&rarr;</span></a>
     </div>
+    <div>
+      <button class="btn modalTrigger"> Trigger modal</button>
+    </div>
   </div>
   <header role="banner">
     <div class="container">
@@ -106,6 +109,10 @@
 
 {% include 'modal-cart' %}
 
+{%- if section.settings.promo_modal_enabled -%}
+  {% include 'promo-modal'%}
+{%- endif -%}
+
 {% if section.settings.logo != blank %}
   <style>
     .logo-image {
@@ -119,6 +126,45 @@
   {
     "name": "Header",
     "settings": [
+      {
+      "type": "header",
+      "content": "Promo Code Modal"
+    },
+    {
+      "type": "checkbox",
+      "id": "promo_modal_enabled",
+      "label": "Show Promo Modal",
+      "default": false
+    },
+    {
+      "type": "text",
+      "id": "promo_modal_heading",
+      "label": "Promo Code Heading",
+      "default": "Announce something here"
+    },
+    {
+      "type": "text",
+      "id": "promo_modal_cta_text",
+      "label": "Promo Code CTA Text",
+      "default": "Get your promo code"
+    },
+    {
+      "type": "text",
+      "id": "promo_modal_code",
+      "label": "Promo Code",
+      "default": "c0deG0esH3r3"
+    },
+    {
+      "type": "text",
+      "id": "promo_modal_success_heading",
+      "label": "Promo Code Sucesss Heading",
+      "default": "Copy the code below"
+    },
+    {
+    "type": "image_picker",
+    "id": "promo_modal_image",
+    "label": "Promo Image"
+    },
       {
         "type": "header",
         "content": "Announcement bar"

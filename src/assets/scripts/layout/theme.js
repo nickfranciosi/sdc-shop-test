@@ -67,6 +67,15 @@ function toggleMobileMenu() {
   $mobileMenu.toggleClass('open');
 }
 
+function showPromoSuccess() {
+  $('.modal').addClass('showSuccess');
+}
+
+function showPromoModal() {
+  $body.addClass('modalDesktop');
+  $('.modal').addClass('open');
+}
+
 $(document).ready(() => {
   $hamburger.on('click', () => {
     toggleMobileMenu();
@@ -76,6 +85,28 @@ $(document).ready(() => {
     event.preventDefault();
     toggleCart();
   });
+
+  $('.modalTrigger').on('click', (e) => {
+    showPromoModal();
+  });
+
+  $('.modalCloseTrigger').on('click', (e) => {
+    hideMobileMenu();
+    $body.removeClass('modalDesktop');
+    $('.modal').removeClass('open');
+    $modalCart.removeClass('isOpen');
+  });
+
+  $('#promoEntry').on('submit', (e) => {
+    e.preventDefault();
+    showPromoSuccess();
+  });
+
+  if ($('#promo-modal').length) {
+    setTimeout(() => {
+      showPromoModal();
+    }, 1000);
+  }
 });
 
 

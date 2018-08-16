@@ -1,0 +1,106 @@
+.modal {
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    background: $white;
+    min-width: 300px;
+    max-width: 600px;
+    min-height: 330px;
+    width: 60vw;
+    height: 20vh;
+    display: flex;
+    justify-content: center;
+    z-index: 999;
+    border-radius: 8px;
+    opacity: 0;
+    transform: translate(-50.1%, 65.1%);
+    transition: opacity 350ms linear, transform 350ms cubic-bezier(.175,.885,.32,1.175);
+    .close-action {
+      position: absolute;
+      top: 10px;
+      right: 20px;
+      z-index: 1000;
+      cursor: pointer;
+    }
+    &.open {
+      transform: translate(-50%, -50%);
+      opacity: 1;
+    }
+
+
+    .promo-modal--image {
+      display: none;
+    }
+
+    .promo-modal--content {
+      flex: 1;
+      padding: 40px;
+      display: flex;
+      transition: inherit;
+      overflow: hidden;
+      .title {
+        font-size: 28px;
+        line-height: 1.21;
+        padding-bottom: 20px;
+      }
+      .email-input {
+        margin-bottom: 30px;
+        width: 100%;
+        text-align: left;
+      }
+    }
+
+    @media (min-width: 900px) {
+      .promo-modal--content {
+        flex: 0 0 55%;
+      }
+      .promo-modal--image-wrapper {
+        display: block;
+        height: 100%;
+        flex: 0 0 45%;
+        background-color: #DDE4E6;
+        border-radius: 8px 0 0 8px;
+        background-size: cover;
+        background-repeat: no-repeat;
+        background-position: bottom;
+      }
+    }
+
+    .success, .default {
+      width: 100%;
+      margin-right: -100%;
+    }
+
+    .success {
+      opacity: 0;
+      transform: translateY(100%);
+      transition: inherit;
+    }
+
+    .default {
+      transform: translateY(0);
+      transition: inherit;
+    }
+
+    &.showSuccess {
+      .success {
+        opacity: 1;
+        transform: translateY(0);
+      }
+
+      .default {
+        opacity: 0;
+        transform: translateY(-100%);
+      }
+    }
+
+    .promo-code {
+      height: 48px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      background: $backgroundPrimary;
+      border-radius: 4px;
+      font-weight: bold;
+    }
+}

@@ -29,6 +29,22 @@ select {
   }
 }
 
+input[type="text"],
+input[type="email"] {
+    font-size: 16px;
+    border: 2px solid #CCCCCC;
+    border-radius: 4px;
+    text-align: center;
+    transition: border-color 250ms ease-in;
+    padding: 14px;
+    &:focus {
+      border-color: $colorTextSecondary;
+    }
+    &::placeholder {
+      color: #B3B3B3;
+    }
+}
+
 button,
 input[type='submit'],
 label[for] {
