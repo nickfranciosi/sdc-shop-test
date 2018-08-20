@@ -1,0 +1,34 @@
+.product-table {
+  font-size: 13px;
+  thead {
+    th {
+      padding: 0 10px 10px;
+    }
+  }
+  tbody {
+    th {
+      text-align: left;
+      font-family: $headlineFont;
+      font-weight: bold;
+      min-width: 190px;
+    }
+    tr {
+      border-bottom: 2px solid $backgroundPrimary;
+    }
+
+    td {
+      text-align: center;
+      color: $colorTextSecondary;
+      font-family: $bodyFont;
+      padding: 10px 0;
+    }
+  }
+
+  .product-title-row {
+    td {
+      color: $blurple;
+      font-family: $headlineFont;
+      font-weight: bold;
+    }
+  }
+}
