@@ -122,56 +122,13 @@
       </div>
   </div>
 
-{% include 'social-gallery' %}
-{% include 'yotpo-product' %}
-{% include 'product-table' %}
+  {% include 'social-gallery' %}
+  {% include 'yotpo-product' %}
 
+  <section class="section section-gap-large">
+    {% include 'product-table' %}
+  </section>
 
-</div>
-{%- assign  showBanner = true -%}
-{% case product.id %}
-  {% when 1791412469878 %}
-    {% comment %} on Whitening pens show acc light in banner{% endcomment %}
-    {%- assign  bgColor = "#F7F5F2" -%}
-    {%- assign bannerImage = 'pincher.png' -%}
-    {%- assign isSwapped = true -%}
-    {%- assign ctaLink = "/products/led-accelerator-light" -%}
-    {%- assign extraClasses = false -%}
-    {%- assign title = "LED accelerator light" -%}
-    {%- assign text = "Enhance the power of your bright on premium whitening. This LED uses blue light to react with Bright Boost, making it absorb even faster." -%}
-  {% when 1791427248246 %}
-    {% comment %} LED accelerator light show whitening pens{% endcomment %}
-    {%- assign  bgColor = "#D2FFFF" -%}
-    {%- assign bannerImage = 'grasp.png' -%}
-    {%- assign isSwapped = false -%}
-    {%- assign ctaLink = "/products/whitening-pens" -%}
-    {%- assign extraClasses = false -%}
-    {%- assign title = "Whitening pens" -%}
-    {%- assign text = "Each pen contains 4 treatments, 2 for the AM and 2 for the PM. And the no-mess brush keeps gel on teeth and off your hands." -%}
-  {% else %}
-    {% comment %} default hide banner{% endcomment %}
-    {%- assign  showBanner = false -%}
-{% endcase %}
-
-{% if showBanner %}
-  <section
-    class="section section-banner {% if isSwapped %}swap{% endif %} {% if extraClasses %}{{extraClasses}}{% endif %}"
-    style="background-color: {{bgColor}};"
-  >
-        <div class="banner-segment banner-text">
-          <h2>{{ title }}</h2>
-          <p>{{ text }}</p>
-          {% if ctaLink %}
-            <a href="{{ctaLink}}" class="banner-cta button button--transparent">Shop now</a>
-          {% endif %}
-        </div>
-        <div class="banner-segment banner-image">
-          {%- if bannerImage -%}
-            <img src="{{ images[bannerImage] |  img_url: '1000x' }}" alt="">
-          {%- endif -%}
-        </div>
-  </section><!-- /.section section-intro -->
-{% endif %}
 </div>
 
 <script>

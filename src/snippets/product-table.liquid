@@ -1,68 +1,129 @@
+{% assign product_collection = product.collections.first %}
 <div>
+  <h2 class="product-table--title">{{ product_collection.title  }} comparison</h2>
   <table class="product-table responsive-table">
     <thead>
       <th></th>
+      {% comment %} <th><img src="{{images['product-grid-whitening-pens.jpg'] |  img_url: '600x' }}}}" alt=""></th>
       <th><img src="{{images['product-grid-whitening-pens.jpg'] |  img_url: '600x' }}}}" alt=""></th>
       <th><img src="{{images['product-grid-whitening-pens.jpg'] |  img_url: '600x' }}}}" alt=""></th>
-      <th><img src="{{images['product-grid-whitening-pens.jpg'] |  img_url: '600x' }}}}" alt=""></th>
-      <th><img src="{{images['product-grid-whitening-pens.jpg'] |  img_url: '600x' }}}}" alt=""></th>
+      <th><img src="{{images['product-grid-whitening-pens.jpg'] |  img_url: '600x' }}}}" alt=""></th> {% endcomment %}
+
+
+      {% for product in product_collection.products %}
+          {% if product.has_only_default_variant %}
+            <th><img src="{{product.metafields.comparison.grid_image}}" alt="{{product.title}}"></th>
+          {% else %}
+            {% for variant in product.variants %}
+              <th><img src="{{variant.metafields.comparison.grid_image}}" alt="{{product.title}} - {{variant.title}}"></th>
+            {%  endfor %}
+          {% endif %}
+        {%  endfor %}
     </thead>
     <tbody>
       <tr class="product-title-row">
         <th>Product</th>
-        <td >Whitening pens</td>
-        <td>Whitening pens</td>
-        <td>Whitening pens</td>
-        <td>Whitening pens</td>
+        {% for product in product_collection.products %}
+          {% if product.has_only_default_variant %}
+            <td >{{product.title}}</td>
+          {% else %}
+            {% for variant in product.variants %}
+              <td >{{product.title}} - {{variant.title}}</td>
+            {%  endfor %}
+          {% endif %}
+        {%  endfor %}
       </tr>
       <tr>
         <th>Price</th>
-        <td data-label="Whitening Pens">$49</td>
-        <td data-label="Whitening Kit">$49</td>
-        <td data-label="Whitening Pens">$49</td>
-        <td data-label="Whitening Pens">$49</td>
+        {% for product in product_collection.products %}
+          {% if product.has_only_default_variant %}
+            <td data-label="{{product.title}}">{{product.price | money}}</td>
+          {% else %}
+            {% for variant in product.variants %}
+              <td data-label="{{product.title}} - {{variant.title}}">{{variant.price | money}}</td>
+            {%  endfor %}
+          {% endif %}
+        {%  endfor %}
       </tr>
       <tr>
         <th>Value</th>
-        <td data-label="Whitening Pens">$49</td>
-        <td data-label="Whitening Kit">$49</td>
-        <td data-label="Whitening Pens">$49</td>
-        <td data-label="Whitening Pens">$49</td>
+        {% for product in product_collection.products %}
+          {% if product.has_only_default_variant %}
+            <td data-label="{{product.title}}">{{product.metafields.comparison.product_value}}</td>
+          {% else %}
+            {% for variant in product.variants %}
+              <td data-label="{{product.title}} - {{variant.title}}">{{variant.metafields.comparison.product_value}}</td>
+            {%  endfor %}
+          {% endif %}
+        {%  endfor %}
       </tr>
       <tr>
         <th>Pens</th>
-        <td data-label="Whitening Pens">1</td>
-        <td data-label="Whitening Kit">4</td>
-        <td data-label="Whitening Pens">8</td>
-        <td data-label="Whitening Pens">9</td>
+        {% for product in product_collection.products %}
+          {% if product.has_only_default_variant %}
+            <td data-label="{{product.title}}">{{product.metafields.comparison.pen_count}}</td>
+          {% else %}
+            {% for variant in product.variants %}
+              <td data-label="{{product.title}} - {{variant.title}}">{{variant.metafields.comparison.pen_count}}</td>
+            {%  endfor %}
+          {% endif %}
+        {%  endfor %}
       </tr>
       <tr>
         <th>Light</th>
-        <td data-label="Whitening Pens"><i class="fas fa-check"></i></td>
-        <td data-label="Whitening Kit"></td>
-        <td data-label="Whitening Pens"></td>
-        <td data-label="Whitening Pens"><i class="fas fa-check"></i></td>
+        {% for product in product_collection.products %}
+          {% if product.has_only_default_variant %}
+            <td data-label="{{product.title}}">
+              {% if product.metafields.comparison.includes_light %}<i class="fas fa-check"></i>{% endif %}
+            </td>
+          {% else %}
+            {% for variant in product.variants %}
+              <td data-label="{{product.title}} - {{variant.title}}">
+                {% if variant.metafields.comparison.includes_light %}<i class="fas fa-check"></i>{% endif %}
+              </td>
+            {%  endfor %}
+          {% endif %}
+        {%  endfor %}
       </tr>
       <tr>
         <th>Lip Balm</th>
-        <td data-label="Whitening Pens"></td>
-        <td data-label="Whitening Kit"><i class="fas fa-check"></i></td>
-        <td data-label="Whitening Pens"></td>
-        <td data-label="Whitening Pens"></td>
+        {% for product in product_collection.products %}
+          {% if product.has_only_default_variant %}
+            <td data-label="{{product.title}}">
+              {% if product.metafields.comparison.includes_balm %}<i class="fas fa-check"></i>{% endif %}
+            </td>
+          {% else %}
+            {% for variant in product.variants %}
+              <td data-label="{{product.title}} - {{variant.title}}">
+                {% if variant.metafields.comparison.includes_balm %}<i class="fas fa-check"></i>{% endif %}
+              </td>
+            {%  endfor %}
+          {% endif %}
+        {%  endfor %}
       </tr>
       <tr>
         <th>8-Day Treatments</th>
-        <td data-label="Whitening Pens"></td>
-        <td data-label="Whitening Kit">1</td>
-        <td data-label="Whitening Pens">2</td>
-        <td data-label="Whitening Pens">3</td>
+        {% for product in product_collection.products %}
+          {% if product.has_only_default_variant %}
+            <td data-label="{{product.title}}">{{product.metafields.comparison.eight_day_treatments}}</td>
+          {% else %}
+            {% for variant in product.variants %}
+              <td data-label="{{product.title}} - {{variant.title}}">{{variant.metafields.comparison.eight_day_treatments}}</td>
+            {%  endfor %}
+          {% endif %}
+        {%  endfor %}
       </tr>
       <tr>
         <th>Months of Enbrightenment</th>
-        <td data-label="Whitening Pens"></td>
-        <td data-label="Whitening Kit">3 months</td>
-        <td data-label="Whitening Pens">6 months</td>
-        <td data-label="Whitening Pens">6 months</td>
+        {% for product in product_collection.products %}
+          {% if product.has_only_default_variant %}
+            <td data-label="{{product.title}}">{{product.metafields.comparison.months_enbrightenment}}</td>
+          {% else %}
+            {% for variant in product.variants %}
+              <td data-label="{{product.title}} - {{variant.title}}">{{variant.metafields.comparison.months_enbrightenment}}</td>
+            {%  endfor %}
+          {% endif %}
+        {%  endfor %}
       </tr>
     </tbody>
   </table>

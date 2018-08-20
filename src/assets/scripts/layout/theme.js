@@ -92,6 +92,7 @@ function bindClipboardEvents() {
 // Promo modal logic
 
 function showPromoSuccess() {
+  submitPromoEmail();
   bindClipboardEvents();
   $('.modal').addClass('showSuccess');
 }
@@ -101,6 +102,26 @@ function showPromoModal() {
   $('.modal').addClass('open');
   const promoCode = $('.modal').data('promo');
   Cookies.set(`sdc_seen_promo_${promoCode}`, true, { expires: 365 });
+}
+
+
+function submitPromoEmail() {
+  console.log('submit that via ajax dog');
+  const userEmail = window.btoa('nick@test.com');
+  $.ajax({
+    url: 'https://cloud.email.smiledirectclub.com/shopify_entry_log',
+    dataType: 'json',
+    type: 'post',
+    contentType: 'application/x-www-form-urlencoded',
+    data: `token=Ku16HQXF7t9HQdj5I7FBO0vrehnvtAwDEsRjOgr3GXzVhEEIMxwCNVy4EcIQU&user=${userEmail}`,
+    processData: false,
+    success: function success(data, textStatus, jQxhr) {
+      console.log('success');
+    },
+    error: function error(data) {
+      console.log(data);
+    },
+  });
 }
 
 function shouldShowPromoModal() {
@@ -164,10 +185,10 @@ $(document).ready(() => {
       async: true,
       url: action,
       error(jqXHR, textStatus, errorThrown) {
-        console.log("er", jqXHR, textStatus, errorThrown);
+        console.log('er', jqXHR, textStatus, errorThrown);
       },
       success(response) {
-        console.log("sucess", response)
+        console.log('sucess', response);
       },
     });
   });

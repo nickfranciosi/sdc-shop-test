@@ -1,3 +1,11 @@
+.product-table--title {
+  text-align: center;
+  margin-bottom: 40px;
+  @media (max-width: 45.85em) {
+    margin-bottom: 20px;
+  }
+
+}
 .product-table {
   font-size: 13px;
   thead {
@@ -33,6 +41,8 @@
       color: $blurple;
       font-family: $headlineFont;
       font-weight: bold;
+      line-height: 1.2;
+      padding: 10px;
     }
 
     @media (max-width: 45.85em) {
