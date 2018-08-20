@@ -11,6 +11,7 @@
       font-family: $headlineFont;
       font-weight: bold;
       min-width: 190px;
+      padding-left: 0;
     }
     tr {
       border-bottom: 2px solid $backgroundPrimary;
@@ -21,6 +22,9 @@
       color: $colorTextSecondary;
       font-family: $bodyFont;
       padding: 10px 0;
+      @media (max-width: 45.85em) {
+        text-align: right;
+      }
     }
   }
 
@@ -29,6 +33,10 @@
       color: $blurple;
       font-family: $headlineFont;
       font-weight: bold;
+    }
+
+    @media (max-width: 45.85em) {
+      display: none;
     }
   }
 }
