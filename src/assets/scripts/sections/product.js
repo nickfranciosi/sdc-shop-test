@@ -222,6 +222,12 @@ $(document).ready(() => {
           fade: false,
         },
       },
+      {
+        breakpoint: 410,
+        settings: {
+          infinite: false,
+        },
+      },
     ],
   });
 
@@ -229,8 +235,11 @@ $(document).ready(() => {
   // in the product template
   $('#slickThumbs').slick({
     asNavFor: '#slickCar',
-    slidesToShow: window.numberOfImages,
     focusOnSelect: true,
+    draggable: true,
+    slidesToShow: window.numberOfImages < 5 ? window.numberOfImages : 5,
+    slidesToScroll: 1,
+    centerMode: false,
   });
 
 });
