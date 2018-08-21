@@ -115,6 +115,10 @@ function showPromoSuccess() {
   $('.modal').addClass('showSuccess');
 }
 
+function showPromoError() {
+  $('.modal').addClass('showError');
+}
+
 function showPromoModal() {
   $body.addClass('modalDesktop');
   $('.modal').addClass('open');
@@ -122,34 +126,30 @@ function showPromoModal() {
   Cookies.set(`sdc_seen_promo_${promoCode}`, true, {expires: 365});
 }
 
+function promoLoading(isLoading = true) {
+  if (isLoading) {
+    $('#promo-modal').addClass('loading');
+  } else {
+    $('#promo-modal').removeClass('loading');
+  }
+}
 
 function submitPromoEmail(data) {
+  promoLoading();
   $.ajax({
     type: 'POST',
     url: '/contact',
     async: true,
     data,
-    error(jqXHR, textStatus, errorThrown) {
-      console.log('err', jqXHR, textStatus, errorThrown);
+    error() {
+      promoLoading(false);
+      showPromoError();
     },
     success() {
+      promoLoading(false);
       showPromoSuccess();
     },
   });
-  // $.ajax({
-  //   url: 'https://cloud.email.smiledirectclub.com/shopify_entry_log',
-  //   dataType: 'json',
-  //   type: 'post',
-  //   contentType: 'application/x-www-form-urlencoded',
-  //   data: `token=Ku16HQXF7t9HQdj5I7FBO0vrehnvtAwDEsRjOgr3GXzVhEEIMxwCNVy4EcIQU&user=${userEmail}`,
-  //   processData: false,
-  //   success: function success(data, textStatus, jQxhr) {
-  //     console.log('success');
-  //   },
-  //   error: function error(data) {
-  //     console.log(data);
-  //   },
-  // });
 }
 
 function shouldShowPromoModal() {

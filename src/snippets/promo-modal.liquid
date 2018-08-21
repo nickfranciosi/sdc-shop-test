@@ -28,7 +28,13 @@
         <input type="hidden" name="form_type" value="customer">
         <input type="hidden" name="utf8" value="✓">
         <input type="hidden" name="contact[tags]" value="promo-{{section.settings.promo_modal_code}}">
-        <input type="submit" class="button button--transparent button--full-width"value="{{section.settings.promo_modal_cta_text}}">
+        <div class="promo-modal--button-wrapper">
+          <div class="loader"><i class="fas fa-spinner fa-spin"></i></div>
+          <input
+            type="submit"
+            class="button button--transparent button--full-width trigger"
+            value="{{section.settings.promo_modal_cta_text}}">
+        </div>
       </form>
       <p class="promo-modal--disclaimer">{{section.settings.promo_modal_disclaimer}}</p>
     </div>
@@ -45,6 +51,10 @@
         <p class="copy-message copy-message--error">Darn. Copy failed.</p>
       </div>
       <p class="promo-modal--disclaimer">{{section.settings.promo_modal_success_disclaimer}}</p>
+    </div>
+    <div class="error">
+      <h3 class="title">Bummer.</h3>
+      <p>There was an error adding your email address. Please contact <a href="mailto:support@smiledirectclub.com">support</a> for additional assistance.</p>
     </div>
   </div>
 </div>

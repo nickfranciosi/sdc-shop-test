@@ -41,8 +41,11 @@
       overflow: hidden;
       .title {
         font-size: 28px;
-        line-height: 1.21;
+        line-height: 1;
         padding-bottom: 20px;
+        @media (min-width: 768px) {
+          line-height: 1.21;
+        }
       }
       .email-input {
         margin-bottom: 30px;
@@ -67,7 +70,7 @@
       }
     }
 
-    .success, .default {
+    .success, .default, .error {
       width: 100%;
       margin-right: -100%;
     }
@@ -83,13 +86,31 @@
       transition: inherit;
     }
 
+    .error {
+      opacity: 0;
+      transform: translateY(100%);
+      transition: inherit;
+    }
+
     &.showSuccess {
       .success {
         opacity: 1;
         transform: translateY(0);
       }
 
-      .default {
+      .default, .error {
+        opacity: 0;
+        transform: translateY(-100%);
+      }
+    }
+
+    &.showError {
+      .error {
+        opacity: 1;
+        transform: translateY(0);
+      }
+
+      .default, .success {
         opacity: 0;
         transform: translateY(-100%);
       }
@@ -155,4 +176,42 @@
       color: $colorTextSecondary;
       font-style: italic;
     }
+
+}
+
+.promo-modal {
+  .loader {
+      transition: all 200ms ease-in;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      background: $backgroundPrimary;
+      visibility: hidden;
+      border-radius: 4px;
+      color: $colorTextSecondary;
+      opacity: 0;
+  }
+
+  .trigger {
+    transition: all 200ms ease-in;
+    opacity: 1;
+    visibility: visible;
+  }
+  &.loading {
+    .loader {
+      opacity: 1;
+      visibility: visible;
+    }
+    .trigger {
+      visibility: hidden;
+      opacity: 0;
+    }
+  }
+  .promo-modal--button-wrapper {
+    display: flex;
+    > * {
+      width: 100%;
+      margin-right: -100%;
+    }
+  }
 }
