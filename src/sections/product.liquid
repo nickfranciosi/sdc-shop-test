@@ -14,7 +14,7 @@
         <ul class="photo-thumbnails" id="slickThumbs">
           {% for image in product.images %}
             <li>
-                <img class="product-single__thumbnail-image" src="{{ image.src | img_url: '60x60' }}" alt="{{ image.alt | escape }}">
+                <img class="product-single__thumbnail-image" src="{{ image.src | img_url: '120x120' }}" alt="{{ image.alt | escape }}">
             </li>
           {% endfor %}
         </ul>

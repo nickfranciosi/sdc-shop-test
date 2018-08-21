@@ -1,5 +1,5 @@
 <div class="cart-item" id="product-{{item.id}}" data-product-id="{{item.id}}">
-  {{ item | img_url: '110X110' | img_tag: item.title }}
+  {{ item | img_url: '220X220' | img_tag: item.title }}
   <div class="cart-item--content">
     <div class="cart-item--info">
       <h4>{{ item.product.title }}{% if item.product.has_only_default_variant == false %} ({{item.variant.title}}) {% endif %}</h4>
