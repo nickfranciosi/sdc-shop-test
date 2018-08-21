@@ -92,7 +92,6 @@ function bindClipboardEvents() {
 // Promo modal logic
 
 function showPromoSuccess() {
-  submitPromoEmail();
   bindClipboardEvents();
   $('.modal').addClass('showSuccess');
 }
@@ -105,23 +104,34 @@ function showPromoModal() {
 }
 
 
-function submitPromoEmail() {
-  console.log('submit that via ajax dog');
-  const userEmail = window.btoa('nick@test.com');
+function submitPromoEmail(data) {
   $.ajax({
-    url: 'https://cloud.email.smiledirectclub.com/shopify_entry_log',
-    dataType: 'json',
-    type: 'post',
-    contentType: 'application/x-www-form-urlencoded',
-    data: `token=Ku16HQXF7t9HQdj5I7FBO0vrehnvtAwDEsRjOgr3GXzVhEEIMxwCNVy4EcIQU&user=${userEmail}`,
-    processData: false,
-    success: function success(data, textStatus, jQxhr) {
-      console.log('success');
+    type: 'POST',
+    url: '/contact',
+    async: true,
+    data,
+    error(jqXHR, textStatus, errorThrown) {
+      console.log('err', jqXHR, textStatus, errorThrown);
+      showPromoSuccess();
     },
-    error: function error(data) {
-      console.log(data);
+    success() {
+      showPromoSuccess();
     },
   });
+  // $.ajax({
+  //   url: 'https://cloud.email.smiledirectclub.com/shopify_entry_log',
+  //   dataType: 'json',
+  //   type: 'post',
+  //   contentType: 'application/x-www-form-urlencoded',
+  //   data: `token=Ku16HQXF7t9HQdj5I7FBO0vrehnvtAwDEsRjOgr3GXzVhEEIMxwCNVy4EcIQU&user=${userEmail}`,
+  //   processData: false,
+  //   success: function success(data, textStatus, jQxhr) {
+  //     console.log('success');
+  //   },
+  //   error: function error(data) {
+  //     console.log(data);
+  //   },
+  // });
 }
 
 function shouldShowPromoModal() {
@@ -160,7 +170,10 @@ $(document).ready(() => {
   // Promo modal logic
   $('#promoEntry').on('submit', (e) => {
     e.preventDefault();
-    showPromoSuccess();
+    const $form = $('#promoEntry');
+    const data = $form.serialize();
+    submitPromoEmail(data);
+    // showPromoSuccess();
   });
 
   if (shouldShowPromoModal()) {
@@ -168,30 +181,6 @@ $(document).ready(() => {
       showPromoModal();
     }, 1000);
   }
-
-  $('#contact_form').on('submit', (e) => {
-    e.preventDefault();
-    let action = '/contact?';
-    action += `${encodeURIComponent('form_type')}=${encodeURIComponent('contact')}`;
-    action += `&${encodeURIComponent('utf8')}=${encodeURIComponent('✓')}`;
-    action += `&${encodeURIComponent('contact[email]')}=${encodeURIComponent('jim@jim.com')}`;
-
-    console.log({ action });
-
-    /* Submit the form
-    //---------------------------------------*/
-    $.ajax({
-      type: 'POST',
-      async: true,
-      url: action,
-      error(jqXHR, textStatus, errorThrown) {
-        console.log('er', jqXHR, textStatus, errorThrown);
-      },
-      success(response) {
-        console.log('sucess', response);
-      },
-    });
-  });
 });
 
 
