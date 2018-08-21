@@ -17,8 +17,9 @@
       <h3 class="title">{{section.settings.promo_modal_heading}}</h3>
       <form action="#" id="promoEntry">
         <input type="email" class="email-input" placeholder="Enter your email address" required>
-        <input type="submit" class="button button--transparent"value="{{section.settings.promo_modal_cta_text}}">
+        <input type="submit" class="button button--transparent button--full-width"value="{{section.settings.promo_modal_cta_text}}">
       </form>
+      <p class="promo-modal--disclaimer">{{section.settings.promo_modal_disclaimer}}</p>
     </div>
     <div class="success">
       <h3 class="title">{{section.settings.promo_modal_success_heading}}</h3>
@@ -32,7 +33,7 @@
         <p class="copy-message copy-message--success">Copied!</p>
         <p class="copy-message copy-message--error">Darn. Copy failed.</p>
       </div>
-
+      <p class="promo-modal--disclaimer">{{section.settings.promo_modal_success_disclaimer}}</p>
     </div>
   </div>
 </div>
