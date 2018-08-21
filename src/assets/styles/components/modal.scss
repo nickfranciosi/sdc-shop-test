@@ -53,12 +53,12 @@
 
     @media (min-width: 900px) {
       .promo-modal--content {
-        flex: 0 0 55%;
+        flex: 55%;
       }
       .promo-modal--image-wrapper {
         display: block;
         height: 100%;
-        flex: 0 0 45%;
+        flex: 45%;
         background-color: #DDE4E6;
         border-radius: 8px 0 0 8px;
         background-size: cover;
