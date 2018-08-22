@@ -43,9 +43,10 @@
         <span class="hamburger-line"></span>
         <span class="hamburger-line"></span>
       </div>
-      <h2 class="text-logo">
-        <a href="/">SmileDirectClub <span>Shop</span></a>
-      </h2>
+      <a class="logo-wrapper" href="/">
+        <div class="unstuck-logo">{% include 'sdc-store-logo' %}</div>
+        <div class="stuck-logo">{% include 'sdc-store-logo-condensed' %}</div>
+      </a>
       <nav role="navigation">
         <ul>
         {% for link in linklists[section.settings.menu].links %}
