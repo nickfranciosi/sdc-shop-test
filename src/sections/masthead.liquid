@@ -8,7 +8,7 @@
     <div class="container">
     	{%- if logoImage -%}
         <div class="image-wrapper logo-image-wrapper">
-          <img src="{{ logoImage |  img_url: '1000x' }}" alt="">
+          <img src="{{ logoImage |  img_url: '500x' }}" alt="">
           {{ section.settings.text }}
           {% if ctaLink %}
             <a href="{{ctaLink}}" class="button button--transparent">{{ctaText}}</a>
@@ -17,7 +17,7 @@
 			{%- endif -%}
       	{%- if personImage -%}
         <div class="image-wrapper person-image-wrapper">
-          <img src="{{ personImage |  img_url: '1000x' }}" alt="">
+          <img src="{{ personImage |  img_url: '600x' }}" alt="">
         </div>
 			{%- endif -%}
     </div>

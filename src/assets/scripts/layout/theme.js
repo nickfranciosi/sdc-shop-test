@@ -1,5 +1,4 @@
 import '../../styles/theme.scss';
-// import '../../styles/theme.scss.liquid';
 
 import $ from 'jquery';
 import {pageLinkFocus} from '@shopify/theme-a11y';
