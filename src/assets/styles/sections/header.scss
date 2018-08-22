@@ -2,10 +2,24 @@ header {
   border-top: 2px solid rgba(0, 0, 0, 0.04);
   box-shadow: 0 2px rgba(0, 0, 0, 0.04);
   background: white;
-  &.fixed {
+}
+
+[data-section-type="header"].fixed {
+  header {
     position: fixed;
     top: 0;
     width: 100%;
+  }
+
+  .stuck-logo {
+    display: block;
+  }
+  .unstuck-logo {
+    display: none;
+  }
+
+  .container {
+    height: 80px;
   }
 }
 
@@ -14,7 +28,7 @@ header .container {
   justify-content: space-between;
   align-items: center;
   height: 100px;
-  transition: height 150ms cubic-bezier(.5, 0, .5, 1);
+  transition: height 100ms cubic-bezier(.5, 0, .5, 1);
   nav {
     display: none;
   }
@@ -89,18 +103,19 @@ nav{
 .stuck-logo {
   display: none;
 }
-header.fixed {
-  .stuck-logo {
-    display: block;
-  }
-  .unstuck-logo {
-    display: none;
-  }
 
-  .container {
-    height: 80px;
-  }
-}
+// header.fixed {
+//   .stuck-logo {
+//     display: block;
+//   }
+//   .unstuck-logo {
+//     display: none;
+//   }
+
+//   .container {
+//     height: 80px;
+//   }
+// }
 
 .hamburger {
   position: relative;
@@ -181,8 +196,11 @@ header.fixed {
   position: relative;
   background: white;
   min-height: 138px;
+  transition: all 150ms cubic-bezier(.5,0, .5, 1);
   @media (min-width: 768px) {
     min-height: 158px;
   }
-  // background: #eae8f4;
+  &.fixed {
+    min-height: 124px;
+  }
 }

@@ -14,7 +14,7 @@ window.theme = window.theme || {};
 
 $(document).ready(() => {
 
-  createSticky($('header'));
+  createSticky($('header'),$('[data-section-type="header"]'));
   setupVhHelper();
 
   if (window.location.hash !== '#') {

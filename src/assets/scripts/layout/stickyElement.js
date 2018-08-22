@@ -1,13 +1,14 @@
 import $ from 'jquery';
 
-function createSticky(sticky) {
+function createSticky(sticky, elToAddClass = sticky) {
   if (typeof sticky === 'undefined') {
     return;
   }
   const pos = sticky.offset().top;
+  console.log(pos);
   const $win = $(window);
   $win.on('scroll', () => {
-    $win.scrollTop() >= pos ? sticky.addClass('fixed') : sticky.removeClass('fixed');
+    $win.scrollTop() >= pos ? elToAddClass.addClass('fixed') : elToAddClass.removeClass('fixed');
   });
 
 }
