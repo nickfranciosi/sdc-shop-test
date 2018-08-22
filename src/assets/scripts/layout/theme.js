@@ -1,5 +1,5 @@
 import '../../styles/theme.scss';
-import '../../styles/theme.scss.liquid';
+// import '../../styles/theme.scss.liquid';
 
 import $ from 'jquery';
 import {pageLinkFocus} from '@shopify/theme-a11y';
@@ -14,7 +14,7 @@ window.theme = window.theme || {};
 
 $(document).ready(() => {
 
-  createSticky($('header'),$('[data-section-type="header"]'));
+  createSticky($('header'), $('[data-section-type="header"]'));
   setupVhHelper();
 
   if (window.location.hash !== '#') {
