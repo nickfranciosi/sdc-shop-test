@@ -90,6 +90,7 @@ function bindClipboardEvents() {
 
 // Promo modal logic
 const SDC_DISCOUNT_COOKIE = 'sdc_cart_discount';
+const SDC_DEFAULT_PROMO_CODE = 'requiredCode';
 
 function prefillDiscountCode(discount) {
   $('#cartForm').attr('action', `/cart?discount=${discount}`);
@@ -108,8 +109,10 @@ function addSavedDiscountCode() {
 
 function showPromoSuccess() {
   const discountCode = $('#promo-modal').data('promo');
-  rememberDiscountCodeForSession(discountCode);
-  prefillDiscountCode(discountCode);
+  if (discountCode !== SDC_DEFAULT_PROMO_CODE) {
+    rememberDiscountCodeForSession(discountCode);
+    prefillDiscountCode(discountCode);
+  }
   bindClipboardEvents();
   $('.modal').addClass('showSuccess');
 }

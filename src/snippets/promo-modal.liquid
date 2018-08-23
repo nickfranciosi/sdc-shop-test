@@ -2,7 +2,7 @@
 <div
   id="promo-modal"
   class="modal promo-modal"
-  data-promo="{{section.settings.promo_modal_code}}"
+  data-promo="{{section.settings.promo_modal_code | default: 'requiredCode'}}"
 >
   <p class="modalCloseTrigger close-action">
     &#x2715;
@@ -28,7 +28,7 @@
         <input type="hidden" name="form_type" value="customer">
         <input type="hidden" name="utf8" value="✓">
         <input type="hidden" name="contact[tags]"
-          value="promoModalEntry, promo-{{section.settings.promo_modal_code}}"
+          value="promoModalEntry, promo-{{section.settings.promo_modal_code | default: 'requiredCode'}}"
         >
         <div class="promo-modal--button-wrapper">
           <div class="loader"><i class="fas fa-spinner fa-spin"></i></div>
@@ -42,16 +42,21 @@
     </div>
     <div class="success">
       <h3 class="title">{{section.settings.promo_modal_success_heading}}</h3>
-      <p
-        class="promo-code"
-      >
-        <span id="promo-code-value">{{section.settings.promo_modal_code}}</span>
-        <span class="copy-button" data-clipboard-target="#promo-code-value">Copy</span>
-      </p>
-      <div class="copy-messages">
-        <p class="copy-message copy-message--success">Copied!</p>
-        <p class="copy-message copy-message--error">Darn. Copy failed.</p>
-      </div>
+      {% if section.settings.promo_modal_show_code %}
+        <p
+          class="promo-code"
+        >
+          <span id="promo-code-value">{{section.settings.promo_modal_code}}</span>
+          <span class="copy-button" data-clipboard-target="#promo-code-value">Copy</span>
+        </p>
+        <div class="copy-messages">
+          <p class="copy-message copy-message--success">Copied!</p>
+          <p class="copy-message copy-message--error">Darn. Copy failed.</p>
+        </div>
+      {%  endif %}
+      {% if section.settings.promo_modal_success_message %}
+        <p>{{section.settings.promo_modal_success_message}}</p>
+      {%  endif %}
       <p class="promo-modal--disclaimer">{{section.settings.promo_modal_success_disclaimer}}</p>
     </div>
     <div class="error">
