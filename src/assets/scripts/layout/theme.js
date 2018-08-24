@@ -1,12 +1,12 @@
 import '../../styles/theme.scss';
 
 import $ from 'jquery';
-import {pageLinkFocus} from '@shopify/theme-a11y';
-import {cookiesEnabled} from '@shopify/theme-cart';
-import {formatMoney} from '@shopify/theme-currency';
+import { pageLinkFocus } from '@shopify/theme-a11y';
+import { cookiesEnabled } from '@shopify/theme-cart';
+import { formatMoney } from '@shopify/theme-currency';
 import Cookies from 'js-cookie';
 import createSticky from './stickyElement';
-import setupVhHelper, {setVhProperty} from './vhHelper';
+import setupVhHelper, { setVhProperty } from './vhHelper';
 
 window.slate = window.slate || {};
 window.theme = window.theme || {};
@@ -97,7 +97,7 @@ function prefillDiscountCode(discount) {
 }
 
 function rememberDiscountCodeForSession(discount) {
-  Cookies.set(SDC_DISCOUNT_COOKIE, discount, {expires: 1});
+  Cookies.set(SDC_DISCOUNT_COOKIE, discount, { expires: 1 });
 }
 
 function addSavedDiscountCode() {
@@ -129,14 +129,14 @@ function showPromoModal() {
   $body.addClass('modalDesktop');
   $('.modal').addClass('open');
   const promoCode = $('.modal').data('promo');
-  Cookies.set(`sdc_seen_promo_${promoCode}`, true, {expires: 365});
+  Cookies.set(`sdc_seen_promo_${promoCode}`, true, { expires: 365 });
 }
 
 function promoLoading(isLoading = true) {
   if (isLoading) {
-    $('#promo-modal').addClass('loading');
+    $('.modal').addClass('loading');
   } else {
-    $('#promo-modal').removeClass('loading');
+    $('.modal').removeClass('loading');
   }
 }
 
@@ -219,7 +219,7 @@ function addToCartFail(error) {
 function updateExistingCartItem(id, quantity) {
   $(`#product-${id} [data-product-quantity]`).text(quantity);
   // console.log($(`#product-${id} .cart-item--incrementer button`));
-  $(`#product-${id} .cart-item--incrementer button`).each(function() {
+  $(`#product-${id} .cart-item--incrementer button`).each(function () {
     $(this).data('productCurrentQuantity', quantity);
   });
 }
@@ -276,7 +276,7 @@ function toggleEmptyCartMessage(itemCount) {
   } else {
     $cartContainer
       .delay(250)
-      .queue(function(next) {
+      .queue(function (next) {
         $(this).addClass('--empty');
         next();
       });
@@ -301,7 +301,7 @@ function updateCartInfo() {
     url: '/cart.js',
     dataType: 'json',
     success: cartFetchSuccess,
-    error: (error) => window.console.log({error}),
+    error: (error) => window.console.log({ error }),
   });
 }
 
@@ -366,7 +366,7 @@ $(document).ready(() => {
     });
   }
 
-  $('.cart-items').on('click', '.cart-item--actions a', function(event) {
+  $('.cart-items').on('click', '.cart-item--actions a', function (event) {
     event.preventDefault();
     const $cartItem = $(this).closest('.cart-item');
     removeCartItem($cartItem);

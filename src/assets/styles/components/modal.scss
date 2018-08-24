@@ -4,10 +4,8 @@
     left: 50%;
     background: $white;
     min-width: 300px;
-    max-width: 600px;
-    min-height: 330px;
+    max-width: 480px;
     width: 60vw;
-    height: 20vh;
     display: flex;
     justify-content: center;
     z-index: -1;
@@ -17,10 +15,16 @@
     transition: opacity 350ms linear, transform 350ms cubic-bezier(.175,.885,.32,1.175);
     .close-action {
       position: absolute;
-      top: 10px;
-      right: 20px;
+      top: 5px;
+      right: 15px;
       z-index: 19;
+      font-size: 20px;
+      color: $colorTextSecondary;
+      transition: color 150ms linear;
       cursor: pointer;
+      &:hover {
+        color: $colorTextBody;
+      }
     }
     &.open {
       transform: translate(-50%, -50%);
@@ -28,69 +32,61 @@
       opacity: 1;
     }
 
-
-    .promo-modal--image {
-      display: none;
-    }
-
     .promo-modal--content {
       flex: 1;
-      padding: 40px;
+      padding: 30px;
       display: flex;
       transition: inherit;
       overflow: hidden;
+      @media (min-width: 768px) {
+        padding: 60px;
+      }
       .title {
-        font-size: 28px;
-        line-height: 1;
-        padding-bottom: 20px;
+        margin-bottom: 20px;
         @media (min-width: 768px) {
-          line-height: 1.21;
+          margin-bottom: 30px;
         }
       }
       .email-input {
-        margin-bottom: 30px;
+        margin-bottom: 10px;
         width: 100%;
         text-align: left;
+        @media (min-width: 768px) {
+          margin-bottom: 20px;
+        }
+      }
+      .promo-modal--success-message {
+        margin-bottom: 20px;
       }
     }
 
-    @media (min-width: 900px) {
-      .promo-modal--content {
-        flex: 55%;
-      }
-      .promo-modal--image-wrapper {
-        display: block;
-        height: 100%;
-        flex: 45%;
-        background-color: #DDE4E6;
-        border-radius: 8px 0 0 8px;
-        background-size: cover;
-        background-repeat: no-repeat;
-        background-position: bottom;
-      }
-    }
-
-    .success, .default, .error {
+    .success, .default, .error{
       width: 100%;
       margin-right: -100%;
-    }
-
-    .success {
-      opacity: 0;
-      transform: translateY(100%);
-      transition: inherit;
     }
 
     .default {
       transform: translateY(0);
       transition: inherit;
     }
-
-    .error {
+    .success, .error{
       opacity: 0;
       transform: translateY(100%);
       transition: inherit;
     }
+
+
+    // &.showLoading {
+    //   .loading {
+    //     opacity: 1;
+    //     transform: translateY(0);
+    //   }
+
+    //   .default, .success, .error {
+    //     opacity: 0;
+    //     transform: translateY(-100%);
+    //   }
+    // }
 
     &.showSuccess {
       .success {
@@ -98,11 +94,13 @@
         transform: translateY(0);
       }
 
-      .default, .error {
+      .default, .error{
         opacity: 0;
         transform: translateY(-100%);
       }
     }
+
+
 
     &.showError {
       .error {
@@ -110,12 +108,52 @@
         transform: translateY(0);
       }
 
-      .default, .success {
+      .default, .success{
         opacity: 0;
         transform: translateY(-100%);
       }
     }
 
+
+    .promo-modal--button-wrapper {
+      overflow: hidden;
+      display: flex;
+      position: relative;
+    }
+    .loading-indicator {
+      transform: translateY(100%);
+      position: absolute;
+      bottom: 12%;
+      left: 0%;
+      transition: opacity 150ms cubic-bezier(.5,0, .5, 1);
+      opacity: 0;
+      p {
+        font-family: $headlineFont;
+        color: $grey60;
+      }
+      .fas {
+        display: inline-block;
+        margin-right: 10px;
+      }
+    }
+    input[type="submit"]{
+      opacity: 1;
+      transition: opacity 150ms cubic-bezier(.5,0, .5, 1);
+      // transform: translateY(0);
+      // transition: transform 100ms ease-in;
+    }
+    &.loading{
+      input[type="submit"]{
+        opacity: 0;
+        visibility: hidden;
+        // transform: translateY(-100%);
+      }
+
+      .loading-indicator {
+        opacity: 1;
+        transform: translateY(0);
+      }
+    }
     .promo-code {
       height: 48px;
       display: flex;
@@ -171,47 +209,10 @@
     }
 
     .promo-modal--disclaimer {
-      margin-top: 25px;
-      font-size: 12px;
+      margin-top: 30px;
+      font-size: 11px;
+      line-height: 1.54;
       color: $colorTextSecondary;
-      font-style: italic;
     }
 
-}
-
-.promo-modal {
-  .loader {
-      transition: all 200ms ease-in;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      background: $backgroundPrimary;
-      visibility: hidden;
-      border-radius: 4px;
-      color: $colorTextSecondary;
-      opacity: 0;
-  }
-
-  .trigger {
-    transition: all 200ms ease-in;
-    opacity: 1;
-    visibility: visible;
-  }
-  &.loading {
-    .loader {
-      opacity: 1;
-      visibility: visible;
-    }
-    .trigger {
-      visibility: hidden;
-      opacity: 0;
-    }
-  }
-  .promo-modal--button-wrapper {
-    display: flex;
-    > * {
-      width: 100%;
-      margin-right: -100%;
-    }
-  }
 }

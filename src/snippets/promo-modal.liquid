@@ -7,14 +7,9 @@
   <p class="modalCloseTrigger close-action">
     &#x2715;
   </p>
-  <div
-    class="promo-modal--image-wrapper"
-    style="background-image: url({{ section.settings.promo_modal_image |  img_url: '500x' }})"
-  >
-  </div>
   <div class="promo-modal--content">
     <div class="default">
-      <h3 class="title">{{section.settings.promo_modal_heading}}</h3>
+      <h2 class="title">{{section.settings.promo_modal_heading}}</h2>
       <form action="/contact" id="promoEntry">
         <input
           type="email"
@@ -31,17 +26,20 @@
           value="promoModalEntry, promo-{{section.settings.promo_modal_code | default: 'requiredCode'}}"
         >
         <div class="promo-modal--button-wrapper">
-          <div class="loader"><i class="fas fa-spinner fa-spin"></i></div>
           <input
             type="submit"
-            class="button button--transparent button--full-width trigger"
-            value="{{section.settings.promo_modal_cta_text}}">
+            class="button"
+            value="{{section.settings.promo_modal_cta_text}}"
+          >
+          <div class="loading-indicator">
+          <p><i class="fas fa-spinner fa-spin"></i> Loading</p>
+          </div>
         </div>
       </form>
       <p class="promo-modal--disclaimer">{{section.settings.promo_modal_disclaimer}}</p>
     </div>
     <div class="success">
-      <h3 class="title">{{section.settings.promo_modal_success_heading}}</h3>
+      <h2 class="title">{{section.settings.promo_modal_success_heading}}</h2>
       {% if section.settings.promo_modal_show_code %}
         <p
           class="promo-code"
@@ -55,8 +53,9 @@
         </div>
       {%  endif %}
       {% if section.settings.promo_modal_success_message %}
-        <p>{{section.settings.promo_modal_success_message}}</p>
+        <p class="promo-modal--success-message">{{section.settings.promo_modal_success_message}}</p>
       {%  endif %}
+      <button class="button modalCloseTrigger">Start Shopping</button>
       <p class="promo-modal--disclaimer">{{section.settings.promo_modal_success_disclaimer}}</p>
     </div>
     <div class="error">

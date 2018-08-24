@@ -16,27 +16,31 @@
   height: 48px;
   font-weight: 600;
   padding: 3px 2.25em 0;
-  transition: background 0.13s cubic-bezier(.2,.51,.76,.72) 0s, color 0.13s cubic-bezier(.2,.51,.76,.72) 0.025s;
+  border: 2px solid $blurple;
+  transition: background 75ms cubic-bezier(.2,.51,.76,.72) 0s, color 75ms cubic-bezier(.2,.51,.76,.72) 0.025s;
   &--no-padding {
     padding: 0;
   }
   &:hover, &:focus {
-    background: transparent;
-    border: 2px solid $blurple;
-    color: $blurple;
+    background: $darkBlurple;
+    border: 2px solid $darkBlurple;
+    color: $white;
   }
   &--text {
     background: transparent;
-    color: $blurple;
+    color: $colorTextSecondary;
+    border: 0;
     &:hover, &:focus {
       border: 0;
-      color: $colorTextSecondary;
+      color: $blurple;
+      background: transparent;
     }
   }
   &--transparent {
     background: transparent;
     border: 2px solid $blurple;
     color: $blurple;
+    transition-duration: 130ms;
     &:hover, &:focus {
       background: $blurple;
       color: $white;
