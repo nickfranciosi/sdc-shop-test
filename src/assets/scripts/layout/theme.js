@@ -89,7 +89,7 @@ function bindClipboardEvents() {
 
 
 // Promo modal logic
-const SDC_DISCOUNT_COOKIE = 'sdc_cart_discount';
+const SDC_DISCOUNT_COOKIE = 'discount_code';
 const SDC_DEFAULT_PROMO_CODE = 'requiredCode';
 
 function prefillDiscountCode(discount) {
@@ -103,6 +103,10 @@ function rememberDiscountCodeForSession(discount) {
 function addSavedDiscountCode() {
   const discountCode = Cookies.get(SDC_DISCOUNT_COOKIE);
   if (discountCode) {
+    // if we are receiving a discount code set from the url
+    // lets reset it here with so we can expire it
+    // in one day
+    rememberDiscountCodeForSession(discountCode);
     prefillDiscountCode(discountCode);
   }
 }
