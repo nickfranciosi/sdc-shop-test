@@ -133,7 +133,7 @@
       }
       .fas {
         display: inline-block;
-        margin-right: 10px;
+        margin-right: 6px;
       }
     }
     input[type="submit"]{
@@ -210,9 +210,16 @@
 
     .promo-modal--disclaimer {
       margin-top: 30px;
-      font-size: 11px;
-      line-height: 1.54;
-      color: $colorTextSecondary;
+      > * {
+        font-size: 11px;
+        line-height: 1.54;
+        color: $colorTextSecondary;
+      }
+
+      a:hover {
+        text-decoration: underline;
+        color: $colorTextBody;
+      }
     }
 
 }
