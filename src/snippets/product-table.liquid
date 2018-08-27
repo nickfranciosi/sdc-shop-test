@@ -12,10 +12,16 @@
 
       {% for product in product_collection.products %}
           {% if product.has_only_default_variant %}
-            <th><img src="{{product.metafields.comparison.grid_image}}" alt="{{product.title}}"></th>
+            <th>
+              <img
+                src="//images.accentuate.io?options=w400&shop={{ shop.permanent_domain }}&image={{ product.metafields.comparison.grid_image }}" alt="{{product.title}}">
+            </th>
           {% else %}
             {% for variant in product.variants %}
-              <th><img src="{{variant.metafields.comparison.grid_image}}" alt="{{product.title}} - {{variant.title}}"></th>
+              <th>
+                <img
+                src="//images.accentuate.io?options=w400&shop={{ shop.permanent_domain }}&image={{ variant.metafields.comparison.grid_image }}" alt="{{product.title}} - {{variant.title}}">
+              </th>
             {%  endfor %}
           {% endif %}
         {%  endfor %}
