@@ -10,7 +10,7 @@
     float: none;
     @media (min-width: 768px) {
       float: left;
-      width: 60%;
+      width: 55%;
     }
   }
   .product-info-content {
@@ -18,7 +18,7 @@
     float: none;
     @media (min-width: 768px) {
       float: right;
-      width: 30%;
+      width: 35%;
     }
   }
 }
@@ -85,9 +85,10 @@
   }
   .photo-main-image {
     width: auto;
-    height: 600px;
+    height: 620px;
     max-height: 45vh;
     overflow: hidden;
+
     cursor: grab;
     margin-bottom: 30px;
 
@@ -95,7 +96,7 @@
       cursor: grabbing;
     }
     @media (min-width: 768px) {
-      max-height: 550px;
+      max-height: 620px;
     }
     img {
       object-fit: contain;
@@ -104,8 +105,12 @@
       height: 100%;
       max-height: 45vh;
       @media (min-width: 768px) {
-        max-height: 550px;
+        max-height: 620px;
       }
+    }
+
+    .slick-slide {
+      text-align: center;
     }
   }
   .photo-thumbnails {
