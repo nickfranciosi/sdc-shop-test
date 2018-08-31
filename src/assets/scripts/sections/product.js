@@ -191,14 +191,24 @@ sections.register('product', {
 $(document).ready(() => {
   const $hiddenSelect = $('.hidden-selector select');
   const $variantButtons = $('.product-info-variant-options a');
+  const $variantDescriptionSlides = $('.product-info--description-variant-slide');
+
   $variantButtons.on('click', function(event) {
     event.preventDefault();
     const $this = $(this);
+    const variantId = $this.data('value');
     $variantButtons.removeClass('selected');
     $this.addClass('selected');
-    $hiddenSelect.val($this.data('value'));
+
+    swapVariantDescriptions(variantId);
+    $hiddenSelect.val(variantId);
     $hiddenSelect.change();
   });
+
+  function swapVariantDescriptions(variantId) {
+    $variantDescriptionSlides.removeClass('active');
+    $(`.product-info--description-variant-slide[data-value=${variantId}]`).addClass('active');
+  }
 });
 
 
