@@ -142,13 +142,23 @@ h5 {
   line-height: 1.85;
 }
 
-p {
+p, .product-info-section li {
   font-family: $bodyFont;
   color: $colorTextBody;
   font-size: 15px;
   line-height: 1.6;
   @media (min-width: 768px){
     line-height: 1.86;
+  }
+}
+
+.product-info-section li {
+  line-height: 1.2;
+  @media (min-width: 768px){
+    line-height: 1.4;
+  }
+  &:not(:last-child) {
+    padding-bottom: 8px;
   }
 }
 
