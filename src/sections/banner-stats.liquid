@@ -23,7 +23,7 @@
                 </div>
                 <div class="banner-stat__text">
                   <h5>{{block.settings.stat_heading}}</h5>
-                  <p>{{block.settings.stat_body}}</p>
+                  {{block.settings.stat_body}}
                 </div>
               </div>
             {% endfor %}
@@ -71,7 +71,7 @@
         },
         {
           "id": "stat_body",
-          "type": "text",
+          "type": "richtext",
           "label": "Stat Body"
         },
         {

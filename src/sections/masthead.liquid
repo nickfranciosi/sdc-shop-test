@@ -14,8 +14,16 @@
             <a href="{{ctaLink}}" class="button button--transparent">{{ctaText}}</a>
           {% endif %}
         </div>
-			{%- endif -%}
-      	{%- if personImage -%}
+			{%- else -%}
+        <div class="image-wrapper logo-image-wrapper">
+          <h2>{{section.settings.headline}}</h2>
+          {{ section.settings.text }}
+          {% if ctaLink %}
+            <a href="{{ctaLink}}" class="button button--transparent">{{ctaText}}</a>
+          {% endif %}
+        </div>
+      {%- endif -%}
+      {%- if personImage -%}
         <div class="image-wrapper person-image-wrapper">
           <img src="{{ personImage |  img_url: '600x' }}" alt="">
         </div>
@@ -32,6 +40,12 @@
       "id": "background_color",
       "label": "Background Color",
       "default": "#F7F5F2"
+    },
+    {
+      "type": "text",
+      "id": "headline",
+      "label": "Headline",
+      "default": "Another grinchanger."
     },
     {
       "type": "richtext",

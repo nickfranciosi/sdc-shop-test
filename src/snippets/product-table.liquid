@@ -51,7 +51,7 @@
           {% endif %}
         {%  endfor %}
       </tr>
-      <tr>
+      {% comment %} <tr>
         <th>Value</th>
         {% for product in product_collection.products %}
           {% if product.has_only_default_variant %}
@@ -62,7 +62,7 @@
             {%  endfor %}
           {% endif %}
         {%  endfor %}
-      </tr>
+      </tr> {% endcomment %}
       <tr>
         <th>Pens</th>
         {% for product in product_collection.products %}
@@ -108,7 +108,7 @@
         {%  endfor %}
       </tr>
       <tr>
-        <th>8-Day Treatments</th>
+        <th>Full Treatments</th>
         {% for product in product_collection.products %}
           {% if product.has_only_default_variant %}
             <td data-label="{{product.title}}">{{product.metafields.comparison.eight_day_treatments}}</td>
