@@ -40,7 +40,10 @@
     "start": "slate-tools start",
     "watch": "slate-tools start --skipFirstDeploy",
     "build": "slate-tools build",
-    "deploy": "slate-tools build && slate-tools deploy",
+    "deploy": "npm run deploy:dev",
+    "deploy:dev": "slate-tools build && slate-tools deploy --env=dev",
+    "deploy:staging": "slate-tools build && slate-tools deploy --env=staging",
+    "deploy:prod": "slate-tools build && slate-tools deploy --env=prod",
     "zip": "slate-tools build && slate-tools zip",
     "lint": "slate-tools lint",
     "format": "slate-tools format"
