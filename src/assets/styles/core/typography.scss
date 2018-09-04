@@ -80,6 +80,7 @@ h4,
 h5,
 h6 {
   font-family: $font-heading;
+  font-variant-ligatures: no-common-ligatures;
 }
 
 h1,
@@ -94,10 +95,12 @@ a.button,
 {
   font-family: $headlineFont;
   color: $blurple;
+  font-variant-ligatures: no-common-ligatures;
 }
 
 input {
   font-family: $headlineFont;
+  font-variant-ligatures: no-common-ligatures;
 }
 
 span {
