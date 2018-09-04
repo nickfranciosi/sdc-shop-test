@@ -38,11 +38,17 @@
 
   .product-title-row {
     td {
-      color: $blurple;
-      font-family: $headlineFont;
-      font-weight: bold;
-      line-height: 1.2;
-      padding: 10px;
+      a {
+        color: $blurple;
+        font-family: $headlineFont;
+        font-weight: bold;
+        line-height: 1.2;
+        padding: 10px;
+        text-decoration: none;
+        &:hover {
+          color: $darkBlurple;
+        }
+      }
     }
 
     @media (max-width: 45.85em) {

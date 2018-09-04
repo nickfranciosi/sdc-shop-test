@@ -13,14 +13,18 @@
       {% for product in product_collection.products %}
           {% if product.has_only_default_variant %}
             <th>
-              <img
+              <a href="{{ product.url | default: "#" }}">
+                <img
                 src="//images.accentuate.io?options=w400&shop={{ shop.permanent_domain }}&image={{ product.metafields.comparison.grid_image }}" alt="{{product.title}}">
+              </a>
             </th>
           {% else %}
             {% for variant in product.variants %}
               <th>
-                <img
-                src="//images.accentuate.io?options=w400&shop={{ shop.permanent_domain }}&image={{ variant.metafields.comparison.grid_image }}" alt="{{product.title}} - {{variant.title}}">
+                <a href="{{ variant.url | default: "#" }}">
+                  <img
+                  src="//images.accentuate.io?options=w400&shop={{ shop.permanent_domain }}&image={{ variant.metafields.comparison.grid_image }}" alt="{{product.title}} - {{variant.title}}">
+                </a>
               </th>
             {%  endfor %}
           {% endif %}
@@ -31,10 +35,14 @@
         <th>Product</th>
         {% for product in product_collection.products %}
           {% if product.has_only_default_variant %}
-            <td >{{product.title}}</td>
+            <td >
+              <a href="{{ product.url | default: "#" }}">{{product.title}}</a>
+            </td>
           {% else %}
             {% for variant in product.variants %}
-              <td >{{product.title}} - {{variant.title}}</td>
+              <td >
+                <a href="{{ variant.url | default: "#" }}">{{product.title}} - {{variant.title}}</a>
+              </td>
             {%  endfor %}
           {% endif %}
         {%  endfor %}
