@@ -1,15 +1,11 @@
 {% assign product_collection = product.collections.first %}
 <div>
   <h2 class="product-table--title">{{ product_collection.title  }} comparison</h2>
-  <table class="product-table responsive-table">
+  <div class="product-table-scroll-wrapper">
+  <table class="product-table">
     <thead>
+      {% comment %} one empty space for table layout {% endcomment %}
       <th></th>
-      {% comment %} <th><img src="{{images['product-grid-whitening-pens.jpg'] |  img_url: '600x' }}}}" alt=""></th>
-      <th><img src="{{images['product-grid-whitening-pens.jpg'] |  img_url: '600x' }}}}" alt=""></th>
-      <th><img src="{{images['product-grid-whitening-pens.jpg'] |  img_url: '600x' }}}}" alt=""></th>
-      <th><img src="{{images['product-grid-whitening-pens.jpg'] |  img_url: '600x' }}}}" alt=""></th> {% endcomment %}
-
-
       {% for product in product_collection.products %}
           {% if product.has_only_default_variant %}
             <th>
@@ -141,3 +137,4 @@
       </tr>
     </tbody>
   </table>
+</div>

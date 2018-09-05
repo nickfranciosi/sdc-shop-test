@@ -6,8 +6,12 @@
   }
 
 }
+.product-table-scroll-wrapper {
+  overflow-y:scroll;
+}
 .product-table {
   font-size: 13px;
+  min-width: 600px;
   thead {
     th {
       padding: 0 10px 10px;
@@ -30,29 +34,25 @@
       color: $colorTextSecondary;
       font-family: $bodyFont;
       padding: 10px 0;
-      @media (max-width: 45.85em) {
-        text-align: right;
-      }
     }
   }
 
   .product-title-row {
     td {
+      padding: 10px;
+      line-height: 1;
+      @media (max-width: 600px) {
+        font-size: 11px;
+      }
       a {
         color: $blurple;
         font-family: $headlineFont;
         font-weight: bold;
-        line-height: 1.2;
-        padding: 10px;
         text-decoration: none;
         &:hover {
           color: $darkBlurple;
         }
       }
-    }
-
-    @media (max-width: 45.85em) {
-      display: none;
     }
   }
 }
