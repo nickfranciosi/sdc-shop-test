@@ -90,6 +90,7 @@ function bindClipboardEvents() {
 
 // Promo modal logic
 const SDC_DISCOUNT_COOKIE = 'discount_code';
+const SDC_EMAIL_SOURCE = 'sdc_from_crm';
 const SDC_DEFAULT_PROMO_CODE = 'requiredCode';
 
 function prefillDiscountCode(discount) {
@@ -158,17 +159,30 @@ function submitPromoEmail(data) {
   });
 }
 
+function isUserFromDirectEmailList() {
+  const urlParams = new URLSearchParams(window.location.search);
+  const fromEmail = Cookies.get(SDC_EMAIL_SOURCE) || (urlParams.has('source') && urlParams.get('source') === 'email');
+
+  return fromEmail;
+}
+
 function shouldShowPromoModal() {
   const $promoModal = $('#promo-modal');
   if ($promoModal.length) {
     const promoCode = $promoModal.data('promo');
     const hasCookie = Cookies.get(`sdc_seen_promo_${promoCode}`);
-    return !hasCookie;
+    const fromEmail = isUserFromDirectEmailList();
+    if (fromEmail) {
+      Cookies.set(SDC_EMAIL_SOURCE, true);
+    }
+
+    return !hasCookie && !fromEmail;
   }
 
   return false;
 
 }
+
 
 $(document).ready(() => {
   $hamburger.on('click', () => {
