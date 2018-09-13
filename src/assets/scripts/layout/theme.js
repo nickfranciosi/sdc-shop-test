@@ -92,6 +92,7 @@ function bindClipboardEvents() {
 const SDC_DISCOUNT_COOKIE = 'discount_code';
 const SDC_EMAIL_SOURCE = 'sdc_from_crm';
 const SDC_DEFAULT_PROMO_CODE = 'requiredCode';
+const HONEY_POT_KEY = 'contact_me_by_fax';
 
 function prefillDiscountCode(discount) {
   $('#cartForm').attr('action', `/cart?discount=${discount}`);
@@ -141,6 +142,10 @@ function promoLoading(isLoading = true) {
   }
 }
 
+function validateHoneyPot() {
+  return $(`input[name="${HONEY_POT_KEY}"]`).val().length <= 0;
+}
+
 function submitPromoEmail(data) {
   promoLoading();
   $.ajax({
@@ -148,6 +153,12 @@ function submitPromoEmail(data) {
     url: '/contact',
     async: true,
     data,
+    beforeSend() {
+      if(!validateHoneyPot()) {
+        showPromoError();
+        return false;
+      };
+    },
     error() {
       promoLoading(false);
       showPromoError();
