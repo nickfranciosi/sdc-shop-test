@@ -3,33 +3,9 @@
 {%- assign personImage = section.settings.person_image -%}
 {%- assign ctaLink = section.settings.cta_link -%}
 {%- assign ctaText = section.settings.cta_text -%}
-
-<section class="section section-masthead full-width" style="background-color: {{bg_color}};">
-    <div class="container">
-    	{%- if logoImage -%}
-        <div class="image-wrapper logo-image-wrapper">
-          <img src="{{ logoImage |  img_url: '500x' }}" alt="">
-          {{ section.settings.text }}
-          {% if ctaLink %}
-            <a href="{{ctaLink}}" class="button button--transparent">{{ctaText}}</a>
-          {% endif %}
-        </div>
-			{%- else -%}
-        <div class="image-wrapper logo-image-wrapper">
-          <h2 class="masthead--title">{{section.settings.headline}}</h2>
-          {{ section.settings.text }}
-          {% if ctaLink %}
-            <a href="{{ctaLink}}" class="button button--transparent">{{ctaText}}</a>
-          {% endif %}
-        </div>
-      {%- endif -%}
-      {%- if personImage -%}
-        <div class="image-wrapper person-image-wrapper">
-          <img src="{{ personImage |  img_url: '600x' }}" alt="">
-        </div>
-			{%- endif -%}
-    </div>
-</section><!-- /.section section-intro -->
+{%- assign headline = section.settings.headline -%}
+{%- assign text = section.settings.text -%}
+{% include 'masthead'%}
 
 {% schema %}
 {
