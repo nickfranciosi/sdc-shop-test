@@ -1,5 +1,10 @@
 {% include 'product_udo' %}
-{% section 'product' %}
+
+{% if product.handle == "gift-card" %}
+  {% section 'gift-card-product' %}
+{% else %}
+  {% section 'product' %}
+{% endif %}
 <script type="application/ld+json">
 {
   "@context": "http://schema.org/",
