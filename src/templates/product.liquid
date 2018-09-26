@@ -7,7 +7,6 @@
   "name": "{{ product.title | escape }}",
   "url": "{{ shop.url }}{{ product.url }}",
   "productId": "{{ product.id }}",
-  "condition": "new",
   {% if product.featured_image %}
     {% assign image_size = product.featured_image.width | append: 'x' %}
     "image": [
@@ -31,6 +30,7 @@
           "price" : "{{ variant.price | divided_by: 100.00 }}",
           "priceCurrency" : "{{ shop.currency }}",
           "url" : "{{ shop.url }}{{ variant.url }}",
+          "condition": "new",
           "itemOffered" :
           {
               "@type" : "Product",
