@@ -6,6 +6,8 @@
   "@type": "Product",
   "name": "{{ product.title | escape }}",
   "url": "{{ shop.url }}{{ product.url }}",
+  "productId": "{{ product.id }}",
+  "condition": "new",
   {% if product.featured_image %}
     {% assign image_size = product.featured_image.width | append: 'x' %}
     "image": [
