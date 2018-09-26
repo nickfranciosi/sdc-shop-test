@@ -72,9 +72,12 @@
   {%- else -%}
     {%- assign og_product_availability = 'oos' -%}
   {%- endif -%}
+
   <meta property="product:availability" content="{{ og_product_availability }}">
   <meta property="product:price:amount" content="{{ product.price | money_without_currency | strip_html }}">
   <meta property="product:price:currency" content="{{ shop.currency }}">
+  <meta property="product:brand" content="{{ product.vendor | escape }}">
+  <meta property="product:retailer_item_id" content="{{ product.id }}">
 {%- endif -%}
 {{ og_image_tags }}
 
