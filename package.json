@@ -37,7 +37,7 @@
     "slick-carousel": "^1.8.1"
   },
   "scripts": {
-    "start": "slate-tools start",
+    "start": "slate-tools start --env=dev",
     "watch": "slate-tools start --skipFirstDeploy",
     "build": "slate-tools build",
     "deploy": "npm run deploy:dev",
