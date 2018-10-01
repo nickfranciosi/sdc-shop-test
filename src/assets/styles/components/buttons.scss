@@ -1,8 +1,7 @@
-.button {
+.button, %button {
   display: inline-block;
   vertical-align: middle;
   width: auto;
-  border: 0;
   text-align: center;
   white-space: nowrap;
   text-decoration: none;
@@ -69,6 +68,14 @@
 }
 
 a.button {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+}
+
+// targeting the paywhirl button
+#pw_5ba1445027742 ~ a {
+  @extend %button;
   display: inline-flex;
   align-items: center;
   justify-content: center;
