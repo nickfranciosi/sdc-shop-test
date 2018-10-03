@@ -16,7 +16,14 @@
         alt="{{product.title}}"
       "/>
         <h3>{{ product.title | default: "Product Title" }}</h3>
-        <p>{{ product.price | money | default: "$1.99" }}</p>
+        {% comment %} <p>{{ product.price | money | default: "$1.99" }}</p> {% endcomment %}
+        <p>
+        {% if product.price_max > product.price %}
+          {{product.price_min | money }} - {{product.price_max | money }}
+        {% else %}
+          {{ product.price | money  }}
+        {% endif %}
+        </p>
       </a>
     {%  endfor %}
   </div>
