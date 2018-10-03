@@ -44,6 +44,7 @@
           <select
             id="SingleOptionSelector-{{ forloop.index0 }}"
             data-single-option-selector
+            data-option-name="{{option.name}}"
             data-index="option{{ option.position }}">
             {% for value in option.values %}
               <option
@@ -124,12 +125,33 @@
 </div>
 
 <script>
-// used to tell slick slider how many thumbnails to show
-{% assign imageCount = 0 %}
-{% for image in product.images %}
-  {% assign imageCount = imageCount | plus: 1 %}
-{% endfor %}
-  window.numberOfImages = {{ imageCount }};
+
+  const elDeliverySelect = document.querySelector("[data-option-name='Delivery Method']");
+  const elDesignSelect = document.querySelector("[data-option-name='Design']");
+
+  const stringMatcher = matcher => val => val.toLowerCase().includes(matcher);
+  const isPhysicalSelected = stringMatcher('physical');
+
+  function showDesignVariant() {
+    elDesignSelect.parentElement.classList.remove("hidden-selector");
+  }
+
+  function hideDesignVariant() {
+    elDesignSelect.parentElement.classList.add("hidden-selector");
+  }
+
+  function toggleDesignVariantOptions(val) {
+    isPhysicalSelected(val) ? showDesignVariant() : hideDesignVariant();
+  }
+
+  if(elDeliverySelect && elDesignSelect) {
+    elDeliverySelect.addEventListener('change', (e) => {
+      toggleDesignVariantOptions(e.target.value)
+    });
+
+    toggleDesignVariantOptions(elDeliverySelect.value);
+  }
+
 </script>
 {% schema %}
   {
