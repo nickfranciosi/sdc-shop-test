@@ -30,18 +30,7 @@
         data-product-id="{{ product.id }}">
       </div>
       <div class="rte product-info-description">
-          {% if product.has_only_default_variant %}
-            {{ product.description }}
-          {% else %}
-            <div class="product-info--description-slider">
-            {% for variant in product.variants %}
-              <div class="product-info--description-variant-slide {% if current_variant.title == variant.title %} active {% endif %}" data-value="{{ variant.title | escape }}">
-                {{ variant.metafields.info.variant_description }}
-              </div>
-            {%  endfor %}
-            </div>
-          {% endif %}
-
+        {{ product.description }}
       </div>
 <form action="/cart/add" method="post" id="product-form" enctype="multipart/form-data">
     {% unless product.has_only_default_variant %}
