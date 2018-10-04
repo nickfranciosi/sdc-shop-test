@@ -76,8 +76,17 @@ a.button {
 // targeting the paywhirl button
 #pw_5ba1445027742 ~ a {
   @extend %button;
+  font-family: $headlineFont;
   display: inline-flex;
   align-items: center;
   justify-content: center;
+  background: transparent;
+  border: 2px solid $blurple;
+  color: $blurple;
+  transition-duration: 130ms;
+  &:hover, &:focus {
+    background: $blurple;
+    color: $white;
+  }
 }
 

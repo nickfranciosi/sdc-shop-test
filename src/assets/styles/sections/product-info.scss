@@ -220,11 +220,23 @@
   }
 }
 
-.product-info-price {
+%highlight {
   font-weight: 900;
   font-family: $headlineFont;
   font-size: 28px;
   color: $blurple;
+}
+
+.text-highlight {
+  @extend %highlight;
+  line-height: 1.3;
+  &--small{
+    font-size: 14px;
+  }
+}
+
+.product-info-price {
+  @extend %highlight;
   display: inline-block;
   margin-bottom: 20px;
 }
@@ -232,4 +244,13 @@
 .slick-track {
   display: flex !important;
   align-items: center;
+}
+
+
+// SmilePay / Paywhirl
+.smile-pay-wrapper {
+  margin-top: 40px;
+  .smile-pay__header {
+    margin-bottom: 20px;
+  }
 }
