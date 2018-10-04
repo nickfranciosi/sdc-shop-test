@@ -4,7 +4,7 @@
   {%- assign current_variant = product.selected_or_first_available_variant -%}
   {%- assign featured_image = current_variant.featured_image | default: product.featured_image -%}
   <div class="product-info-section section">
-    <div class="product-info-gallery">
+    <div class="product-info-gallery" data-hide-until-load>
       <div class="photo-main-image" id="slickCar">
         {% for image in product.images %}
           <img src="{{ image.src | img_url: '1200x1200'}}" alt="{{ image.alt | escape }}" />

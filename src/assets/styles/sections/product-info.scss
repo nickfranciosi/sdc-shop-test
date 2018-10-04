@@ -72,14 +72,16 @@
     }
   }
 }
-
-.product-info-gallery {
-  margin-bottom: 40px;
+.product-info-gallery[data-hide-until-load] {
   opacity: 0;
   transition: opacity 300ms 300ms linear;
   &.loaded {
     opacity: 1;
   }
+}
+.product-info-gallery {
+  margin-bottom: 40px;
+  text-align: center;
   @media (min-width: 768px) {
     margin-bottom: 0;
   }
