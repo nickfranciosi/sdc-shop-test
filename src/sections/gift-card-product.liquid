@@ -115,7 +115,29 @@
       {% endunless %}
       </div>
   </div>
+</div>
+{% comment %} exit container for full width {% endcomment %}
+<div class="extra-info-wrapper full-width section section-gap-large">
+  <div class="extra-info-content container">
+    <div class="extra-info-block">
+      <h3>{{product.metafields.extra_info.col_1_header}}</h3>
+      {{product.metafields.extra_info.col_1_body}}
+    </div>
 
+    <div class="extra-info-block">
+      <h3>{{product.metafields.extra_info.col_2_header}}</h3>
+      {{product.metafields.extra_info.col_2_body}}
+    </div>
+
+    <div class="extra-info-block">
+      <h3>{{product.metafields.extra_info.col_3_header}}</h3>
+      {{product.metafields.extra_info.col_3_body}}
+    </div>
+  </div>
+</div>
+
+{% comment %} go back to container {% endcomment %}
+<div class="container">
   {% include 'social-gallery' %}
 
 </div>

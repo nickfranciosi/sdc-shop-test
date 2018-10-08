@@ -1,0 +1,29 @@
+.extra-info-wrapper {
+  border: 1px solid #F0F0F0;
+}
+
+.extra-info-content {
+  display: flex;
+  justify-content: space-between;
+  padding-top: 40px;
+  padding-bottom: 40px;
+  flex-direction: column;
+  @media (min-width: 768px) {
+    flex-direction: row;
+    padding-top: 80px;
+    padding-bottom: 80px;
+  }
+
+}
+
+.extra-info-block {
+  width: 100%;
+  margin-bottom: 20px;
+  &:last-of-type {
+    margin-bottom: 0;
+  }
+  @media (min-width: 768px) {
+    width: 30%;
+    margin-bottom: 0;
+  }
+}
