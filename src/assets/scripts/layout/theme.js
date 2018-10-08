@@ -154,10 +154,10 @@ function submitPromoEmail(data) {
     async: true,
     data,
     beforeSend() {
-      if(!validateHoneyPot()) {
+      if (!validateHoneyPot()) {
         showPromoError();
         return false;
-      };
+      }
     },
     error() {
       promoLoading(false);
@@ -255,7 +255,8 @@ function addNewCartItem(product) {
       <img src="${product.image}" alt="${product.title}" />
       <div class="cart-item--content">
         <div class="cart-item--info">
-          <h4>${product.product_title}${product.variant_title ? ` (${product.variant_title})` : ''}</h4>
+          <h4>${product.product_title}</h4>
+          ${product.variant_title ? `<p class="cart-item--sub-title">${product.variant_title}</p>` : ''}
           <p>${formatMoney(product.price)}</p>
         </div>
         <div class="cart-item--actions">
