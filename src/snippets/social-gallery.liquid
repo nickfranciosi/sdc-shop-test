@@ -1,7 +1,49 @@
 <div class="social-gallery-section section">
   <h2>See the light</h2>
-  <div id="olapic_what_people_are_smiling_about">
+  <div id="social-root">
     <p>Loading...</p>
   </div>
 </div>
-<script src="https://photorankstatics-a.akamaihd.net/81b03e40475846d5883661ff57b34ece/static/frontend/latest/build.min.js" data-olapic="olapic_what_people_are_smiling_about" data-instance="e1704e320b74c83d33679d07445385d4" data-apikey="bb94f1de1408ac55fcb0ddaaef07bbe5fb3c96ec4dde21f6a4a0d75fbcf5a974" async="false"></script>
+
+<script src="//api.getcandid.com/scripts/wall-isotope.js"></script>
+<script id="mediaTemplate" type="text/x-jsrender"><div class="candid-wall-cell [[> Media.Type ]]">
+    <div class="candid-wall-overlay">
+    </div>
+    <div class="candid-wall-overlay-text">
+        <i class="candid-icon candid-sdc-fa-zoom-in"></i>
+    </div>
+    <a class='media' data-media-index='[[> Index ]]'>
+        <img data-original="[[> Media.Images.StandardResolution.Url ]]"
+            alt="[[> Title ]]"
+            style="display:inline-block;"
+            class="lazy">
+    </a>
+</div>
+</script>
+<script type="text/javascript" src="//api.getcandid.com/scripts/widget.js"></script>
+<script type="text/javascript">candid.hash = "results";
+candid.wall('#social-root', {
+  id: '23d79af9-90f7-4380-bcc9-d864ffd87019',
+  cluster: '5a70b85a46e0fb000143de02-285A5AB5BA540D583F8F6E240106698E2F0D51DC96F41EAB7325DB23A0A8F6CD646E7879FEE38F55736EEAE8956A4069C797EBEF28CB61A82421855837923B432E977B0A8094B28C41951A7DD1B6B8C7E3BAFC6A0273597520190B87C1E8B4C6',
+  layoutMode: 'packery',
+  layout: 'isotope-packery-3',
+  loadMoreHtml: 'Load More',
+  count: /mobile/i.test(navigator.userAgent) ? 5 : 9,
+  delimiters: ['[[',']]'],
+  overlayTheme: 'ct-minimal',
+  scroll: false,
+  tag: 'og-whitening',
+  sort: 'date',
+  ready: function(data) {
+    var more = $(this).next();
+    if (more.hasClass("candid-wall-load-more"))
+        more.addClass("btn btn-blurple");
+  },
+  last: function(options) {
+    $(".candid-wall-load-more").click();
+    setTimeout(function() {
+        candid.data = $(".candid-wall-container").data("candid-results");
+    }, 500);
+  },
+});
+</script>
