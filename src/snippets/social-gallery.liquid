@@ -28,7 +28,7 @@ candid.wall('#social-root', {
   layoutMode: 'packery',
   layout: 'isotope-packery-3',
   loadMoreHtml: 'Load More',
-  count: /mobile/i.test(navigator.userAgent) ? 5 : 9,
+  count: /mobile/i.test(navigator.userAgent) && !/iPad/i.test(navigator.userAgent) ? 5 : 9,
   delimiters: ['[[',']]'],
   overlayTheme: 'ct-minimal',
   scroll: false,
