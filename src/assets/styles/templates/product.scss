@@ -36,12 +36,16 @@
     width: 30%;
     margin-bottom: 0;
   }
+  ul {
+    ul {
+      margin-left: 18px;
+    }
+  }
 }
 
 .extra-info-block__stats {
   border: 2px solid #F0F0F0;
   border-radius: 8px;
-  height: 100%;
   padding: 20px 30px;
   ul {
     list-style-type: none;
