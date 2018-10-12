@@ -66,6 +66,12 @@ sections.register('product', {
       `variantChange${this.namespace}`,
       this.updateAddToCartState.bind(this),
     );
+
+    this.$container.on(
+      `variantChange${this.namespace}`,
+      this.swapIncrementalPayOption.bind(this),
+    );
+
     this.$container.on(
       `variantPriceChange${this.namespace}`,
       this.updateProductPrices.bind(this),
@@ -140,6 +146,19 @@ sections.register('product', {
     } else {
       $(selectors.addToCart, this.$container).prop('disabled', true);
       $(selectors.addToCartText, this.$container).html(theme.strings.soldOut);
+    }
+  },
+
+  swapIncrementalPayOption(evt) {
+    const variant = evt.variant;
+    const $allPaymentOptionButtons = $('.installment-button__option');
+
+    if ($allPaymentOptionButtons.length > 0) {
+      $allPaymentOptionButtons.each(function() {
+        $(this).removeClass('--selected');
+      });
+
+      $(`[data-variant-id="${variant.id}"]`).addClass('--selected');
     }
   },
 

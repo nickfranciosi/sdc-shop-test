@@ -74,7 +74,7 @@ a.button {
 }
 
 // targeting the paywhirl button
-#pw_5ba1445027742 ~ a {
+.installment-button__option a {
   @extend %button;
   font-family: $headlineFont;
   display: inline-flex;

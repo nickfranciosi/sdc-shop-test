@@ -18,9 +18,6 @@
       </div>
     </div>
     <div class="product-info-content">
-      {% comment %} <div class="product-info-breadcrumbs">
-        <p>Shop / bright on<sup>&trade;</sup> / {{ product.title }} </p>
-      </div> {% endcomment %}
       <h1>{{ product.title }}</h1>
       <div class="rte product-info-description">
         {{ product.description }}
@@ -80,7 +77,6 @@
         </s>
       {% endif %}
     </div>
-
     <button
       type="submit"
       name="add"
@@ -95,14 +91,23 @@
           {% endif %}
         </span>
     </button>
-    {% if product.handle == 'gift-a-new-smile' %}
+    {% if product.metafields.installment.show_installments %}
       <div class="smile-pay-wrapper">
         <div class="smile-pay__header">
           <h3 class="text-highlight">or pay $80/month</h3>
           <h5 class="text-highlight text-highlight--small">with $250 downpayment</h5>
         </div>
-      <script type="text/javascript" id='pw_5ba1445027742' src="https://app.paywhirl.com/pw.js"></script>
-      <script>paywhirl('button',{autoscroll: 1, domain:'smile-direct-club' ,uuid:'d12ec268-dd3f-4909-8ef0-af3659287672', button_text: 'Buy now' },'pw_5ba1445027742'); </script>
+        <div class="installment-button__options">
+          <script type="text/javascript" src="https://app.paywhirl.com/pw.js"></script>
+          {% for variant in product.variants %}
+            {% if variant.metafields.installment.widget_id %}
+              <div class="installment-button__option {% if current_variant.id ==  variant.id %}--selected{% endif %}" data-variant-id="{{variant.id}}">
+                <div id='{{variant.metafields.installment.widget_id}}'></div>
+                <script>paywhirl('button',{autoscroll: 1, domain:'smile-direct-club' ,uuid:'{{variant.metafields.installment.uuid}}', button_text: 'Buy now' },'{{variant.metafields.installment.widget_id}}'); </script>
+              </div>
+            {% endif %}
+          {% endfor %}
+        </div>
       </div>
     {% endif %}
   </form>
@@ -135,12 +140,11 @@
     </div>
   </div>
 </div>
-
+{% include 'social-gallery' %}
 {% comment %} go back to container {% endcomment %}
-<div class="container">
-  {% include 'social-gallery' %}
+{% comment %} <div class="container">
 
-</div>
+</div> {% endcomment %}
 
 <script>
 
@@ -159,6 +163,7 @@
   }
 
   function toggleDesignVariantOptions(val) {
+    elDesignSelect.selectedIndex = 0;
     isPhysicalSelected(val) ? showDesignVariant() : hideDesignVariant();
   }
 
