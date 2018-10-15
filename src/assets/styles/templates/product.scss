@@ -42,6 +42,10 @@
       margin-left: 18px;
     }
   }
+  h3 ~ * {
+    // color: red;
+    font-family: $bodyFont;
+  }
 }
 
 .extra-info-block__stats {
