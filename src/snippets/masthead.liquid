@@ -1,6 +1,5 @@
 <section class="section section-masthead full-width" style="background-color: {{bg_color}};">
     <div class="container">
-     
     	{%- if logoImage -%}
         <div class="image-wrapper logo-image-wrapper">
           {% if tag%}
@@ -25,9 +24,10 @@
         </div>
       {%- endif -%}
       {%- if personImage -%}
-        <div class="image-wrapper person-image-wrapper">
+        <div class="image-wrapper person-image-wrapper full-height">
           <img src="{{ personImage |  img_url: '600x' }}" alt="">
         </div>
 			{%- endif -%}
     </div>
+
 </section><!-- /.section section-intro -->
