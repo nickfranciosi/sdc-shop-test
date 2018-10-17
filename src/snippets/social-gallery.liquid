@@ -5,6 +5,7 @@
   </div>
 </div>
 
+
 <script src="//api.getcandid.com/scripts/wall-isotope.js"></script>
 <script id="mediaTemplate" type="text/x-jsrender"><div class="candid-wall-cell [[> Media.Type ]]">
     <div class="candid-wall-overlay">
@@ -32,7 +33,7 @@ candid.wall('#social-root', {
   delimiters: ['[[',']]'],
   overlayTheme: 'ct-minimal',
   scroll: false,
-  tag: 'og-whitening',
+  tag: "{{product.metafields.social.social_gallery_tag | default: 'og-whitening'}}",
   sort: 'date',
   ready: function(data) {
     var more = $(this).next();
