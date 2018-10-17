@@ -65,7 +65,7 @@
 
     <div data-price-wrapper>
       <span data-product-price class="product-info-price">
-        {{ current_variant.price | money }}
+        {{ current_variant.price | money | remove: ','}}
       </span>
 
       {% if product.compare_at_price_max > product.price %}

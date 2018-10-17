@@ -257,7 +257,7 @@ function addNewCartItem(product) {
         <div class="cart-item--info">
           <h4>${product.product_title}</h4>
           ${product.variant_title ? `<p class="cart-item--sub-title">${product.variant_title}</p>` : ''}
-          <p>${formatMoney(product.price)}</p>
+          <p>${formatMoney(product.price).replace(',', '')}</p>
         </div>
         <div class="cart-item--actions">
           <div class="cart-item--incrementer">

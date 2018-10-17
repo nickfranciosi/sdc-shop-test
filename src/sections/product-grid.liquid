@@ -12,7 +12,7 @@
         alt="{{product1.title}}"
       "/>
         <h3>{{ product1.title | default: "Product Title" }}</h3>
-        <p>{{ product1.price | money | default: "$1.99" }}</p>
+        <p>{{ product1.price | money | default: "$1.99" | remove: "," }}</p>
       </a>
     {%- endif -%}
     {%- if section2.settings.product_two != ""-%}
@@ -23,7 +23,7 @@
       "/>
         {% comment %} <img src="{{product2.metafields.comparison.grid_image }}" alt="{{product2.title}}"/> {% endcomment %}
         <h3>{{ product2.title | default: "Product Title" }}</h3>
-        <p>{{ product2.price | money | default: "$1.99" }}</p>
+        <p>{{ product2.price | money | default: "$1.99" | remove: "," }}</p>
       </a>
     {%- endif -%}
     {%- if section3.settings.product_three != ""-%}
@@ -33,7 +33,7 @@
         alt="{{product3.title}}"
       "/>
         <h3>{{ product3.title | default: "Product Title" }}</h3>
-        <p>{{ product3.price | money | default: "$1.99" }}</p>
+        <p>{{ product3.price | money | default: "$1.99" | remove: "," }}</p>
       </a>
     {%- endif -%}
   </div>

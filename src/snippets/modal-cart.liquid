@@ -28,7 +28,7 @@
     <div class="cart-summary">
       <div class="cart-subtotal">
         <p>{{ 'cart.general.subtotal' | t }}</p>
-        <p>{{ cart.total_price | money }}</p>
+        <p>{{ cart.total_price | money | remove: ','}}</p>
       </div>
       {% if cart.total_discounts > 0 %}
         <p>{{ 'cart.general.savings' | t }} {{ cart.total_discounts | money }}</p>

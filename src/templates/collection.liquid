@@ -19,9 +19,9 @@
         {% comment %} <p>{{ product.price | money | default: "$1.99" }}</p> {% endcomment %}
         <p>
         {% if product.price_max > product.price %}
-          {{product.price_min | money }} - {{product.price_max | money }}
+          {{product.price_min | money | remove: ',' }} - {{product.price_max | money | remove: ',' }}
         {% else %}
-          {{ product.price | money  }}
+          {{ product.price | money | remove: ','  }}
         {% endif %}
         </p>
       </a>
