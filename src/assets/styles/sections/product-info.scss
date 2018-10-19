@@ -240,7 +240,7 @@
 .product-info-price {
   @extend %highlight;
   display: inline-block;
-  margin-bottom: 20px;
+  margin-bottom: 10px;
 }
 
 .slick-track {
@@ -252,7 +252,15 @@
 // SmilePay / Paywhirl
 .smile-pay-wrapper {
   margin-top: 40px;
+  background: $backgroundPrimary;
+  border-radius: 8px;
+  padding: 30px;
   .smile-pay__header {
-    margin-bottom: 20px;
+    h3 {
+      line-height: 1.5;
+      font-size: 22px;
+      font-weight: 900;
+    }
+    margin-bottom: 15px;
   }
 }

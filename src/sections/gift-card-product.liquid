@@ -98,8 +98,8 @@
       {% if product.metafields.installment.show_installments %}
         <div class="smile-pay-wrapper">
           <div class="smile-pay__header">
-            <h3 class="text-highlight">or pay $80/month</h3>
-            <h5 class="text-highlight text-highlight--small">with $250 downpayment</h5>
+            <h3>Pay only $80/month.</h3>
+            <p>$250 downpayment. No credit check.</p>
           </div>
           <div class="installment-button__options">
             <script type="text/javascript" src="https://app.paywhirl.com/pw.js"></script>
@@ -107,7 +107,7 @@
               {% if variant.metafields.installment.widget_id %}
                 <div class="installment-button__option {% if current_variant.id ==  variant.id %}--selected{% endif %}" data-variant-id="{{variant.id}}">
                   <div id='{{variant.metafields.installment.widget_id}}'></div>
-                  <script>paywhirl('button',{autoscroll: 1, domain:'smile-direct-club' ,uuid:'{{variant.metafields.installment.uuid}}', button_text: 'Buy now' },'{{variant.metafields.installment.widget_id}}'); </script>
+                  <script>paywhirl('button',{autoscroll: 1, domain:'smile-direct-club' ,uuid:'{{variant.metafields.installment.uuid}}', button_text: 'Learn more' },'{{variant.metafields.installment.widget_id}}'); </script>
                 </div>
               {% endif %}
             {% endfor %}
