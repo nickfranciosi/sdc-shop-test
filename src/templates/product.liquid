@@ -12,6 +12,14 @@
 {% else %}
   {% section 'product' %}
 {% endif %}
+
+{%- assign product1 = all_products[product.metafields.related_products.product_1] -%}
+{%- assign product2 = all_products[product.metafields.related_products.product_2] -%}
+{%- assign product3 = all_products[product.metafields.related_products.product_3] -%}
+
+{% assign product_grid_header = "Related products"%}
+{% include 'product-grid'%}
+
 <script type="application/ld+json">
 {
   "@context": "http://schema.org/",

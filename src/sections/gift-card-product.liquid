@@ -63,53 +63,58 @@
       <input type="number" id="Quantity" name="quantity" value="1" min="1" max="99">
     </div>
 
-    <div data-price-wrapper>
-      <span data-product-price class="product-info-price">
-        {{ current_variant.price | money | remove: ','}}
-      </span>
 
-      {% if product.compare_at_price_max > product.price %}
-        <span class="visually-hidden" data-compare-text>{{ 'products.product.regular_price' | t }}</span>
-        <s data-compare-price>
-          {% if current_variant.compare_at_price > current_variant.price %}
-            {{ current_variant.compare_at_price | money }}
+    <div class="button-well">
+      <div clss="standard-buy-section">
+        <div data-price-wrapper>
+          <span data-product-price class="product-info-price">
+            {{ current_variant.price | money | remove: ','}}
+          </span>
+
+          {% if product.compare_at_price_max > product.price %}
+            <span class="visually-hidden" data-compare-text>{{ 'products.product.regular_price' | t }}</span>
+            <s data-compare-price>
+              {% if current_variant.compare_at_price > current_variant.price %}
+                {{ current_variant.compare_at_price | money }}
+              {% endif %}
+            </s>
           {% endif %}
-        </s>
+        </div>
+        <button
+          type="submit"
+          name="add"
+          class="button"
+          data-add-to-cart
+          {% unless current_variant.available %}disabled="disabled"{% endunless %}>
+            <span data-add-to-cart-text>
+              {% if current_variant.available %}
+                {{ 'products.product.add_to_cart' | t }}
+              {% else %}
+                {{ 'products.product.sold_out' | t }}
+              {% endif %}
+            </span>
+        </button>
+      </div>
+      {% if product.metafields.installment.show_installments %}
+        <div class="smile-pay-wrapper">
+          <div class="smile-pay__header">
+            <h3 class="text-highlight">or pay $80/month</h3>
+            <h5 class="text-highlight text-highlight--small">with $250 downpayment</h5>
+          </div>
+          <div class="installment-button__options">
+            <script type="text/javascript" src="https://app.paywhirl.com/pw.js"></script>
+            {% for variant in product.variants %}
+              {% if variant.metafields.installment.widget_id %}
+                <div class="installment-button__option {% if current_variant.id ==  variant.id %}--selected{% endif %}" data-variant-id="{{variant.id}}">
+                  <div id='{{variant.metafields.installment.widget_id}}'></div>
+                  <script>paywhirl('button',{autoscroll: 1, domain:'smile-direct-club' ,uuid:'{{variant.metafields.installment.uuid}}', button_text: 'Buy now' },'{{variant.metafields.installment.widget_id}}'); </script>
+                </div>
+              {% endif %}
+            {% endfor %}
+          </div>
+        </div>
       {% endif %}
     </div>
-    <button
-      type="submit"
-      name="add"
-      class="button"
-      data-add-to-cart
-      {% unless current_variant.available %}disabled="disabled"{% endunless %}>
-        <span data-add-to-cart-text>
-          {% if current_variant.available %}
-            {{ 'products.product.add_to_cart' | t }}
-          {% else %}
-            {{ 'products.product.sold_out' | t }}
-          {% endif %}
-        </span>
-    </button>
-    {% if product.metafields.installment.show_installments %}
-      <div class="smile-pay-wrapper">
-        <div class="smile-pay__header">
-          <h3 class="text-highlight">or pay $80/month</h3>
-          <h5 class="text-highlight text-highlight--small">with $250 downpayment</h5>
-        </div>
-        <div class="installment-button__options">
-          <script type="text/javascript" src="https://app.paywhirl.com/pw.js"></script>
-          {% for variant in product.variants %}
-            {% if variant.metafields.installment.widget_id %}
-              <div class="installment-button__option {% if current_variant.id ==  variant.id %}--selected{% endif %}" data-variant-id="{{variant.id}}">
-                <div id='{{variant.metafields.installment.widget_id}}'></div>
-                <script>paywhirl('button',{autoscroll: 1, domain:'smile-direct-club' ,uuid:'{{variant.metafields.installment.uuid}}', button_text: 'Buy now' },'{{variant.metafields.installment.widget_id}}'); </script>
-              </div>
-            {% endif %}
-          {% endfor %}
-        </div>
-      </div>
-    {% endif %}
   </form>
 
 
@@ -160,6 +165,13 @@
 </div>
 {% endif %}
 {% include 'social-gallery' %}
+
+<div class="container">
+  {% assign yotpo_widget_id = 'b2R1xmMMCwI72cYezqJhZkrq7JIrxFaMHvMyUWJ7'%}
+  {% assign yotpo_product_id = 'aligner'%}
+  {% assign yotpo_header = 'Aligner reviews'%}
+  {% include 'yotpo-product' %}
+</div>
 {% comment %} go back to container {% endcomment %}
 {% comment %} <div class="container">
 

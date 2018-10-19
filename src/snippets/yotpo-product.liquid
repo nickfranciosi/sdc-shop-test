@@ -1,7 +1,7 @@
 <div class="yotpo-section section section-gap-large">
-  <h2>Glowing reviews</h2>
+  <h2>{{ yotpo_header | default: "Glowing reviews" }}</h2>
   <div class="yotpo yotpo-main-widget"
-    data-product-id="{{ product.id }}"
+    data-product-id="{{ yotpo_product_id | default: product.id }}"
     data-price="{{ variant.price | money_without_currency }}"
     data-currency="{{ shop.currency }}"
     data-name="{{ product.title | escape }}"
@@ -13,6 +13,10 @@
   </div>
 </div>
 
-  <script type="text/javascript">
+  {% comment %} <script type="text/javascript">
   (function e(){var e=document.createElement("script");e.type="text/javascript",e.async=true,e.src="//staticw2.yotpo.com/pwdVeBOMxGrnA10kV4Jx5m8RylnMMEWFCPfNf8Q3/widget.js";var t=document.getElementsByTagName("script")[0];t.parentNode.insertBefore(e,t)})();
-  </script>
+  </script> {% endcomment %}
+
+<script type="text/javascript">
+(function e(){var e=document.createElement("script");e.type="text/javascript",e.async=true,e.src="//staticw2.yotpo.com/{{yotpo_widget_id | default: 'pwdVeBOMxGrnA10kV4Jx5m8RylnMMEWFCPfNf8Q3'}}/widget.js";var t=document.getElementsByTagName("script")[0];t.parentNode.insertBefore(e,t)})();
+</script>
