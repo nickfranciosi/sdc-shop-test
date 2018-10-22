@@ -84,6 +84,18 @@
       }
     }
 
+    .masthead--eyebrow {
+      p {
+        padding: 0;
+        margin: 0 0 20px;
+        color: $blurple;
+        width: 100%;
+        font-size: 17px;
+        font-weight: 500;
+        font-family: $headlineFont;
+      }
+    }
+
     .masthead--title {
       margin-bottom: 10px;
     }

@@ -1,5 +1,6 @@
 {%- assign bg_color = section.settings.background_color -%}
 {%- assign logoImage = section.settings.logo_image -%}
+{%- assign eyebrow = section.settings.eyebrow -%}
 {%- assign personImage = section.settings.person_image -%}
 {%- assign ctaLink = section.settings.cta_link -%}
 {%- assign ctaText = section.settings.cta_text -%}
@@ -16,6 +17,11 @@
       "id": "background_color",
       "label": "Background Color",
       "default": "#F7F5F2"
+    },
+    {
+      "type": "richtext",
+      "id": "eyebrow",
+      "label": "Eyebrow"
     },
     {
       "type": "text",
