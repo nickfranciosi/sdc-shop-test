@@ -31,7 +31,14 @@ $(document).ready(() => {
       'supports-cookies',
     );
   }
+
+  // add target blank to external links
+  openExternalLinksInNewTab();
 });
+
+function openExternalLinksInNewTab() {
+  $('a[href^="http"]').not(`a[href^="${$(window.location).attr('hostname')}"]`).attr('target', '_blank');
+}
 
 
 // Modal Actions
