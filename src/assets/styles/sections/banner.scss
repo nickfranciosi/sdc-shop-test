@@ -163,3 +163,38 @@ $statsMediumBreakpoint: 936px;
     }
   }
 }
+
+.pin-left {
+  .banner-image {
+    justify-content: flex-start;
+    width: 100%;
+    img {
+      height: 33vw;
+    }
+  }
+  @media(min-width: $statsMediumBreakpoint) {
+    .banner-image {
+      width: auto;
+    }
+  }
+}
+
+.pin-top {
+  padding-top: 0;
+  padding-bottom: 30px;
+  .banner-image {
+    width: 100%;
+    padding-top: 0;
+    padding-bottom: 40px;
+    order: -1;
+    img {
+      height: 33vw;
+    }
+  }
+  @media(min-width: $statsMediumBreakpoint) {
+    .banner-image {
+      width: auto;
+      padding-bottom: 80px;
+    }
+  }
+}

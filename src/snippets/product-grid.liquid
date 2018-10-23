@@ -1,7 +1,7 @@
 {%- if product1.title != ""-%}
-<div class="container">
+<div class="container section section-gap-large ">
   {% if product_grid_header%}<h2 class="product-grid-header">{{product_grid_header}}</h2>{% endif %}
-  <div class="section section-gap-large section-product-grid" data-col="{% if section.settings.product_three != "" %}3{% else %}2{% endif %}">
+  <div class="section-product-grid" data-col="{% if section.settings.product_three != "" %}3{% else %}2{% endif %}">
     {%- if product1.title != ""-%}
       <a href="{{ product1.url | default: "#" }}" class="product-grid-item">
         <img
