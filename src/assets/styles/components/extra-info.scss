@@ -19,6 +19,9 @@
 .extra-info-block {
   width: 100%;
   margin-bottom: 20px;
+  p {
+    margin-bottom: 10px;
+  }
   &:last-of-type {
     margin-bottom: 0;
   }
