@@ -2,9 +2,9 @@
     <div class="container">
     	{%- if logoImage -%}
         <div class="image-wrapper logo-image-wrapper">
-          {% if tag%}
+          {% comment %} {% if tag%}
           <p class="masthead--tag">{{tag}}</p>
-          {% endif%}
+          {% endif%} {% endcomment %}
           <img src="{{ logoImage |  img_url: '500x' }}" alt="">
           {{ section.settings.text }}
           {% if ctaLink %}
@@ -13,9 +13,9 @@
         </div>
 			{%- else -%}
         <div class="image-wrapper logo-image-wrapper">
-          {% if tag%}
+          {% comment %} {% if tag%}
           <p class="masthead--tag">{{tag}}</p>
-          {% endif%}
+          {% endif%} {% endcomment %}
           {% if eyebrow%}
           <div class="masthead--eyebrow">{{eyebrow}}</div>
           {% endif%}
