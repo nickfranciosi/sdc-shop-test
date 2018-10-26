@@ -235,7 +235,7 @@ $(document).ready(() => {
   if (shouldShowPromoModal()) {
     setTimeout(() => {
       showPromoModal();
-    }, 10000);
+    }, 1000);
   }
 
   addSavedDiscountCode();
