@@ -18,11 +18,15 @@
         <h3>{{ product.title | default: "Product Title" }}</h3>
         {% comment %} <p>{{ product.price | money | default: "$1.99" }}</p> {% endcomment %}
         <p>
-        {% if product.price_max > product.price %}
-          {{product.price_min | money | remove: ',' }} - {{product.price_max | money | remove: ',' }}
-        {% else %}
-          {{ product.price | money | remove: ','  }}
-        {% endif %}
+          {% if product.metafields.price.alt_price %}
+            <p>{{product.metafields.price.alt_price}}</p>
+          {% else %}
+            {% if product.price_max > product.price %}
+              {{product.price_min | money | remove: ',' }} - {{product.price_max | money | remove: ',' }}
+            {% else %}
+              {{ product.price | money | remove: ','  }}
+            {% endif %}
+          {% endif%}
         </p>
       </a>
     {%  endfor %}

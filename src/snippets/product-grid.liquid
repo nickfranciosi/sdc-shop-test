@@ -10,7 +10,11 @@
           alt="{{product1.title}}"
         "/>
           <h3>{{ product1.title | default: "Product Title" }}</h3>
-          <p>{{ product1.price | money | default: "$1.99" | remove: "," }}</p>
+          {% if product1.metafields.price.alt_price %}
+            <p>{{product1.metafields.price.alt_price}}</p>
+          {% else %}
+            <p>{{ product1.price | money | default: "$1.99" | remove: "," }}</p>
+          {% endif%}
         </a>
       {%- endif -%}
       {%- if product2.title != ""-%}
@@ -21,7 +25,11 @@
         "/>
           {% comment %} <img src="{{product2.metafields.comparison.grid_image }}" alt="{{product2.title}}"/> {% endcomment %}
           <h3>{{ product2.title | default: "Product Title" }}</h3>
-          <p>{{ product2.price | money | default: "$1.99" | remove: "," }}</p>
+          {% if product2.metafields.price.alt_price %}
+            <p>{{product2.metafields.price.alt_price}}</p>
+          {% else %}
+            <p>{{ product2.price | money | default: "$1.99" | remove: "," }}</p>
+          {% endif%}
         </a>
       {%- endif -%}
       {%- if product3.title != ""-%}
@@ -31,7 +39,11 @@
           alt="{{product3.title}}"
         "/>
           <h3>{{ product3.title | default: "Product Title" }}</h3>
-          <p>{{ product3.price | money | default: "$1.99" | remove: "," }}</p>
+          {% if product3.metafields.price.alt_price %}
+            <p>{{product3.metafields.price.alt_price}}</p>
+          {% else %}
+            <p>{{ product3.price | money | default: "$1.99" | remove: "," }}</p>
+          {% endif%}
         </a>
       {%- endif -%}
     </div>
