@@ -6,69 +6,6 @@
   }
 }
 
-
-.extra-info-wrapper {
-  border: 2px solid #F0F0F0;
-  margin-bottom: 0 !important;
-}
-
-.extra-info-content {
-  display: flex;
-  justify-content: space-between;
-  padding-top: 40px;
-  padding-bottom: 40px;
-  flex-direction: column;
-  @media (min-width: 768px) {
-    flex-direction: row;
-    padding-top: 80px;
-    padding-bottom: 80px;
-  }
-
-}
-
-.extra-info-block {
-  width: 100%;
-  margin-bottom: 20px;
-  &:last-of-type {
-    margin-bottom: 0;
-  }
-  @media (min-width: 768px) {
-    width: 30%;
-    margin-bottom: 0;
-  }
-  ul {
-    font-family: $bodyFont;
-    margin-left: 1em;
-    ul {
-      margin-left: 18px;
-    }
-  }
-  h3 ~ * {
-    font-family: $bodyFont;
-  }
-}
-
-.extra-info-block__stats {
-  border: 2px solid #F0F0F0;
-  border-radius: 8px;
-  padding: 20px 30px;
-  ul {
-    list-style-type: none;
-    margin-left: 0;
-    li {
-      display: flex;
-      align-items: center;
-      margin-bottom: 20px;
-      svg {
-        margin-right: 10px;
-      }
-      &:last-child {
-        margin-bottom: 0;
-      }
-    }
-  }
-}
-
 .installment-button__options {
   display: flex;
 }

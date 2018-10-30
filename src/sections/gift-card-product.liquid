@@ -139,6 +139,7 @@
       {{product.metafields.extra_info.column_2_body}}
     </div>
 
+    {% if product.metafields.extra_info.column_3_header or product.metafields.extra_info.stat_1_icon %}
     <div class="extra-info-block">
       {% if product.metafields.extra_info.column_3_header %}
           <h3>{{product.metafields.extra_info.column_3_header}}</h3>
@@ -160,6 +161,7 @@
         </div>
       {% endif %}
     </div>
+    {% endif %}
   </div>
 </div>
 
