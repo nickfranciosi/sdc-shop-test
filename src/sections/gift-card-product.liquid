@@ -19,9 +19,20 @@
     </div>
     <div class="product-info-content">
       <h1>{{ product.title }}</h1>
-      <div class="rte product-info-description">
-        {{ product.description }}
-      </div>
+      <div data-price-wrapper>
+          <span data-product-price class="product-info-price">
+            {{ current_variant.price | money | remove: ','}}
+          </span>
+
+          {% if product.compare_at_price_max > product.price %}
+            <span class="visually-hidden" data-compare-text>{{ 'products.product.regular_price' | t }}</span>
+            <s data-compare-price>
+              {% if current_variant.compare_at_price > current_variant.price %}
+                {{ current_variant.compare_at_price | money }}
+              {% endif %}
+            </s>
+          {% endif %}
+        </div>
 <form action="/cart/add" method="post" id="product-form"enctype="multipart/form-data">
     {% unless product.has_only_default_variant %}
       {% for option in product.options_with_values %}
@@ -66,20 +77,6 @@
 
     <div class="button-well">
       <div clss="standard-buy-section">
-        <div data-price-wrapper>
-          <span data-product-price class="product-info-price">
-            {{ current_variant.price | money | remove: ','}}
-          </span>
-
-          {% if product.compare_at_price_max > product.price %}
-            <span class="visually-hidden" data-compare-text>{{ 'products.product.regular_price' | t }}</span>
-            <s data-compare-price>
-              {% if current_variant.compare_at_price > current_variant.price %}
-                {{ current_variant.compare_at_price | money }}
-              {% endif %}
-            </s>
-          {% endif %}
-        </div>
         <button
           type="submit"
           name="add"
@@ -116,7 +113,9 @@
       {% endif %}
     </div>
   </form>
-
+  <div class="rte product-info-description">
+        {{ product.description }}
+  </div>
 
       {% unless product == empty %}
         <script type="application/json" data-product-json>

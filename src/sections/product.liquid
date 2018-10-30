@@ -25,25 +25,24 @@
         <p>Shop / bright on<sup>&trade;</sup> / {{ product.title }} </p>
       </div> {% endcomment %}
       <h1>{{ product.title }}</h1>
+      <div data-price-wrapper>
+          <span data-product-price class="product-info-price">
+            {{ current_variant.price | money }}
+          </span>
+
+          {% if product.compare_at_price_max > product.price %}
+            <span class="visually-hidden" data-compare-text>{{ 'products.product.regular_price' | t }}</span>
+            <s data-compare-price>
+              {% if current_variant.compare_at_price > current_variant.price %}
+                {{ current_variant.compare_at_price | money }}
+              {% endif %}
+            </s>
+          {% endif %}
+      </div>
       <div
         class="yotpo bottomLine yotpo-rating-info"
         data-product-id="{{ product.id }}">
       </div>
-      <div class="rte product-info-description">
-          {% if product.has_only_default_variant %}
-            {{ product.description }}
-          {% else %}
-            <div class="product-info--description-slider">
-            {% for variant in product.variants %}
-              <div class="product-info--description-variant-slide {% if current_variant.title == variant.title %} active {% endif %}" data-value="{{ variant.title | escape }}">
-                {{ variant.metafields.info.variant_description }}
-              </div>
-            {%  endfor %}
-            </div>
-          {% endif %}
-
-      </div>
-
       <form action="/cart/add" id="product-form"method="post" enctype="multipart/form-data">
         {% unless product.has_only_default_variant %}
           {% for option in product.options_with_values %}
@@ -94,21 +93,6 @@
           <input type="number" id="Quantity" name="quantity" value="1" min="1" max="99">
         </div>
 
-        <div data-price-wrapper>
-          <span data-product-price class="product-info-price">
-            {{ current_variant.price | money }}
-          </span>
-
-          {% if product.compare_at_price_max > product.price %}
-            <span class="visually-hidden" data-compare-text>{{ 'products.product.regular_price' | t }}</span>
-            <s data-compare-price>
-              {% if current_variant.compare_at_price > current_variant.price %}
-                {{ current_variant.compare_at_price | money }}
-              {% endif %}
-            </s>
-          {% endif %}
-        </div>
-
         <button
           type="submit"
           name="add"
@@ -124,7 +108,19 @@
             </span>
         </button>
       </form>
-
+      <div class="rte product-info-description">
+          {% if product.has_only_default_variant %}
+            {{ product.description }}
+          {% else %}
+            <div class="product-info--description-slider">
+            {% for variant in product.variants %}
+              <div class="product-info--description-variant-slide {% if current_variant.title == variant.title %} active {% endif %}" data-value="{{ variant.title | escape }}">
+                {{ variant.metafields.info.variant_description }}
+              </div>
+            {%  endfor %}
+            </div>
+          {% endif %}
+      </div>
       {% unless product == empty %}
         <script type="application/json" data-product-json>
           {{ product | json }}

@@ -1,13 +1,12 @@
 {% include 'product_udo' %}
 
-{% assign found = false %}
 {% for c in product.collections %}
-  {% if c.handle == "gift-cards" %}
-    {% assign isGiftCard = true %}
+  {% if c.handle == "gift-cards" or c.handle == "apperal"%}
+    {% assign altTemplate = true %}
   {% endif %}
 {% endfor %}
 
-{% if isGiftCard %}
+{% if altTemplate %}
   {% section 'gift-card-product' %}
 {% else %}
   {% section 'product' %}
