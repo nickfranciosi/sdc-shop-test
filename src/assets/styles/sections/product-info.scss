@@ -25,7 +25,7 @@
 
 .product-info-content {
   h1 {
-    margin-bottom: 10px;
+    margin-bottom: 0;
     line-height: 1.21;
     font-size: 28px;
     @media (min-width: 768px) {
@@ -187,9 +187,15 @@
 .product-info-variant-options,
 .product-quantity,
 .yotpo-rating-info,
-#product-form {
+{
   margin-bottom: 20px;
 }
+
+#product-form {
+  margin-bottom: 30px;
+}
+
+
 .product-info-description > ul, .product-info--description-variant-slide > ul {
   margin-top: 16px;
 }
@@ -240,6 +246,7 @@
 
 .product-info-price {
   @extend %highlight;
+  font-size: 24px;
   display: inline-block;
   margin-bottom: 10px;
 }
@@ -252,7 +259,7 @@
 
 // SmilePay / Paywhirl
 .smile-pay-wrapper {
-  margin-top: 40px;
+  margin-top: 20px;
   background: $backgroundPrimary;
   border-radius: 8px;
   padding: 30px;
