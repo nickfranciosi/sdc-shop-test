@@ -170,6 +170,13 @@
       {% endif %}
     </div>
   </div>
+
+    {%- assign product1 = all_products[product.metafields.related_products.product_1] -%}
+    {%- assign product2 = all_products[product.metafields.related_products.product_2] -%}
+    {%- assign product3 = all_products[product.metafields.related_products.product_3] -%}
+
+    {% assign product_grid_header = "People also viewed"%}
+    {% include 'product-grid'%}
 </div>
 {% endif %}
 {% include 'social-gallery' %}
