@@ -6,7 +6,6 @@
     flex-wrap: wrap;
     .product-grid-item {
       flex: 0 0 32%;
-      min-width: 150px;
       max-width: 330px;
     }
     @supports (display: grid) {
