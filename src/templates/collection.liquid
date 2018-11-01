@@ -4,7 +4,10 @@
 {%- assign personImage = collection.image -%}
 {%- assign headline = collection.metafields.masthead.collection_headline -%}
 {%- assign tag = collection.title -%}
-{%- assign text = collection.description -%}
+
+{% capture text %}
+  <p>{{collection.description}}</p>
+{% endcapture %}
 {% include 'masthead' %}
 
 <div class="container">
