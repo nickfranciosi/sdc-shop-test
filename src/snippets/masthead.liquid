@@ -6,7 +6,7 @@
           <p class="masthead--tag">{{tag}}</p>
           {% endif%} {% endcomment %}
           <img src="{{ logoImage |  img_url: '500x' }}" alt="">
-          {{ section.settings.text }}
+          {{ text }}
           {% if ctaLink %}
             <a href="{{ctaLink}}" class="button button--transparent">{{ctaText}}</a>
           {% endif %}

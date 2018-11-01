@@ -3,10 +3,9 @@
 {%- assign bg_color = collection.metafields.masthead.bg_color -%}
 {%- assign personImage = collection.image -%}
 {%- assign headline = collection.metafields.masthead.collection_headline -%}
-{%- assign tag = collection.title -%}
 
 {% capture text %}
-  <p>{{collection.description}}</p>
+ <p>{{collection.description}}</p>
 {% endcapture %}
 {% include 'masthead' %}
 

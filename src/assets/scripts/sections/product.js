@@ -73,6 +73,11 @@ sections.register('product', {
     );
 
     this.$container.on(
+      `variantChange${this.namespace}`,
+      this.swapVariantImageGallery.bind(this),
+    );
+
+    this.$container.on(
       `variantPriceChange${this.namespace}`,
       this.updateProductPrices.bind(this),
     );
@@ -162,10 +167,15 @@ sections.register('product', {
     }
   },
 
+  swapVariantImageGallery(evt) {
+    const productId = $('.product-single__photos').data('product-id');
+    const variant = evt.variant;
+    swapVariantGalleries(productId, variant.id);
+  },
+
   updateImages(evt) {
     const variant = evt.variant;
     const imageId = variant.featured_image.id;
-
     this.switchImage(imageId);
     this.setActiveThumbnail(imageId);
   },
@@ -207,6 +217,12 @@ sections.register('product', {
   },
 });
 
+function swapVariantGalleries(prodId, varId) {
+  if (window.VIG && window.VIG.switchImages) {
+    window.VIG.switchImages(prodId, varId, '.product-single__photos');
+  }
+}
+
 $(document).ready(() => {
   const $hiddenSelect = $('.hidden-selector select');
   const $variantButtons = $('.product-info-variant-options a');
@@ -228,6 +244,30 @@ $(document).ready(() => {
     $variantDescriptionSlides.removeClass('active');
     $(`.product-info--description-variant-slide[data-value=${variantId}]`).addClass('active');
   }
+
+
+  const productId = $('.product-single__photos').data('product-id');
+  const currentVariantId = $('.product-single__photos').data('current-variant-id');
+  swapVariantGalleries(productId, currentVariantId);
+
+
+  // swap main image when thumbnails are selected
+  const $mainImages = $('.photo-main-image img');
+  console.log($mainImages);
+  $('.photo-thumbnails')
+    .delegate('.product-single__thumbnail-image', 'click', function() {
+      const $this = $(this);
+      const selectedThumbnailImageId = $this.data('image-id');
+      $mainImages.each(function() {
+        const $item = $(this);
+        const mainImageId = $item.data('image-id');
+        if (selectedThumbnailImageId === mainImageId) {
+          $item.removeClass('hide');
+        } else {
+          $item.addClass('hide');
+        }
+      });
+    });
 });
 
 

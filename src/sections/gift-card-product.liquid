@@ -16,6 +16,13 @@
           />
         {% endfor %}
       </div>
+      <ul class="photo-thumbnails product-single__photos" data-product-id="{{ product.id}}" data-current-variant-id="{{current_variant.id}}">
+        {% for image in product.images %}
+          <li>
+              <img class="product-single__thumbnail-image" src="{{ image.src | img_url: '120x120' }}" alt="{{ image.alt | escape }}" data-image-id="{{ image.id }}">
+          </li>
+        {% endfor %}
+      </ul>
     </div>
     <div class="product-info-content">
       <h1>{{ product.title }}</h1>
