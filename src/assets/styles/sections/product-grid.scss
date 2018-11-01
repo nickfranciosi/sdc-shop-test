@@ -26,19 +26,34 @@
     text-align: center;
     text-decoration: none;
     display: block;
+    h3 {
+      margin-bottom: 5px;
+      line-height: 1.2;
+      @media (min-width: 768px) {
+        margin-bottom: 0;
+        line-height: 1.5;
+      }
+    }
     img {
-      margin-bottom: 36px;
+      margin-bottom: 20px;
       transform: translateZ(0);
       transition: transform 300ms cubic-bezier(.175,.885,.32,1.275);
+      @media (min-width: 768px) {
+        margin-bottom: 36px;
+      }
     }
     p {
       font-family: $headlineFont;
       color: $colorTextSecondary;
-      font-size: 18px;
       font-weight: 600;
-      line-height: 1.77;
+      font-size: 15px;
+      line-height: 1.2;
       letter-spacing: 0.45px;
       transition: color 200ms linear;
+      @media (min-width: 768px) {
+        font-size: 18px;
+        line-height: 1.77;
+      }
     }
 
     &:hover {

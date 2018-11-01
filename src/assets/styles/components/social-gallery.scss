@@ -13,6 +13,9 @@
 }
 
 .social-gallery--headline{
-  max-width: 500px;
+  max-width: 300px;
   margin: 0 auto;
+  @media (min-width: 768px) {
+    max-width: 500px;
+  }
 }
