@@ -195,6 +195,10 @@
   margin-bottom: 30px;
 }
 
+// needed to overwrite styles from swatch plugin
+#product-form .selector-wrapper {
+  display: flex !important;
+}
 
 .product-info-description > ul, .product-info--description-variant-slide > ul {
   margin-top: 16px;
