@@ -198,6 +198,9 @@
 // needed to overwrite styles from swatch plugin
 #product-form .selector-wrapper {
   display: flex !important;
+  &.hidden-selector {
+    display:none !important;
+  }
 }
 
 .product-info-description > ul, .product-info--description-variant-slide > ul {
