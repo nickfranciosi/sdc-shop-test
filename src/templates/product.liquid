@@ -1,7 +1,7 @@
 {% include 'product_udo' %}
 
 {% for c in product.collections %}
-  {% if c.handle == "gift-cards" or c.handle == "apperal"%}
+  {% if c.handle == "gift-cards" or c.handle == "apparel"%}
     {% assign altTemplate = true %}
   {% endif %}
 {% endfor %}
