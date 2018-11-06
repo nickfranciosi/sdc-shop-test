@@ -80,11 +80,7 @@
   }
 }
 .product-info-gallery {
-  margin-bottom: 40px;
   text-align: center;
-  @media (min-width: 768px) {
-    margin-bottom: 0;
-  }
   .photo-main-image {
     width: auto;
     height: 620px;
@@ -185,7 +181,7 @@
   }
 }
 
-.product-info-description,
+
 .product-info-variant-options,
 .product-quantity,
 .yotpo-rating-info,

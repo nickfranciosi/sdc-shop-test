@@ -1,5 +1,5 @@
 .section-masthead {
-  min-height: 390px;
+  min-height: 320px;
   display: flex;
   align-items: flex-end;
   overflow: hidden;
@@ -125,7 +125,7 @@
           max-width: 100%;
           object-fit: contain;
           height: 100%;
-          max-height: 300px;
+          max-height: 200px;
           @media (min-width: 768px) {
             max-width: 100%;
             max-height: 100%;
