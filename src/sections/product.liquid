@@ -32,7 +32,7 @@
 
           {% if product.compare_at_price_max > product.price %}
             <span class="visually-hidden" data-compare-text>{{ 'products.product.regular_price' | t }}</span>
-            <s data-compare-price>
+            <s data-compare-price class="product-info-price compare-price">
               {% if current_variant.compare_at_price > current_variant.price %}
                 {{ current_variant.compare_at_price | money }}
               {% endif %}
