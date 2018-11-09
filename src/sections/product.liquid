@@ -178,11 +178,16 @@
 </div>
 
 {% endif %}
-{% include 'social-gallery' %}
-{% comment %} go back to container {% endcomment %}
-<div class="container">
-  {% include 'yotpo-product' %}
 
+{% unless product.metafields.social.hide_social %}
+  {% include 'social-gallery' %}
+{% endunless %}
+{% comment %} go back to container {% endcomment %}
+
+<div class="container">
+  {% unless product.metafields.social.hide_ratings %}
+    {% include 'yotpo-product' %}
+  {% endunless %}
   <section class="section section-gap-large">
     {% include 'product-table' %}
   </section>

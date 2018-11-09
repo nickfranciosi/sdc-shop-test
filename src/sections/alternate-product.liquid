@@ -183,13 +183,17 @@
 
 {% endif %}
 {% assign social_header = 'See what people are smiling about'%}
-{% include 'social-gallery' %}
+{% unless product.metafields.social.hide_social %}
+  {% include 'social-gallery' %}
+{% endunless %}
 
 <div class="container">
   {% assign yotpo_widget_id = 'b2R1xmMMCwI72cYezqJhZkrq7JIrxFaMHvMyUWJ7'%}
   {% assign yotpo_product_id = 'aligner'%}
   {% assign yotpo_header = 'Aligner reviews'%}
-  {% include 'yotpo-product' %}
+  {% unless product.metafields.social.hide_ratings %}
+    {% include 'yotpo-product' %}
+  {% endunless %}
 </div>
 {% comment %} go back to container {% endcomment %}
 {% comment %} <div class="container">

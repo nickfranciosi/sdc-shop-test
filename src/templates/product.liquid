@@ -1,15 +1,15 @@
 {% include 'product_udo' %}
 
 {% for c in product.collections %}
-  {% if c.handle == "gift-cards" or c.handle == "apparel"%}
-    {% assign altTemplate = true %}
+  {% if c.handle == "whitening"%}
+    {% assign whiteningTemplate = true %}
   {% endif %}
 {% endfor %}
 
-{% if altTemplate %}
-  {% section 'gift-card-product' %}
-{% else %}
+{% if whiteningTemplate %}
   {% section 'product' %}
+{% else %}
+  {% section 'alternate-product' %}
 {% endif %}
 
 <script type="application/ld+json">
