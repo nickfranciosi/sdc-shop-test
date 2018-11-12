@@ -52,6 +52,7 @@ const $cartTriggers = $('.modalCartTrigger');
 function hideMobileMenu() {
   $mobileMenu.removeClass('open');
   $body.removeClass('modalOpen');
+  $body.removeClass('modalDesktop-scroll');
   $hamburger.removeClass('open');
 }
 
@@ -59,6 +60,7 @@ function toggleCart() {
   // close mobile menu if open
   hideMobileMenu();
   $body.toggleClass('modalDesktop');
+  $body.removeClass('modalDesktop-scroll');
   $modalCart.toggleClass('isOpen');
 
   // recalc the window height due to an issue
@@ -135,7 +137,7 @@ function showPromoError() {
 }
 
 function showPromoModal() {
-  $body.addClass('modalDesktop');
+  $body.addClass('modalDesktop-scroll');
   $('.modal').addClass('open');
   const promoCode = $('.modal').data('promo');
   Cookies.set(`sdc_seen_promo_${promoCode}`, true, {expires: 365});
@@ -235,7 +237,7 @@ $(document).ready(() => {
   if (shouldShowPromoModal()) {
     setTimeout(() => {
       showPromoModal();
-    }, 1000);
+    }, 6000);
   }
 
   addSavedDiscountCode();
