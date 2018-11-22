@@ -222,6 +222,7 @@
   {% assign imageCount = imageCount | plus: 1 %}
 {% endfor %}
 {% if product.metafields.videos.video1_enabled %}{% assign imageCount = imageCount | plus: 1 %}{% endif %}
+{% if product.metafields.videos.video2_enabled %}{% assign imageCount = imageCount | plus: 1 %}{% endif %}
   window.numberOfImages = {{ imageCount }};
 </script>
 {% if product.metafields.videos.video1_enabled or product.metafields.videos.video2_enabled %}
