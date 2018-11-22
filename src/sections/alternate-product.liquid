@@ -171,6 +171,10 @@
     {% endif %}
   </div>
 </div>
+{% else %}
+  {% comment %}If there is no extra info, display a border line to match styling{% endcomment %}
+  <div class="full-width alternate-border-top-line"></div>
+{% endif %}
 
 <div class="container">
   {%- assign product1 = all_products[product.metafields.related_products.product_1] -%}
@@ -181,7 +185,6 @@
   {% include 'product-grid'%}
 </div>
 
-{% endif %}
 {% assign social_header = 'See what people are smiling about'%}
 {% unless product.metafields.social.hide_social %}
   {% include 'social-gallery' %}
