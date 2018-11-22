@@ -119,6 +119,14 @@ function addSavedDiscountCode() {
     // in one day
     rememberDiscountCodeForSession(discountCode);
     prefillDiscountCode(discountCode);
+  } else {
+    var queryString = parse_query_string(window.location.search.substring(1));
+    if (typeof queryString.discount !== 'undefined'){
+      // XSS prevention
+      var urlDiscountCode = encodeURIComponent(queryString.discount);
+      rememberDiscountCodeForSession(urlDiscountCode);
+      prefillDiscountCode(urlDiscountCode);
+    }
   }
 }
 
@@ -201,6 +209,33 @@ function shouldShowPromoModal() {
 
   return false;
 
+}
+
+/**
+ * Parse a query string and return an object with the keys and values
+ * @param  {string} query Query string like `a=1&b=3&c=m2`
+ * @return {Object}       Object with keys and values from supplied query string. Eg `{'a': '1', 'b': '3', ...}`
+ */
+function parse_query_string(query) {
+  var vars = query.split("&");
+  var query_string = {};
+  for (var i = 0; i < vars.length; i++) {
+    var pair = vars[i].split("=");
+    var key = decodeURIComponent(pair[0]);
+    var value = decodeURIComponent(pair[1]);
+    // If first entry with this name
+    if (typeof query_string[key] === "undefined") {
+      query_string[key] = decodeURIComponent(value);
+      // If second entry with this name
+    } else if (typeof query_string[key] === "string") {
+      var arr = [query_string[key], decodeURIComponent(value)];
+      query_string[key] = arr;
+      // If third or later entry with this name
+    } else {
+      query_string[key].push(decodeURIComponent(value));
+    }
+  }
+  return query_string;
 }
 
 
