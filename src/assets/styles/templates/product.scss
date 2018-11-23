@@ -21,16 +21,19 @@
 
 .photo-main-image .vimeo-video{
   position:relative;
+  padding: 56.25% 0 0 0;
   iframe{
     width:100%;
     height:100%;
+    position:absolute;
+    top:0;
+    left:0;
   }
-  @media (min-width: 768px){
-    padding: 56.25% 0 0 0;
+  @media (max-width: 768px) {
+    padding-top: 100%;
     iframe{
-      position:absolute;
-      top:0;
-      left:0;
+      top: 45%;
+      transform: translateY(-50%);
     }
   }
 }
