@@ -44,8 +44,6 @@
     "deploy:dev": "slate-tools build && slate-tools deploy --env=dev",
     "deploy:staging": "slate-tools build && slate-tools deploy --env=staging",
     "deploy:prod": "slate-tools build && slate-tools deploy --env=prod",
-    "deploy:demo": "slate-tools build && slate-tools deploy --env=demo",
-    "deploy:demoprod": "slate-tools build && slate-tools deploy --env=demoprod",
     "zip": "slate-tools build && slate-tools zip",
     "lint": "slate-tools lint",
     "format": "slate-tools format"
