@@ -306,9 +306,9 @@ $(document).ready(() => {
     asNavFor: '#slickCar',
     focusOnSelect: true,
     draggable: true,
-    slidesToShow: window.numberOfImages < 5 ? window.numberOfImages : 5,
+    slidesToShow: window.numberOfImages < 5 ? window.numberOfImages : (window.numberOfImages <= 8 ? window.numberOfImages : 8 ),
     slidesToScroll: 1,
-    centerMode: false,
+    centerMode: false
   });
 
 });
