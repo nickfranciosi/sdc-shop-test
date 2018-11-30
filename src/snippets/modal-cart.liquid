@@ -26,6 +26,10 @@
     </div>
 
     <div class="cart-summary">
+      <div class="promo-code">
+        <input type="text" class="coupon-code-input" placeholder="Promo code">
+        <button class="coupon-code-button button button--transparent">Apply</button>
+      </div>
       <div class="cart-subtotal">
         <p>{{ 'cart.general.subtotal' | t }}</p>
         <p>{{ cart.total_price | money | remove: ','}}</p>
@@ -41,7 +45,12 @@
           value="Checkout"
         >
       </form>
-      <button class="button button--text modalCartTrigger">Continue shopping</button>
+      {% if additional_checkout_buttons %}
+        <div class="additional-checkout-buttons">
+          {{ content_for_additional_checkout_buttons }}
+        </div>
+      {% endif %}
+      <button class="button button--text modalCartTrigger continue-shopping-button">Continue shopping</button>
     </div>
   </div>
 </div>

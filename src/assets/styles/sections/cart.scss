@@ -105,10 +105,8 @@
 
 
 .cart-summary {
-  border-top: 2px solid #E0E0E0;
   display: flex;
   flex-direction: column;
-  padding-top: 30px;
   min-height: 20vh;
   min-height: calc(var(--vh, 1vh) * 20);
   opacity: 1;
@@ -118,6 +116,9 @@
     display: flex;
     justify-content: space-between;
     align-items: center;
+    border-top: 2px solid #E0E0E0;
+    padding-top: 30px;
+    margin-top: 30px;
     margin-bottom: 20px;
     p {
       font-weight: 900;
@@ -130,6 +131,44 @@
     p:last-of-type {
       color: $blurple;
       font-size: 28px;
+    }
+  }
+  .promo-code{
+    display: flex;
+    justify-content: space-between;
+    align-content: stretch;
+    .coupon-code-input{
+      padding: 12px 14px;
+      max-width: 60%;
+      &.valid{
+        border-color: green;
+      }
+      &.invalid{
+        border-color: red;
+      }
+    }
+    .coupon-code-button{
+      height: auto;
+    }
+  }
+
+  .additional-checkout-buttons{
+    margin-top: 25px;
+    display: flex;
+    flex-direction: column;
+    .additional-checkout-button + .additional-checkout-button{
+      margin-left: 0;
+    }
+    .additional-checkout-button--google-pay{
+      width: 100% !important;
+    }
+  }
+
+  @media (max-width: 768px){
+    .continue-shopping-button{
+      padding-top: 15px;
+      padding-bottom: 30px;
+      height: auto;
     }
   }
 }
