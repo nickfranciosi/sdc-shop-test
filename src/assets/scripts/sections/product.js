@@ -277,6 +277,18 @@ $(document).ready(() => {
     $('.product-info-gallery').addClass('loaded');
   });
 
+  if ($('[data-product-handle="new-gift-of-a-smile"], [data-product-handle="gift-of-a-smile"]').length){
+    $('[data-option-name="Delivery Method"]').change(function(evt){
+      if ($(this).val() == "Digital"){
+        $(".product-info-gallery .photo-thumbnails li:first-child").addClass('hide');
+        $(".product-info-gallery .photo-main-image img:first-child").addClass('hide');
+      } else {
+        $(".product-info-gallery .photo-thumbnails li:first-child").removeClass('hide');
+        $(".product-info-gallery .photo-main-image img:first-child").removeClass('hide');
+      }
+    }).change();
+  }
+
   $('#slickCar').slick({
     infinite: true,
     speed: 300,
