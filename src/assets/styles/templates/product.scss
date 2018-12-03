@@ -41,3 +41,12 @@
 .product-info-price.compare-price {
   padding-right: 10px;
 }
+
+[data-product-handle='gift-of-a-smile'] .product-info-gallery .photo-thumbnails li{
+  // Overide VIG
+  display: inline-block !important;
+}
+[data-product-handle='gift-of-a-smile'] .product-info-gallery .photo-thumbnails li.hide{
+  // Allow hiding still
+  display: none !important;
+}
