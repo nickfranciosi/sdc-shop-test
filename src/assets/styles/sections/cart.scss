@@ -112,6 +112,7 @@
   opacity: 1;
   transform: translateY(0);
   transition: transform, 250ms cubic-bezier(.5,0,.5,1),opacity 250ms linear;
+  margin-top: 20px;
   .cart-subtotal {
     display: flex;
     justify-content: space-between;
@@ -136,19 +137,65 @@
   .promo-code{
     display: flex;
     justify-content: space-between;
-    align-content: stretch;
+    flex-wrap: wrap;
     .coupon-code-input{
+      width: 60%;
       padding: 12px 14px;
-      max-width: 60%;
-      &.valid{
-        border-color: green;
-      }
-      &.invalid{
-        border-color: red;
-      }
     }
     .coupon-code-button{
       height: auto;
+      width: 35%;
+      padding: 0; // Flex takes care of sizing
+    }
+    .error-message{
+      display: none;
+    }
+    .valid-code{
+      display: none;
+    }
+    &.valid{
+      .coupon-code-input, .coupon-code-button{
+        display: none;
+      }
+      .valid-code{
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        border: 1px solid grey;
+        border-radius: 3px;
+        padding: 10px 15px;
+        width: 100%;
+        .text{
+          .title{
+            font-weight: 700;
+            color: green;
+          }
+          .checkout-note{
+            font-size: 1.2rem;
+            color: grey;
+          }
+        }
+        .remove-promo-code{
+          display: block;
+          font-size: 1.3rem;
+          font-weight: 700;
+          text-decoration: none;
+          color: grey;
+        }
+      }
+    }
+    &.invalid{
+      .coupon-code-input{
+        border-color: red;
+      }
+      .error-message{
+        display: block;
+        width: 100%;
+        text-align: left;
+        font-size: 1.2rem;
+        color: red;
+        padding-top: 5px;
+      }
     }
   }
 

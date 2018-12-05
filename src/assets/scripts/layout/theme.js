@@ -105,6 +105,8 @@ const HONEY_POT_KEY = 'contact_me_by_fax';
 
 function prefillDiscountCode(discount) {
   $('#cartForm').attr('action', `/cart?discount=${discount}`);
+  $(".cart-summary .promo-code .code").text(discount);
+  $(".cart-summary .promo-code").addClass("valid");
 }
 
 function rememberDiscountCodeForSession(discount) {
@@ -128,6 +130,13 @@ function addSavedDiscountCode() {
       prefillDiscountCode(urlDiscountCode);
     }
   }
+}
+
+function removeDiscountCookie(){
+  Cookies.remove(SDC_DISCOUNT_COOKIE);
+  // Remove from forms
+  addSavedDiscountCode();
+  $(".cart-summary .promo-code").removeClass("valid");
 }
 
 function showPromoSuccess() {
@@ -451,17 +460,21 @@ $(document).ready(() => {
   const couponValidationUrl = '';
   var validateCouponCode = function(){
     var $input = $("input.coupon-code-input");
+    var $cart = $(".cart-summary .promo-code");
     var couponCode = $input.val();
     $.get(couponValidationUrl+couponCode, function(resp){
       if (resp == "1"){
-        $input.removeClass("invalid");
-        $input.addClass("valid");
         rememberDiscountCodeForSession(couponCode);
         prefillDiscountCode(couponCode);
+        $cart.removeClass("invalid");
+        $cart.addClass("valid");
       } else if (resp == "0"){
-        $input.removeClass("valid");
-        $input.addClass("invalid");
+        $cart.removeClass("valid");
+        $cart.addClass("invalid");
       }
+    }).fail(function(){
+      $cart.removeClass("valid");
+      $cart.addClass("invalid");
     });
   };
 
@@ -469,6 +482,11 @@ $(document).ready(() => {
   $("button.coupon-code-button").click(function(evt){
     evt.preventDefault();
     validateCouponCode();
+  })
+
+  $(".promo-code .remove-promo-code").click(function(evt){
+    evt.preventDefault();
+    removeDiscountCookie();
   })
 });
 
