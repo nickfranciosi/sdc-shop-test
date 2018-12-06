@@ -59,6 +59,9 @@ function hideMobileMenu() {
 function toggleCart() {
   // close mobile menu if open
   hideMobileMenu();
+  if (window.Shopify && Shopify.StorefrontExpressButtons) {
+    Shopify.StorefrontExpressButtons.initialize();
+  }
   $body.toggleClass('modalDesktop');
   $body.removeClass('modalDesktop-scroll');
   $modalCart.toggleClass('isOpen');
@@ -487,7 +490,7 @@ $(document).ready(() => {
   $(".promo-code .remove-promo-code").click(function(evt){
     evt.preventDefault();
     removeDiscountCookie();
-  })
+  });
 });
 
 /**
