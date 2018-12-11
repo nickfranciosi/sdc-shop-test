@@ -197,9 +197,9 @@
       {
         "type": "checkbox",
         "id": "checkout_shipping_free_fix",
-        "label": "Enable",
+        "label": "Enable shipping text override",
         "default": false,
-        "info": "Check to enable Checkout '—' to 'Free' on Shipping"
+        "info": "Check to convert '—' to 'Free' for Shipping"
       }
 
     ]
