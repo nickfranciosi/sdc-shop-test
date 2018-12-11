@@ -114,6 +114,7 @@
   transform: translateY(0);
   transition: transform, 250ms cubic-bezier(.5,0,.5,1),opacity 250ms linear;
   margin-top: 20px;
+  padding-bottom: 10px;
   .cart-subtotal {
     display: flex;
     justify-content: space-between;
@@ -121,7 +122,7 @@
     border-top: 2px solid #E0E0E0;
     padding-top: 30px;
     margin-top: 20px;
-    margin-bottom: 20px;
+    margin-bottom: 5px;
     p {
       font-weight: 900;
       font-family: $headlineFont;
@@ -133,6 +134,21 @@
     p:last-of-type {
       color: $blurple;
       font-size: 28px;
+    }
+  }
+  .cart-shipping{
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 30px;
+    p{
+      font-weight: 900;
+      font-family: $headlineFont;
+      text-transform: uppercase;
+      color: $colorTextSecondary;
+    }
+    p:last-of-type{
+      color: $blurple;
     }
   }
   .promo-code{
