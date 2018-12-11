@@ -39,10 +39,11 @@
 .modal-content-container{
   padding: 20px;
   height: 100%;
-  overflow: auto;
-  display: flex;
-  flex-direction: column;
-  justify-content: space-between;
+  overflow-y: scroll;
+  // overflow: auto;
+  // display: flex;
+  // flex-direction: column;
+  // justify-content: space-between;
   &.no-items {
     justify-content: flex-start;
     text-align: center;
@@ -71,10 +72,10 @@
 }
 
 .cart-items {
-  max-height: 53vh;
+  // max-height: 53vh;
   overflow: auto;
   @media (min-width: 768px) {
-    max-height: 65vh;
+    // max-height: 65vh;
   }
 }
 
