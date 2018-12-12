@@ -44,10 +44,12 @@
         <p>{{ 'cart.general.subtotal' | t }}</p>
         <p>{{ cart.total_price | money | remove: ','}}</p>
       </div>
+      {% if section.settings.cart_shipping_price %}
       <div class="cart-shipping">
         <p>{{ 'cart.general.shipping' | t }}</p>
         <p>{{ 'cart.general.shipping_price' | t }}</p>
       </div>
+      {% endif %}
       {% if cart.total_discounts > 0 %}
         <p>{{ 'cart.general.savings' | t }} {{ cart.total_discounts | money }}</p>
       {% endif %}
