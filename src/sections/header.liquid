@@ -292,14 +292,3 @@
     }
   </script>
 {% endif %}
-
-{% javascript %}
-$(document).ready(function(){
-  function setMenuHeight (){
-    var headerHeight = $('[data-section-type="header"]').height();
-    $(".mobile-menu").css('height', $(window).height() - headerHeight);
-  }
-  $(window).resize(setMenuHeight);
-  setMenuHeight();
-});
-{% endjavascript %}
