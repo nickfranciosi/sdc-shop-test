@@ -7,7 +7,13 @@ function createSticky(sticky, elToAddClass = sticky) {
   const pos = sticky.offset().top;
   const $win = $(window);
   $win.on('scroll', () => {
-    $win.scrollTop() >= pos ? elToAddClass.addClass('fixed') : elToAddClass.removeClass('fixed');
+    if ($win.scrollTop() >= pos) {
+		elToAddClass.addClass('fixed')
+		$win.trigger('scroll-sticky-change', [ elToAddClass ]);
+	} else {
+		elToAddClass.removeClass('fixed');
+		$win.trigger('scroll-sticky-change', [ elToAddClass ]);
+	}
   });
 
 }
