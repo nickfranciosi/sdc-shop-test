@@ -236,6 +236,7 @@ $(document).ready(() => {
     $this.addClass('selected');
 
     swapVariantDescriptions(variantId);
+    swapVariantImages(variantId);
     $hiddenSelect.val(variantId);
     $hiddenSelect.change();
   });
@@ -243,6 +244,14 @@ $(document).ready(() => {
   function swapVariantDescriptions(variantId) {
     $variantDescriptionSlides.removeClass('active');
     $(`.product-info--description-variant-slide[data-value=${variantId}]`).addClass('active');
+  }
+
+  function swapVariantImages(variantId) {
+    $(`.slickCar[data-variant!='${variantId}']`).removeClass("sdc-active-variant");
+    $(`.slickThumb[data-variant!='${variantId}']`).removeClass("sdc-active-variant");
+
+    $(`.slickCar[data-variant='${variantId}']`).addClass("sdc-active-variant");
+    $(`.slickThumb[data-variant='${variantId}']`).addClass("sdc-active-variant");
   }
 
 
@@ -273,7 +282,7 @@ $(document).ready(() => {
 
 // Slick sldier settings
 $(document).ready(() => {
-  $('#slickCar').on('init', () => {
+  $('.slickCar').on('init', () => {
     $('.product-info-gallery').addClass('loaded');
   });
 
@@ -289,38 +298,51 @@ $(document).ready(() => {
     }).change();
   }
 
-  $('#slickCar').slick({
+  var slickCarOpts = {
     infinite: true,
     speed: 300,
     cssEase: 'ease-in-out',
     draggable: true,
-    asNavFor: '#slickThumbs',
     responsive: [
       {
         breakpoint: 768,
         settings: {
           draggable: true,
-          fade: false,
-        },
+          fade: false
+        }
       },
       {
         breakpoint: 410,
         settings: {
-          infinite: false,
-        },
-      },
-    ],
+          infinite: false
+        }
+      }
+    ]
+  };
+  $(".slickCar").each(function(index, elem){
+    var thisOpts = {
+      asNavFor: $(elem).attr('data-target-thumbs')
+    };
+    $.extend(thisOpts, slickCarOpts);
+    console.log(thisOpts)
+    $(elem).slick(thisOpts);
   });
 
   // number of images is calculated
   // in the product template
-  $('#slickThumbs').slick({
-    asNavFor: '#slickCar',
+  var slickThumbOpts = {
     focusOnSelect: true,
     draggable: true,
     slidesToShow: window.numberOfImages < 5 ? window.numberOfImages : (window.numberOfImages <= 8 ? window.numberOfImages : 8 ),
     slidesToScroll: 1,
     centerMode: false
+  };
+  $(".slickThumb").each(function(index, elem){
+    var thisOpts = {
+      asNavFor: $(elem).attr('data-target-car')
+    };
+    $.extend(thisOpts, slickThumbOpts)
+    console.log(thisOpts)
+    $(elem).slick(thisOpts);
   });
-
 });

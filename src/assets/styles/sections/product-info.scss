@@ -280,3 +280,10 @@
     margin-bottom: 15px;
   }
 }
+
+.sdc-using-variant-images{
+  display: none !important;
+  &.sdc-active-variant{
+    display: block !important;
+  }
+}
