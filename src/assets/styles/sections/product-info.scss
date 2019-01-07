@@ -281,7 +281,7 @@
   }
 }
 
-.product-info-gallery .photo-main-image.sdc-using-variant-images, .sdc-using-variant-images{
+.product-info-gallery .photo-main-image.sdc-using-variant-images, ul.sdc-using-variant-images.photo-thumbnails{
   display: none;
   &.sdc-active-variant{
     display: block;
