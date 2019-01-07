@@ -281,9 +281,12 @@
   }
 }
 
-.sdc-using-variant-images{
-  display: none !important;
+.product-info-gallery .photo-main-image.sdc-using-variant-images, .sdc-using-variant-images{
+  display: none;
   &.sdc-active-variant{
-    display: block !important;
+    display: block;
+  }
+  &.photo-thumbnails .slick-track{
+    width: 100% !important;
   }
 }

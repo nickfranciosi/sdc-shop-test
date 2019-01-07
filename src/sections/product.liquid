@@ -8,7 +8,7 @@
 
       {% if product.metafields.sdc.use_variant_images %}
         {% for c_variant in product.variants %}
-        <div class="photo-main-image sdc-using-variant-images slickCar {% if current_variant.title != c_variant.title %}sdc-active-variant{% endif %}" data-target-thumbs="#slickThumb-{{c_variant.title | escape}}" data-variant="{{c_variant.title | escape}}" id="slickCar-{{c_variant.title | escape}}">
+        <div class="photo-main-image sdc-using-variant-images slickCar {% if current_variant.title == c_variant.title %}sdc-active-variant{% endif %}" data-target-thumbs="#slickThumb-{{c_variant.title | escape}}" data-variant="{{c_variant.title | escape}}" id="slickCar-{{c_variant.title | escape}}">
           {% assign img_thumbnails = "" %}
           {% for i in (1..4) %}
             {% assign img_key = 'image' | append: i %}
@@ -23,8 +23,20 @@
               {% endcapture %}
             {% endif %}
           {% endfor %}
+
+          {% comment %}Vimeo video code{% endcomment %}
+          {% if c_variant.metafields.sdc.video_enabled and c_variant.metafields.sdc.video_url and c_variant.metafields.sdc.video_thumbnail %}
+          <div data-video-id="video1" class="vimeo-video" data-variant="{{ c_variant.title | escape }}">
+            <iframe src="https://player.vimeo.com/video/{{ c_variant.metafields.sdc.video_url | split: '/' | last }}?title=0&byline=0&portrait=0" frameborder="0" webkitallowfullscreen mozallowfullscreen allowfullscreen></iframe>
+          </div>
+          {% capture img_thumbnails %}{{img_thumbnails}}
+          <li class="" data-variant="{{ c_variant.title | escape }}">
+            <img class="product-single__thumbnail-image" src="{{c_variant.metafields.sdc.video_thumbnail}}" alt="{{c_variant.title}} video" data-image-id="video1">
+          </li>
+          {% endcapture %}
+          {% endif %}
         </div>
-        <ul class="photo-thumbnails sdc-using-variant-images slickThumb {% if current_variant.title != c_variant.title %}sdc-active-variant{% endif %}" id="slickThumb-{{c_variant.title | escape}}" data-target-car="#slickCar-{{c_variant.title | escape}}" data-variant="{{c_variant.title | escape}}">
+        <ul class="photo-thumbnails sdc-using-variant-images slickThumb {% if current_variant.title == c_variant.title %}sdc-active-variant{% endif %}" id="slickThumb-{{c_variant.title | escape}}" data-target-car="#slickCar-{{c_variant.title | escape}}" data-variant="{{c_variant.title | escape}}">
           {{img_thumbnails}}
         </ul>
         {% endfor %}

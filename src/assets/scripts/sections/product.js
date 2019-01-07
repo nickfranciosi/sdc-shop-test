@@ -247,11 +247,18 @@ $(document).ready(() => {
   }
 
   function swapVariantImages(variantId) {
-    $(`.slickCar[data-variant!='${variantId}']`).removeClass("sdc-active-variant");
-    $(`.slickThumb[data-variant!='${variantId}']`).removeClass("sdc-active-variant");
-
-    $(`.slickCar[data-variant='${variantId}']`).addClass("sdc-active-variant");
-    $(`.slickThumb[data-variant='${variantId}']`).addClass("sdc-active-variant");
+    $(`.slickCar[data-variant!='${variantId}']`).removeClass("sdc-active-variant").fadeOut(150, function(){
+      $(`.slickCar[data-variant='${variantId}']`).fadeIn(150, function(){
+        $(`.slickCar[data-variant='${variantId}']`).addClass("sdc-active-variant")
+      });
+      $(`.slickCar[data-variant='${variantId}']`).slick('slickGoTo', 0, true).slick('setPosition');
+    });
+    $(`.slickThumb[data-variant!='${variantId}']`).removeClass("sdc-active-variant").fadeOut(150, function(){
+      $(`.slickThumb[data-variant='${variantId}']`).fadeIn(150, function(){
+        $(`.slickThumb[data-variant='${variantId}']`).addClass("sdc-active-variant");
+      });
+      $(`.slickThumb[data-variant='${variantId}']`).slick('slickGoTo', 0, true).slick('setPosition');
+    });
   }
 
 
@@ -324,7 +331,6 @@ $(document).ready(() => {
       asNavFor: $(elem).attr('data-target-thumbs')
     };
     $.extend(thisOpts, slickCarOpts);
-    console.log(thisOpts)
     $(elem).slick(thisOpts);
   });
 
@@ -342,7 +348,6 @@ $(document).ready(() => {
       asNavFor: $(elem).attr('data-target-car')
     };
     $.extend(thisOpts, slickThumbOpts)
-    console.log(thisOpts)
     $(elem).slick(thisOpts);
   });
 });
