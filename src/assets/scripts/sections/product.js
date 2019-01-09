@@ -248,16 +248,23 @@ $(document).ready(() => {
 
   function swapVariantImages(variantId) {
     $(`.slickCar[data-variant!='${variantId}']`).removeClass("sdc-active-variant").fadeOut(150, function(){
-      $(`.slickCar[data-variant='${variantId}']`).fadeIn(150, function(){
-        $(`.slickCar[data-variant='${variantId}']`).addClass("sdc-active-variant")
+      var $slickCar = $(`.slickCar[data-variant='${variantId}']`);
+      $slickCar.fadeIn(150, function(){
+        $slickCar.addClass("sdc-active-variant")
+        $slickCar.find('img.hide').removeClass('hide');
+        // Run position update again just in case it was too fast outside
+        $slickCar.slick('setPosition');
       });
-      $(`.slickCar[data-variant='${variantId}']`).slick('slickGoTo', 0, true).slick('setPosition');
+      $slickCar.slick('slickGoTo', 0, true).slick('setPosition');
     });
     $(`.slickThumb[data-variant!='${variantId}']`).removeClass("sdc-active-variant").fadeOut(150, function(){
-      $(`.slickThumb[data-variant='${variantId}']`).fadeIn(150, function(){
-        $(`.slickThumb[data-variant='${variantId}']`).addClass("sdc-active-variant");
+      var $slickThumb = $(`.slickThumb[data-variant='${variantId}']`);
+      $slickThumb.fadeIn(150, function(){
+        $slickThumb.addClass("sdc-active-variant");
+        // Run position update again just in case it was too fast outside
+        $slickThumb.slick('setPosition');
       });
-      $(`.slickThumb[data-variant='${variantId}']`).slick('slickGoTo', 0, true).slick('setPosition');
+      $slickThumb.slick('slickGoTo', 0, true).slick('setPosition');
     });
   }
 
