@@ -318,6 +318,7 @@ $(document).ready(() => {
     cssEase: 'ease-in-out',
     draggable: true,
     waitForAnimate: false,
+    fade: true,
     responsive: [
       {
         breakpoint: 768,
