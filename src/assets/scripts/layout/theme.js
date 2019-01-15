@@ -460,7 +460,7 @@ $(document).ready(() => {
     removeCartItem($cartItem);
   });
 
-  const couponValidationUrl = '';
+  const couponValidationUrl = 'https://shopify-validator.smiledirect.services/';
   var validateCouponCode = function(){
     var $input = $("input.coupon-code-input");
     var $cart = $(".cart-summary .promo-code");
