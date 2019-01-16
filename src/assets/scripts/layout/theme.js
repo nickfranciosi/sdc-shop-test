@@ -473,7 +473,7 @@ $(document).ready(() => {
     var $input = $("input.coupon-code-input");
     var $cart = $(".cart-summary .promo-code");
     var couponCode = $input.val();
-    $.get(couponValidationUrl+couponCode, function(resp){
+    $.get({url: couponValidationUrl+couponCode, dataType: "text"}).done(function(resp){
       if (resp == "1"){
         rememberDiscountCodeForSession(couponCode);
         prefillDiscountCode(couponCode);
@@ -483,7 +483,7 @@ $(document).ready(() => {
         $cart.removeClass("valid");
         $cart.addClass("invalid");
       }
-    }).fail(function(){
+    }).fail(function(evt){
       $cart.removeClass("valid");
       $cart.addClass("invalid");
     });
