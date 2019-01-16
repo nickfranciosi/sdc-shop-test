@@ -1,5 +1,5 @@
 
-<div data-section-id="{{ section.id }}" data-section-type="product" data-enable-history-state="true" class="container">
+<div data-section-id="{{ section.id }}" data-section-type="product" data-enable-history-state="true" class="container" data-product-handle="{{product.handle}}">
 
   {%- assign current_variant = product.selected_or_first_available_variant -%}
   {%- assign featured_image = current_variant.featured_image | default: product.featured_image -%}
@@ -48,10 +48,6 @@
     <div class="product-info-content">
       <h1>{{ product.title }}</h1>
       <div data-price-wrapper>
-          <span data-product-price class="product-info-price" >
-            {{ current_variant.price | money | remove: ','}}
-          </span>
-
           {% if product.compare_at_price_max > product.price %}
             <span class="visually-hidden" data-compare-text>{{ 'products.product.regular_price' | t }}</span>
             <s data-compare-price class="product-info-price compare-price">
@@ -60,6 +56,10 @@
               {% endif %}
             </s>
           {% endif %}
+
+          <span data-product-price class="product-info-price" >
+            {{ current_variant.price | money | remove: ','}}
+          </span>
         </div>
 <form action="/cart/add" method="post" id="product-form"enctype="multipart/form-data">
     {% unless product.has_only_default_variant %}

@@ -78,6 +78,11 @@ function toggleMobileMenu() {
   $mobileMenu.toggleClass('open');
 }
 
+function setMenuHeight(){
+  var headerHeight = $('[data-section-type="header"]').height();
+  $(".mobile-menu").css('height', window.outerHeight - headerHeight);
+}
+
 // Clipboard logic
 
 function showClipboardMessage(classToAdd, removeDelay = 1000) {
@@ -255,6 +260,9 @@ $(document).ready(() => {
   $hamburger.on('click', () => {
     toggleMobileMenu();
   });
+  $(window).resize(setMenuHeight);
+  $(window).on('scroll-sticky-change', setMenuHeight);
+  setMenuHeight();
 
   $cartTriggers.on('click', (event) => {
     event.preventDefault();

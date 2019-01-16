@@ -190,5 +190,18 @@
         "info": "Check to enable Tealium"
       }
     ]
+  },
+  {
+    "name": "Extra Checkout Settings",
+    "settings": [
+      {
+        "type": "checkbox",
+        "id": "checkout_shipping_free_fix",
+        "label": "Enable shipping text override",
+        "default": false,
+        "info": "Check to convert '—' to 'Free' for Shipping"
+      }
+
+    ]
   }
 ]

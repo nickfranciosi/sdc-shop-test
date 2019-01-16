@@ -236,6 +236,7 @@ $(document).ready(() => {
     $this.addClass('selected');
 
     swapVariantDescriptions(variantId);
+    swapVariantImages(variantId);
     $hiddenSelect.val(variantId);
     $hiddenSelect.change();
   });
@@ -243,6 +244,28 @@ $(document).ready(() => {
   function swapVariantDescriptions(variantId) {
     $variantDescriptionSlides.removeClass('active');
     $(`.product-info--description-variant-slide[data-value=${variantId}]`).addClass('active');
+  }
+
+  function swapVariantImages(variantId) {
+    $(`.slickCar[data-variant!='${variantId}']`).removeClass("sdc-active-variant").fadeOut(150, function(){
+      var $slickCar = $(`.slickCar[data-variant='${variantId}']`);
+      $slickCar.fadeIn(150, function(){
+        $slickCar.addClass("sdc-active-variant")
+        $slickCar.find('img.hide').removeClass('hide');
+        // Run position update again just in case it was too fast outside
+        $slickCar.slick('setPosition');
+      });
+      $slickCar.slick('slickGoTo', 0, true).slick('setPosition');
+    });
+    $(`.slickThumb[data-variant!='${variantId}']`).removeClass("sdc-active-variant").fadeOut(150, function(){
+      var $slickThumb = $(`.slickThumb[data-variant='${variantId}']`);
+      $slickThumb.fadeIn(150, function(){
+        $slickThumb.addClass("sdc-active-variant");
+        // Run position update again just in case it was too fast outside
+        $slickThumb.slick('setPosition');
+      });
+      $slickThumb.slick('slickGoTo', 0, true).slick('setPosition');
+    });
   }
 
 
@@ -273,42 +296,65 @@ $(document).ready(() => {
 
 // Slick sldier settings
 $(document).ready(() => {
-  $('#slickCar').on('init', () => {
+  $('.slickCar').on('init', () => {
     $('.product-info-gallery').addClass('loaded');
   });
 
-  $('#slickCar').slick({
+  if ($('[data-product-handle="new-gift-of-a-smile"], [data-product-handle="gift-of-a-smile"]').length){
+    $('[data-option-name="Delivery Method"]').change(function(evt){
+      if ($(this).val() == "Digital"){
+        $(".product-info-gallery .photo-thumbnails li:first-child").addClass('hide');
+        $(".product-info-gallery .photo-main-image img:first-child").addClass('hide');
+      } else {
+        $(".product-info-gallery .photo-thumbnails li:first-child").removeClass('hide');
+        $(".product-info-gallery .photo-main-image img:first-child").removeClass('hide');
+      }
+    }).change();
+  }
+
+  var slickCarOpts = {
     infinite: true,
     speed: 300,
     cssEase: 'ease-in-out',
     draggable: true,
-    asNavFor: '#slickThumbs',
     responsive: [
       {
         breakpoint: 768,
         settings: {
           draggable: true,
-          fade: false,
-        },
+          fade: false
+        }
       },
       {
         breakpoint: 410,
         settings: {
-          infinite: false,
-        },
-      },
-    ],
+          infinite: false
+        }
+      }
+    ]
+  };
+  $(".slickCar").each(function(index, elem){
+    var thisOpts = {
+      asNavFor: $(elem).attr('data-target-thumbs')
+    };
+    $.extend(thisOpts, slickCarOpts);
+    $(elem).slick(thisOpts);
   });
 
   // number of images is calculated
   // in the product template
-  $('#slickThumbs').slick({
-    asNavFor: '#slickCar',
+  var slickThumbOpts = {
     focusOnSelect: true,
     draggable: true,
     slidesToShow: window.numberOfImages < 5 ? window.numberOfImages : (window.numberOfImages <= 8 ? window.numberOfImages : 8 ),
     slidesToScroll: 1,
     centerMode: false
+  };
+  $(".slickThumb").each(function(index, elem){
+    var thisOpts = {
+      asNavFor: $(elem).attr('data-target-car')
+    };
+    $.extend(thisOpts, slickThumbOpts)
+    $(elem).slick(thisOpts);
   });
-
 });
