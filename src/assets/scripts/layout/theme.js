@@ -77,7 +77,8 @@ function toggleMobileMenu() {
 
 function setMenuHeight(){
   var headerHeight = $('[data-section-type="header"]').height();
-  $(".mobile-menu").css('height', window.outerHeight - headerHeight);
+  var windowHeight = (window.outerHeight != 0) ? window.outerHeight : window.innerHeight;
+  $(".mobile-menu").css('height', windowHeight - headerHeight);
 }
 
 // Clipboard logic
