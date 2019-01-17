@@ -2,9 +2,10 @@
   position: absolute;
   right: 0;
   top: 0;
+  bottom: 0;
   z-index: 20;
   height: 100vh;
-  height: calc(var(--vh, 1vh) * 100);
+  // height: calc(var(--vh, 1vh) * 100);
   transform: translateX(100%) translateZ(0);
   transition: transform 250ms cubic-bezier(.5,0,.5,1);
   background: $backgroundPrimary;
@@ -157,6 +158,7 @@
     flex-wrap: wrap;
     .coupon-code-input{
       width: 60%;
+      line-height: normal;
       padding: 12px 14px;
       text-align: left;
       font-weight: 700;
