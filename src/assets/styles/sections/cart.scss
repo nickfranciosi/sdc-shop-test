@@ -2,9 +2,10 @@
   position: absolute;
   right: 0;
   top: 0;
+  bottom: 0;
   z-index: 20;
   height: 100vh;
-  height: calc(var(--vh, 1vh) * 100);
+  // height: calc(var(--vh, 1vh) * 100);
   transform: translateX(100%) translateZ(0);
   transition: transform 250ms cubic-bezier(.5,0,.5,1);
   background: $backgroundPrimary;
@@ -39,10 +40,11 @@
 .modal-content-container{
   padding: 20px;
   height: 100%;
-  overflow: auto;
-  display: flex;
-  flex-direction: column;
-  justify-content: space-between;
+  overflow-y: scroll;
+  // overflow: auto;
+  // display: flex;
+  // flex-direction: column;
+  // justify-content: space-between;
   &.no-items {
     justify-content: flex-start;
     text-align: center;
@@ -71,10 +73,10 @@
 }
 
 .cart-items {
-  max-height: 53vh;
+  // max-height: 53vh;
   overflow: auto;
   @media (min-width: 768px) {
-    max-height: 65vh;
+    // max-height: 65vh;
   }
 }
 
@@ -105,20 +107,23 @@
 
 
 .cart-summary {
-  border-top: 2px solid #E0E0E0;
   display: flex;
   flex-direction: column;
-  padding-top: 30px;
-  min-height: 20vh;
-  min-height: calc(var(--vh, 1vh) * 20);
+  // min-height: 20vh;
+  // min-height: calc(var(--vh, 1vh) * 20);
   opacity: 1;
   transform: translateY(0);
   transition: transform, 250ms cubic-bezier(.5,0,.5,1),opacity 250ms linear;
+  margin-top: 20px;
+  padding-bottom: 10px;
   .cart-subtotal {
     display: flex;
     justify-content: space-between;
     align-items: center;
-    margin-bottom: 20px;
+    border-top: 2px solid #E0E0E0;
+    padding-top: 30px;
+    margin-top: 20px;
+    margin-bottom: 5px;
     p {
       font-weight: 900;
       font-family: $headlineFont;
@@ -130,6 +135,116 @@
     p:last-of-type {
       color: $blurple;
       font-size: 28px;
+    }
+  }
+  .cart-shipping{
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 30px;
+    p{
+      font-weight: 900;
+      font-family: $headlineFont;
+      text-transform: uppercase;
+      color: $colorTextSecondary;
+    }
+    p:last-of-type{
+      color: $blurple;
+    }
+  }
+  .promo-code{
+    display: flex;
+    justify-content: space-between;
+    flex-wrap: wrap;
+    .coupon-code-input{
+      width: 60%;
+      line-height: normal;
+      padding: 12px 14px;
+      text-align: center;
+      font-weight: 700;
+      color: #989898;
+      text-transform: uppercase;
+    }
+    .coupon-code-button{
+      height: auto;
+      width: 35%;
+      padding: 0; // Flex takes care of sizing
+    }
+    .error-message{
+      display: none;
+    }
+    .valid-code{
+      display: none;
+    }
+    &.valid{
+      .coupon-code-input, .coupon-code-button{
+        display: none;
+      }
+      .valid-code{
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        border: 1px solid #989898;
+        border-radius: 3px;
+        padding: 10px 15px;
+        width: 100%;
+        @media (max-width: 768px){
+          padding: 10px 10px;
+        }
+        .text{
+          .title{
+            font-weight: 700;
+            color: #1fc6d2;
+          }
+          .code{
+            text-transform: uppercase;
+          }
+          .checkout-note{
+            font-size: 1.2rem;
+            color: #989898;
+          }
+        }
+        .remove-promo-code{
+          display: block;
+          font-size: 1.3rem;
+          font-weight: 700;
+          text-decoration: none;
+          color: #989898;
+        }
+      }
+    }
+    &.invalid{
+      .coupon-code-input{
+        border-color: #f96162;
+      }
+      .error-message{
+        display: block;
+        width: 100%;
+        text-align: left;
+        font-size: 1.2rem;
+        color: #f96162;
+        padding-top: 5px;
+      }
+    }
+  }
+
+  .additional-checkout-buttons{
+    margin-top: 25px;
+    display: flex;
+    flex-direction: column;
+    .additional-checkout-button + .additional-checkout-button{
+      margin-left: 0;
+    }
+    .additional-checkout-button--google-pay{
+      width: 100% !important;
+    }
+  }
+
+  @media (max-width: 768px){
+    .continue-shopping-button{
+      padding-top: 15px;
+      padding-bottom: 30px;
+      height: auto;
     }
   }
 }

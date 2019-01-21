@@ -98,7 +98,9 @@
       "cookies_required": "Enable cookies to use the shopping cart",
       "continue_browsing_html": "Continue browsing <a href=\"/collections/all\">here</a>.",
       "item_quantity": "Item quantity",
-      "savings": "You're saving"
+      "savings": "You're saving",
+      "shipping": "Shipping",
+      "shipping_price": "Free"
     },
     "label": {
       "product": "Product",

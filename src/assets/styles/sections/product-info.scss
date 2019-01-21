@@ -110,10 +110,29 @@
     .slick-slide {
       text-align: center;
     }
+
+    &:not(.slick-slider){
+      position: relative;
+      img{
+        position: absolute;
+        top: 0;
+        left: 0;
+        opacity: 1;
+        transition: opacity 300ms cubic-bezier(0.075, 0.82, 0.165, 1);
+        &.hide{
+          opacity: 0;
+          display: inline-block !important;
+        }
+      }
+    }
   }
   .photo-thumbnails {
     list-style-type: none;
     text-align: left;
+    .slick-track{
+      // Bugfix for early hover creating offset
+      transform: translate3d(0px, 0px, 0px) !important;
+    }
     .slick-current {
       li {
         img {

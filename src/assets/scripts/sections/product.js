@@ -317,6 +317,8 @@ $(document).ready(() => {
     speed: 300,
     cssEase: 'ease-in-out',
     draggable: true,
+    waitForAnimate: false,
+    fade: true,
     responsive: [
       {
         breakpoint: 768,
@@ -354,7 +356,21 @@ $(document).ready(() => {
     var thisOpts = {
       asNavFor: $(elem).attr('data-target-car')
     };
-    $.extend(thisOpts, slickThumbOpts)
+    $.extend(thisOpts, slickThumbOpts);
     $(elem).slick(thisOpts);
+  });
+
+  // Thumbnail image hover
+  $(".product-single__thumbnail-image").on('mouseover', function(evt){
+    var $this = $(evt.target);
+    var $slickSlide = $this.closest('.slick-slide')
+    if ($slickSlide.length){
+      var slideIndex = $slickSlide.attr('data-slick-index');
+      $($slickSlide.closest('.slick-slider').attr("data-target-car")).slick('slickGoTo', slideIndex);
+    } else {
+      var $mainImg = $(`${selectors.productImageWrapper}[data-image-id='${$this.attr('data-image-id')}']`);
+      $(`${selectors.productImageWrapper}:not('.${cssClasses.hide}')`).addClass(cssClasses.hide);
+      $mainImg.removeClass(cssClasses.hide);
+    }
   });
 });
