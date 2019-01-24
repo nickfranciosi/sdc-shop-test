@@ -1,0 +1,56 @@
+.template-search{
+
+	.search-masthead{
+		text-align: center;
+		padding-top: 10px;
+		h1{
+			font-weight: 800;
+			font-size: 28px;
+			line-height: 1.2;
+			margin-top: 45px;
+			margin-bottom: 40px;
+			@media (min-width: 768px) {
+				font-size: 50px;
+				line-height: inherit;
+				margin-bottom: inherit;
+			}
+		}
+	}
+
+	.search-content{
+		text-align: center;
+		.featured-products{
+			.section.section-gap-large{
+				margin-top: 55px;
+			}
+		}
+		@media (min-width: 768px) {
+			margin-bottom: 80px;
+		}
+	}
+
+	form[role='search']{
+		.fields{
+			display: inline-block;
+			position: relative;
+		}
+		input[type='search']{
+			text-align: left;
+			line-height: normal;
+			padding: 12px 31px 12px 14px;
+			width: 300px;
+		}
+		button[type="submit"]{
+			background-color: #550FF9;
+			position: absolute;
+			height: auto;
+			top: 0;
+			right: -10px;
+			bottom: 0;
+			border: 0;
+			padding: 0 14px;
+			border-top-left-radius: 0;
+			border-bottom-left-radius: 0;
+		}
+	}
+}
