@@ -38,36 +38,38 @@
     {% endif %}
   </div>
 
-  <div class="container search-content">
+  
   {% if search.performed %}
       {% if search.results_count > 0 %}
         <!-- Search performed with results -->
-        <div class="section section-product-grid" data-col="3">
-          {% for item in search.results %}
-              {% if item.object_type == 'product' %}
-                <a href="{{ item.url | default: "#" }}" class="product-grid-item">
-                  <img
-                    src="//images.accentuate.io?options=w400&shop={{ shop.permanent_domain }}&image={{ item.metafields.comparison.grid_image }}"
-                    alt="{{item.title}}" />
-                  <h3>{{ item.title | default: "Product Title" }}</h3>
-                  <p>
-                    {% if item.metafields.price.alt_price %}
-                      <p>{{item.metafields.price.alt_price}}</p>
-                    {% else %}
-                      {% if item.price_max > item.price %}
-                        {{item.price_min | money | remove: ',' }} - {{item.price_max | money | remove: ',' }}
+        <div class="container search-content">
+          <div class="section section-product-grid" data-col="3">
+            {% for item in search.results %}
+                {% if item.object_type == 'product' %}
+                  <a href="{{ item.url | default: "#" }}" class="product-grid-item">
+                    <img
+                      src="//images.accentuate.io?options=w400&shop={{ shop.permanent_domain }}&image={{ item.metafields.comparison.grid_image }}"
+                      alt="{{item.title}}" />
+                    <h3>{{ item.title | default: "Product Title" }}</h3>
+                    <p>
+                      {% if item.metafields.price.alt_price %}
+                        <p>{{item.metafields.price.alt_price}}</p>
                       {% else %}
-                        {{ item.price | money | remove: ','  }}
-                      {% endif %}
-                    {% endif%}
-                  </p>
-                </a>
-              {% endif %}
-          {% endfor %}
+                        {% if item.price_max > item.price %}
+                          {{item.price_min | money | remove: ',' }} - {{item.price_max | money | remove: ',' }}
+                        {% else %}
+                          {{ item.price | money | remove: ','  }}
+                        {% endif %}
+                      {% endif%}
+                    </p>
+                  </a>
+                {% endif %}
+            {% endfor %}
+          </div>
+          {% if paginate.pages > 1 %}
+            {% include 'pagination' %}
+          {% endif %}
         </div>
-        {% if paginate.pages > 1 %}
-          {% include 'pagination' %}
-        {% endif %}
       {% endif %}
   {% endif %}
 
@@ -81,5 +83,4 @@
       {% include 'product-grid'%}
     </div>
   {% endif %}
-  </div>
 {% endpaginate %}

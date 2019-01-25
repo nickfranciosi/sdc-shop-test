@@ -1,5 +1,80 @@
-.template-search{
+.headerSearch{
+  display: none;
+  @media (min-width: 900px){
+    display: block;
+    position: relative;
+    margin-right: 20px;
+    input[type='search']{
+      padding: 10px 14px 8px;
+      width: 140px;
+      font-size: 15px;
+      transition: width 0.3s cubic-bezier(0.5, 0, 0.5, 1);
+      &:focus{
+        width: 175px;
+      }
+    }
+    button[type='submit']{
+      position: absolute;
+      right: 10px;
+      top: 50%;
+      transform: translateY(-50%);
+      background-color: transparent;
+      padding: 0;
+      border: 0;
+      color: #999999;
+    }
 
+    input[type='search']:focus ~ button[type='submit']{
+      color: $blurple;
+    }
+  }
+}
+
+.mobileSearch, .search-masthead form[role='search']{
+	.fields{
+		display: inline-block;
+		position: relative;
+	}
+	input[type='search']{
+		line-height: normal;
+		padding: 12px 31px 12px 14px;
+		width: 300px;
+	}
+	button[type="submit"]{
+		background-color: #550FF9;
+		position: absolute;
+		height: auto;
+		top: 0;
+		right: -10px;
+		bottom: 0;
+		border: 0;
+		padding: 0 14px;
+		border-top-left-radius: 0;
+		border-bottom-left-radius: 0;
+		svg{
+			color: #FFFFFF;
+		}
+	}	
+}
+
+.mobileSearch{
+	position: absolute;
+	top: 40px;
+	left: 0;
+	right: 0;
+	input[type='search']{
+		border: 0;
+		padding: 12px 45px 9px 14px;
+		width: auto;
+	}
+	button[type='submit']{
+		width: 45px;
+		padding: 0;
+		right: 0;
+	}
+}
+
+.template-search{
 	.search-masthead{
 		text-align: center;
 		padding-top: 10px;
@@ -11,46 +86,21 @@
 			margin-bottom: 40px;
 			@media (min-width: 768px) {
 				font-size: 50px;
-				line-height: inherit;
-				margin-bottom: inherit;
 			}
 		}
 	}
 
 	.search-content{
 		text-align: center;
-		.featured-products{
-			.section.section-gap-large{
-				margin-top: 55px;
-			}
-		}
+		margin-top: 30px;
 		@media (min-width: 768px) {
 			margin-bottom: 80px;
 		}
 	}
 
-	form[role='search']{
-		.fields{
-			display: inline-block;
-			position: relative;
-		}
-		input[type='search']{
-			text-align: left;
-			line-height: normal;
-			padding: 12px 31px 12px 14px;
-			width: 300px;
-		}
-		button[type="submit"]{
-			background-color: #550FF9;
-			position: absolute;
-			height: auto;
-			top: 0;
-			right: -10px;
-			bottom: 0;
-			border: 0;
-			padding: 0 14px;
-			border-top-left-radius: 0;
-			border-bottom-left-radius: 0;
+	.featured-products{
+		.section.section-gap-large{
+			margin-top: 55px;
 		}
 	}
 }

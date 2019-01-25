@@ -44,6 +44,9 @@ input[type="search"] {
     &::placeholder {
       color: #B3B3B3;
     }
+    &[type="search"]{
+      text-align: left;
+    }
 }
 
 button,
