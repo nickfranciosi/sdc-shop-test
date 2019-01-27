@@ -9,8 +9,9 @@
   z-index: 14;
   transform: translateY(-120%);
   transition: transform 300ms cubic-bezier(.5, 0, .5, 1);
+  padding-top: 70px;
   ul {
-    margin: 40px 0;
+    margin: 40px 0 40px;
     list-style-type: none;
     li {
       padding-bottom: 20px;

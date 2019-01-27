@@ -30,7 +30,8 @@ select {
 }
 
 input[type="text"],
-input[type="email"] {
+input[type="email"],
+input[type="search"] {
     font-size: 16px;
     border: 2px solid #CCCCCC;
     border-radius: 4px;
@@ -42,6 +43,9 @@ input[type="email"] {
     }
     &::placeholder {
       color: #B3B3B3;
+    }
+    &[type="search"]{
+      text-align: left;
     }
 }
 

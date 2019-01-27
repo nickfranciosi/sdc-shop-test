@@ -9,7 +9,7 @@
     },
     "404": {
       "title": "404 Page Not Found",
-      "subtext_html": "The page you requested does not exist. Click <a href=\"/collections/all\">here</a> to continue shopping."
+      "subtext_html": "The page you requested does not exist. Click <a href=\"\/collections\/all\">here<\/a> to continue shopping."
     },
     "password_page": {
       "opening_soon": "Opening Soon",
@@ -23,7 +23,7 @@
       "signup_form_email_placeholder": "Your email",
       "signup_form_submit": "Submit",
       "signup_form_success": "We will send you an email right before we open!",
-      "admin_link_html": "Are you the store owner? <a href=\"/admin\">Log in here</a>",
+      "admin_link_html": "Are you the store owner? <a href=\"\/admin\">Log in here<\/a>",
       "password_link": "Enter using password",
       "powered_by_shopify_html": "This shop will be powered by {{ shopify }}"
     },
@@ -39,7 +39,7 @@
     },
     "search": {
       "title": "Search for products on our site",
-      "placeholder": "Search our store",
+      "placeholder": "Search",
       "submit": "Search",
       "heading": {
         "one": "Search result",
@@ -49,7 +49,9 @@
         "one": "{{ count }} result for \"{{ terms }}\"",
         "other": "{{ count }} results for \"{{ terms }}\""
       },
-      "no_results_html": "Please try a different search term or go back to the <a href=\"/\">homepage</a>."
+      "results":"Results for \"{{ terms }}\"",
+      "no_results_title": "No results for \"{{ terms }}\"",
+      "no_results_html": "Please try a different search term or go back to the <a href=\"\/\">homepage<\/a>."
     },
     "newsletter_form": {
       "newsletter_email": "Join our mailing list",
@@ -96,7 +98,7 @@
       "checkout": "Check Out",
       "empty": "Your cart is currently empty.",
       "cookies_required": "Enable cookies to use the shopping cart",
-      "continue_browsing_html": "Continue browsing <a href=\"/collections/all\">here</a>.",
+      "continue_browsing_html": "Continue browsing <a href=\"\/collections\/all\">here<\/a>.",
       "item_quantity": "Item quantity",
       "savings": "You're saving",
       "shipping": "Shipping",
@@ -155,7 +157,7 @@
       "city": "City",
       "country": "Country",
       "province": "Province",
-      "zip": "Postal/Zip Code",
+      "zip": "Postal\/Zip Code",
       "phone": "Phone",
       "set_default": "Set as default address",
       "add": "Add Address",
@@ -291,7 +293,7 @@
       "initial_value": "Gift card value: {{ value }}"
     }
   },
-  "checkout":{
+  "checkout": {
     "order_summary": {
       "discount_placeholder": "Promo code"
     }
