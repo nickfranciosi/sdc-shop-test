@@ -5,45 +5,82 @@
   {%- assign featured_image = current_variant.featured_image | default: product.featured_image -%}
   <div class="product-info-section section">
     <div class="product-info-gallery" >
-      <div class="photo-main-image">
-        {% for image in product.images %}
-          <img
-            src="{{ image.src | img_url: '1200x1200'}}"
-            alt="{{ image.alt | escape }}"
-            data-product-image-wrapper
-            data-product-featured-image
-            data-image-id="{{ image.id }}""
-          />
-        {% endfor %}
-        {% comment %}Vimeo embed code{% endcomment %}
-        {% if product.metafields.videos.video1_enabled and product.metafields.videos.video1_url %}
-          <div data-video-id="video1" class="vimeo-video">
-            <iframe src="https://player.vimeo.com/video/{{ product.metafields.videos.video1_url | split: '/' | last }}?title=0&byline=0&portrait=0" frameborder="0" webkitallowfullscreen mozallowfullscreen allowfullscreen></iframe>
+      {% if product.metafields.sdc.use_variant_images %}
+        {% for c_variant in product.variants %}
+        <div class="photo-main-image sdc-using-variant-images {% if current_variant.title == c_variant.title %}sdc-active-variant{% endif %}" data-variant="{{c_variant.title | escape}}">
+          {% assign img_thumbnails = "" %}
+          {% for i in (1..4) %}
+            {% assign img_key = 'image' | append: i %}
+            {% if c_variant.metafields.sdc[img_key] %}
+              <img src="{{ c_variant.metafields.sdc[img_key] }}" alt="" class="" data-variant="{{ c_variant.title | escape }}" data-image-id="{{img_key}}" data-product-image-wrapper />
+
+              {% comment %}Prepare thumbnails here so we don't have to double loop{% endcomment %}
+              {% capture img_thumbnails %}{{img_thumbnails}}
+                <li class="" data-variant="{{ c_variant.title | escape }}">
+                  <img src="{{ c_variant.metafields.sdc[img_key] }}" alt="" class="product-single__thumbnail-image" data-image-id="{{img_key}}" />
+                </li>
+              {% endcapture %}
+            {% endif %}
+          {% endfor %}
+
+          {% comment %}Vimeo video code{% endcomment %}
+          {% if c_variant.metafields.sdc.video_enabled and c_variant.metafields.sdc.video_url and c_variant.metafields.sdc.video_thumbnail %}
+          <div data-video-id="video1" class="vimeo-video" data-variant="{{ c_variant.title | escape }}">
+            <iframe src="https://player.vimeo.com/video/{{ c_variant.metafields.sdc.video_url | split: '/' | last }}?title=0&byline=0&portrait=0" frameborder="0" webkitallowfullscreen mozallowfullscreen allowfullscreen></iframe>
           </div>
-        {% endif %}
-        {% if product.metafields.videos.video2_enabled and product.metafields.videos.video2_url %}
-          <div data-video-id="video2" class="vimeo-video">
-            <iframe src="https://player.vimeo.com/video/{{ product.metafields.videos.video2_url | split: '/' | last }}?title=0&byline=0&portrait=0" frameborder="0" webkitallowfullscreen mozallowfullscreen allowfullscreen></iframe>
-          </div>
-        {% endif %}
-      </div>
-      <ul class="photo-thumbnails product-single__photos" data-product-id="{{ product.id}}" data-current-variant-id="{{current_variant.id}}">
-        {% for image in product.images %}
-          <li>
-              <img class="product-single__thumbnail-image" src="{{ image.src | img_url: '120x120' }}" alt="{{ image.alt | escape }}" data-image-id="{{ image.id }}">
+          {% capture img_thumbnails %}{{img_thumbnails}}
+          <li class="video-thumbnail" data-variant="{{ c_variant.title | escape }}">
+            <img class="product-single__thumbnail-image" src="{{c_variant.metafields.sdc.video_thumbnail}}" alt="{{c_variant.title}} video" data-image-id="video1">
+            <svg enable-background="new 0 0 512 512" version="1.1" viewBox="0 0 512 512" xml:space="preserve" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink"><path d="M256,512C114.625,512,0,397.375,0,256C0,114.609,114.625,0,256,0s256,114.609,256,256C512,397.375,397.375,512,256,512z   M256,64C149.969,64,64,149.969,64,256s85.969,192,192,192c106.03,0,192-85.969,192-192S362.031,64,256,64z M192,160l160,96l-160,96  V160z"/></svg>
           </li>
+          {% endcapture %}
+          {% endif %}
+        </div>
+        <ul class="photo-thumbnails sdc-using-variant-images {% if current_variant.title == c_variant.title %}sdc-active-variant{% endif %}" data-variant="{{c_variant.title | escape}}">
+          {{img_thumbnails}}
+        </ul>
         {% endfor %}
-          {% if product.metafields.videos.video1_enabled and product.metafields.videos.video1_url and product.metafields.videos.video1_thumbnail %}
-          <li>
-            <img class="product-single__thumbnail-image" src="{{product.metafields.videos.video1_thumbnail}}" alt="{{product.title}} video" data-image-id="video1">
-          </li>
+      {% else %}
+        <div class="photo-main-image">
+          {% for image in product.images %}
+            <img
+              src="{{ image.src | img_url: '1200x1200'}}"
+              alt="{{ image.alt | escape }}"
+              data-product-image-wrapper
+              data-product-featured-image
+              data-image-id="{{ image.id }}"
+            />
+          {% endfor %}
+          {% comment %}Vimeo embed code{% endcomment %}
+          {% if product.metafields.videos.video1_enabled and product.metafields.videos.video1_url %}
+            <div data-video-id="video1" class="vimeo-video">
+              <iframe src="https://player.vimeo.com/video/{{ product.metafields.videos.video1_url | split: '/' | last }}?title=0&byline=0&portrait=0" frameborder="0" webkitallowfullscreen mozallowfullscreen allowfullscreen></iframe>
+            </div>
           {% endif %}
-          {% if product.metafields.videos.video2_enabled and product.metafields.videos.video2_url and product.metafields.videos.video2_thumbnail %}
-          <li>
-            <img class="product-single__thumbnail-image" src="{{product.metafields.videos.video2_thumbnail}}" alt="{{product.title}} video" data-image-id="video2">
-          </li>
+          {% if product.metafields.videos.video2_enabled and product.metafields.videos.video2_url %}
+            <div data-video-id="video2" class="vimeo-video">
+              <iframe src="https://player.vimeo.com/video/{{ product.metafields.videos.video2_url | split: '/' | last }}?title=0&byline=0&portrait=0" frameborder="0" webkitallowfullscreen mozallowfullscreen allowfullscreen></iframe>
+            </div>
           {% endif %}
-      </ul>
+        </div>
+        <ul class="photo-thumbnails product-single__photos" data-product-id="{{ product.id}}" data-current-variant-id="{{current_variant.id}}">
+          {% for image in product.images %}
+            <li>
+                <img class="product-single__thumbnail-image" src="{{ image.src | img_url: '120x120' }}" alt="{{ image.alt | escape }}" data-image-id="{{ image.id }}">
+            </li>
+          {% endfor %}
+            {% if product.metafields.videos.video1_enabled and product.metafields.videos.video1_url and product.metafields.videos.video1_thumbnail %}
+            <li>
+              <img class="product-single__thumbnail-image" src="{{product.metafields.videos.video1_thumbnail}}" alt="{{product.title}} video" data-image-id="video1">
+            </li>
+            {% endif %}
+            {% if product.metafields.videos.video2_enabled and product.metafields.videos.video2_url and product.metafields.videos.video2_thumbnail %}
+            <li>
+              <img class="product-single__thumbnail-image" src="{{product.metafields.videos.video2_thumbnail}}" alt="{{product.title}} video" data-image-id="video2">
+            </li>
+            {% endif %}
+        </ul>
+      {% endif %}
     </div>
     <div class="product-info-content">
       <h1>{{ product.title }}</h1>
@@ -61,7 +98,7 @@
             {{ current_variant.price | money | remove: ','}}
           </span>
         </div>
-<form action="/cart/add" method="post" id="product-form"enctype="multipart/form-data">
+    <form action="/cart/add" method="post" id="product-form" enctype="multipart/form-data">
     {% unless product.has_only_default_variant %}
       {% for option in product.options_with_values %}
         <div class="selector-wrapper js">

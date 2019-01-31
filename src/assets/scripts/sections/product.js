@@ -170,7 +170,7 @@ sections.register('product', {
   swapVariantImageGallery(evt) {
     const productId = $('.product-single__photos').data('product-id');
     const variant = evt.variant;
-    swapVariantGalleries(productId, variant.id);
+    swapVariantGalleries(productId, variant);
   },
 
   updateImages(evt) {
@@ -217,10 +217,44 @@ sections.register('product', {
   },
 });
 
-function swapVariantGalleries(prodId, varId) {
+function swapVariantGalleries(prodId, variant) {
+  // Repurposing this function for the new variant image switching.
+  swapVariantImages(variant.title);
+
+  // Leaving existing code for BC if its needed - who knows.
   if (window.VIG && window.VIG.switchImages) {
-    window.VIG.switchImages(prodId, varId, '.product-single__photos');
+    window.VIG.switchImages(prodId, variant.id, '.product-single__photos');
   }
+}
+
+function swapVariantImages(variantId) {
+  $(`.photo-main-image[data-variant!='${variantId}']`).removeClass("sdc-active-variant").fadeOut(150, function(){
+    var $mainPhotos = $(`.photo-main-image[data-variant='${variantId}']`);
+    $mainPhotos.fadeIn(150, function(){
+      $mainPhotos.addClass("sdc-active-variant")
+      $mainPhotos.find('img.hide').removeClass('hide');
+      // Run position update again just in case it was too fast outside
+      if ($mainPhotos.hasClass('slick-initialized')){
+        $mainPhotos.slick('setPosition');
+      }
+    });
+    if ($mainPhotos.hasClass('slick-initialized')){
+      $mainPhotos.slick('slickGoTo', 0, true).slick('setPosition');
+    }
+  });
+  $(`.photo-thumbnails[data-variant!='${variantId}']`).removeClass("sdc-active-variant").fadeOut(150, function(){
+    var $thumbPhotos = $(`.photo-thumbnails[data-variant='${variantId}']`);
+    $thumbPhotos.fadeIn(150, function(){
+      $thumbPhotos.addClass("sdc-active-variant");
+      // Run position update again just in case it was too fast outside
+      if ($thumbPhotos.hasClass('slick-initialized')){
+        $thumbPhotos.slick('setPosition');
+      }
+    });
+    if ($thumbPhotos.hasClass('slick-initialized')){
+      $thumbPhotos.slick('slickGoTo', 0, true).slick('setPosition');
+    }
+  });
 }
 
 $(document).ready(() => {
@@ -246,37 +280,17 @@ $(document).ready(() => {
     $(`.product-info--description-variant-slide[data-value=${variantId}]`).addClass('active');
   }
 
-  function swapVariantImages(variantId) {
-    $(`.slickCar[data-variant!='${variantId}']`).removeClass("sdc-active-variant").fadeOut(150, function(){
-      var $slickCar = $(`.slickCar[data-variant='${variantId}']`);
-      $slickCar.fadeIn(150, function(){
-        $slickCar.addClass("sdc-active-variant")
-        $slickCar.find('img.hide').removeClass('hide');
-        // Run position update again just in case it was too fast outside
-        $slickCar.slick('setPosition');
-      });
-      $slickCar.slick('slickGoTo', 0, true).slick('setPosition');
-    });
-    $(`.slickThumb[data-variant!='${variantId}']`).removeClass("sdc-active-variant").fadeOut(150, function(){
-      var $slickThumb = $(`.slickThumb[data-variant='${variantId}']`);
-      $slickThumb.fadeIn(150, function(){
-        $slickThumb.addClass("sdc-active-variant");
-        // Run position update again just in case it was too fast outside
-        $slickThumb.slick('setPosition');
-      });
-      $slickThumb.slick('slickGoTo', 0, true).slick('setPosition');
-    });
-  }
 
 
   const productId = $('.product-single__photos').data('product-id');
   const currentVariantId = $('.product-single__photos').data('current-variant-id');
-  swapVariantGalleries(productId, currentVariantId);
+  // GET CURRENT VARIANT OBJ
+  // swapVariantGalleries(productId, currentVariantId);
 
 
   // swap main image when thumbnails are selected
   const $mainImages = $('.photo-main-image img');
-  console.log($mainImages);
+  // console.log($mainImages);
   $('.photo-thumbnails')
     .delegate('.product-single__thumbnail-image', 'click', function() {
       const $this = $(this);
@@ -368,6 +382,7 @@ $(document).ready(() => {
       var slideIndex = $slickSlide.attr('data-slick-index');
       $($slickSlide.closest('.slick-slider').attr("data-target-car")).slick('slickGoTo', slideIndex);
     } else {
+      var activeClass = 'sdc-active-variant';
       var $mainImg = $(`${selectors.productImageWrapper}[data-image-id='${$this.attr('data-image-id')}']`);
       $(`${selectors.productImageWrapper}:not('.${cssClasses.hide}')`).addClass(cssClasses.hide);
       $mainImg.removeClass(cssClasses.hide);
