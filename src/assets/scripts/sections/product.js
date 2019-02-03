@@ -228,33 +228,36 @@ function swapVariantGalleries(prodId, variant) {
 }
 
 function swapVariantImages(variantId) {
-  $(`.photo-main-image[data-variant!='${variantId}']`).removeClass("sdc-active-variant").fadeOut(150, function(){
-    var $mainPhotos = $(`.photo-main-image[data-variant='${variantId}']`);
-    $mainPhotos.fadeIn(150, function(){
-      $mainPhotos.addClass("sdc-active-variant")
-      $mainPhotos.find('img.hide').removeClass('hide');
-      // Run position update again just in case it was too fast outside
+  var $mainImage = $(`.photo-main-image[data-variant!='${variantId}']`);
+  if ($mainImage.hasClass('sdc-using-variant-images')){
+    $mainImage.removeClass("sdc-active-variant").fadeOut(150, function(){
+      var $mainPhotos = $(`.photo-main-image[data-variant='${variantId}']`);
+      $mainPhotos.fadeIn(150, function(){
+        $mainPhotos.addClass("sdc-active-variant")
+        $mainPhotos.find('img.hide').removeClass('hide');
+        // Run position update again just in case it was too fast outside
+        if ($mainPhotos.hasClass('slick-initialized')){
+          $mainPhotos.slick('setPosition');
+        }
+      });
       if ($mainPhotos.hasClass('slick-initialized')){
-        $mainPhotos.slick('setPosition');
+        $mainPhotos.slick('slickGoTo', 0, true).slick('setPosition');
       }
     });
-    if ($mainPhotos.hasClass('slick-initialized')){
-      $mainPhotos.slick('slickGoTo', 0, true).slick('setPosition');
-    }
-  });
-  $(`.photo-thumbnails[data-variant!='${variantId}']`).removeClass("sdc-active-variant").fadeOut(150, function(){
-    var $thumbPhotos = $(`.photo-thumbnails[data-variant='${variantId}']`);
-    $thumbPhotos.fadeIn(150, function(){
-      $thumbPhotos.addClass("sdc-active-variant");
-      // Run position update again just in case it was too fast outside
+    $(`.photo-thumbnails[data-variant!='${variantId}']`).removeClass("sdc-active-variant").fadeOut(150, function(){
+      var $thumbPhotos = $(`.photo-thumbnails[data-variant='${variantId}']`);
+      $thumbPhotos.fadeIn(150, function(){
+        $thumbPhotos.addClass("sdc-active-variant");
+        // Run position update again just in case it was too fast outside
+        if ($thumbPhotos.hasClass('slick-initialized')){
+          $thumbPhotos.slick('setPosition');
+        }
+      });
       if ($thumbPhotos.hasClass('slick-initialized')){
-        $thumbPhotos.slick('setPosition');
+        $thumbPhotos.slick('slickGoTo', 0, true).slick('setPosition');
       }
     });
-    if ($thumbPhotos.hasClass('slick-initialized')){
-      $thumbPhotos.slick('slickGoTo', 0, true).slick('setPosition');
-    }
-  });
+  }
 }
 
 $(document).ready(() => {
