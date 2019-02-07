@@ -19,9 +19,12 @@
   }
 }
 
-.photo-main-image .vimeo-video{
+.product-info-gallery .photo-main-image .vimeo-video{
   position:relative;
   padding: 56.25% 0 0 0;
+  width: 100%;
+  top: 50%;
+  transform: translateY(-50%);
   iframe{
     width:100%;
     height:100%;
