@@ -221,7 +221,7 @@ function swapVariantGalleries(prodId, variant) {
   // Repurposing this function for the new variant image switching.
   swapVariantImages(variant.title);
 
-  // Leaving existing code for BC if its needed - who knows.
+  // Leaving existing code for backwards compat if its needed - who knows.
   if (window.VIG && window.VIG.switchImages) {
     window.VIG.switchImages(prodId, variant.id, '.product-single__photos');
   }
@@ -235,28 +235,14 @@ function swapVariantImages(variantId) {
       $mainPhotos.find('img, .vimeo-video').addClass('hide');
       $mainPhotos.children().first().removeClass('hide');
       $mainPhotos.fadeIn(150, function(){
-        $mainPhotos.addClass("sdc-active-variant")
-        // Run position update again just in case it was too fast outside
-        // if ($mainPhotos.hasClass('slick-initialized')){
-        //   $mainPhotos.slick('setPosition');
-        // }
+        $mainPhotos.addClass("sdc-active-variant");
       });
-      // if ($mainPhotos.hasClass('slick-initialized')){
-      //   $mainPhotos.slick('slickGoTo', 0, true).slick('setPosition');
-      // }
     });
     $(`.photo-thumbnails[data-variant!='${variantId}']`).removeClass("sdc-active-variant").fadeOut(150, function(){
       var $thumbPhotos = $(`.photo-thumbnails[data-variant='${variantId}']`);
       $thumbPhotos.fadeIn(150, function(){
         $thumbPhotos.addClass("sdc-active-variant");
-        // Run position update again just in case it was too fast outside
-        // if ($thumbPhotos.hasClass('slick-initialized')){
-        //   $thumbPhotos.slick('setPosition');
-        // }
       }).css('display', 'flex');
-      // if ($thumbPhotos.hasClass('slick-initialized')){
-      //   $thumbPhotos.slick('slickGoTo', 0, true).slick('setPosition');
-      // }
     });
   }
 }
@@ -288,13 +274,8 @@ $(document).ready(() => {
 
   const productId = $('.product-single__photos').data('product-id');
   const currentVariantId = $('.product-single__photos').data('current-variant-id');
-  // GET CURRENT VARIANT OBJ
-  // swapVariantGalleries(productId, currentVariantId);
-
 
   // swap main image when thumbnails are selected
-  // const $mainImages = $('.photo-main-image img, .photo-main-image .vimeo-video');
-  // console.log($mainImages);
   var $mainImages = $(".photo-main-image");
   $('.photo-thumbnails')
     .on('click', 'li', function() {
@@ -302,25 +283,10 @@ $(document).ready(() => {
       const dataImageId = $this.data('image-id');
       $mainImages.children(':not(.hide)').addClass('hide');
       $mainImages.find(`[data-image-id='${dataImageId}'], [data-video-id='${dataImageId}']`).removeClass('hide');
-
-      // $mainImages.each(function() {
-      //   const $item = $(this);
-      //   const mainImageId = $item.data('image-id');
-      //   if (selectedThumbnailImageId === mainImageId) {
-      //     $item.removeClass('hide');
-      //   } else {
-      //     $item.addClass('hide');
-      //   }
-      // });
     });
 });
 
-
-// Slick sldier settings
 $(document).ready(() => {
-  // $('.slickCar').on('init', () => {
-  //   $('.product-info-gallery').addClass('loaded');
-  // });
 
   if ($('[data-product-handle="new-gift-of-a-smile"], [data-product-handle="gift-of-a-smile"]').length){
     $('[data-option-name="Delivery Method"]').change(function(evt){
@@ -334,73 +300,18 @@ $(document).ready(() => {
     }).change();
   }
 
-  // var slickCarOpts = {
-  //   infinite: true,
-  //   speed: 300,
-  //   cssEase: 'ease-in-out',
-  //   draggable: true,
-  //   waitForAnimate: false,
-  //   fade: true,
-  //   responsive: [
-  //     {
-  //       breakpoint: 768,
-  //       settings: {
-  //         draggable: true,
-  //         fade: false
-  //       }
-  //     },
-  //     {
-  //       breakpoint: 410,
-  //       settings: {
-  //         infinite: false
-  //       }
-  //     }
-  //   ]
-  // };
-  // $(".slickCar").each(function(index, elem){
-  //   var thisOpts = {
-  //     asNavFor: $(elem).attr('data-target-thumbs')
-  //   };
-  //   $.extend(thisOpts, slickCarOpts);
-  //   $(elem).slick(thisOpts);
-  // });
-
-  // // number of images is calculated
-  // // in the product template
-  // var slickThumbOpts = {
-  //   focusOnSelect: true,
-  //   draggable: true,
-  //   slidesToShow: window.numberOfImages < 5 ? window.numberOfImages : (window.numberOfImages <= 8 ? window.numberOfImages : 8 ),
-  //   slidesToScroll: 1,
-  //   centerMode: false
-  // };
-  // $(".slickThumb").each(function(index, elem){
-  //   var thisOpts = {
-  //     asNavFor: $(elem).attr('data-target-car')
-  //   };
-  //   $.extend(thisOpts, slickThumbOpts);
-  //   $(elem).slick(thisOpts);
-  // });
-
   // Thumbnail image hover
   $(".product-single__thumbnail-image").on('mouseover', function(evt){
     var $this = $(evt.target);
-    // var $slickSlide = $this.closest('.slick-slide')
-    // if ($slickSlide.length){
-    //   var slideIndex = $slickSlide.attr('data-slick-index');
-    //   $($slickSlide.closest('.slick-slider').attr("data-target-car")).slick('slickGoTo', slideIndex);
-    // } else {
-      // var activeClass = 'sdc-active-variant';
-      var $mainImg = null;
-      var dataImageId = $this.attr('data-image-id');
-      if (dataImageId.indexOf('video') !== -1){
-        $mainImg = $(`[data-video-id='${dataImageId}']`);
-      } else {
-        $mainImg = $(`${selectors.productImageWrapper}[data-image-id='${dataImageId}']`);
-      }
-      $(`${selectors.productImageWrapper}:not('.${cssClasses.hide}')`).addClass(cssClasses.hide);
-      $(`.vimeo-video:not('.${cssClasses.hide}')`).addClass(cssClasses.hide);
-      $mainImg.removeClass(cssClasses.hide);
-    // }
+    var $mainImg = null;
+    var dataImageId = $this.attr('data-image-id');
+    if (dataImageId.indexOf('video') !== -1){
+      $mainImg = $(`[data-video-id='${dataImageId}']`);
+    } else {
+      $mainImg = $(`${selectors.productImageWrapper}[data-image-id='${dataImageId}']`);
+    }
+    $(`${selectors.productImageWrapper}:not('.${cssClasses.hide}')`).addClass(cssClasses.hide);
+    $(`.vimeo-video:not('.${cssClasses.hide}')`).addClass(cssClasses.hide);
+    $mainImg.removeClass(cssClasses.hide);
   });
 });
