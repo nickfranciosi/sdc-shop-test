@@ -107,56 +107,57 @@
       }
     }
 
-    .slick-slide {
-      text-align: center;
-    }
+    // .slick-slide {
+    //   text-align: center;
+    // }
 
-    &:not(.slick-slider){
-      position: relative;
-      img{
-        position: absolute;
-        top: 0;
-        left: 0;
-        opacity: 1;
-        transition: opacity 300ms cubic-bezier(0.075, 0.82, 0.165, 1);
-        &.hide{
-          opacity: 0;
-          display: inline-block !important;
-        }
+    position: relative;
+    img, .vimeo-video{
+      position: absolute;
+      top: 0;
+      left: 0;
+      opacity: 1;
+      transition: opacity 300ms cubic-bezier(0.075, 0.82, 0.165, 1);
+      &.hide{
+        opacity: 0;
+        display: inline-block !important;
       }
     }
   }
   .photo-thumbnails {
     list-style-type: none;
     text-align: left;
-    .slick-track{
-      // Bugfix for early hover creating offset
-      transform: translate3d(0px, 0px, 0px) !important;
-    }
-    .slick-current {
-      li {
-        img {
-          border-color: #CCCCCC;
-        }
-      }
-    }
+    display: flex;
+    align-items: center;
+    // .slick-track{
+    //   // Bugfix for early hover creating offset
+    //   transform: translate3d(0px, 0px, 0px) !important;
+    // }
+    // .slick-current {
+    //   li {
+    //     img {
+    //       border-color: #CCCCCC;
+    //     }
+    //   }
+    // }
 
-    .slick-slide {
-      width: auto !important;
-      padding-right: 10px;
-      li {
-        // width: 60px !important;
-        text-align: center;
-      }
-      img {
-        display: inline-block;
-      }
-    }
+    // .slick-slide {
+    //   width: auto !important;
+    //   padding-right: 10px;
+    //   li {
+    //     // width: 60px !important;
+    //     text-align: center;
+    //   }
+    //   img {
+    //     display: inline-block;
+    //   }
+    // }
     li {
       overflow: hidden;
       display: inline-block;
       padding-bottom: 0;
       cursor: pointer;
+      margin-right: 10px;
       &:active{
         img {
           transform: scale(.9);
@@ -190,6 +191,10 @@
           transform: translate(-50%, -50%);
           height: 20px;
           width: 20px;
+          @media (max-width: 767px) {
+            height: 15px;
+            width: 15px;
+          }
         }
       }
     }
@@ -316,6 +321,9 @@
   display: none;
   &.sdc-active-variant{
     display: block;
+    &.sdc-using-variant-images.photo-thumbnails{
+      display: flex;
+    }
   }
   &.photo-thumbnails .slick-track{
     width: 100% !important;
