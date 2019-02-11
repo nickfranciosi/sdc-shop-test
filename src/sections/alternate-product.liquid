@@ -21,6 +21,10 @@
             {{ current_variant.price | money | remove: ','}}
           </span>
         </div>
+        <div
+        class="yotpo bottomLine yotpo-rating-info"
+        data-product-id="{{ product.id }}">
+      </div>
     <form action="/cart/add" method="post" id="product-form" enctype="multipart/form-data">
     {% unless product.has_only_default_variant %}
       {% for option in product.options_with_values %}
@@ -172,9 +176,11 @@
 {% endunless %}
 
 <div class="container">
+  {% comment %}
   {% assign yotpo_widget_id = 'b2R1xmMMCwI72cYezqJhZkrq7JIrxFaMHvMyUWJ7'%}
   {% assign yotpo_product_id = 'aligner'%}
-  {% assign yotpo_header = 'Aligner reviews'%}
+  {% endcomment %}
+  {% assign yotpo_header = 'Glowing reviews'%}
   {% unless product.metafields.social.hide_ratings %}
     {% include 'yotpo-product' %}
   {% endunless %}
