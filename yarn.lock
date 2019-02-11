@@ -128,7 +128,7 @@
   resolved "https://registry.yarnpkg.com/@shopify/slate-config/-/slate-config-1.0.0-beta.14.tgz#06cb79dea564fd3acf4c4b9b219e587c4b8b299d"
   integrity sha512-4Z+O36MhI16Obg0ecBVihenIsx5HAfYfTtflARRWLR5a5QSLazbpmaiHFg23PB2ELTxBdXvP2iOtoHqmT7uaKA==
 
-"@shopify/slate-cssvar-loader@1.0.0-beta.14":
+"@shopify/slate-cssvar-loader@1.0.0-beta.14", "@shopify/slate-cssvar-loader@^1.0.0-beta.14":
   version "1.0.0-beta.14"
   resolved "https://registry.yarnpkg.com/@shopify/slate-cssvar-loader/-/slate-cssvar-loader-1.0.0-beta.14.tgz#ebf75e3eff2504bb06d605ff90ed9504c8ad26b1"
   integrity sha512-zTmAXkTYdk4dPnyWJf6Ol0NCUopKa1pWQpb/r9HbcllCcl5wKsYoK/9TmFy6pVxk8eRGHJPWO7rhOMFxiRO/sg==
