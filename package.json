@@ -15,13 +15,16 @@
     "url": "https://github.com/Shopify/starter-theme.git"
   },
   "devDependencies": {
-    "@shopify/slate-tools": ">=1.0.0-beta.5",
+    "@shopify/slate-tools": "^1.0.0-beta.15",
     "babel-preset-shopify": "^16.2.0",
     "eslint-plugin-shopify": "^19.0.0",
+    "stylelint": "^9.10.1",
     "stylelint-config-prettier": "^3.0.4",
-    "stylelint-config-shopify": "^5.0.0"
+    "stylelint-config-shopify": "^5.0.0",
+    "typescript": "^3.3.3"
   },
   "dependencies": {
+    "@shopify/slate-cssvar-loader": "^1.0.0-beta.14",
     "@shopify/theme-a11y": "^1.0.0-alpha.3",
     "@shopify/theme-cart": "^1.0.0-alpha.3",
     "@shopify/theme-currency": "^1.0.0-alpha.3",
