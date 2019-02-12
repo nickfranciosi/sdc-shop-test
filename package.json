@@ -18,8 +18,10 @@
     "@shopify/slate-tools": "^1.0.0-beta.15",
     "babel-preset-shopify": "^16.2.0",
     "eslint-plugin-shopify": "^19.0.0",
+    "stylelint": "^9.10.1",
     "stylelint-config-prettier": "^3.0.4",
-    "stylelint-config-shopify": "^5.0.0"
+    "stylelint-config-shopify": "^5.0.0",
+    "typescript": "^3.3.3"
   },
   "dependencies": {
     "@shopify/slate-cssvar-loader": "^1.0.0-beta.14",
@@ -35,9 +37,7 @@
     "lazysizes": "^4.0.2",
     "lodash-es": "^4.17.4",
     "normalize.css": "^7.0.0",
-    "slick-carousel": "^1.8.1",
-    "stylelint": "^9.10.1",
-    "typescript": "^3.3.3"
+    "slick-carousel": "^1.8.1"
   },
   "scripts": {
     "start": "slate-tools start --env=dev",
