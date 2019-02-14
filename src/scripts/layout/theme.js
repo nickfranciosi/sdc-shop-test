@@ -78,10 +78,14 @@ function toggleMobileMenu() {
   $mobileMenu.toggleClass('open');
 }
 
+var maxWindowHeight = 0;
 function setMenuHeight(){
   var headerHeight = $('[data-section-type="header"]').height();
   var windowHeight = (window.outerHeight != 0) ? window.outerHeight : window.innerHeight;
-  $(".mobile-menu").css('height', windowHeight - headerHeight);
+  if (windowHeight > maxWindowHeight){
+    maxWindowHeight = windowHeight;
+  }
+  $(".mobile-menu").css('height', maxWindowHeight - headerHeight);
 }
 
 // Clipboard logic
