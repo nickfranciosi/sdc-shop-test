@@ -79,13 +79,13 @@ function toggleMobileMenu() {
 }
 
 var maxWindowHeight = 0;
-function setMenuHeight(){
+function setMenuHeight() {
   var headerHeight = $('[data-section-type="header"]').height();
   var windowHeight = (window.outerHeight != 0) ? window.outerHeight : window.innerHeight;
-  if (windowHeight > maxWindowHeight){
+  if (windowHeight > maxWindowHeight) {
     maxWindowHeight = windowHeight;
   }
-  $(".mobile-menu").css('height', maxWindowHeight - headerHeight);
+  $('.mobile-menu').css('height', maxWindowHeight - headerHeight);
 }
 
 // Clipboard logic

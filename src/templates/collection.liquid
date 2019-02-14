@@ -16,9 +16,13 @@
         <img
         src="//images.accentuate.io?options=w400&shop={{ shop.permanent_domain }}&image={{ product.metafields.comparison.grid_image }}"
         alt="{{product.title}}"
-      "/>
+        />
         <h3>{{ product.title | default: "Product Title" }}</h3>
         {% comment %} <p>{{ product.price | money | default: "$1.99" }}</p> {% endcomment %}
+        <div
+        class="yotpo bottomLine yotpo-rating-info"
+        data-product-id="{{ product.id }}">
+        </div>
         <p>
           {% if product.metafields.price.alt_price %}
             <p>{{product.metafields.price.alt_price}}</p>
