@@ -4,6 +4,7 @@
 {%- assign personImage = section.settings.person_image -%}
 {%- assign ctaLink = section.settings.cta_link -%}
 {%- assign ctaText = section.settings.cta_text -%}
+{%- assign ctaColor = section.settings.cta_color -%}
 {%- assign headline = section.settings.headline -%}
 {%- assign text = section.settings.text -%}
 {% include 'masthead'%}
@@ -30,9 +31,9 @@
       "default": "Another grinchanger."
     },
     {
-      "type": "richtext",
+      "type": "html",
       "id": "text",
-      "label": "Text",
+      "label": "Text (Accepts HTML)",
       "default": "<p>Our proprietary formula is designed to work, in just 5 minutes, on even the most sensitive teeth. So everyone can achieve their brightest bright.</p>"
     },
     {
@@ -55,6 +56,12 @@
       "id": "cta_text",
       "label": "CTA Text",
       "default": "Shop now"
+    },
+    {
+      "type": "color",
+      "id": "cta_color",
+      "label": "Button Color (Affects border and text color)",
+      "default": "#5300FF"
     }
   ],
 	"presets": [
