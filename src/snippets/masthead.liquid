@@ -22,7 +22,10 @@
           <h2 class="masthead--title">{{headline}}</h2>
           {{ text }}
           {% if ctaLink %}
-            <a href="{{ctaLink}}" class="button button--transparent" style="border-color: {{ctaColor}};color: {{ctaColor}};">{{ctaText}}</a>
+            <style>
+              #controlled-btn:hover {color: white !important;background-color:#5300FF !important;border-color:#5300FF !important;}
+            </style>
+            <a href="{{ctaLink}}" class="button button--transparent" id="controlled-btn" style="border-color: {{ctaColor}};color: {{ctaColor}};">{{ctaText}}</a>
           {% endif %}
         </div>
       {%- endif -%}
