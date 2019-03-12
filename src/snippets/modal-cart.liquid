@@ -58,11 +58,18 @@
           type="submit"
           name="checkout"
           class="button button--full-width"
-          value="Checkout"
+          value="CHECKOUT"
         >
+        <ul class="cc-icons">
+          <li>{% include 'icon-visa-flat' %}</li>
+          <li>{% include 'icon-mastercard-flat' %}</li>
+          <li>{% include 'icon-amex-flat' %}</li>
+          <li>{% include 'icon-discover-flat' %}</li>
+        </ul>
       </form>
       {% if additional_checkout_buttons %}
         <div class="additional-checkout-buttons">
+          <p class="alt-checkout-title">Or checkout with:</p>
           {{ content_for_additional_checkout_buttons }}
         </div>
       {% endif %}

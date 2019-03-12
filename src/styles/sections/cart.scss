@@ -228,10 +228,37 @@
     }
   }
 
+  .cc-icons {
+    display: flex;
+    margin-top: 10px;
+    align-items: center;
+    justify-content: center;
+
+    li {
+      flex: 0 1 auto;
+      list-style: none;
+      padding: 0;
+      margin: 0;
+      line-height: 0;
+
+      &:first-of-type {
+        padding-left: 0px;
+      }
+    }
+  }
+
   .additional-checkout-buttons{
     margin-top: 25px;
     display: flex;
     flex-direction: column;
+    .alt-checkout-title{
+      color: #808080;
+      text-transform: uppercase;
+      font-weight: 900;
+      line-height: 1.86;
+      font-family: "SofiaPro", arial, helvetica, sans-serif;
+      text-align:center;
+    }
     .additional-checkout-button + .additional-checkout-button{
       margin-left: 0;
     }
