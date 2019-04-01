@@ -1,13 +1,14 @@
 {%- assign bg_color = section.settings.background_color -%}
 {%- assign bannerImage = section.settings.banner_image -%}
 {%- assign isSwapped = section.settings.swap -%}
+{%- assign topAlign = section.settings.top_align -%}
 {%- assign ctaLink = section.settings.cta_link -%}
 {%- assign extraClasses = section.settings.extra_class -%}
 
 
 <div class="container">
   <section
-    class="section section-banner {% if isSwapped %}swap{% endif %} {% if extraClasses %}{{extraClasses}}{% endif %}"
+    class="section section-banner {% if isSwapped %}swap{% endif %} {% if extraClasses %}{{extraClasses}}{% endif %} {% if topAlign %}top-align{% endif %}"
     style="background-color: {{bg_color}};"
   >
         <div class="banner-segment banner-text">
@@ -38,6 +39,12 @@
       "type": "image_picker",
       "id": "banner_image",
       "label": "Image"
+    },
+    {
+      "type": "checkbox",
+      "id": "top_align",
+      "default": false,
+      "label": "Top Align Image"
     },
     {
       "type": "text",

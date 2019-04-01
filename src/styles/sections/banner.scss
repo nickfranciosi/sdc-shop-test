@@ -30,6 +30,14 @@ $statsMediumBreakpoint: 936px;
       }
     }
   }
+  &.top-align {
+    @media (min-width: 768px) {
+      .banner-image {
+        padding-top: 0px;
+        padding-bottom: 80px;
+      }
+    }
+  }
   &--stats{
     justify-content: flex-start;
     overflow: hidden;
