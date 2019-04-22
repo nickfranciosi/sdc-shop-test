@@ -10,11 +10,11 @@
 {% include 'masthead' %}
 
 <div class="container">
-  <div class="section section-gap-large section-product-grid" data-col="3">
+  <div class="section section-gap-large section-product-grid" data-col="2">
     {% for product in collection.products %}
       <a href="{{ product.url | default: "#" }}" class="product-grid-item">
         <img
-        src="//images.accentuate.io?options=w400&shop={{ shop.permanent_domain }}&image={{ product.metafields.comparison.grid_image }}"
+        src="//images.accentuate.io?options=w800&shop={{ shop.permanent_domain }}&image={{ product.metafields.comparison.grid_image }}"
         alt="{{product.title}}"
         />
         <h3>{{ product.title | default: "Product Title" }}</h3>

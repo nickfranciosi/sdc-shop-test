@@ -19,6 +19,27 @@
       }
     }
   }
+  &[data-col="2"] {
+    justify-content: space-between;
+    flex-wrap: wrap;
+
+      .product-grid-item {
+        flex: 0 0 47%;
+        max-width: 660px;
+      }
+
+      @supports (display: grid) {
+        display: grid;
+        justify-content: flex-start;
+        grid-template-columns: 1fr 1fr;
+        grid-gap: 20px;
+
+        @media (min-width: 768px) {
+          grid-template-columns: 1fr 1fr;
+          grid-gap: 20px 40px;
+        }
+      }
+    }
 
 
   .product-grid-item {
