@@ -474,33 +474,46 @@ $(document).ready(() => {
   });
 
   const couponValidationUrl = 'https://shopify-validator.smiledirect.services/';
-  var validateCouponCode = function(){
-    var $input = $("input.coupon-code-input");
-    var $cart = $(".cart-summary .promo-code");
-    var couponCode = $input.val();
-    $.get({url: couponValidationUrl+couponCode, dataType: "text"}).done(function(resp){
-      if (resp == "1"){
-        rememberDiscountCodeForSession(couponCode);
-        prefillDiscountCode(couponCode);
-        $cart.removeClass("invalid");
-        $cart.addClass("valid");
-      } else if (resp == "0"){
-        $cart.removeClass("valid");
-        $cart.addClass("invalid");
-      }
-    }).fail(function(evt){
-      $cart.removeClass("valid");
-      $cart.addClass("invalid");
-    });
-  };
 
-  $("input.coupon-code-input").on('input', _.debounce(validateCouponCode, 400));
-  $("button.coupon-code-button").click(function(evt){
+  function validateCouponCode() {
+    const $input = $('input.coupon-code-input');
+    const $button = $('button.coupon-code-button');
+    const $cart = $('.cart-summary .promo-code');
+    const couponCode = $input.val();
+    $button.text('Applying...');
+    $.get({
+      url: couponValidationUrl + couponCode,
+      dataType: 'text',
+    })
+      .done((resp) => {
+        if (resp === '1') {
+          rememberDiscountCodeForSession(couponCode);
+          prefillDiscountCode(couponCode);
+          $cart.removeClass('invalid');
+          $cart.addClass('valid');
+          $button.text('Apply');
+        } else if (resp === '0') {
+          $cart.removeClass('valid');
+          $cart.addClass('invalid');
+          $button.text('Apply');
+        }
+      }).fail(() => {
+        $cart.removeClass('valid');
+        $cart.addClass('invalid');
+        $button.text('Apply');
+      });
+  }
+
+  // Removing automatic code validation - confusing UX
+
+  // ("input.coupon-code-input").on('input', _.debounce(validateCouponCode, 400));
+
+  $('button.coupon-code-button').click((evt) => {
     evt.preventDefault();
     validateCouponCode();
-  })
+  });
 
-  $(".promo-code .remove-promo-code").click(function(evt){
+  $('.promo-code .remove-promo-code').click((evt) => {
     evt.preventDefault();
     removeDiscountCookie();
   });
