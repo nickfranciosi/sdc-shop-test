@@ -481,6 +481,7 @@ $(document).ready(() => {
     const $button = $('button.coupon-code-button');
     const $cart = $('.cart-summary .promo-code');
     const couponCode = $input.val();
+    $cart.removeClass('invalid');
     $button.text('Applying...');
     $.get({
       url: couponValidationUrl + couponCode,
