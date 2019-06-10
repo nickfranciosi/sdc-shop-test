@@ -78,10 +78,10 @@ function toggleMobileMenu() {
   $mobileMenu.toggleClass('open');
 }
 
-var maxWindowHeight = 0;
+let maxWindowHeight = 0;
 function setMenuHeight() {
-  var headerHeight = $('[data-section-type="header"]').height();
-  var windowHeight = (window.outerHeight != 0) ? window.outerHeight : window.innerHeight;
+  const headerHeight = $('[data-section-type="header"]').height();
+  const windowHeight = (window.outerHeight != 0) ? window.outerHeight : window.innerHeight;
   if (windowHeight > maxWindowHeight) {
     maxWindowHeight = windowHeight;
   }
@@ -118,8 +118,8 @@ const HONEY_POT_KEY = 'contact_me_by_fax';
 
 function prefillDiscountCode(discount) {
   $('#cartForm').attr('action', `/cart?discount=${discount}`);
-  $(".cart-summary .promo-code .code").text(discount);
-  $(".cart-summary .promo-code").addClass("valid");
+  $('.cart-summary .promo-code .code').text(discount);
+  $('.cart-summary .promo-code').addClass('valid');
 }
 
 function rememberDiscountCodeForSession(discount) {
@@ -135,21 +135,22 @@ function addSavedDiscountCode() {
     rememberDiscountCodeForSession(discountCode);
     prefillDiscountCode(discountCode);
   } else {
-    var queryString = parse_query_string(window.location.search.substring(1));
-    if (typeof queryString.discount !== 'undefined'){
+    const queryString = parse_query_string(window.location.search.substring(1));
+    if (typeof queryString.discount !== 'undefined') {
       // XSS prevention
-      var urlDiscountCode = encodeURIComponent(queryString.discount);
+      const urlDiscountCode = encodeURIComponent(queryString.discount);
       rememberDiscountCodeForSession(urlDiscountCode);
       prefillDiscountCode(urlDiscountCode);
     }
   }
 }
 
-function removeDiscountCookie(){
+function removeDiscountCookie() {
   Cookies.remove(SDC_DISCOUNT_COOKIE);
   // Remove from forms
   addSavedDiscountCode();
-  $(".cart-summary .promo-code").removeClass("valid");
+  $('.cart-summary .promo-code').removeClass('valid');
+  $('.coupon-code-input').val('');
 }
 
 function showPromoSuccess() {
