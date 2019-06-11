@@ -153,22 +153,24 @@
     }
   }
   .promo-code{
-    display: flex;
-    justify-content: space-between;
-    flex-wrap: wrap;
-    .coupon-code-input{
-      width: 60%;
-      line-height: normal;
-      padding: 12px 14px;
-      text-align: center;
-      font-weight: 700;
-      color: #989898;
-      text-transform: uppercase;
-    }
-    .coupon-code-button{
-      height: auto;
-      width: 35%;
-      padding: 0; // Flex takes care of sizing
+    form {
+      display: flex;
+      justify-content: space-between;
+      flex-wrap: wrap;
+      .coupon-code-input{
+        width: 60%;
+        line-height: normal;
+        padding: 12px 14px;
+        text-align: left;
+        font-weight: 700;
+        color: #989898;
+        text-transform: uppercase;
+      }
+      .coupon-code-button{
+        height: auto;
+        width: 35%;
+        padding: 0; // Flex takes care of sizing
+      }
     }
     .error-message{
       display: none;

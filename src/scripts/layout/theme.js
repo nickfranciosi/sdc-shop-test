@@ -78,10 +78,10 @@ function toggleMobileMenu() {
   $mobileMenu.toggleClass('open');
 }
 
-var maxWindowHeight = 0;
+let maxWindowHeight = 0;
 function setMenuHeight() {
-  var headerHeight = $('[data-section-type="header"]').height();
-  var windowHeight = (window.outerHeight != 0) ? window.outerHeight : window.innerHeight;
+  const headerHeight = $('[data-section-type="header"]').height();
+  const windowHeight = (window.outerHeight != 0) ? window.outerHeight : window.innerHeight;
   if (windowHeight > maxWindowHeight) {
     maxWindowHeight = windowHeight;
   }
@@ -118,8 +118,8 @@ const HONEY_POT_KEY = 'contact_me_by_fax';
 
 function prefillDiscountCode(discount) {
   $('#cartForm').attr('action', `/cart?discount=${discount}`);
-  $(".cart-summary .promo-code .code").text(discount);
-  $(".cart-summary .promo-code").addClass("valid");
+  $('.cart-summary .promo-code .code').text(discount);
+  $('.cart-summary .promo-code').addClass('valid');
 }
 
 function rememberDiscountCodeForSession(discount) {
@@ -135,21 +135,22 @@ function addSavedDiscountCode() {
     rememberDiscountCodeForSession(discountCode);
     prefillDiscountCode(discountCode);
   } else {
-    var queryString = parse_query_string(window.location.search.substring(1));
-    if (typeof queryString.discount !== 'undefined'){
+    const queryString = parse_query_string(window.location.search.substring(1));
+    if (typeof queryString.discount !== 'undefined') {
       // XSS prevention
-      var urlDiscountCode = encodeURIComponent(queryString.discount);
+      const urlDiscountCode = encodeURIComponent(queryString.discount);
       rememberDiscountCodeForSession(urlDiscountCode);
       prefillDiscountCode(urlDiscountCode);
     }
   }
 }
 
-function removeDiscountCookie(){
+function removeDiscountCookie() {
   Cookies.remove(SDC_DISCOUNT_COOKIE);
   // Remove from forms
   addSavedDiscountCode();
-  $(".cart-summary .promo-code").removeClass("valid");
+  $('.cart-summary .promo-code').removeClass('valid');
+  $('.coupon-code-input').val('');
 }
 
 function showPromoSuccess() {
@@ -474,33 +475,47 @@ $(document).ready(() => {
   });
 
   const couponValidationUrl = 'https://shopify-validator.smiledirect.services/';
-  var validateCouponCode = function(){
-    var $input = $("input.coupon-code-input");
-    var $cart = $(".cart-summary .promo-code");
-    var couponCode = $input.val();
-    $.get({url: couponValidationUrl+couponCode, dataType: "text"}).done(function(resp){
-      if (resp == "1"){
-        rememberDiscountCodeForSession(couponCode);
-        prefillDiscountCode(couponCode);
-        $cart.removeClass("invalid");
-        $cart.addClass("valid");
-      } else if (resp == "0"){
-        $cart.removeClass("valid");
-        $cart.addClass("invalid");
-      }
-    }).fail(function(evt){
-      $cart.removeClass("valid");
-      $cart.addClass("invalid");
-    });
-  };
 
-  $("input.coupon-code-input").on('input', _.debounce(validateCouponCode, 400));
-  $("button.coupon-code-button").click(function(evt){
+  function validateCouponCode() {
+    const $input = $('input.coupon-code-input');
+    const $button = $('button.coupon-code-button');
+    const $cart = $('.cart-summary .promo-code');
+    const couponCode = $input.val();
+    $cart.removeClass('invalid');
+    $button.text('Applying...');
+    $.get({
+      url: couponValidationUrl + couponCode,
+      dataType: 'text',
+    })
+      .done((resp) => {
+        if (resp === '1') {
+          rememberDiscountCodeForSession(couponCode);
+          prefillDiscountCode(couponCode);
+          $cart.removeClass('invalid');
+          $cart.addClass('valid');
+          $button.text('Apply');
+        } else if (resp === '0') {
+          $cart.removeClass('valid');
+          $cart.addClass('invalid');
+          $button.text('Apply');
+        }
+      }).fail(() => {
+        $cart.removeClass('valid');
+        $cart.addClass('invalid');
+        $button.text('Apply');
+      });
+  }
+
+  // Removing automatic code validation - confusing UX
+
+  // ("input.coupon-code-input").on('input', _.debounce(validateCouponCode, 400));
+
+  $('button.coupon-code-button').click((evt) => {
     evt.preventDefault();
     validateCouponCode();
-  })
+  });
 
-  $(".promo-code .remove-promo-code").click(function(evt){
+  $('.promo-code .remove-promo-code').click((evt) => {
     evt.preventDefault();
     removeDiscountCookie();
   });
