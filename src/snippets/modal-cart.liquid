@@ -75,12 +75,12 @@
           <li></li>
         </ul> {% endcomment %}
       </form>
-      {% if additional_checkout_buttons %}
+      {% comment %} {% if additional_checkout_buttons %}
         <div class="additional-checkout-buttons">
           <p class="alt-checkout-title">Or checkout with:</p>
           {{ content_for_additional_checkout_buttons }}
         </div>
-      {% endif %}
+      {% endif %} {% endcomment %}
       <button class="button button--text modalCartTrigger continue-shopping-button">Continue shopping</button>
     </div>
   </div>
