@@ -15,7 +15,7 @@
     "url": "https://github.com/Shopify/starter-theme.git"
   },
   "devDependencies": {
-    "@shopify/slate-tools": "^1.0.0-beta.15",
+    "@shopify/slate-tools": "^1.0.0-beta.18",
     "babel-preset-shopify": "^16.2.0",
     "eslint-plugin-shopify": "^19.0.0",
     "stylelint": "^9.10.1",
@@ -32,12 +32,16 @@
     "@shopify/theme-rte": "^1.0.0-alpha.3",
     "@shopify/theme-sections": "^1.0.0-alpha.4",
     "@shopify/theme-variants": "^1.0.0-alpha.5",
-    "jquery": "^3.2.1",
+    "@smiledirectclub/sdc-social-album-widget": "^0.2.44",
+    "@smiledirectclub/sds-css": "^1.5.1",
+    "jquery": "^3.4.1",
     "js-cookie": "^2.2.0",
     "lazysizes": "^4.0.2",
     "lodash-es": "^4.17.4",
+    "node-sass": "^4.12.0",
     "normalize.css": "^7.0.0",
-    "slick-carousel": "^1.8.1"
+    "slick-carousel": "^1.8.1",
+    "vue": "^2.6.10"
   },
   "scripts": {
     "start": "slate-tools start --env=dev",
