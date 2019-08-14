@@ -164,9 +164,9 @@
 
 {% endif %}
 
-{% unless product.metafields.social.hide_social %}
+{% comment %} {% unless product.metafields.social.hide_social %}
   {% include 'social-gallery' %}
-{% endunless %}
+{% endunless %} {% endcomment %}
 {% comment %} go back to container {% endcomment %}
 
 <div class="container">
