@@ -34,7 +34,7 @@
     "@shopify/theme-variants": "^1.0.0-alpha.5",
     "@smiledirectclub/sdc-social-album-widget": "^0.2.44",
     "@smiledirectclub/sds-css": "^1.5.1",
-    "jquery": "^3.4.1",
+    "jquery": "^3.5.0",
     "js-cookie": "^2.2.0",
     "lazysizes": "^4.0.2",
     "lodash-es": "^4.17.4",
