@@ -1,0 +1,42 @@
+<div class="product-item {{grid_item_width}}">
+	<a href="{{ product.url | within: collection }}">
+		<span class="image" style="background-image: url({{ product.featured_image.src | img_url: 'large' }});" title="{{ product.featured_image.alt | escape }}" ></span>
+	</a>
+		
+	{% unless hide_vendor %}
+		<p class="vendor">
+			{{ product.vendor }}
+		</p><!-- /.vendor -->
+	{% endunless %}
+
+	<h3 class="name">
+		<a href="{{ product.url | within: collection }}">{{ product.title | highlight: search.terms }}</a>
+	</h3>
+	
+	{% assign compare = '' %}
+	{% assign price = product.price | money %}
+
+	{% if product.compare_at_price_max > product.price %}
+		{% capture compare %}
+			 - 
+		
+			<span class="compare-price">
+				{{ product.compare_at_price | money }}
+			</span>
+		{% endcapture %}
+	{% endif %}
+
+	{% assign price = price | append: compare %}
+	
+	{% unless hide_price %}
+		<p class="price">{{ price }}</p><!-- /.price -->
+	{% endunless %}
+
+	{% if show_add_to_cart %}
+		<form action="/cart/add" method="post">
+			<input type="hidden" name="id" value="{{ product.first_available_variant.id }}" />
+			<input type="hidden" name="quantity" value="1" />
+			<input type="submit" value="Add To Cart" class="btn" />
+		</form>
+	{% endif %}
+</div><!-- /.product-item -->

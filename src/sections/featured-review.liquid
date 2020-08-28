@@ -1,0 +1,104 @@
+<div class="featured-reviews scroll-section">
+  <div class="container">
+    <h2><span>{{ section.settings.title }}</span></h2>
+    {% if section.settings.cta-btn-link %}
+    <div class="actions">
+      <span>Over <strong>5,000</strong> 5 star reviews</span>
+      <a class="button button--transparent" href="{{ section.settings.cta-btn-link }}">{{ section.settings.cta-btn-text }}</a>
+    </div>
+    {% endif %}
+  </div>
+
+  <div class="scroll-container">
+    {% for content in section.blocks %}
+      <div class="review scroll-item">
+        <div class="rating">
+          {% for i in (1..5) %}
+            <svg class="star" width="19" height="18" viewBox="0 0 19 18" fill="none" xmlns="http://www.w3.org/2000/svg">
+              <path d="M6.46949 5.81603L8.73172 1.233C9.02213 0.644663 9.8611 0.644663 10.1515 1.233L12.4137 5.81603L17.4728 6.55549C18.1219 6.65036 18.3806 7.44824 17.9107 7.90595L14.2506 11.4708L15.1144 16.5071C15.2253 17.1539 14.5464 17.647 13.9656 17.3416L9.44162 14.9625L4.9176 17.3416C4.33681 17.647 3.65792 17.1539 3.76884 16.5071L4.63262 11.4708L0.972578 7.90595C0.50265 7.44824 0.761354 6.65036 1.41045 6.55549L6.46949 5.81603Z" fill="#4B2BF5"/>
+            </svg>
+          {% endfor %}
+        </div>
+
+        <h3>{{ content.settings.title }}</h3>
+        <p>{{ content.settings.content }}</p>
+
+        <div class="reviewer">
+          {% if content.settings.avatar %}
+            <img class="avatar" src="{{ content.settings.avatar.src | img_url: '40x40' }}" />
+          {% else %}
+            <img class="avatar" src="https://cdn.shopify.com/s/files/1/0005/5354/9942/files/avatar-default.png?29329" />
+          {% endif %}
+          <div class="details">
+            <span class="name">{{ content.settings.name }}</span>
+            <span class="location">{{ content.settings.location }}</span>
+          </div>
+        </div>
+      </div>
+
+    {% endfor %}
+  </div>
+</div>
+
+{% schema %}
+  {
+    "name": "Featured Reviews",
+    "settings": [
+      {
+        "id": "title",
+        "type": "text",
+        "label": "Section Title"
+      },
+      {
+        "id": "cta-btn-text",
+        "type": "text",
+        "label": "CTA Button Text"
+      },
+      {
+        "id": "cta-btn-link",
+        "type": "url",
+        "label": "CTA Button URL"
+      }
+    ],
+
+    "blocks": [
+      {
+        "type": "image",
+        "name": "Review",
+        "settings": [
+          {
+            "id": "title",
+            "type": "text",
+            "label": "Review Title"
+          },
+          {
+            "id": "content",
+            "type": "text",
+            "label": "Review Content"
+          },
+          {
+            "id": "name",
+            "type": "text",
+            "label": "Name"
+          },
+          {
+            "id": "location",
+            "type": "text",
+            "label": "Location"
+          },
+          {
+            "id": "avatar",
+            "type": "image_picker",
+            "label": "Avatar"
+          }
+        ]
+      }
+    ],
+    "presets": [
+      {
+        "name": "Featured Reviews",
+        "category": "content"
+      }
+    ]
+  }
+{% endschema %}

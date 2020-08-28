@@ -1,0 +1,35 @@
+{% comment %}product details displayed within accordion {% endcomment %}
+
+{% if product.metafields.extra_info.column_1_header %}
+  <div class="pd-accordion">
+    {% assign range = "12345" | split: '' %}
+
+    {% for i in range %}
+      {% assign header_attr = 'column_' | append: i | append: '_header' %}
+      {% assign body_attr = 'column_' | append: i | append: '_body' %}
+      {% assign display_attr = 'should_display_column_' | append: i %}
+
+      {% if product.metafields.extra_info[header_attr] %}
+        <div class="pd-accordion-item">
+          <input type="checkbox" id="pd-accordion-trigger{{forloop.index0}}" class="pd-accordion-trigger" {% if product.metafields.extra_info[display_attr] == "true" %}checked{% endif %} />
+          <label for="pd-accordion-trigger{{forloop.index0}}">
+            <div class="pd-accordion-header">
+              {{product.metafields.extra_info[header_attr]}}
+              <span class="pd-trigger-plus-minus"><span class="pd-trigger-plus"></span><span class="pd-trigger-minus"></span></span>
+            </div>
+          </label>
+          <div class="pd-accordion-details">
+            {{product.metafields.extra_info[body_attr]}}
+            {% comment %}
+            {% if product.metafields.accentuate.detail_accordion_video_code[forloop.index0].size > 0 %}
+              <div class="pd-accordion-video-embed-wrapper">
+                {{ product.metafields.accentuate.detail_accordion_video_code[forloop.index0] }}
+              </div>
+            {% endif %}
+            {% endcomment %}
+          </div>
+        </div>
+      {% endif %}
+    {% endfor %}
+  </div>
+{% endif %}

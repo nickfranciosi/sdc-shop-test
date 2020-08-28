@@ -1,5 +1,5 @@
-<div class="yotpo-section section section-gap-large">
-  <h2>{{ yotpo_header | default: "Glowing and Grinning Reviews" }}</h2>
+<div id="yotpo-reviews" class="yotpo-section section section-gap-large">
+  <h2>{{ yotpo_header | default: "All reviews" }}</h2>
   <div class="yotpo yotpo-main-widget"
     data-product-id="{{ yotpo_product_id | default: product.id }}"
     data-price="{{ variant.price | money_without_currency }}"
@@ -20,3 +20,10 @@
 <script type="text/javascript">
 (function e(){var e=document.createElement("script");e.type="text/javascript",e.async=true,e.src="//staticw2.yotpo.com/{{yotpo_widget_id | default: 'pwdVeBOMxGrnA10kV4Jx5m8RylnMMEWFCPfNf8Q3'}}/widget.js";var t=document.getElementsByTagName("script")[0];t.parentNode.insertBefore(e,t)})();
 </script>
+
+<style>
+  .yotpo-section .yotpo-reviews .yotpo-review.yotpo-regular-box .yotpo-comments-box .yotpo-comment .yotpo-store-owner .yotpo-store-avatar.yotpo-icon-profile,
+  .yotpo-section .yotpo-questions .yotpo-question.yotpo-regular-box .yotpo-comments-box .yotpo-comment .yotpo-header.yotpo-store-owner .yotpo-store-avatar.yotpo-icon-profile {
+    background-image: url("data:image/svg+xml,{% include 'sdc-avatar' %}") !important;
+  }
+</style>

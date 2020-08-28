@@ -26,7 +26,9 @@
   {%- endif -%}
   <div class="main-site-link">
     <div class="container">
-      <a href="https://smiledirectclub.com/" target="_blank">SmileDirectClub.com <span>&rarr;</span></a>
+      <a href="https://smiledirectclub.com/" target="_blank">SmileDirectClub.com
+        <span>{% include 'icon-arrow-circle-right' %}</span>
+      </a>
     </div>
     {%- if section.settings.promo_modal_test -%}
       <div>
@@ -38,14 +40,8 @@
   </div>
   <header role="banner">
     <div class="container">
-      <div class="hamburger">
-        <span class="hamburger-line"></span>
-        <span class="hamburger-line"></span>
-        <span class="hamburger-line"></span>
-      </div>
       <a class="logo-wrapper" href="/">
-        <div class="unstuck-logo">{% include 'sdc-store-logo' %}</div>
-        <div class="stuck-logo">{% include 'sdc-store-logo-condensed' %}</div>
+        {% include 'sdc-store-logo' %}
       </a>
       <nav role="navigation">
         <ul>
@@ -67,9 +63,20 @@
               </ul>
             </li>
           {% else %}
-            <li>
+            <li data-url="{{ link.url }}" class="
+            {% assign link_title = link.title | downcase %}
+            {% if product %}
+              {% for collection in product.collections %}
+                {% assign collection_title = collection.title | downcase %}
+                {% if collection_title contains link_title %} active-nav-item {% endif %}
+              {% endfor %}
+            {% else %}
+              {% assign collection_title = collection.title | downcase %}
+              {% if collection_title contains link_title %} active-nav-item {% endif %}
+            {% endif %}
+            ">
               <a href="{{ link.url }}">
-                {{ link.title }}
+                <span>{{ link.title }}</span>
               </a>
             </li>
           {% endif %}
@@ -81,40 +88,44 @@
       <input type="hidden" name="type" value="product">
       <input type="search" name="q" placeholder="{{ 'general.search.placeholder' | t }}">
       <button type="submit">
-        <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" class="icon"><path d="M18.64 17.02l-5.31-5.31c.81-1.08 1.26-2.43 1.26-3.87C14.5 4.06 11.44 1 7.75 1S1 4.06 1 7.75s3.06 6.75 6.75 6.75c1.44 0 2.79-.45 3.87-1.26l5.31 5.31c.45.45 1.26.54 1.71.09.45-.36.45-1.17 0-1.62zM3.25 7.75c0-2.52 1.98-4.5 4.5-4.5s4.5 1.98 4.5 4.5-1.98 4.5-4.5 4.5-4.5-1.98-4.5-4.5z"/></svg>
+        {% include 'icon-search' %}
         <span class="icon-fallback-text">{{ 'general.search.submit' | t }}</span>
       </button>
     </form>
 
-    <a href="#cart" class="cart-wrapper  {% if template != 'cart' %}modalCartTrigger{% endif %}">
-      <span class="cart-icon-wrapper">{% include 'shopping_cart' %}</span>
-      <span class="cart-count-wrapper">({{ cart.item_count }})</span>
+    {% if shop.customer_accounts_enabled %}
+      {% if customer %}
+        <a href="/account" class="link-nav account {% if template contains 'customers' %} active {% endif %}">
+          <span>{% include 'icon_account_svg' %}</span>
+        </a>
+        {% comment %}TODO Dropdown menu here ^{% endcomment %}
+      {% else %}
+        <a href="/account/login" class="link-nav account {% if template contains 'customers' %} active {% endif %}">
+          <span>{% include 'icon_account_svg' %}</span>
+        </a>
+      {% endif %}
+    {% endif %}
+
+    <a href="#cart" class="link-nav cart-wrapper  {% if template != 'cart' %}modalCartTrigger{% endif %}">
+      <span class="cart-icon-wrapper">{% include 'icon_cart_svg' %}</span>
+		{% assign cart_count = 0 %}
+		{% for item in cart.items %}
+			{% if item.vendor == 'DailyKarma' %}
+				{% assign cart_count = cart_count | plus: 1 %}
+			{% else %}
+				{% assign cart_count = cart_count | plus: item.quantity %}
+			{% endif %}
+		{% endfor %}      
+      <span class="cart-count-wrapper {% if cart.item_count == 0 %}hide{% endif %}">
+        {{ cart_count }}
+      </span>
     </a>
 
-    {% if shop.customer_accounts_enabled %}
-      <ul>
-        {% if customer %}
-          <li>
-            {% if customer.first_name != blank %}
-              {% capture first_name %}<a href="/account">{{ customer.first_name }}</a>{% endcapture %}
-              {{ 'layout.customer.logged_in_as_html' | t: first_name: first_name }}
-            {% else %}
-              <a href="/account">{{ 'layout.customer.account' | t }}</a>
-            {% endif %}
-          </li>
-          <li>
-            {{ 'layout.customer.log_out' | t | customer_logout_link }}
-          </li>
-        {% else %}
-          <li>
-            {{ 'layout.customer.log_in' | t | customer_login_link }}
-          </li>
-          <li>
-            {{ 'layout.customer.create_account' | t | customer_register_link }}
-          </li>
-        {% endif %}
-      </ul>
-    {% endif %}
+    <div class="hamburger">
+      <span class="hamburger-line"></span>
+      <span class="hamburger-line"></span>
+      <span class="hamburger-line"></span>
+    </div>
     </div>
   </header>
 </section>

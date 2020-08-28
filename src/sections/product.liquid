@@ -1,4 +1,3 @@
-
 <div data-section-id="{{ section.id }}" data-section-type="product" data-enable-history-state="true" class="container" data-product-handle="{{product.handle}}">
   {%- assign current_variant = product.selected_or_first_available_variant -%}
   <div class="product-info-section section">
@@ -6,9 +5,6 @@
       {% include 'product_gallery' %}
     </div>
     <div class="product-info-content">
-      {% comment %} <div class="product-info-breadcrumbs">
-        <p>Shop / bright on<sup>&trade;</sup> / {{ product.title }} </p>
-      </div> {% endcomment %}
       <h1>{{ product.title }}</h1>
       <div data-price-wrapper>
           {% if product.compare_at_price_max > product.price %}
@@ -106,6 +102,7 @@
             </div>
           {% endif %}
       </div>
+      {% include 'pd-accordion' %}
       {% unless product == empty %}
         <script type="application/json" data-product-json>
           {{ product | json }}
@@ -114,69 +111,31 @@
       </div>
   </div>
 </div>
-{% comment %} exit container for full width {% endcomment %}
-
-{% if product.metafields.extra_info.column_1_header %}
-<div class="extra-info-wrapper full-width section">
-  <div class="extra-info-content container">
-    <div class="extra-info-block">
-      <h3>{{product.metafields.extra_info.column_1_header}}</h3>
-      {{product.metafields.extra_info.column_1_body}}
-    </div>
-
-    <div class="extra-info-block">
-      <h3>{{product.metafields.extra_info.column_2_header}}</h3>
-      {{product.metafields.extra_info.column_2_body}}
-    </div>
-
-    <div class="extra-info-block">
-      {% if product.metafields.extra_info.column_3_header %}
-          <h3>{{product.metafields.extra_info.column_3_header}}</h3>
-          {{product.metafields.extra_info.column_3_body}}
-      {% elsif  product.metafields.extra_info.stat_1_icon %}
-        <div class="extra-info-block__stats">
-          <ul>
-            <li>{% include {{product.metafields.extra_info.stat_1_icon}} %} {{product.metafields.extra_info.stat_1_title}}</li>
-            {% if product.metafields.extra_info.stat_2_icon %}
-              <li>{% include product.metafields.extra_info.stat_2_icon %} {{product.metafields.extra_info.stat_2_title}}</li>
-            {% endif %}
-            {% if product.metafields.extra_info.stat_3_icon %}
-              <li>{% include product.metafields.extra_info.stat_3_icon %} {{product.metafields.extra_info.stat_3_title}}</li>
-            {% endif %}
-            {% if product.metafields.extra_info.stat_4_icon %}
-              <li>{% include product.metafields.extra_info.stat_4_icon %} {{product.metafields.extra_info.stat_4_title}}</li>
-            {% endif %}
-          </ul>
-        </div>
-      {% endif %}
-    </div>
-  </div>
-</div>
 
 <div class="container">
   {%- assign product1 = all_products[product.metafields.related_products.product_1] -%}
   {%- assign product2 = all_products[product.metafields.related_products.product_2] -%}
   {%- assign product3 = all_products[product.metafields.related_products.product_3] -%}
+  {%- assign product4 = all_products[product.metafields.related_products.product_4] -%}
 
   {% assign product_grid_header = "People also viewed"%}
   {% include 'product-grid'%}
 </div>
 
-{% endif %}
-
-{% comment %} {% unless product.metafields.social.hide_social %}
-  {% include 'social-gallery' %}
-{% endunless %} {% endcomment %}
-{% comment %} go back to container {% endcomment %}
-
+<a name="yotpo-reviews"></a>
 <div class="container">
   {% unless product.metafields.social.hide_ratings %}
     {% include 'yotpo-product' %}
   {% endunless %}
-  <section class="section section-gap-large">
-    {% include 'product-table' %}
+  <section class="section product">
+    {% include 'product-table-whitening' %}
   </section>
+</div>
 
+<div class="bold-custom-subscription-product-fields" style="display: none;">
+  <div class="bold-custom-single_purchase_info">{{product.metafields.accentuate.single_purchase_info}}</div>
+  <div class="bold-custom-single_purchase_shipping_info">{{product.metafields.accentuate.single_purchase_shipping_info}}</div>
+  <div class="bold-custom-subscription_shipping_info">{{product.metafields.accentuate.subscription_shipping_info}}</div>
 </div>
 
 <script>

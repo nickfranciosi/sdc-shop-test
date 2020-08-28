@@ -1,0 +1,104 @@
+{% assign current_product = product %}
+{% assign product_collection = collections["teeth-whitening"] %}
+
+<div>
+  <h2 class="product-table--title">Compare products</h2>
+  <div class="product-table-scroll-wrapper">
+  <table class="product-table">
+    <thead>
+      {% comment %} one empty space for table layout {% endcomment %}
+      <th></th>
+      <!-- ensure to display current product first -->
+      {% for product in product_collection.products %}
+        {% if product.id == current_product.id %}
+          {% include 'product-table_image' %}
+        {% endif %}
+      {% endfor %}
+      {% for product in product_collection.products %}
+        {% if product.id != current_product.id %}
+          {% include 'product-table_image' %}
+        {% endif %}
+      {% endfor %}
+    </thead>
+    <tbody>
+      <tr>
+        <th>Price</th>
+        {% for product in product_collection.products %}
+          {% if product.id == current_product.id %}
+            {% include 'product-table_price' %}
+          {% endif %}
+        {%  endfor %}
+        {% for product in product_collection.products %}
+          {% if product.id != current_product.id %}
+            {% include 'product-table_price' %}
+          {% endif %}
+        {%  endfor %}
+      </tr>
+      {% comment %} <tr>
+        <th>Value</th>
+        {% for product in product_collection.products %}
+          {% if product.id == current_product.id %}
+            {% include 'product-table_value' %}
+          {% endif %}
+        {%  endfor %}
+        {% for product in product_collection.products %}
+          {% if product.id != current_product.id %}
+            {% include 'product-table_value' %}
+          {% endif %}
+        {%  endfor %}
+      </tr> {% endcomment %}
+      <tr>
+        <th>Pens</th>
+        {% for product in product_collection.products %}
+          {% if product.id == current_product.id %}
+            {% include 'product-table_pens' %}
+          {% endif %}
+        {%  endfor %}
+        {% for product in product_collection.products %}
+          {% if product.id != current_product.id %}
+            {% include 'product-table_pens' %}
+          {% endif %}
+        {%  endfor %}
+      </tr>
+      <tr>
+        <th>Light</th>
+        {% for product in product_collection.products %}
+          {% if product.id == current_product.id %}
+            {% include 'product-table_light' %}
+          {% endif %}
+        {%  endfor %}
+        {% for product in product_collection.products %}
+          {% if product.id != current_product.id %}
+            {% include 'product-table_light' %}
+          {% endif %}
+        {%  endfor %}
+      </tr>
+      <tr>
+        <th>Full Treatments</th>
+        {% for product in product_collection.products %}
+          {% if product.id == current_product.id %}
+            {% include 'product-table_full-treatments' %}
+          {% endif %}
+        {%  endfor %}
+        {% for product in product_collection.products %}
+          {% if product.id != current_product.id %}
+            {% include 'product-table_full-treatments' %}
+          {% endif %}
+        {%  endfor %}
+      </tr>
+      <tr>
+        <th>Months of Enbrightenment</th>
+        {% for product in product_collection.products %}
+          {% if product.id == current_product.id %}
+            {% include 'product-table_months' %}
+          {% endif %}
+        {%  endfor %}
+        {% for product in product_collection.products %}
+          {% if product.id != current_product.id %}
+            {% include 'product-table_months' %}
+          {% endif %}
+        {%  endfor %}
+      </tr>
+    </tbody>
+  </table>
+</div>

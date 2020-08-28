@@ -1,0 +1,36 @@
+{%- assign current_variant = product.selected_or_first_available_variant -%}
+{%- assign featured_image = current_variant.featured_image | default: product.featured_image -%}
+
+<div class="product-image-gallery">
+ <div class="main-image product-image-slider">
+  {% for image in product.images %}
+      <img
+        draggable="false"
+        src="{{ image.src | img_url: '600x600' }}"
+        data-key="{{ image.id }}"
+      >
+  {% endfor %}
+  </div>
+  {% if product.images.size > 1 %}
+    <ul class="thumbnails">
+      {% for image in product.images %}
+        {% if featured_image == image %}
+        <li class="thumbnail" data-active>
+          <a href="{{ image.src | img_url: '480x480' }}" data-thumbnail-id="{{ image.id }}"
+          data-key="{{ image.id }}"  data-product-single-thumbnail>
+            <img class="product-single__thumbnail-image" src="{{ image.src | img_url: '160x160' }}" alt="{{ image.alt | escape }}">
+          </a>
+        </li>
+        {% else %}
+          <li class="thumbnail">
+          <a href="{{ image.src | img_url: '480x480' }}" data-thumbnail-id="{{ image.id }}"
+          data-key="{{ image.id }}"  data-product-single-thumbnail>
+            <img class="product-single__thumbnail-image" src="{{ image.src | img_url: '160x160' }}" alt="{{ image.alt | escape }}">
+          </a>
+        </li>
+        {% endif %}
+
+      {% endfor %}
+    </ul>
+  {% endif %}
+</div>

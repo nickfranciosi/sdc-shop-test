@@ -1,0 +1,35 @@
+<script class="cartFlagX"></script>{% include 'cart_udo' %}
+{% include 'utag' %}
+<div class="desktop-cart-wrapper container">
+    <div class="cart-item-container">
+      <div class="cart-title">
+        <h3>{{ 'cart.general.title' | t }}</h3>
+      </div>
+      <div class="cart-items">
+        {% if cart.item_count > 0 %}
+          {% for item in cart.items %}
+            {% include 'cart-item'%}
+          {% endfor %}
+        {% endif %}
+      </div>
+    </div>
+
+    {% if cart.item_count <= 0 %}
+      <div class="supports-no-cookies">
+        <p>{{ 'cart.general.cookies_required' | t }}</p>
+      </div>
+    {% endif %}
+
+    <div class="cart-summary">
+      <div class="cart-subtotal">
+        <p>{{ 'cart.general.subtotal' | t }}</p>
+        <p><span style="display:none" class="tdf-cart-total-flag"></span>{{ cart.total_price | money }}</p>
+      </div>
+      {% if cart.total_discounts > 0 %}
+        <p>{{ 'cart.general.savings' | t }} {{ cart.total_discounts | money }}</p>
+      {% endif %}
+      <form action="/cart" method="post" novalidate>
+        <input type="submit" name="checkout" class="button button--full-width" value="Checkout">
+      </form>
+    </div>
+</div>

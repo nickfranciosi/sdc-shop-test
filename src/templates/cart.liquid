@@ -28,7 +28,9 @@
       {% if cart.total_discounts > 0 %}
         <p>{{ 'cart.general.savings' | t }} {{ cart.total_discounts | money }}</p>
       {% endif %}
+     
       <form action="/cart" method="post" novalidate>
+        
         <input type="submit" name="checkout" class="button button--full-width" value="Checkout">
       </form>
     </div>

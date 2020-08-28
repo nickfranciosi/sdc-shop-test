@@ -1,52 +1,128 @@
 {%- if product1.title != ""-%}
-<div class="container">
-  <div class="section section-gap-large ">
-    {% if product_grid_header%}<h2 class="product-grid-header">{{product_grid_header}}</h2>{% endif %}
-    <div class="section-product-grid" data-col="{% if section.settings.product_three != "" %}3{% else %}2{% endif %}">
-      {%- if product1.title != ""-%}
-        <a href="{{ product1.url | default: "#" }}" class="product-grid-item">
-          <img
-          src="//images.accentuate.io?options=w400&shop={{ shop.permanent_domain }}&image={{ product1.metafields.comparison.grid_image }}"
-          alt="{{product1.title}}"
-        "/>
-          <h3>{{ product1.title | default: "Product Title" }}</h3>
-          {% if product1.metafields.price.alt_price %}
-            <p>{{product1.metafields.price.alt_price}}</p>
-          {% else %}
-            <p>{{ product1.price | money | default: "$1.99" | remove: "," }}</p>
-          {% endif%}
-        </a>
-      {%- endif -%}
-      {%- if product2.title != ""-%}
-        <a href="{{ product2.url | default: "#" }}" class="product-grid-item">
-        <img
-          src="//images.accentuate.io?options=w400&shop={{ shop.permanent_domain }}&image={{ product2.metafields.comparison.grid_image }}"
-          alt="{{product2.title}}"
-        "/>
-          {% comment %} <img src="{{product2.metafields.comparison.grid_image }}" alt="{{product2.title}}"/> {% endcomment %}
-          <h3>{{ product2.title | default: "Product Title" }}</h3>
-          {% if product2.metafields.price.alt_price %}
-            <p>{{product2.metafields.price.alt_price}}</p>
-          {% else %}
-            <p>{{ product2.price | money | default: "$1.99" | remove: "," }}</p>
-          {% endif%}
-        </a>
-      {%- endif -%}
-      {%- if product3.title != ""-%}
-        <a href="{{ product3.url | default: "#" }}" class="product-grid-item">
-          <img
-          src="//images.accentuate.io?options=w400&shop={{ shop.permanent_domain }}&image={{ product3.metafields.comparison.grid_image }}"
-          alt="{{product3.title}}"
-        "/>
-          <h3>{{ product3.title | default: "Product Title" }}</h3>
-          {% if product3.metafields.price.alt_price %}
-            <p>{{product3.metafields.price.alt_price}}</p>
-          {% else %}
-            <p>{{ product3.price | money | default: "$1.99" | remove: "," }}</p>
-          {% endif%}
-        </a>
-      {%- endif -%}
-    </div>
+  <div class="section section-gap-large">
+    <div class="container">
+      {% if product_grid_header%}<h2 class="header-product-grid">{{product_grid_header}}</h2>{% endif %}
+      <div class="section section-product-grid">
+
+        <!-- each product added individually rather than using 'product-element' snippet 
+             because product attributes are from custom fields -->
+
+        {%- if product1 and product1.title != ""-%}
+        {%- assign current_product1_variant = product1.first_available_variant -%}
+          <div class="product-element">
+            <a href='{{ product1.url | default: "#" }}' class="product-element-content">
+              <img src="{{ product1 | img_url: '720x720' }}" />
+              <div class="title">{{ product1.title }}</div>
+            </a>  
+            <div class="product-element-footer">
+              <div class="yotpo bottomLine yotpo-rating-info" data-product-id="{{ product1.id }}"></div>
+              <form class="product-element-form" method="post" action="/cart/add">
+                <input type="hidden" name="id" value="{{ current_product1_variant.id }}" />
+                <input type="hidden" name="quantity" value="1"/>
+                <button 
+                  {% unless current_product1_variant.available %}disabled="disabled"{% endunless %}
+                  type="submit"
+                  name="add" 
+                  class="button button--transparent button--small-reduced-padding" 
+                  data-add-to-cart>
+                    {% if current_product1_variant.available %}
+                      Add to cart - {{ current_product1_variant.price | money | remove: ','  }}
+                    {% else %}
+                      Sold Out
+                    {% endif %}
+                </button>
+              </form>  
+            </div>
+          </div>
+        {%- endif -%}
+
+        {%- if product2 and product2.title != ""-%}
+        {%- assign current_product2_variant = product2.first_available_variant -%}
+          <div class="product-element">
+            <a href='{{ product2.url | default: "#" }}' class="product-element-content">
+              <img src="{{ product2 | img_url: '720x720' }}" />
+              <div class="title">{{ product2.title }}</div>
+            </a>  
+            <div class="product-element-footer">
+              <div class="yotpo bottomLine yotpo-rating-info" data-product-id="{{ product2.id }}"></div>
+              <form class="product-element-form" method="post" action="/cart/add">
+                <input type="hidden" name="id" value="{{ current_product2_variant.id }}" />
+                <input type="hidden" name="quantity" value="1"/>
+                <button 
+                  {% unless current_product2_variant.available %}disabled="disabled"{% endunless %}
+                  type="submit"
+                  name="add" 
+                  class="button button--transparent button--small-reduced-padding" 
+                  data-add-to-cart>
+                    {% if current_product2_variant.available %}
+                      Add to cart - {{ current_product2_variant.price | money | remove: ','  }}
+                    {% else %}
+                      Sold Out
+                    {% endif %}
+                </button>
+              </form>  
+            </div>
+          </div>
+        {%- endif -%}
+
+        {%- if product3 and product3.title != ""-%}
+        {%- assign current_product3_variant = product3.first_available_variant -%}
+          <div class="product-element">
+            <a href='{{ product3.url | default: "#" }}' class="product-element-content">
+              <img src="{{ product3 | img_url: '720x720' }}" />
+              <div class="title">{{ product3.title }}</div>
+            </a>  
+            <div class="product-element-footer">
+              <div class="yotpo bottomLine yotpo-rating-info" data-product-id="{{ product3.id }}"></div>
+              <form class="product-element-form" method="post" action="/cart/add">
+                <input type="hidden" name="id" value="{{ current_product3_variant.id }}" />
+                <input type="hidden" name="quantity" value="1"/>
+                <button 
+                  {% unless current_product3_variant.available %}disabled="disabled"{% endunless %}
+                  type="submit"
+                  name="add" 
+                  class="button button--transparent button--small-reduced-padding" 
+                  data-add-to-cart>
+                    {% if current_product3_variant.available %}
+                      Add to cart - {{ current_product3_variant.price | money | remove: ','  }}
+                    {% else %}
+                      Sold Out
+                    {% endif %}
+                </button>
+              </form>  
+            </div>
+          </div>
+        {%- endif -%}
+
+        {%- if product4 and product4.title != ""-%}
+        {%- assign current_product4_variant = product4.first_available_variant -%}
+          <div class="product-element">
+            <a href='{{ product4.url | default: "#" }}' class="product-element-content">
+              <img src="{{ product4 | img_url: '720x720' }}" />
+              <div class="title">{{ product4.title }}</div>
+            </a>  
+            <div class="product-element-footer">
+              <div class="yotpo bottomLine yotpo-rating-info" data-product-id="{{ product4.id }}"></div>
+              <form class="product-element-form" method="post" action="/cart/add">
+                <input type="hidden" name="id" value="{{ current_product4_variant.id }}" />
+                <input type="hidden" name="quantity" value="1"/>
+                <button 
+                  {% unless current_product4_variant.available %}disabled="disabled"{% endunless %}
+                  type="submit"
+                  name="add" 
+                  class="button button--transparent button--small-reduced-padding" 
+                  data-add-to-cart>
+                    {% if current_product4_variant.available %}
+                      Add to cart - {{ current_product4_variant.price | money | remove: ','  }}
+                    {% else %}
+                      Sold Out
+                    {% endif %}
+                </button>
+              </form>  
+            </div>
+          </div>
+        {%- endif -%}
+      </div>
+    </div>  
   </div>
-</div>
 {%- endif -%}

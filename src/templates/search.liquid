@@ -1,5 +1,9 @@
 {% paginate search.results by 12 %}
 
+{%- assign lookingForAlignersProductID = 4546114912361 -%}
+{%- assign lookingForRetainersProductID = 4546114650217 -%}
+{%- assign lookingForImpressionKitProductID = 4546115076201 -%}
+
   <div class="container search-masthead">
     <h1>
       {% if search.performed %}
@@ -38,7 +42,7 @@
     {% endif %}
   </div>
 
-  
+
   {% if search.performed %}
       {% if search.results_count > 0 %}
         <!-- Search performed with results -->
@@ -50,18 +54,22 @@
                     <img
                       src="//images.accentuate.io?options=w400&shop={{ shop.permanent_domain }}&image={{ item.metafields.comparison.grid_image }}"
                       alt="{{item.title}}" />
-                    <h3>{{ item.title | default: "Product Title" }}</h3>
-                    <p>
-                      {% if item.metafields.price.alt_price %}
-                        <p>{{item.metafields.price.alt_price}}</p>
-                      {% else %}
-                        {% if item.price_max > item.price %}
-                          {{item.price_min | money | remove: ',' }} - {{item.price_max | money | remove: ',' }}
+                    <h3>{{ item.title | default: "" }}</h3>
+                    {% if item.id == lookingForAlignersProductID or item.id == lookingForRetainersProductID or item.id == lookingForImpressionKitProductID %}
+                    	<p>Learn more</p>
+                    {% else %}
+                      <p>
+                        {% if item.metafields.price.alt_price %}
+                          <p>{{item.metafields.price.alt_price}}</p>
                         {% else %}
-                          {{ item.price | money | remove: ','  }}
-                        {% endif %}
-                      {% endif%}
-                    </p>
+                          {% if item.price_max > item.price %}
+                            {{item.price_min | money | remove: ',' }} - {{item.price_max | money | remove: ',' }}
+                          {% else %}
+                            {{ item.price | money | remove: ','  }}
+                          {% endif %}
+                        {% endif%}
+                      </p>
+            		{% endif%}
                   </a>
                 {% endif %}
             {% endfor %}
@@ -75,9 +83,10 @@
 
   {% if search.results_count == 0 %}
     <!-- Search not performed -->
-    {%- assign product1 = collections.whitening.products[0] -%}
-    {%- assign product2 = collections.whitening.products[1] -%}
-    {%- assign product3 = collections.whitening.products[2] -%}
+    {%- assign product1 = collections.teeth-whitening.products[0] -%}
+    {%- assign product2 = collections.teeth-whitening.products[1] -%}
+    {%- assign product3 = collections.teeth-whitening.products[2] -%}
+    {%- assign product4 = collections.teeth-whitening.products[3] -%}
     {% assign product_grid_header = "Featured products" %}
     <div class="featured-products">
       {% include 'product-grid'%}

@@ -1,0 +1,58 @@
+{% include 'collection_udo' %}
+
+{%- assign bg_color = collection.metafields.masthead.bg_color -%}
+{%- assign personImage = collection.image -%}
+{%- assign headline = collection.metafields.masthead.collection_headline -%}
+{%- assign ctaLink = collection.metafields.accentuate.cta_link -%}
+{%- assign ctaText = collection.metafields.accentuate.cta_text -%}
+
+{% capture text %}
+ <p>{{collection.description}}</p>
+{% endcapture %}
+
+{% include 'masthead' %}
+
+{% render 'breadcrumbs' %}
+
+<div class="container">
+  <div class="section section-product-grid">
+    {% for product in collection.products %}
+      {% include 'product-element' %}
+    {%  endfor %}
+  </div>
+
+  {% if collection.title == "Aligner Accessories"%}
+  <section class="section section-banner section-banner--stats " style="background-color: #fff;">
+        <div class="banner-segment banner-image" style="padding-top:0px;"><img src="//cdn.shopify.com/s/files/1/0005/5354/9942/files/accessories-2_8a8e46a2-d622-4781-b8e4-67a557c22c03.jpg?v=1585664232" alt=""></div>
+        <div class="banner-segment banner-stats">
+          <div class="banner-stat__list">
+
+              <div class="banner-stat">
+                <div class="banner-stat__text">
+                  <h1 style="font-size:24px;line-height:24px;font-weight:900;">Make dental hygiene anything but routine.</h1>
+                  <p>Supplement your regular brushing and flossing with SmileDirectClub’s line of premium dental accessories. These oral care products freshen, clean, and protect your clear aligners – and so much more. Plus, they’re affordable and can be shipped directly to your door.</p>
+                </div>
+              </div>
+
+              <div class="banner-stat">
+                <div class="banner-stat__text">
+                  <h2 style="font-size:20px;">Compact aligner/retainer cases. Big value.</h2>
+                  <p>Our sleek storage case keeps your aligners and retainers safe and dry while not in use. It fits easily into a pocket or small clutch, and the soft-touch silicone lining keeps everything in place. There’s also a hidden mirror that swivels open from the bottom – perfect for making sure aligners are seated correctly (or that there’s nothing in your teeth).</p>
+                  <p>For even more tooth technology, our trackable storage case is Bluetooth-enabled with a location-tracking chip powered by Tile inside. Just use your smartphone and the Tile app to locate your case. You’ll never have to worry about misplacing your aligners and retainers again.</p>
+                </div>
+              </div>
+
+              <div class="banner-stat">
+                <div class="banner-stat__text">
+                  <h2 style="font-size:20px;">Machines that freshen and clean.</h2>
+                  <p>Our smile spa™ is the first oral appliance cleaner to combine ultrasonic and UV cleaning to kill 99% of odor-causing bacteria* with just two 5-minute cleaning cycles. It thoroughly cleans all sorts of mouth gadgets – clear aligners, retainers, sport mouthguards, nightguards, bruxism appliances, TMJ appliances, dentures, water flosser tips, and even toothbrush heads. The durable, stainless steel reservoir is large enough to clean multiple times at once. Just add water. For an even faster, minty-fresh clean, drop in one of our universal cleaning tablets (sold separately).</p>
+                  <br>
+                  <p>Our compact water flosser removes 99% of the plaque between teeth and below the gumline, where traditional brushing and flossing can’t reach. And it’s 50% more effective than string floss when it comes to improving the health of your gums. It’s easy to use, a single charge lasts a full month, and you can even floss while you shower – it’s water-resistant. It’s perfect for people with braces or other hard-to-reach dental work.</p>
+                </div>
+              </div>
+
+          </div>
+        </div>
+  </section><!-- /.section section-intro -->
+  {% endif %}
+</div>

@@ -1,0 +1,52 @@
+{% include 'collection_udo' %}
+
+{%- assign bg_color = collection.metafields.masthead.bg_color -%}
+{%- assign personImage = collection.image -%}
+{%- assign headline = collection.metafields.masthead.collection_headline -%}
+{%- assign ctaLink = collection.metafields.accentuate.cta_link -%}
+{%- assign ctaText = collection.metafields.accentuate.cta_text -%}
+
+{% capture text %}
+ <p>{{collection.description}}</p>
+{% endcapture %}
+
+{% include 'masthead' %}
+
+{% render 'breadcrumbs' %}
+
+<div class="container">
+  <div class="section section-product-grid">
+    {% for product in collection.products %}
+      {% include 'product-element' %}
+    {%  endfor %}
+  </div>
+
+  {% if collection.title == "Oral Care"%}
+  <section class="section section-banner section-banner--stats " style="background-color: #fff;">
+        <div class="banner-segment banner-image" style="padding-top:0px;"><img src="https://cdn.shopify.com/s/files/1/0005/5354/9942/files/oral-care.jpg?v=1585604084" alt=""></div>
+        <div class="banner-segment banner-stats">
+          <div class="banner-stat__list">
+
+              <div class="banner-stat">
+                <div class="banner-stat__text">
+                  <h1 style="font-size:24px;line-height:24px;font-weight:900;">What is Oral Care?</h1>
+                  <p>Oral care is the practice of maintaining your dental health with regular cleaning, like brushing and flossing. Good oral hygiene is essential for healthy teeth and gums – and so much more. That’s where we come in: SmileDirectClub’s complete line of premium oral care products will keep your smile cleaner, brighter, fresher, and healthier – all at prices you can afford.</p>
+                </div>
+              </div>
+
+              <div class="banner-stat">
+                <div class="banner-stat__text">
+                  <h2 style="font-size:20px;">Cleaner smiles start here.</h2>
+                  <p>SmileDirectClub’s electric toothbrush is lightweight like a manual brush, but it’s battery-powered for gentle, effective cleaning. Quiet sonic vibrations move bristles, not your hand. And the brush’s unique 3-bristle blend softly scrubs and deeply cleans your teeth 50% better than a manual toothbrush, all while massaging your gums. Plus, our versatile and innovative 3-in-1 base acts as a counter stand, magnetic mirror mount, and travel case to protect your brush head when you’re on the go.</p>
+                  <p>Level up with our Club edition electric toothbrush – it has the added benefit of an innovative aligner cleaning brush head, specially designed to fit into the nooks and crannies of aligners with non-abrasive bristles for a thorough clean.</p>
+                  <p>Don’t forget to keep your electric toothbrush in tip-top shape and replace your brush head every 3 months. Our brush head refills come with a new AAA battery to help keep your smile fully powered.</p>
+                  <p>And to pair with your toothbrush, check out our two premium toothpastes to keep your smile clean and fresh. Sensitivity to repair and protect. Whitening to brighten and defend. Both help keep your smile clean, bright, and cavity-free.</p>
+                </div>
+              </div>
+
+
+          </div>
+        </div>
+  </section><!-- /.section section-intro -->
+  {% endif %}
+</div>

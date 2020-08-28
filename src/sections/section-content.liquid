@@ -1,0 +1,77 @@
+{%- assign _section = section.settings -%}
+<section class="section section-content">
+	<div class="shell">
+		<div class="container">
+			{%- if _section.image -%}
+				<div class="section__image">
+					{{ _section.image | img_url: '600x' | img_tag }}
+				</div><!-- /.section__image -->
+			{%- endif -%}
+
+			<div class="section__content">
+				{%- if _section.title -%}
+					<h3>{{ _section.title }}</h3>
+				{%- endif -%}
+
+				{{ _section.content }}
+
+				{%- if _section.btn_url != empty and _section.btn_text != empty -%}
+					<a href="{{ _section.btn_url }}" class="btn">
+						{{ _section.btn_text }}
+					</a>
+				{%- endif -%}
+			</div><!-- /.section__content -->
+		</div><!-- /.container -->
+	</div><!-- /.shell -->
+</section><!-- /.section section-content -->
+
+{% schema %}
+{
+	"name": "Content",
+	"settings": [
+		{
+			"type": "header",
+			"content": "Image"
+		},
+		{
+			"type": "image_picker",
+			"id": "image",
+			"label": "Image"
+		},
+		{
+			"type": "header",
+			"content": "content"
+		},
+		{
+			"type": "text",
+			"id": "title",
+			"label": "Title"
+		},
+		{
+			"type": "richtext",
+			"id": "content",
+			"label": "Content"
+		},
+		{
+			"type": "header",
+			"content": "Button"
+		},
+		{
+			"type": "url",
+			"id": "btn_url",
+			"label": "URL"
+		},
+		{
+			"type": "text",
+			"id": "btn_text",
+			"label": "Text"
+		}
+	],
+	"presets": [
+		{
+			"name": "Content",
+			"category": "Content"
+		}
+	]
+}
+{% endschema %}

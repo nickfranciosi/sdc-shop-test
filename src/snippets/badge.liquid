@@ -1,0 +1,8 @@
+{% for tag in product.tags %}
+  {% if tag == 'clearance' %}
+    <span class="badge">On Sale</span>
+    {% break %}
+  {% elsif tag == 'best-seller' %}
+    <span class="badge">Best Seller</span>
+  {% endif %}
+{% endfor %}

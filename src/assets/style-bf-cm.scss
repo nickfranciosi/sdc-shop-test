@@ -1,0 +1,278 @@
+$aqua:    #1fc6d2;
+$black:   #000;
+$blurple: #5700ff;
+$gray:    #e8e8e8;
+$gray2:   #7f7f7f;
+$pink:    #f0615e;
+$white:   #fff;
+$white2:  #f5f5f5;
+
+$proximanova: ProximaNova, arial, helvetica, sans-serif;
+$sofiapro: SofiaPro, arial, helvetica, sans-serif;
+
+@mixin breakpoint($point) {
+  @if $point == desktop {
+     @media (min-width: 1200px) { @content; }
+  }
+   @else if $point == laptop {
+     @media (min-width: 899px) { @content; }
+  }
+    @else if $point == tablet {
+     @media (min-width: 600px) { @content; }
+  }
+}
+
+.shopify-section {
+  .section-masthead {
+    margin: 4rem 0;
+
+    @media (screen and min-width: 768px) {
+      margin: 10rem 0;
+    }
+
+    .container {
+      .person-image-wrapper {
+        margin: 4rem 0;
+      }
+    }
+  }
+
+  &:first-child {
+    .section-masthead {
+      margin-top: 0;
+
+      #controlled-btn.button {
+        background: $blurple;
+        color: $white !important;               // :-/
+
+        &:hover {
+          background: transparent !important;
+          color: $blurple !important;
+        }
+      }
+    }
+  }
+
+  &:nth-child(even) {
+    .section-masthead {
+      .container {
+
+        @media (screen and min-width: 768px) {
+          .logo-image-wrapper {
+            position: absolute;
+            right: -25%;
+          }
+
+          .person-image-wrapper {
+            left: -25%;
+            right: auto;
+          }
+        }
+      }
+    }
+  }
+}
+
+
+// -- SCROLLING CONTAINER UTILITY CLASSES --------------------------------------
+.scroll-section {
+  background: $white2;
+  font-family: $sofiapro;
+  padding: 8rem 2rem;
+
+  .container {
+    display: flex;
+    flex-direction: column;
+    margin-bottom: 4rem;
+    text-align: center;
+
+    @include breakpoint(tablet) {
+      flex-direction: row;
+      text-align: left;
+    }
+
+    h2 {
+      flex: 1;
+      font-weight: 800;
+      margin-bottom: 20px;
+
+      @include breakpoint(tablet) { margin-bottom: 0; }
+
+      span {
+        display: inline-block;
+        @include breakpoint(tablet) { width: 80%; }
+        @include breakpoint(laptop) { width: 50%; }
+      }
+    }
+
+    .actions {
+      display: flex;
+      flex-direction: column;
+      line-height: 2;
+      @include breakpoint(tablet) { text-align: right; }
+    }
+  }
+
+  .scroll-container {
+    margin: 0 -20px;
+    overflow: hidden;
+    overflow-x: auto;
+    padding: 0 40px;
+    white-space: nowrap;
+  }
+
+  .scroll-item {
+    background: $white;
+    color: $black;
+    display: inline-block;
+    height: auto;
+    margin: 2rem 1rem;
+    min-width: 340px;
+    width: 340px;
+
+    img { transition: transform .3s cubic-bezier(.175,.885,.32,1.275); }
+
+    &:hover {
+      img { transform: scale(1.03); }
+    }
+  }
+}
+
+
+// -- FEATURED PRODUCTS --------------------------------------------------------
+.featured-products {
+  background: $white;
+
+  .product-content {
+    display: flex;
+    flex-direction: column;
+    line-height: 1.6;
+    text-decoration: none;
+
+    img { margin-bottom: 20px; }
+
+    .title { font-weight: 800; }
+
+    .price {
+      font-weight: 500;
+
+      s {
+        color: $gray2;
+        margin-right: .25em;
+      }
+    }
+
+    &:hover { color: $blurple; }
+  }
+}
+// ------------------------------------------------------ FEATURED PRODUCTS ----
+
+
+// -- FEATURED REVIEWS ---------------------------------------------------------
+.featured-reviews {
+  .review {
+    padding: 40px 40px 110px;
+    position: relative;
+
+    &:hover { img { transform: none; } }
+  }
+
+  .scroll-container {
+    display: flex;
+    flex-direction: row;
+  }
+
+  .rating {
+    margin-bottom: 2rem;
+    white-space: nowrap;
+  }
+
+  h3 {
+    color: $black;
+    font-size: 28px;
+    line-height: 1.15;
+    margin-bottom: 2rem;
+    white-space: normal;
+  }
+
+  p {
+    line-height: 1.7;
+    white-space: normal;
+  }
+
+  .reviewer {
+    bottom: 40px;
+    display: flex;
+    position: absolute;
+
+    .name { font-weight: bold; }
+
+    .avatar {
+      border-radius: 100%;
+      width: 40px;
+      height: 40px;
+    }
+
+    .details {
+      display: flex;
+      flex-direction: column;
+      font-size: 14px;
+      justify-content: center;
+      line-height: 1.15;
+      padding: 0 0 0 1.5rem;
+
+      .location { color: $gray2; }
+    }
+  }
+}
+// ---------------------------------------------------------FEATURED REVIEWS ---
+
+
+// -- PRESS BANNER -------------------------------------------------------------
+.press-banner {
+  background: $blurple;
+  color: $white;
+  font-family: $sofiapro;
+  font-weight: 500;
+  line-height: 1.6;
+  padding: 2rem 0 6rem 0;
+  text-align: center;
+  @include breakpoint(tablet) { padding: 2rem 0; }
+  @include breakpoint(laptop) { padding: 0; }
+
+  .container {
+    @include breakpoint(tablet) {
+      display: flex;
+      flex-wrap: wrap;
+    }
+
+    @include breakpoint(laptop) { flex-wrap: nowrap; }
+  }
+
+  .press {
+    margin: 0 auto 0;
+    max-width: 80%;
+    padding: 0 4rem 4rem;
+    vertical-align: top;
+
+    .press-logo {
+      line-height: 1;
+      padding: 4rem 0 2rem;
+    }
+
+    @include breakpoint(tablet) { width: 50%; }
+
+    @include breakpoint(laptop) {
+      padding: 0 4rem 8rem;
+      width: auto;
+
+      &:first-child { padding-left: 0; }
+      &:last-child { padding-right: 0; }
+
+      .press-logo {
+        padding: 8rem 0 2rem;
+      }
+    }
+  }
+}
+// ---------------------------------------------------------- PRESS BANNER ----

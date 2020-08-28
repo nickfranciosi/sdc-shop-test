@@ -1,0 +1,34 @@
+<div class="press-banner product-press-banner">
+  <h3>As seen in</h3>
+  <div class="container">
+    {% for content in section.blocks %}
+      {% if content.settings.image or content.settings.svg %}
+      <div class="press">
+
+        {% if content.settings.link and content.settings.link != "" %}
+          <a href="{{content.settings.link}}" target="blank" class="press-logo">
+        {% else %}
+          <div class="press-logo">
+        {% endif %}
+          {% if content.settings.image %}
+            <img src="{{ content.settings.image.src | img_url: 'x36' }}" />
+          {% else %}
+            {{ content.settings.svg }}
+          {% endif %}
+        {% if content.settings.link and content.settings.link != "" %}
+          </a>
+        {% else %}
+          </div>
+        {% endif %}
+
+        {% if content.settings.press-blurb %}
+        <div class="blurb">
+          {{ content.settings.press-blurb }}
+        </div>
+        {% endif %}
+
+      </div>
+      {% endif %}
+    {% endfor %}
+  </div>
+</div>

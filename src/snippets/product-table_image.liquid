@@ -1,0 +1,105 @@
+{% if product.has_only_default_variant %}
+  <th class="{% if product.id == current_product.id %}product-table-item-is-current-product{% endif %}">
+    <div class="inner">
+      <div class="current-product-tag">
+        {% if product.id == current_product.id %}
+          this product
+        {% endif %}
+      </div>
+
+      <a href="{{ product.url | default: "#" }}">
+        <img src="//images.accentuate.io?options=w200&shop={{ shop.permanent_domain }}&image={{ product.metafields.comparison.grid_image }}" alt="{{product.title}}">
+      </a>
+
+      {% if product.has_only_default_variant %}
+        <div class="product-table-item-title">
+          <a href="{{ product.url | default: "#" }}">{{product.title}}</a>
+        </div>
+      {% else %}
+        {% for variant in product.variants %}
+          <div class="product-table-item-title">
+            <a href="{{ variant.url | default: "#" }}">{{product.title}} - {{variant.title}}</a>
+          </div
+        {%  endfor %}
+      {% endif %}
+
+      <form action="/cart/add" method="post" id="product-table-form{{ forloop.index0 }}" enctype="multipart/form-data">
+        {% unless product.has_only_default_variant %}
+          {% for option in product.options_with_values %}
+            <div class="selector-wrapper js">
+
+              <label for="SingleOptionSelector-{{ forloop.index0 }}">
+                {{ option.name }}
+              </label>
+
+              <select
+                id="SingleOptionSelector-{{ forloop.index0 }}"
+                data-single-option-selector
+                data-option-name="{{option.name}}"
+                data-index="option{{ option.position }}">
+                {% for value in option.values %}
+                  <option
+                    value="{{ value | escape }}"
+                    {% if option.selected_value == value %}selected="selected"{% endif %}>
+                      {{ value }}
+                  </option>
+                {% endfor %}
+              </select>
+            </div>
+          {% endfor %}
+        {% endunless %}
+
+        <select name="id" class="no-js" data-product-select>
+          {% for variant in product.variants %}
+            <option
+              {% if variant == current_variant %}selected="selected"{% endif %}
+              {% unless variant.available %}disabled="disabled"{% endunless %}
+              value="{{ variant.id }}">
+                {{ variant.title }}
+            </option>
+          {% endfor %}
+        </select>
+        <div class="product-quantity" style="display: none;">
+          <label for="Quantity">QTY</label>
+          <input type="number" id="Quantity" name="quantity" value="1" min="1" max="99">
+        </div>
+
+        <button
+          type="submit"
+          name="add"
+          class="button button--outline"
+          data-add-to-cart
+          {% unless current_variant.available %}disabled="disabled"{% endunless %}>
+            <span data-add-to-cart-text>
+              {% if current_variant.available %}
+                {{ 'products.product.add_to_cart' | t }}
+              {% else %}
+                {{ 'products.product.sold_out' | t }}
+              {% endif %}
+            </span>
+        </button>
+      </form>
+
+    </div>
+  </th>
+{% else %}
+  {% for variant in product.variants %}
+    <th class="{% if product.id == current_product.id %}product-table-item-is-current-product{% endif %}">
+      <div class="inner">
+        <div class="current-product-tag">
+          {% if product.id == current_product.id %}
+            THIS PRODUCT
+          {% endif %}
+        </div>
+        <a href="{{ variant.url | default: "#" }}">
+          <img src="//images.accentuate.io?options=w200&shop={{ shop.permanent_domain }}&image={{ variant.metafields.comparison.grid_image }}" alt="{{product.title}} - {{variant.title}}">
+        </a>
+
+        <form method="post" action="/cart/add">
+          <input name="id" value="{{ product.variants.first.id }}" type="hidden" />
+          <button name="add" type="submit" class="button button--outline" >Add to Cart</button>
+        </form>
+      </div>
+    </th>
+  {%  endfor %}
+{% endif %}

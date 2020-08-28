@@ -1,6 +1,7 @@
 <!DOCTYPE html>
 <html lang="{{ locale }}" dir="{{ direction }}" class="{{ checkout_html_classes }}">
   <head>
+    <script src="https://cdn.optimizely.com/js/11062620435.js"></script>
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, height=device-height, minimum-scale=1.0, user-scalable=0">
@@ -24,7 +25,9 @@
       document.addEventListener('page:change', changeShippingPriceToFree);
     </script>
     {% endif %}
-  </head>
+  <!-- GSSTART Coming Soon code start. Do not change -->
+<script type="text/javascript"> gsProductByVariant = {}; {% if product.id > 1 %}{% for variant in product.variants %} gsProductByVariant[{{variant.id}}] = {% if variant.available %} 1 {% else %} 0 {% endif %}; {% endfor %}{% endif %}  gsProductCSID = "{{ product.id }}"; gsDefaultV = "{{ product.selected_or_first_available_variant.id }}"; </script><script type="text/javascript" src="https://gravity-software.com/js/shopify/pac_shop12954.js?v=3e297559d8ad2dc2aa1227598c246844"></script>
+<!-- Coming Soon code end. Do not change GSEND --></head>
   <body>
     {{ skip_to_content_link }}
 
@@ -63,5 +66,8 @@
     </div>
 
     {{ tracking_code }}
-  </body>
+  
+{% render 'ocuapp-theme', ocuapp: ocuapp %}
+{% assign ocuapp = true %}
+</body>
 </html>

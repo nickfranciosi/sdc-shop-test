@@ -1,0 +1,53 @@
+<div class="press-banner">
+  <div class="container">
+    {% for content in section.blocks %}
+      <div class="press">
+        <div class="press-logo">
+          {% if content.settings.image %}
+            <img src="{{ content.settings.image.src | img_url: 'x36' }}" />
+          {% else %}
+            {{ content.settings.svg }}
+          {% endif %}
+        </div>
+        <div class="blurb">
+          {{ content.settings.press-blurb }}
+        </div>
+      </div>
+    {% endfor %}
+  </div>
+</div>
+
+{% schema %}
+  {
+    "name": "Press Banner",
+      "blocks": [
+        {
+          "type": "image",
+          "name": "Blurb",
+          "settings": [
+            {
+              "id": "image",
+              "type": "image_picker",
+              "label": "Image File"
+            },
+            {
+              "id": "svg",
+              "type": "text",
+              "label": "SVG Content"
+            },
+            {
+              "id": "press-blurb",
+              "type": "text",
+              "label": "Press Blurb"
+            }
+          ]
+        }
+      ],
+    "presets": [
+      {
+        "name": "Press Banner",
+        "category": "content"
+      }
+    ]
+  }
+{% endschema %}

@@ -1,0 +1,51 @@
+<div class="customer-carousel scroll-section">
+  <div class="container">
+    <h2>{{ section.settings.title }}</h2>
+  </div>
+
+  <div class="scroll-container">
+
+    {% for content in section.blocks %}
+      <a href="{{content.settings.link}}" class="review scroll-item">
+        <img class="avatar" src="{{ content.settings.image.src | img_url: '340x340' }}" />
+      </a>
+    {% endfor %}
+  </div>
+</div>
+
+{% schema %}
+  {
+    "name": "Happy Customers",
+    "settings": [
+      {
+        "id": "title",
+        "type": "text",
+        "label": "Section Title"
+      }
+    ],
+    "blocks": [
+      {
+        "type": "image",
+        "name": "Customer Image",
+        "settings": [
+          {
+            "id": "link",
+            "type": "url",
+            "label": "Linked Destination"
+          },
+          {
+            "id": "image",
+            "type": "image_picker",
+            "label": "Image"
+          }
+        ]
+      }
+    ],
+    "presets": [
+      {
+        "name": "Happy Customers",
+        "category": "content"
+      }
+    ]
+  }
+{% endschema %}

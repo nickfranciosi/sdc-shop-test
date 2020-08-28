@@ -1,0 +1,67 @@
+{%- assign _section = section.settings -%}
+<section class="section section-intro">
+	<div class="shell">
+		<div class="section__content">
+
+			{%- if _section.content_image -%}
+				{{ _section.content_image | img_tag }}
+			{%- endif -%}
+
+		</div><!-- /.section__content -->
+
+		{%- if _section.image -%}
+			<div class="section__image" style="background-image: url({{ _section.image | img_url: '1000x' }});" ></div><!-- /.section__image -->
+		{%- endif -%}
+	</div><!-- /.shell -->
+</section><!-- /.section section-intro -->
+
+{% schema %}
+{
+	"name": "Intro",
+	"settings": [
+		{
+			"type": "header",
+			"content": "Image"
+		},
+		{
+			"type": "image_picker",
+			"id": "image",
+			"label": "Image"
+		},
+		{
+			"type": "header",
+			"content": "Content"
+		},
+		{
+			"type": "text",
+			"id": "title",
+			"label": "Title"
+		},
+		{
+			"type": "url",
+			"id": "content_image",
+			"label": "Image"
+		},
+		{
+			"type": "richtext",
+			"id": "text",
+			"label": "Text"
+		},
+		{
+			"type": "header",
+			"content": "Subscribe Form"
+		},
+		{
+			"type": "html",
+			"id": "subscribe",
+			"label": "MailChimp form"
+		}
+	],
+	"presets": [
+		{
+			"name": "Intro",
+			"category": "Content"
+		}
+	]
+}
+{% endschema %}

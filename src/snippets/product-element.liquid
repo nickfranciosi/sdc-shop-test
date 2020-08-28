@@ -1,0 +1,26 @@
+{%- assign current_product_variant = product.first_available_variant -%}
+<div class="product-element">
+  <a href='{{ product.url | default: "#" }}' class="product-element-content">
+    <img src="{{ product | img_url: '720x720' }}" />
+    <div class="title">{{ product.title }}</div>
+  </a>  
+  <div class="product-element-footer">
+    <div class="yotpo bottomLine yotpo-rating-info" data-product-id="{{ product.id }}"></div>
+    <form class="product-element-form" method="post" action="/cart/add">
+      <input type="hidden" name="id" value="{{ current_product_variant.id }}" />
+      <input type="hidden" name="quantity" value="1"/>
+      <button 
+        {% unless current_product_variant.available %}disabled="disabled"{% endunless %}
+        type="submit"
+        name="add" 
+        class="button button--transparent button--small-reduced-padding" 
+        data-add-to-cart>
+          {% if current_product_variant.available %}
+            Add to cart - {{ current_product_variant.price | money | remove: ','  }}
+          {% else %}
+            Sold Out
+          {% endif %}
+      </button>
+    </form>  
+  </div>
+</div>

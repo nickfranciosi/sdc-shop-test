@@ -1,0 +1,14 @@
+{% capture social_networks %}social_fa-facebook,social_fa-twitter,social_fa-instagram,social_fa-pinterest,social_fa-youtube,social_fa-rss,social_fa-tumblr,social_fa-google-plus,social_fa-snapchat,social_fa-linkedin{% endcapture %}
+
+{% assign split_social_networks = social_networks | split: ',' %}
+	
+<div class="social-holder">
+	{% for social in split_social_networks %}
+		{% if settings[social] != '' %}
+			{% assign font-icon = social | remove: "social_" %}
+			<a href="{{ settings[social] }}" class="social-icon {{social}}">
+				<i class='fa {{font-icon}}' aria-hidden='true'></i>
+			</a>
+		{% endif %}
+	{% endfor %}
+</div>

@@ -1,0 +1,45 @@
+{% include 'collection_udo' %}
+
+{%- assign bg_color = collection.metafields.masthead.bg_color -%}
+{%- assign personImage = collection.image -%}
+{%- assign headline = collection.metafields.masthead.collection_headline -%}
+{%- assign ctaLink = collection.metafields.accentuate.cta_link -%}
+{%- assign ctaText = collection.metafields.accentuate.cta_text -%}
+
+{% capture text %}
+ <p>{{collection.description}}</p>
+{% endcapture %}
+
+{% include 'masthead' %}
+
+{% render 'breadcrumbs' %}
+
+<div class="container">
+  <div class="section section-product-grid">
+    {% for product in collection.products %}
+      {% include 'product-element' %}
+    {%  endfor %}
+  </div>
+
+  {% if collection.title == "Teeth Whitening"%}
+  <section class="section section-banner section-banner--stats " style="background-color: #fff;">
+        <div class="banner-segment banner-image" style="padding-top:0px;"><img src="//cdn.shopify.com/s/files/1/0005/5354/9942/files/Whitening_F7_bd3bd996-e003-4070-9efd-289dd59b8fa6.jpg?v=1585663912" alt="SmileDirectClub Teeth Whitening"></div>
+        <div class="banner-segment banner-stats">
+          <div class="banner-stat__list">
+              <div class="banner-stat">
+                <div class="banner-stat__text">
+                  <h1 style="font-size:24px;line-height:24px;font-weight:900;">How does SmileDirectClub’s bright on premium teeth whitening work?</h1>
+                  <p>SmileDirectClub’s teeth whitening kits contain everything to whiten your teeth and achieve your brightest bright. Our bright on&trade; whitening gel gets teeth up to 9 shades whiter in just 1 week*, and contains the same enamel-safe whitening agent used by dentists – for less than half the cost.</p>
+                  <br>
+                  <p>Plus, the no-mess brush applicator keeps gel off your hands and on your teeth, where it starts working right away. The patented 20-LED accelerator light accelerates our bright boost formula, so you can see your brightest bright even faster. It’s powered by your smartphone (iPhone or Android), so it’s hands-free and portable – that means you can brighten wherever, whenever.</p>
+                  <br>
+                  <p>Whiten your teeth for 1 week – once in the morning and once in the evening, just 5 minutes each time, to achieve a brighter smile. After 1 week of teeth whitening, your results will last 6 months.</p>
+                  <br>
+                  <p><i>Results when used as directed. Results may vary.</i></p>
+                </div>
+              </div>
+          </div>
+        </div>
+  </section><!-- /.section section-intro -->
+  {% endif %}
+</div>

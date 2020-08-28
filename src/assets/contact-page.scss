@@ -1,0 +1,109 @@
+/* These styles have been added for the contact page only. Do not use this file for any other CSS
+ *
+ * Author: David Jahns - david.jahns@smiledirectclub.com 
+*/
+
+/* Container for all page content */
+.sdc-shopify-contact-page-content {
+	display: flex;
+	flex-direction: column;
+  	max-width: 450px;
+  	padding-top: 40px;
+  	padding-right: 20px;
+  	padding-bottom: 40px;
+  	padding-left: 20px;
+  	max-width: 675px;
+ 	margin: 0 auto;
+  	font-family: "Sofia Pro", sans-serif;
+}
+
+  /* On large screens */
+  @media (min-width: 992px) {
+    .sdc-shopify-contact-page-content {
+    	padding-top: 60px;
+      	padding-bottom: 60px;
+    }
+  }
+
+
+
+
+/* Links */
+.sdc-shopify-contact-page-content a {
+	color: #5700ff;
+  	cursor: pointer;
+}
+
+
+
+
+/* Page title */
+.sdc-shopify-contact-page-content h1 {
+	color: #000000;
+  	font-size: 32px;
+  	line-height: 1.15;
+  	letter-spacing: -0.5px;
+    margin-top: 0;
+  	margin-right: 0;
+  	margin-bottom: 20px;
+  	margin-left: 0;
+}
+
+	
+  /* On large screens */
+  @media (min-width: 992px) {
+    .sdc-shopify-contact-page-content h1 {
+      font-size: 60px;
+      letter-spacing: -1px;
+      margin-bottom: 32px;
+    }
+  }
+
+
+
+
+/* Text above contact form */
+.sdc-shopify-contact-page-content .text-above-contact-form {
+	margin-bottom: 20px;
+  	font-size: 16px;
+}
+
+  /* On large screens */
+  @media (min-width: 992px) {
+    .sdc-shopify-contact-page-content .text-above-contact-form {
+      margin-bottom: 32px;
+    }
+  }
+
+
+
+
+/* Form container */
+.sdc-shopify-contact-page-content form {
+	max-width: 450px;
+}
+
+
+
+
+/* Form labels */
+.sdc-shopify-contact-page-content label {
+	display: block;
+  	margin-bottom: 8px;
+  	font-size: 14px;
+}
+
+
+
+/* Form fields */
+.sdc-shopify-contact-page-content input[type=email], 
+.sdc-shopify-contact-page-content input[type=password], 
+.sdc-shopify-contact-page-content input[type=search], 
+.sdc-shopify-contact-page-content input[type=tel], 
+.sdc-shopify-contact-page-content input[type=text], 
+.sdc-shopify-contact-page-content textarea {
+	width: 100%;
+  	text-align: left;
+  	margin-bottom: 24px;
+  	border-radius: 8px;
+}

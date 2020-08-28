@@ -14,35 +14,6 @@
     "type": "git",
     "url": "https://github.com/Shopify/starter-theme.git"
   },
-  "devDependencies": {
-    "@shopify/slate-tools": "^1.0.0-beta.18",
-    "babel-preset-shopify": "^16.2.0",
-    "eslint-plugin-shopify": "^19.0.0",
-    "stylelint": "^9.10.1",
-    "stylelint-config-prettier": "^3.0.4",
-    "stylelint-config-shopify": "^5.0.0",
-    "typescript": "^3.3.3"
-  },
-  "dependencies": {
-    "@shopify/slate-cssvar-loader": "^1.0.0-beta.14",
-    "@shopify/theme-a11y": "^1.0.0-alpha.3",
-    "@shopify/theme-cart": "^1.0.0-alpha.3",
-    "@shopify/theme-currency": "^1.0.0-alpha.3",
-    "@shopify/theme-images": "^1.0.0-alpha.3",
-    "@shopify/theme-rte": "^1.0.0-alpha.3",
-    "@shopify/theme-sections": "^1.0.0-alpha.4",
-    "@shopify/theme-variants": "^1.0.0-alpha.5",
-    "@smiledirectclub/sdc-social-album-widget": "^0.2.44",
-    "@smiledirectclub/sds-css": "^1.5.1",
-    "jquery": "^3.4.1",
-    "js-cookie": "^2.2.0",
-    "lazysizes": "^4.0.2",
-    "lodash-es": "^4.17.4",
-    "node-sass": "^4.12.0",
-    "normalize.css": "^7.0.0",
-    "slick-carousel": "^1.8.1",
-    "vue": "^2.6.10"
-  },
   "scripts": {
     "start": "slate-tools start --env=dev",
     "watch": "slate-tools start --skipFirstDeploy",
@@ -54,5 +25,34 @@
     "zip": "slate-tools build && slate-tools zip",
     "lint": "slate-tools lint",
     "format": "slate-tools format"
+  },
+  "devDependencies": {
+    "@shopify/slate-tools": "^1.0.0-beta.19",
+    "babel-preset-shopify": "^16.7.0",
+    "eslint-plugin-shopify": "^19.0.0",
+    "stylelint": "^9.10.1",
+    "stylelint-config-prettier": "^3.0.4",
+    "stylelint-config-shopify": "^5.0.0",
+    "typescript": "^3.9.7"
+  },
+  "dependencies": {
+    "@shopify/slate-cssvar-loader": "^1.0.0-beta.16",
+    "@shopify/theme-a11y": "^1.0.1",
+    "@shopify/theme-cart": "^1.0.1",
+    "@shopify/theme-currency": "^1.0.0-alpha.3",
+    "@shopify/theme-images": "^1.0.0-alpha.3",
+    "@shopify/theme-rte": "^1.0.0-alpha.3",
+    "@shopify/theme-sections": "^1.1.0",
+    "@shopify/theme-variants": "^1.0.0-alpha.9",
+    "@smiledirectclub/sdc-social-album-widget": "^0.2.44",
+    "@smiledirectclub/sds-css": "^1.9.1",
+    "jquery": "^3.5.1",
+    "js-cookie": "^2.2.1",
+    "lazysizes": "^4.1.8",
+    "lodash-es": "^4.17.15",
+    "node-sass": "^4.14.1",
+    "normalize.css": "^7.0.0",
+    "slick-carousel": "^1.8.1",
+    "vue": "^2.6.12"
   }
 }

@@ -1,0 +1,28 @@
+{%- assign _section = section.settings -%}
+<section class="section section-intro">
+	<div class="shell">
+		<div class="section__content">
+
+			{%- if _section.content_image -%}
+				{{ _section.content_image | img_tag }}
+			{%- endif -%}
+
+		</div><!-- /.section__content -->
+
+		{%- if _section.image -%}
+			<div class="section__image" style="background-image: url({{ _section.image | img_url: '1000x' }});" ></div><!-- /.section__image -->
+		{%- endif -%}
+	</div><!-- /.shell -->
+</section><!-- /.section section-intro -->
+
+{% schema %}
+{
+	"name": "Masthead",
+	"presets": [
+		{
+			"name": "Masthead",
+			"category": "content"
+		}
+	]
+}
+{% endschema %}

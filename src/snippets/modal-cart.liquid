@@ -42,6 +42,7 @@
           <a href="#" class="remove-promo-code">Remove</a>
         </div>
       </div>
+      
       <div class="cart-subtotal">
         <p>{{ 'cart.general.subtotal' | t }}</p>
         <p>{{ cart.total_price | money | remove: ','}}</p>
@@ -50,11 +51,14 @@
       <div class="cart-shipping">
         <p>{{ 'cart.general.shipping' | t }}</p>
         <p>{{ 'cart.general.shipping_price' | t }}</p>
+        
       </div>
+      
       {% endif %}
       {% if cart.total_discounts > 0 %}
         <p>{{ 'cart.general.savings' | t }} {{ cart.total_discounts | money }}</p>
       {% endif %}
+	  <div class="dk-round-up-popup-static"></div>
       <form action="/cart" method="post" id="cartForm" novalidate>
         <input
           type="submit"
@@ -62,6 +66,7 @@
           class="button button--full-width"
           value="CHECKOUT"
         >
+       
         <ul class="cc-icons">
           <li>{% include 'icon-visa-flat' %}</li>
           <li>{% include 'icon-mastercard-flat' %}</li>
@@ -74,7 +79,9 @@
           <li>{% include 'icon-paypal-payment-icon-flat' %}</li>
           <li></li>
         </ul> {% endcomment %}
+        
       </form>
+      
       {% comment %} {% if additional_checkout_buttons %}
         <div class="additional-checkout-buttons">
           <p class="alt-checkout-title">Or checkout with:</p>

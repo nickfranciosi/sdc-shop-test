@@ -1,170 +1,293 @@
+{% render 'breadcrumbs' %}
 
-<div data-section-id="{{ section.id }}" data-section-type="product" data-enable-history-state="true" class="container" data-product-handle="{{product.handle}}">
+{%- assign lookingForAlignersProductID = 4546114912361 -%}
+{%- assign lookingForRetainersProductID = 4546114650217 -%}
+{%- assign lookingForImpressionKitProductID = 4546115076201 -%}
+
+<div data-section-id="{{ section.id }}" data-section-type="product" data-enable-history-state="true" class="container {{section.id}}" data-product-handle="{{product.handle}}">
   {%- assign current_variant = product.selected_or_first_available_variant -%}
   <div class="product-info-section section">
-    <div class="product-info-gallery" >
-      {% include 'product_gallery' %}
-    </div>
-    <div class="product-info-content">
-      <h1>{{ product.title }}</h1>
-      <div data-price-wrapper>
-          {% if product.compare_at_price_max > product.price %}
-            <span class="visually-hidden" data-compare-text>{{ 'products.product.regular_price' | t }}</span>
-            <s data-compare-price class="product-info-price compare-price">
-              {% if current_variant.compare_at_price > current_variant.price %}
-                {{ current_variant.compare_at_price | money }}
-              {% endif %}
-            </s>
-          {% endif %}
 
-          <span data-product-price class="product-info-price" >
-            {{ current_variant.price | money | remove: ','}}
-          </span>
+    <div class="mobile-product-header">
+      <div class="product-info-content">
+        <h1>{{ product.title }}</h1>
+        <div class="data-price-wrapper" data-price-wrapper>
+            {% if product.compare_at_price_max > product.price %}
+              <span class="visually-hidden" data-compare-text>{{ 'products.product.regular_price' | t }}</span>
+              <s data-compare-price class="product-info-price compare-price">
+                {% if current_variant.compare_at_price > current_variant.price %}
+                  {{ current_variant.compare_at_price | money }}
+                {% endif %}
+              </s>
+            {% endif %}
+			
+          	{% comment %}
+            	Hide mobile price on certain products below
+            {% endcomment %}
+			{% if product.id != lookingForAlignersProductID and product.id != lookingForRetainersProductID and product.id != lookingForImpressionKitProductID %}
+              <span data-product-price class="product-info-price" >
+                {{ current_variant.price | money | remove: ','}}
+              </span>
+            {% endif %}
+          
+          </div>
+          <div
+          class="yotpo bottomLine yotpo-rating-info"
+          data-product-id="{{ product.id }}">
         </div>
-        <div
-        class="yotpo bottomLine yotpo-rating-info"
-        data-product-id="{{ product.id }}">
       </div>
-    <form action="/cart/add" method="post" id="product-form" enctype="multipart/form-data">
-    {% unless product.has_only_default_variant %}
-      {% for option in product.options_with_values %}
-        <div class="selector-wrapper js">
+    </div>
 
-          <label for="SingleOptionSelector-{{ forloop.index0 }}">
-            {{ option.name }}
-          </label>
+{% capture mzp %}{% include 'magiczoomplus' %}{% endcapture %}
+{% if mzp contains "Liquid error" %}
+	{% include 'product_gallery' %}
+{% else %}
+    <div class="column product-info-gallery-container">
+	{{ mzp }}
+    </div>
+{% endif %}
+    
 
-          <select
-            id="SingleOptionSelector-{{ forloop.index0 }}"
-            data-single-option-selector
-            data-option-name="{{option.name}}"
-            data-index="option{{ option.position }}">
-            {% for value in option.values %}
+    <div class="column product-info-content-container">
+      <div class="product-info-content">
+          {% include 'badge' %}
+
+          <h1>{{ product.title }}</h1>
+          <div data-price-wrapper>
+              {% if product.compare_at_price_max > product.price %}
+                <span class="visually-hidden" data-compare-text>{{ 'products.product.regular_price' | t }}</span>
+                <s data-compare-price class="product-info-price compare-price">
+                  {% if current_variant.compare_at_price > current_variant.price %}{{ current_variant.compare_at_price | money }}{% endif %}
+                </s>
+              {% endif %}
+			
+            {% comment %}
+            	Hide desktop price on certain products below
+            {% endcomment %}
+            {% if product.id != lookingForAlignersProductID and product.id != lookingForRetainersProductID and product.id != lookingForImpressionKitProductID %}
+              <span data-product-price class="product-info-price" >
+                {{ current_variant.price | money | remove: ','}}
+              </span>
+            {% endif %}
+            </div>
+        	
+            <div
+            class="yotpo bottomLine yotpo-rating-info"
+            data-product-id="{{ product.id }}">
+            </div>
+
+          <form action="/cart/add" method="post" class="product-form {% unless product.metafields.subscription.onetime_purchase_product == empty %}has-one-time-override{% endunless %}" id="product-form" enctype="multipart/form-data">
+          {% unless product.has_only_default_variant %}
+            {% for option in product.options_with_values %}
+              <div class="selector-wrapper js custom-option-selector-wrapper">
+
+                <label class="custom-option-selector-label" for="SingleOptionSelector-{{ forloop.index0 }}">
+                  {{ option.name }}
+                </label>
+
+                {% assign option_name = option.name | downcase %}
+
+                {% if option_name == 'color' %}
+                  <div class="selector-custom selector-{{option_name}}">
+                    {% for value in option.values %}
+                        <input
+                          {% if option.selected_value == value %}checked="checked"{% endif %}
+                          data-single-option-selector
+                          data-option-name="{{ option.name }}"
+                          data-index="option{{ option.position }}"
+                          type="radio"
+                          name="{{option.name}}"
+                          value="{{ value | escape }}"
+                          id="{{option.name | handleize}}-{{value | escape | handleize}}">
+                        <label for="{{option.name | handleize}}-{{value | escape | handleize}}" class="{{option.name | downcase}}">
+                          <img alt="{{value}}" src="https://cdn.shopify.com/s/files/1/0005/5354/9942/files/color_{{value | downcase}}.png" />
+                        </label>
+                    {% endfor %}
+                  </div>
+                {% elsif option_name == 'size' %}
+                  <div class="selector-custom selector-{{option_name}}">
+                    {% for value in option.values %}
+                      <input
+                        {% if option.selected_value == value %}checked="checked"{% endif %}
+                        data-single-option-selector
+                        data-option-name="{{ option.name }}"
+                        data-index="option{{ option.position }}"
+                        type="radio"
+                        name="{{option.name}}"
+                        value="{{ value | escape }}"
+                        id="{{option.name | handleize}}-{{value | escape | handleize}}">
+                      <label for="{{option.name | handleize}}-{{value | escape | handleize}}" class="{{option.name | downcase}}">
+                        {{value}}
+                      </label>
+                    {% endfor %}
+                  </div>
+
+                {% else %}
+
+                <select
+                    id="SingleOptionSelector-{{ forloop.index0 }}"
+                    data-single-option-selector
+                    data-option-name="{{ option.name }}"
+                    data-index="option{{ option.position }}">
+
+                  {% for value in option.values %}
+                    <option
+                      value="{{ value | escape }}"
+                      {% if option.selected_value == value %}selected="selected"{% endif %}>
+                        {{ value }}
+                    </option>
+                  {% endfor %}
+                </select>
+
+                {% endif %}
+              </div>
+            {% endfor %}
+          {% endunless %}
+
+          <select name="id" class="no-js" data-product-select>
+            {% for variant in product.variants %}
               <option
-                value="{{ value | escape }}"
-                {% if option.selected_value == value %}selected="selected"{% endif %}>
-                  {{ value }}
+                {% if variant == current_variant %}selected="selected"{% endif %}
+                {% unless variant.available %}disabled="disabled"{% endunless %}
+                value="{{ variant.id }}">
+                  {{ variant.title }}
               </option>
             {% endfor %}
           </select>
-        </div>
-      {% endfor %}
-    {% endunless %}
+          <div class="product-quantity">
+            <label for="Quantity">QTY</label>
+            <input type="number" id="Quantity" name="quantity" value="1" min="1" max="99">
 
-    <select name="id" class="no-js" data-product-select>
-      {% for variant in product.variants %}
-        <option
-          {% if variant == current_variant %}selected="selected"{% endif %}
-          {% unless variant.available %}disabled="disabled"{% endunless %}
-          value="{{ variant.id }}">
-            {{ variant.title }}
-        </option>
-      {% endfor %}
-    </select>
-    <div class="product-quantity">
-      <label for="Quantity">QTY</label>
-      <input type="number" id="Quantity" name="quantity" value="1" min="1" max="99">
-    </div>
-
-
-    <div class="button-well">
-      <div clss="standard-buy-section">
-        <button
-          type="submit"
-          name="add"
-          class="button"
-          data-add-to-cart
-          {% unless current_variant.available %}disabled="disabled"{% endunless %}>
-            <span data-add-to-cart-text>
-              {% if current_variant.available %}
-                {{ 'products.product.add_to_cart' | t }}
-              {% else %}
-                {{ 'products.product.sold_out' | t }}
-              {% endif %}
+            {% unless product.metafields.accentuate.disable_show_shipping_reminder == "true" %}
+            <span class="shipping-reminder">
+              <span>{% include 'icon-truck' %}</span>
+              <span>
+                Free shipping for orders over $50
+              </span>
             </span>
-        </button>
-      </div>
-      {% if product.metafields.installment.show_installments %}
-        <div class="smile-pay-wrapper">
-          <div class="smile-pay__header">
-            <h3>Pay only $80/month.</h3>
-            <p>$250 downpayment. No credit check.</p>
+          {% endunless %}
           </div>
-          <div class="installment-button__options">
-            <script type="text/javascript" src="https://app.paywhirl.com/pw.js"></script>
-            {% for variant in product.variants %}
-              {% if variant.metafields.installment.widget_id %}
-                <div class="installment-button__option {% if current_variant.id ==  variant.id %}--selected{% endif %}" data-variant-id="{{variant.id}}">
-                  <div id='{{variant.metafields.installment.widget_id}}'></div>
-                  <script>paywhirl('button',{autoscroll: 1, domain:'smile-direct-club' ,uuid:'{{variant.metafields.installment.uuid}}', button_text: 'Learn more' },'{{variant.metafields.installment.widget_id}}'); </script>
-                </div>
-              {% endif %}
-            {% endfor %}
-          </div>
-        </div>
-      {% endif %}
-    </div>
-  </form>
-  <div class="rte product-info-description">
-        {{ product.description }}
-  </div>
 
-      {% unless product == empty %}
-        <script type="application/json" data-product-json>
-          {{ product | json }}
-        </script>
-      {% endunless %}
+          <div class="button-well">
+            <div clss="standard-buy-section">
+              
+              {% comment %}
+              	Redirect/replace "add to cart" button to SDC site for certain products
+              {% endcomment %}
+              {% if product.id == lookingForAlignersProductID %}
+              	<a href="https://smiledirectclub.com/clear-aligners/" class="button" style="color: #fff;">Go to Aligners</a>
+              {% elsif product.id == lookingForRetainersProductID %}
+              	<a href="https://cloud.email.smiledirectclub.com/retainers" class="button" style="color: #fff;">Order retainers</a>
+              {% elsif product.id == lookingForImpressionKitProductID %}
+              	<a href="https://smiledirectclub.com/checkout/?w=impr" class="button" style="color: #fff;">Order impression kit</a>
+              {% else %}
+                <button
+                  type="submit"
+                  name="add"
+                  class="button"
+                  data-add-to-cart
+                  {% unless current_variant.available %}disabled="disabled"{% endunless %}>
+                    <span data-add-to-cart-text>
+                      {% if current_variant.available %}
+                        {{ 'products.product.add_to_cart' | t }}
+                      {% else %}
+                        {{ 'products.product.sold_out' | t }}
+                      {% endif %}
+                    </span>
+                </button>
+              {% endif %}
+              
+            </div>
+            {% if product.metafields.installment.show_installments %}
+              <div class="smile-pay-wrapper">
+                <div class="smile-pay__header">
+                  <h3>Pay only $80/month.</h3>
+                  <p>$250 downpayment. No credit check.</p>
+                </div>
+                <div class="installment-button__options">
+                  <script type="text/javascript" src="https://app.paywhirl.com/pw.js"></script>
+                  {% for variant in product.variants %}
+                    {% if variant.metafields.installment.widget_id %}
+                      <div class="installment-button__option {% if current_variant.id ==  variant.id %}--selected{% endif %}" data-variant-id="{{variant.id}}">
+                        <div id='{{variant.metafields.installment.widget_id}}'></div>
+                        <script>paywhirl('button',{autoscroll: 1, domain:'smile-direct-club' ,uuid:'{{variant.metafields.installment.uuid}}', button_text: 'Learn more' },'{{variant.metafields.installment.widget_id}}'); </script>
+                      </div>
+                    {% endif %}
+                  {% endfor %}
+                </div>
+              </div>
+            {% endif %}
+          </div>
+        </form>
+
+        {% comment %}
+        One-time purchase override code --------------------------------------------
+        {% endcomment %}
+        {% if product.metafields.subscription.onetime_purchase_product and product.metafields.subscription.onetime_purchase_product != empty %}
+        <form id="one-time-product-form" class="product-form" method="post" action="/cart/add">
+          <input type="hidden" name="id" value="{{ all_products[product.metafields.subscription.onetime_purchase_product].variants.first.id }}" />
+          <div class="bold-ro__radio-div bold-ro__one-time-div ">
+            <label class="bold-ro__recurring-lbl">
+                <input type="radio" value="0" name="bold-ro__selector_radio_button" class="bold-ro__one-time-radio-btn">
+                <span class="bold-ro__one-time-purchase">
+                  <span class="bold-custom-subscribe-upper">
+                    <span class="bold-custom-title">
+                      <span class="pseudo-check">
+                        <span class="pseudo-check-inside one-time-purchase-override-select"></span>
+                      </span>One time purchase</span>
+                      <span class="bold-custom-price">
+                        <span class="one-time-price one-time-purchase-override-select">
+                        {{ all_products[product.metafields.subscription.onetime_purchase_product].price | money_without_trailing_zeros }}
+                        </span>
+                      </span>
+                  </span>
+                </span>
+            </label>
+            <div class="bold-custom-cart-button-container">
+              <div class="bold-custom-single_purchase_shipping_info-container subscription-info-details">
+                <div class="dummy-quantity-wrapper">
+                  <label>QTY</label>
+                  <input type="text" name="quantity" value="1" min="1" max="99"/>
+                </div>
+              </div>
+
+              <button type="submit" name="add" class="button cartbutton" data-add-to-cart="">
+                <span>Add to Cart - {{ all_products[product.metafields.subscription.onetime_purchase_product].price | money_without_trailing_zeros }}
+                </span>
+              </button>
+
+            </div>
+          </div>
+        </form>
+        {% endif %}
+        {% comment %}
+        ----------------------------------------------------------------------------
+        {% endcomment %}
+
+        <div class="rte product-info-description">
+          {{ product.description }}
+        </div>
+
+        {% include 'pd-accordion' %}
+        {% unless product == empty %}
+            <script type="application/json" data-product-json>
+              {{ product | json }}
+            </script>
+        {% endunless %}
+
+        {% include 'product-scroll-related-small'%}
+
       </div>
+    </div>
   </div>
 </div>
 {% comment %} exit container for full width {% endcomment %}
-{% if product.metafields.extra_info.column_1_header %}
-<div class="extra-info-wrapper full-width section">
-  <div class="extra-info-content container">
-    <div class="extra-info-block">
-      <h3>{{product.metafields.extra_info.column_1_header}}</h3>
-      {{product.metafields.extra_info.column_1_body}}
-    </div>
-
-    <div class="extra-info-block">
-      <h3>{{product.metafields.extra_info.column_2_header}}</h3>
-      {{product.metafields.extra_info.column_2_body}}
-    </div>
-
-    {% if product.metafields.extra_info.column_3_header or product.metafields.extra_info.stat_1_icon %}
-    <div class="extra-info-block">
-      {% if product.metafields.extra_info.column_3_header %}
-          <h3>{{product.metafields.extra_info.column_3_header}}</h3>
-          {{product.metafields.extra_info.column_3_body}}
-      {% elsif  product.metafields.extra_info.stat_1_icon %}
-        <div class="extra-info-block__stats">
-          <ul>
-            <li>{% include {{product.metafields.extra_info.stat_1_icon}} %} {{product.metafields.extra_info.stat_1_title}}</li>
-            {% if product.metafields.extra_info.stat_2_icon %}
-              <li>{% include product.metafields.extra_info.stat_2_icon %} {{product.metafields.extra_info.stat_2_title}}</li>
-            {% endif %}
-            {% if product.metafields.extra_info.stat_3_icon %}
-              <li>{% include product.metafields.extra_info.stat_3_icon %} {{product.metafields.extra_info.stat_3_title}}</li>
-            {% endif %}
-            {% if product.metafields.extra_info.stat_4_icon %}
-              <li>{% include product.metafields.extra_info.stat_4_icon %} {{product.metafields.extra_info.stat_4_title}}</li>
-            {% endif %}
-          </ul>
-        </div>
-      {% endif %}
-    </div>
-    {% endif %}
-  </div>
-</div>
-{% else %}
-  {% comment %}If there is no extra info, display a border line to match styling{% endcomment %}
-  <div class="full-width alternate-border-top-line"></div>
-{% endif %}
 
 <div class="container">
   {%- assign product1 = all_products[product.metafields.related_products.product_1] -%}
   {%- assign product2 = all_products[product.metafields.related_products.product_2] -%}
   {%- assign product3 = all_products[product.metafields.related_products.product_3] -%}
+  {%- assign product4 = all_products[product.metafields.related_products.product_4] -%}
 
   {% assign product_grid_header = "People also viewed"%}
   {% include 'product-grid'%}
@@ -175,23 +298,45 @@
   {% include 'social-gallery' %}
 {% endunless %}
 
+{% comment %}
+<!-- TODO: This needs to have actual content -->
+{% endcomment %}
+{% include 'product-featured-customer-reviews' %}
+{% include 'product-press-banner' %}
+
 <div class="container">
   {% comment %}
   {% assign yotpo_widget_id = 'b2R1xmMMCwI72cYezqJhZkrq7JIrxFaMHvMyUWJ7'%}
   {% assign yotpo_product_id = 'aligner'%}
   {% endcomment %}
-  {% assign yotpo_header = 'Glowing and Grinning Reviews'%}
+  {% assign yotpo_header = 'All reviews'%}
   {% unless product.metafields.social.hide_ratings %}
     {% include 'yotpo-product' %}
   {% endunless %}
 </div>
-{% comment %} go back to container {% endcomment %}
-{% comment %} <div class="container">
 
-</div> {% endcomment %}
+{% for c in product.collections %}
+  {% if c.handle == "teeth-whitening"%}
+    {% assign whiteningTemplate = true %}
+  {% endif %}
+{% endfor %}
+
+{% if whiteningTemplate %}
+  <div class="container">
+    <section class="section product">
+      {% include 'product-table-whitening' %}
+    </section>
+  </div>
+{% endif %}
+
+<div class="bold-custom-subscription-product-fields" style="display: none;">
+  <div class="bold-custom-single_purchase_info">{{product.metafields.accentuate.single_purchase_info}}</div>
+  <div class="bold-custom-single_purchase_shipping_info">{{product.metafields.accentuate.single_purchase_shipping_info}}</div>
+  <div class="bold-custom-subscription_shipping_info">{{product.metafields.accentuate.subscription_shipping_info}}</div>
+</div>
+
 
 <script>
-
   const elDeliverySelect = document.querySelector("[data-option-name='Delivery Method']");
   const elDesignSelect = document.querySelector("[data-option-name='Design']");
 
@@ -227,7 +372,6 @@
   {% if product.metafields.videos.video1_enabled %}{% assign imageCount = imageCount | plus: 1 %}{% endif %}
   {% if product.metafields.videos.video2_enabled %}{% assign imageCount = imageCount | plus: 1 %}{% endif %}
   window.numberOfImages = {{ imageCount }};
-
 </script>
 
 {% if product.metafields.videos.video1_enabled or product.metafields.videos.video2_enabled %}
@@ -237,12 +381,73 @@
 {% schema %}
   {
     "name": "Product pages",
+    "blocks": [
+      {
+        "type": "image",
+        "name": "Press Logo",
+        "settings": [
+          {
+            "id": "image",
+            "type": "image_picker",
+            "label": "Image File"
+          },
+          {
+            "id": "svg",
+            "type": "text",
+            "label": "SVG Content"
+          },
+          {
+            "id": "press-blurb",
+            "type": "text",
+            "label": "Press Blurb"
+          },
+          {
+            "id": "link",
+            "type": "url",
+            "label": "External Link"
+          }
+        ]
+      },
+      {
+        "type": "review",
+        "name": "Featured Product Review",
+        "settings": [
+          {
+            "id": "title",
+            "type": "text",
+            "label": "Review Title"
+          },
+          {
+            "id": "content",
+            "type": "text",
+            "label": "Review Content"
+          },
+          {
+            "id": "name",
+            "type": "text",
+            "label": "Name"
+          }
+        ]
+      }
+    ],
     "settings": [
       {
         "type": "checkbox",
         "id": "show_share_buttons",
         "label": "Show social sharing buttons",
         "default": true
+      },
+      {
+        "type": "checkbox",
+        "id": "disable_featured_reviews",
+        "label": "Disables all featured reviews on all PDP pages",
+        "default": false
+      },
+      {
+        "type": "text",
+        "id": "review_title",
+        "label": "Featured Reviews Title",
+        "default": "Glowing and Grinning Reviews"
       }
     ]
   }

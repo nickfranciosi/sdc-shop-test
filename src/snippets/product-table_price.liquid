@@ -1,0 +1,21 @@
+          {% if product.has_only_default_variant %}
+            <td class="{% if product.id == current_product.id %}product-table-item-is-current-product{% endif %}" data-label="{{product.title}}">
+              <div class="inner">
+                {{product.price | money_without_trailing_zeros}}
+
+                {% if product.compare_at_price_max > product.price %}
+                  <span class="product-table-discount-tag">
+                   SAVE {{ product.compare_at_price_min | minus: product.price | times: 100.0 | divided_by: product.compare_at_price_min | money_without_currency | times: 100 | replace: '.0', ''}}%
+                  </span>
+                {% endif %}
+              </div>
+            </td>
+          {% else %}
+            {% for variant in product.variants %}
+              <td class="{% if product.id == current_product.id %}product-table-item-is-current-product{% endif %}" data-label="{{product.title}} - {{variant.title}}">
+                <div class="inner"> 
+                  {{variant.price | money_without_trailing_zeros}}
+                </div>
+              </td>
+            {%  endfor %}
+          {% endif %}

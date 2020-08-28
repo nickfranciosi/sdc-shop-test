@@ -1,0 +1,94 @@
+<div class="featured-products scroll-section pdp-featured-products">
+  <div class="container">
+    <h2>{{ section.settings.title }}</h2>
+    {% if section.settings.cta-btn-link %}
+    <div class="actions">
+      <a class="button button--transparent" href="{{ section.settings.cta-btn-link }}">{{ section.settings.cta-btn-text }}</a>
+    </div>
+    {% endif %}
+  </div>
+
+  <div class="scroll-container">
+    {% for content in section.blocks %}
+
+    {%- assign product = all_products[content.settings.product] -%}
+      <div class="product scroll-item">
+
+        {% for tag in product.tags %}
+          {% if tag == 'clearance' %}
+            <span class="badge">On Sale</span>
+            {% break %}
+          {% elsif tag == 'best-seller' %}
+            <span class="badge">Best Seller</span>
+          {% endif %}
+        {% endfor %}
+
+        <a href="{{product.url}}" class="product-img">
+          <img src="{{ product | img_url: '340x340' }}" />
+        </a>
+        <a href="{{product.url}}" class="product-content">
+          <span class="title">{{ product.title }}</span>
+          <span class="price">
+            {% if product.compare_at_price > product.price %}
+            <s>{{ product.compare_at_price | money }}</s>
+            {% endif %}
+            {{ product.price | money }}
+          </span>
+
+          <span class="icon-arrow">
+            <svg width="22" height="22" viewBox="0 0 22 22" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <path d="M11 0C4.9 0 0 4.9 0 11C0 17.1 4.9 22 11 22C17.1 22 22 17.1 22 11C22 4.9 17.1 0 11 0ZM11 20C6 20 2 16 2 11C2 6 6 2 11 2C16 2 20 6 20 11C20 16 16 20 11 20ZM15.9 10.6C15.9 10.7 16 10.8 16 11C16 11.1 16 11.3 15.9 11.4C15.9 11.5 15.8 11.6 15.7 11.7L11.7 15.7C11.5 15.9 11.3 16 11 16C10.7 16 10.5 15.9 10.3 15.7C9.9 15.3 9.9 14.7 10.3 14.3L12.6 12H7C6.4 12 6 11.6 6 11C6 10.4 6.4 10 7 10H12.6L10.3 7.7C9.9 7.3 9.9 6.7 10.3 6.3C10.7 5.9 11.3 5.9 11.7 6.3L15.7 10.3C15.8 10.4 15.9 10.5 15.9 10.6Z" fill="#6816EB"/>
+            </svg>
+          </span>
+        </a>
+      </div>
+    {% endfor %}
+  </div>
+</div>
+
+{% schema %}
+  {
+    "name": "Scrolling Products",
+    "settings": [
+      {
+        "id": "title",
+        "type": "text",
+        "label": "Section Title"
+      },
+      {
+        "id": "cta-btn-text",
+        "type": "text",
+        "label": "CTA Button Text"
+      },
+      {
+        "id": "cta-btn-link",
+        "type": "url",
+        "label": "CTA Button URL"
+      }
+    ],
+    "blocks": [
+      {
+        "type": "product",
+        "name": "Product",
+        "settings": [
+          {
+            "id": "product",
+            "type": "product",
+            "label": "Product"
+          },
+          {
+            "id": "sale-price",
+            "type": "number",
+            "label": "Sale Price"
+          }
+        ]
+      }
+    ],
+    "presets": [
+      {
+        "name": "Scrolling Products",
+        "category": "content"
+      }
+    ]
+  }
+{% endschema %}

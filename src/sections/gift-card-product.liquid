@@ -1,0 +1,242 @@
+
+<div data-section-id="{{ section.id }}" data-section-type="product" data-enable-history-state="true" class="container">
+
+  {%- assign current_variant = product.selected_or_first_available_variant -%}
+  {%- assign featured_image = current_variant.featured_image | default: product.featured_image -%}
+  <div class="product-info-section section">
+    <div class="product-info-gallery" >
+      <div class="photo-main-image">
+        {% for image in product.images %}
+          <img
+            src="{{ image.src | img_url: '1200x1200'}}"
+            alt="{{ image.alt | escape }}"
+            data-product-image-wrapper
+            data-product-featured-image
+            data-image-id="{{ image.id }}""
+          />
+        {% endfor %}
+      </div>
+      <ul class="photo-thumbnails product-single__photos" data-product-id="{{ product.id}}" data-current-variant-id="{{current_variant.id}}">
+        {% for image in product.images %}
+          <li>
+              <img class="product-single__thumbnail-image" src="{{ image.src | img_url: '120x120' }}" alt="{{ image.alt | escape }}" data-image-id="{{ image.id }}">
+          </li>
+        {% endfor %}
+      </ul>
+    </div>
+    <div class="product-info-content">
+      <h1>{{ product.title }}</h1>
+      <div data-price-wrapper>
+          <span data-product-price class="product-info-price">
+            {{ current_variant.price | money | remove: ','}}
+          </span>
+
+          {% if product.compare_at_price_max > product.price %}
+            <span class="visually-hidden" data-compare-text>{{ 'products.product.regular_price' | t }}</span>
+            <s data-compare-price>
+              {% if current_variant.compare_at_price > current_variant.price %}
+                {{ current_variant.compare_at_price | money }}
+              {% endif %}
+            </s>
+          {% endif %}
+        </div>
+<form action="/cart/add" method="post" id="product-form"enctype="multipart/form-data">
+    {% unless product.has_only_default_variant %}
+      {% for option in product.options_with_values %}
+        <div class="selector-wrapper js">
+
+          <label for="SingleOptionSelector-{{ forloop.index0 }}">
+            {{ option.name }}
+          </label>
+
+          <select
+            id="SingleOptionSelector-{{ forloop.index0 }}"
+            data-single-option-selector
+            data-option-name="{{option.name}}"
+            data-index="option{{ option.position }}">
+            {% for value in option.values %}
+              <option
+                value="{{ value | escape }}"
+                {% if option.selected_value == value %}selected="selected"{% endif %}>
+                  {{ value }}
+              </option>
+            {% endfor %}
+          </select>
+        </div>
+      {% endfor %}
+    {% endunless %}
+
+    <select name="id" class="no-js" data-product-select>
+      {% for variant in product.variants %}
+        <option
+          {% if variant == current_variant %}selected="selected"{% endif %}
+          {% unless variant.available %}disabled="disabled"{% endunless %}
+          value="{{ variant.id }}">
+            {{ variant.title }}
+        </option>
+      {% endfor %}
+    </select>
+    <div class="product-quantity">
+      <label for="Quantity">QTY</label>
+      <input type="number" id="Quantity" name="quantity" value="1" min="1" max="99">
+    </div>
+
+
+    <div class="button-well">
+      <div clss="standard-buy-section">
+        <button
+          type="submit"
+          name="add"
+          class="button"
+          data-add-to-cart
+          {% unless current_variant.available %}disabled="disabled"{% endunless %}>
+            <span data-add-to-cart-text>
+              {% if current_variant.available %}
+                {{ 'products.product.add_to_cart' | t }}
+              {% else %}
+                {{ 'products.product.sold_out' | t }}
+              {% endif %}
+            </span>
+        </button>
+      </div>
+      {% if product.metafields.installment.show_installments %}
+        <div class="smile-pay-wrapper">
+          <div class="smile-pay__header">
+            <h3>Or pay only $85/month.</h3>
+            <p>$250 down payment. No credit check.</p>
+          </div>
+          <div class="installment-button__options">
+            <script type="text/javascript" src="https://app.paywhirl.com/pw.js"></script>
+            {% for variant in product.variants %}
+              {% if variant.metafields.installment.widget_id %}
+                <div class="installment-button__option {% if current_variant.id ==  variant.id %}--selected{% endif %}" data-variant-id="{{variant.id}}">
+                  <div id='{{variant.metafields.installment.widget_id}}'></div>
+                  <script>paywhirl('button',{autoscroll: 1, domain:'smile-direct-club' ,uuid:'{{variant.metafields.installment.uuid}}', button_text: 'Learn more' },'{{variant.metafields.installment.widget_id}}'); </script>
+                </div>
+              {% endif %}
+            {% endfor %}
+          </div>
+        </div>
+      {% endif %}
+    </div>
+  </form>
+  <div class="rte product-info-description">
+        {{ product.description }}
+  </div>
+
+      {% unless product == empty %}
+        <script type="application/json" data-product-json>
+          {{ product | json }}
+        </script>
+      {% endunless %}
+      </div>
+  </div>
+</div>
+{% comment %} exit container for full width {% endcomment %}
+{% if product.metafields.extra_info.column_1_header %}
+<div class="extra-info-wrapper full-width section">
+  <div class="extra-info-content container">
+    <div class="extra-info-block">
+      <h3>{{product.metafields.extra_info.column_1_header}}</h3>
+      {{product.metafields.extra_info.column_1_body}}
+    </div>
+
+    <div class="extra-info-block">
+      <h3>{{product.metafields.extra_info.column_2_header}}</h3>
+      {{product.metafields.extra_info.column_2_body}}
+    </div>
+
+    {% if product.metafields.extra_info.column_3_header or product.metafields.extra_info.stat_1_icon %}
+    <div class="extra-info-block">
+      {% if product.metafields.extra_info.column_3_header %}
+          <h3>{{product.metafields.extra_info.column_3_header}}</h3>
+          {{product.metafields.extra_info.column_3_body}}
+      {% elsif  product.metafields.extra_info.stat_1_icon %}
+        <div class="extra-info-block__stats">
+          <ul>
+            <li>{% include {{product.metafields.extra_info.stat_1_icon}} %} {{product.metafields.extra_info.stat_1_title}}</li>
+            {% if product.metafields.extra_info.stat_2_icon %}
+              <li>{% include product.metafields.extra_info.stat_2_icon %} {{product.metafields.extra_info.stat_2_title}}</li>
+            {% endif %}
+            {% if product.metafields.extra_info.stat_3_icon %}
+              <li>{% include product.metafields.extra_info.stat_3_icon %} {{product.metafields.extra_info.stat_3_title}}</li>
+            {% endif %}
+            {% if product.metafields.extra_info.stat_4_icon %}
+              <li>{% include product.metafields.extra_info.stat_4_icon %} {{product.metafields.extra_info.stat_4_title}}</li>
+            {% endif %}
+          </ul>
+        </div>
+      {% endif %}
+    </div>
+    {% endif %}
+  </div>
+</div>
+
+<div class="container">
+  {%- assign product1 = all_products[product.metafields.related_products.product_1] -%}
+  {%- assign product2 = all_products[product.metafields.related_products.product_2] -%}
+  {%- assign product3 = all_products[product.metafields.related_products.product_3] -%}
+  {%- assign product4 = all_products[product.metafields.related_products.product_4] -%}
+
+  {% assign product_grid_header = "People also viewed"%}
+  {% include 'product-grid'%}
+</div>
+
+{% endif %}
+{% assign social_header = 'See what people are smiling about'%}
+{% include 'social-gallery' %}
+
+<div class="container">
+  {% assign yotpo_widget_id = 'b2R1xmMMCwI72cYezqJhZkrq7JIrxFaMHvMyUWJ7'%}
+  {% assign yotpo_product_id = 'aligner'%}
+  {% assign yotpo_header = 'Aligner reviews'%}
+  {% include 'yotpo-product' %}
+</div>
+{% comment %} go back to container {% endcomment %}
+{% comment %} <div class="container">
+
+</div> {% endcomment %}
+
+<script>
+
+  const elDeliverySelect = document.querySelector("[data-option-name='Delivery Method']");
+  const elDesignSelect = document.querySelector("[data-option-name='Design']");
+
+  const stringMatcher = matcher => val => val.toLowerCase().includes(matcher);
+  const isPhysicalSelected = stringMatcher('physical');
+
+  function showDesignVariant() {
+    elDesignSelect.parentElement.classList.remove("hidden-selector");
+  }
+
+  function hideDesignVariant() {
+    elDesignSelect.parentElement.classList.add("hidden-selector");
+  }
+
+  function toggleDesignVariantOptions(val) {
+    elDesignSelect.selectedIndex = 0;
+    isPhysicalSelected(val) ? showDesignVariant() : hideDesignVariant();
+  }
+
+  if(elDeliverySelect && elDesignSelect) {
+    elDeliverySelect.addEventListener('change', (e) => {
+      toggleDesignVariantOptions(e.target.value)
+    });
+
+    toggleDesignVariantOptions(elDeliverySelect.value);
+  }
+
+</script>
+{% schema %}
+  {
+    "name": "Product pages",
+    "settings": [
+      {
+        "type": "checkbox",
+        "id": "show_share_buttons",
+        "label": "Show social sharing buttons",
+        "default": true
+      }
+    ]
+  }
+{% endschema %}

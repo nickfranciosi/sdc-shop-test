@@ -1,0 +1,53 @@
+{% comment %}
+TODO: This and product-grid section are essentally the same currently, we are
+      not sure of the data source which is why it has been duplicated for dev
+      reasons. I would evaluate the usage of product-grid section and product-
+      grid snippet as well as this file and deprecate accordingly
+{% endcomment %}
+
+{% unless product.metafields.one_click.disabled == "true" %}
+
+{% comment %}
+Determines if the product is overridden, else it uses the cheapest related_product
+{% endcomment %}
+{% if product.metafields.one_click.product and product.metafields.one_click.product != "" %}
+  {%- assign target_product = all_products[product.metafields.one_click.product] %}
+{% else %}
+  {%- assign range = "1,2,3,4" | split: "," %}
+  {%- assign lowest = 10000 %}
+
+  {% for num in range %}
+    {%- assign key = "product_" | append: num %}
+    {%- assign cur_product = all_products[product.metafields.related_products[key]] -%}
+    {% if cur_product and cur_product.title != "" %}
+      {% if cur_product.price <= lowest %}
+        {%- assign target_product = cur_product %}
+        {%- assign lowest = cur_product.price %}
+      {% endif %}
+    {% endif %}
+  {% endfor %}
+{% endif %}
+
+
+{% if target_product and target_product.title != "" %}
+<div class="related-products-scroll">
+  <div class="product">
+    <a class="product-thumbnail-anchor" href="{{target_product.url}}">
+      <img class="product-thumbnail" src="//images.accentuate.io?options=w400&shop={{ shop.permanent_domain }}&image={{ target_product.metafields.comparison.grid_image }}" alt="{{target_product.title}}" />
+    </a>
+    <div class="product-info">
+      <h4>
+        <a href="{{target_product.url}}">{{target_product.title}}</a>
+      </h4>
+      <span class="price">{{ target_product.price | money | default: "$1.99" | remove: "," }}</span>
+      <div class="yotpo bottomLine yotpo-rating-info" data-product-id="{{ target_product.id }}"></div>
+      <form class="product-form-related-small" method="post" action="/cart/add">
+        <input type="hidden" name="id" value="{{ target_product.variants.first.id }}" />
+        <input type="hidden" name="quantity" value="1"/>
+        <button type="submit" value="Add to cart" name="add" class="button cartbutton" data-add-to-cart>Add To Cart</button>
+      </form>
+    </div>
+  </div>
+</div>
+{% endif %}
+{% endunless %}

@@ -1,0 +1,64 @@
+<div class="featured-products scroll-section">
+  <div class="container">
+    <h2>{{ section.settings.title }}</h2>
+    {% if section.settings.cta-btn-link %}
+    <div class="actions">
+      <a class="button button--transparent" href="{{ section.settings.cta-btn-link }}">{{ section.settings.cta-btn-text }}</a>
+    </div>
+    {% endif %}
+  </div>
+
+  <div class="scroll-container">
+    {% for content in section.blocks %}
+      {%- assign product = all_products[content.settings.product] -%}
+      {% include 'product-element' %}
+    {% endfor %}
+  </div>
+</div>
+
+{% schema %}
+  {
+    "name": "Scrolling Products",
+    "settings": [
+      {
+        "id": "title",
+        "type": "text",
+        "label": "Section Title"
+      },
+      {
+        "id": "cta-btn-text",
+        "type": "text",
+        "label": "CTA Button Text"
+      },
+      {
+        "id": "cta-btn-link",
+        "type": "url",
+        "label": "CTA Button URL"
+      }
+    ],
+    "blocks": [
+      {
+        "type": "product",
+        "name": "Product",
+        "settings": [
+          {
+            "id": "product",
+            "type": "product",
+            "label": "Product"
+          },
+          {
+            "id": "sale-price",
+            "type": "number",
+            "label": "Sale Price"
+          }
+        ]
+      }
+    ],
+    "presets": [
+      {
+        "name": "Scrolling Products",
+        "category": "content"
+      }
+    ]
+  }
+{% endschema %}

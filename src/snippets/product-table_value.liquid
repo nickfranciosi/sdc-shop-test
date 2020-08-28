@@ -1,0 +1,15 @@
+          {% if product.has_only_default_variant %}
+            <td class="{% if product.id == current_product.id %}product-table-item-is-current-product{% endif %}" data-label="{{product.title}}">
+              <div class="inner">
+                {{product.metafields.comparison.product_value}}
+              </div>
+            </td>
+          {% else %}
+            {% for variant in product.variants %}
+              <td class="{% if product.id == current_product.id %}product-table-item-is-current-product{% endif %}" data-label="{{product.title}} - {{variant.title}}">
+                <div class="inner">
+                  {{variant.metafields.comparison.product_value}}
+                </div>    
+              </td>
+            {%  endfor %}
+          {% endif %}

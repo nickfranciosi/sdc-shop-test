@@ -4,27 +4,34 @@
     <div class="cart-item--info">
       <h4>{{ item.product.title }}</h4>
       {% if item.product.has_only_default_variant == false %}<p class="cart-item--sub-title">{{item.variant.title}}</p>{% endif %}
-      <p>{{ item.price | money | remove: ',' }}</p>
+      {% if item.vendor == 'DailyKarma' %}
+      	<p>{{ item.final_line_price | money | remove: ',' }}</p>
+      {% else %}
+      	<p>{{ item.price | money | remove: ',' }}</p>
+      	<s data-compare-price class="product-info-price compare-price">{{ item.product.compare_at_price | money }}</s>
+      {%endif%}
     </div>
     <div class="cart-item--actions">
       <div class="cart-item--incrementer">
-        <button
-          class="button button--text button--no-padding"
-          data-product-current-quantity="{{item.quantity}}"
-          data-product-increment-type="decrement"
-          data-product-id="{{item.id}}"
-        >
-          -
-        </button>
-        <p data-product-quantity>{{ item.quantity }}</p>
-        <button
-          class="button button--text button--no-padding"
-          data-product-current-quantity="{{item.quantity}}"
-          data-product-increment-type="increment"
-          data-product-id="{{item.id}}"
-        >
-          +
-        </button>
+      {% if item.vendor != 'DailyKarma' %}
+          <button
+            class="button button--text button--no-padding"
+            data-product-current-quantity="{{item.quantity}}"
+            data-product-increment-type="decrement"
+            data-product-id="{{item.id}}"
+          >
+            -
+          </button>
+          <p data-product-quantity>{{ item.quantity }}</p>
+          <button
+            class="button button--text button--no-padding"
+            data-product-current-quantity="{{item.quantity}}"
+            data-product-increment-type="increment"
+            data-product-id="{{item.id}}"
+          >
+            +
+          </button>
+   	  {%endif%}
       </div>
       <a href="#">Remove</a>
     </div>

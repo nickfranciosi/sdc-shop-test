@@ -1,5 +1,4 @@
-{% assign product_collection = collections["whitening"] %}
-
+{% assign product_collection = collections["teeth-whitening"] %}
 <div>
   <h2 class="product-table--title">{{ product_collection.title  }} comparison</h2>
   <div class="product-table-scroll-wrapper">
@@ -91,22 +90,6 @@
             {% for variant in product.variants %}
               <td data-label="{{product.title}} - {{variant.title}}">
                 {% if variant.metafields.comparison.includes_light %}<i class="fas fa-check"></i>{% endif %}
-              </td>
-            {%  endfor %}
-          {% endif %}
-        {%  endfor %}
-      </tr>
-      <tr>
-        <th>Lip Balm</th>
-        {% for product in product_collection.products %}
-          {% if product.has_only_default_variant %}
-            <td data-label="{{product.title}}">
-              {% if product.metafields.comparison.includes_balm %}<i class="fas fa-check"></i>{% endif %}
-            </td>
-          {% else %}
-            {% for variant in product.variants %}
-              <td data-label="{{product.title}} - {{variant.title}}">
-                {% if variant.metafields.comparison.includes_balm %}<i class="fas fa-check"></i>{% endif %}
               </td>
             {%  endfor %}
           {% endif %}
