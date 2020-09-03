@@ -28,10 +28,14 @@
 
 
 
-/* Links */
+/* Links / Buttons */
 .sdc-shopify-contact-page-content a {
 	color: #5700ff;
   	cursor: pointer;
+}
+
+.sdc-shopify-contact-page-content a.button {
+	color: #ffffff;  
 }
 
 
@@ -105,5 +109,42 @@
 	width: 100%;
   	text-align: left;
   	margin-bottom: 24px;
-  	border-radius: 8px;
+}
+
+
+
+
+/* Form error messages */
+.sdc-shopify-contact-page-content .form-errors {
+	padding: 12px 24px;
+  	background-color: #fdefee;
+  	border: 2px solid #F0615E;
+  	border-radius: 4px;
+  	color: #a84341;
+  	margin-bottom: 32px;
+}
+
+.sdc-shopify-contact-page-content .form-errors p {
+	margin-bottom: 8px;
+}
+
+.sdc-shopify-contact-page-content .form-errors ul {
+	list-style-position: inside;
+}
+
+.sdc-shopify-contact-page-content .input-error {
+  	border: 2px solid #F0615E;
+}
+
+.sdc-shopify-contact-page-content .email-input-error-message {
+	display: none;
+  	color: #a84341;
+  	font-size: 14px;
+  	line-height: 1.5;
+  	margin-bottom: 24px;
+  	margin-top: -16px;
+}
+
+.sdc-shopify-contact-page-content .email-input-error-message--showing {
+	display: block;
 }

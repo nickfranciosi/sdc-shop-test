@@ -387,7 +387,7 @@ function addToCartSuccess(product) {
 
 function cartFetchSuccess(cart) {
   toggleEmptyCartMessage(cart.item_count);
-  $('.cart-subtotal p:last-of-type').text(formatMoney(cart.total_price));
+  //$('.cart-subtotal p:last-of-type').text(formatMoney(cart.total_price)); - removed as assets/custom-modal-cart.js now handles UI updates for subtotal
   $('.cart-count-wrapper').text(`(${cart.item_count})`);
 }
 

@@ -1,4 +1,9 @@
 {% include 'cart_udo' %}
+
+{{ 'custom-modal-cart.scss' | asset_url | stylesheet_tag }}
+
+{%- assign totalCompareAtPriceSavings = 0 -%}
+
 <div id="modalCart">
   <p class="modalCartTrigger cart-close">
     &#x2715;
@@ -12,6 +17,13 @@
         {% if cart.item_count > 0 %}
           {% for item in cart.items %}
             {% include 'cart-item'%}
+        	
+        	{% if item.variant.compare_at_price > item.variant.price %}
+        		{% assign itemPriceDifference = item.variant.compare_at_price | minus: item.variant.price %}
+        		{% assign priceDifferenceBasedOnQuantity = itemPriceDifference | times: item.quantity %}
+              	{% assign totalCompareAtPriceSavings = priceDifferenceBasedOnQuantity | plus: totalCompareAtPriceSavings %}
+            {% endif %}
+        
           {% endfor %}
         {% endif %}
       </div>
@@ -44,20 +56,32 @@
       </div>
       
       <div class="cart-subtotal">
-        <p>{{ 'cart.general.subtotal' | t }}</p>
-        <p>{{ cart.total_price | money | remove: ','}}</p>
-      </div>
-      {% if section.settings.cart_shipping_price %}
-      <div class="cart-shipping">
-        <p>{{ 'cart.general.shipping' | t }}</p>
-        <p>{{ 'cart.general.shipping_price' | t }}</p>
-        
+        <p class="cart-summary-title">{{ 'cart.general.subtotal' | t }}</p>
+        <p class="cart-summary-value">{{ cart.total_price | plus: totalCompareAtPriceSavings | money | remove: ','}}</p>
       </div>
       
+      {% if totalCompareAtPriceSavings > 0 %}
+        <div class="cart-compare-at-price-savings">
+          <p class="cart-summary-title">Savings</p>
+          <p class="cart-summary-value">-{{ totalCompareAtPriceSavings | money }}</p>
+        </div>
       {% endif %}
+      
+      {% if section.settings.cart_shipping_price %}
+        <div class="cart-shipping">
+          <p class="cart-summary-title">{{ 'cart.general.shipping' | t }}</p>
+          <p class="cart-summary-value">{{ 'cart.general.shipping_price' | t }}</p>
+        </div>
+      {% endif %}
+      
       {% if cart.total_discounts > 0 %}
         <p>{{ 'cart.general.savings' | t }} {{ cart.total_discounts | money }}</p>
       {% endif %}
+      
+      <div class="cart-estimated-total">
+        <p class="cart-summary-title">Estimated total</p>
+        <p class="cart-summary-value">{{ cart.total_price | money }}</p>
+      </div>
 	  <div class="dk-round-up-popup-static"></div>
       <form action="/cart" method="post" id="cartForm" novalidate>
         <input
@@ -92,3 +116,5 @@
     </div>
   </div>
 </div>
+
+{{ 'custom-modal-cart.js' | asset_url | script_tag }}

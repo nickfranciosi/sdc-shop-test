@@ -3,13 +3,22 @@
   <div class="cart-item--content">
     <div class="cart-item--info">
       <h4>{{ item.product.title }}</h4>
-      {% if item.product.has_only_default_variant == false %}<p class="cart-item--sub-title">{{item.variant.title}}</p>{% endif %}
-      {% if item.vendor == 'DailyKarma' %}
-      	<p>{{ item.final_line_price | money | remove: ',' }}</p>
-      {% else %}
-      	<p>{{ item.price | money | remove: ',' }}</p>
-      	<s data-compare-price class="product-info-price compare-price">{{ item.product.compare_at_price | money }}</s>
-      {%endif%}
+
+      {% if item.product.has_only_default_variant == false %}
+        <p class="cart-item--sub-title">{{item.variant.title}}</p>
+      {% endif %}
+
+      <div class="cart-item--price">
+        {% if item.vendor == 'DailyKarma' %}
+          <p>{{ item.final_line_price | money | remove: ',' }}</p>
+        {% else %}
+          <p>{{ item.price | money | remove: ',' }}</p>
+        
+          {% if item.product.compare_at_price > item.price %}
+            <p><s data-compare-price class="cart-item--compare-at-price">{{ item.product.compare_at_price | money }}</s></p>
+          {%endif%}
+        {%endif%}
+      </div>
     </div>
     <div class="cart-item--actions">
       <div class="cart-item--incrementer">
@@ -17,6 +26,9 @@
           <button
             class="button button--text button--no-padding"
             data-product-current-quantity="{{item.quantity}}"
+            data-product-compare-at-price="{{item.product.compare_at_price}}"
+            data-variant-compare-at-price="{{item.variant.compare_at_price}}"
+            data-product-price="{{item.price}}"
             data-product-increment-type="decrement"
             data-product-id="{{item.id}}"
           >
@@ -26,6 +38,9 @@
           <button
             class="button button--text button--no-padding"
             data-product-current-quantity="{{item.quantity}}"
+            data-product-compare-at-price="{{item.product.compare_at_price}}"
+            data-variant-compare-at-price="{{item.variant.compare_at_price}}"
+            data-product-price="{{item.price}}"
             data-product-increment-type="increment"
             data-product-id="{{item.id}}"
           >

@@ -1,5 +1,18 @@
 {%- assign current_product_variant = product.first_available_variant -%}
 <div class="product-element">
+  
+  <!--  Show badges based on certain tags being present  -->
+  {% if product.tags contains 'sale' or product.tags contains 'on sale' %}
+  	<div class="product-element-badge">Sale</div>
+  {% elsif product.tags contains 'new' %}
+  	<div class="product-element-badge product-element-badge--white">New</div>
+  {% elsif product.tags contains 'popular' %}
+  	<div class="product-element-badge product-element-badge--white">Popular</div>
+  {% elsif product.tags contains 'trending' %}
+  	<div class="product-element-badge product-element-badge--white">Trending</div>
+  {% endif %}
+  
+
   <a href='{{ product.url | default: "#" }}' class="product-element-content">
     <img src="{{ product | img_url: '720x720' }}" />
     <div class="title">{{ product.title }}</div>
@@ -17,6 +30,9 @@
         data-add-to-cart>
           {% if current_product_variant.available %}
             Add to cart - {{ current_product_variant.price | money | remove: ','  }}
+            {% if current_product_variant.compare_at_price > current_product_variant.price %}
+        		<s data-compare-price style="color: #b3b3b3;">{{ current_product_variant.compare_at_price | money }}</s>
+            {% endif %}
           {% else %}
             Sold Out
           {% endif %}

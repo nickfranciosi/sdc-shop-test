@@ -38,6 +38,9 @@
   {% include 'social-meta-tags' %}
   {% include 'style-tags', layout: 'theme' %}
   {% include 'css-variables' %}
+  
+  <!-- Quick includes of recent custom styles added here. Will need to be removed once local environment is working again. - David Jahns 9/3/2020   -->
+  {{ 'custom-product-element.scss' | asset_url | stylesheet_tag }}
 
   {%- if template.name == "product" -%}
       <!-- link rel="stylesheet" type="text/css" href="https://cdnjs.cloudflare.com/ajax/libs/slick-carousel/1.9.0/slick.min.css"/ -->

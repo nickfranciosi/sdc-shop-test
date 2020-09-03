@@ -1,0 +1,70 @@
+/* These styles have been added for customizing the cart and cart items within the snippets/modal-cart.liquid only. Do not use this file for any other CSS
+ *
+ * Author: David Jahns - david.jahns@smiledirectclub.com 
+*/
+
+
+/* Styling elements in cart-item.liquid 
+**********************************/
+.cart-item--price {
+	display: flex;
+  	color: #666666;
+}
+
+.cart-item--compare-at-price {
+ 	 color: #b3b3b3;
+     margin-left: 4px;
+}
+
+
+
+
+
+/* Styling elements in modal-cart.liquid
+********************************/
+.cart-summary .cart-subtotal,
+.cart-compare-at-price-savings {
+	margin-bottom: 20px;
+}
+
+.cart-compare-at-price-savings,
+.cart-estimated-total {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.cart-summary-title,
+.cart-summary-value {
+	font-size: 18px !important;
+  	line-height: 1.5 !important;
+  	text-transform: none !important;
+}
+
+.cart-summary-title {
+	font-weight: 600 !important;
+  	color: #666666 !important;
+}
+
+.cart-summary-value {
+	font-weight: 700 !important;
+  	color: #000000 !important;
+}
+
+
+.cart-shipping .cart-summary-value {
+	font-size: 16px !important;
+}
+
+
+/* Estimated Total Row  */
+.cart-estimated-total {
+	margin-bottom: 40px;
+}
+
+.cart-estimated-total .cart-summary-title,
+.cart-estimated-total .cart-summary-value {
+	color: #000000 !important;
+  	font-size: 24px !important;
+  	line-height: 1.2 !important;
+}
