@@ -2,73 +2,124 @@
 // This code handles updating the UI reflecting the totals and prices of products in the cart. It is only updating the front end UI, and not controlling the actual prices that reflect on the final checkout page. 
 // Author: David Jahns - david.jahns@smiledirectclub.com
 
-window.addEventListener("load", function(){
-  const quantityButtons = document.querySelectorAll('button[data-product-increment-type]'); // get all the increment / decrement buttons for cart items
+window.addEventListener("load", function() {
+  // get all the increment / decrement buttons for cart items
+  const quantityButtons = document.querySelectorAll('button[data-product-increment-type]');
+  // get all the remove buttons for cart items
+  const removeButtons = document.querySelectorAll('.cart-item--remove-button');
   // get the subtotal from DOM and turn it into an Int
-  let subtotalDisplay = document.querySelector('.cart-subtotal .cart-summary-value').innerText;
-  let subtotalTotal = parseInt(subtotalDisplay.substring(1));
+  const subtotalElement = document.querySelector('.cart-subtotal .cart-summary-value');
+  let subtotalValue = parseInt(subtotalElement.innerText.substring(1));
   // get the savings total from DOM and turn it into an Int
-  let savingsDisplay = document.querySelector('.cart-compare-at-price-savings .cart-summary-value').innerText;
-  let savingsTotal = parseInt(savingsDisplay.substring(2));
+  const savingsElement = document.querySelector('.cart-compare-at-price-savings .cart-summary-value');
+  let savingsValue = parseInt(savingsElement.innerText.substring(2));
   // get the estimated total from DOM and turn it into an Int
-  let estimatedTotalDisplay = document.querySelector('.cart-estimated-total .cart-summary-value').innerText;
-  let estimatedTotal = parseInt(estimatedTotalDisplay.substring(1));
+  const estimatedTotalElement = document.querySelector('.cart-estimated-total .cart-summary-value');
+  let estimatedTotalValue = parseInt(estimatedTotalElement.innerText.substring(1));
   
-  quantityButtons.forEach(function(button){
+
+  // Handles cart changes based on + or - button clicks
+  /////////////////////////////////////////////////////////
+  quantityButtons.forEach(function(button) {
     // listen to every button for click
-    button.addEventListener('click', function(buttonClickEvent){
-      const itemQuantityDisplay = buttonClickEvent.target.parentElement.querySelector('[data-product-quantity]'); // product quantity between + - buttons
-      let newQuantity, oldQuantity = parseInt(itemQuantityDisplay.innerText); // get the value of the quantity displayed for the button clicked and make it an Int
-      const buttonType = buttonClickEvent.target.getAttribute('data-product-increment-type'); // this attribute identifies if button is increment or decrement
+    button.addEventListener('click', function(buttonClickEvent) {
+      // product quantity elementa between + - buttons
+      const itemQuantityElement = buttonClickEvent.target.parentElement.querySelector('[data-product-quantity]');
+      // get the value of the quantity displayed for the button clicked and make it an Int
+      let newQuantityValue, oldQuantityValue = parseInt(itemQuantityElement.innerText);
+      // this attribute identifies if button is increment or decrement
+      const quantityButtonType = buttonClickEvent.target.getAttribute('data-product-increment-type');
       const cartItemContent = buttonClickEvent.target.parentElement.parentElement.parentElement;
-      const itemActualPrice = parseInt(cartItemContent.querySelector('.cart-item--price > p').innerText.substring(1));
+      const itemActualPriceValue = parseInt(cartItemContent.querySelector('.cart-item--price > p').innerText.substring(1));
+      const itemCompareAtPriceElement = cartItemContent.querySelector('.cart-item--compare-at-price');
 
 
       // Set discount per item based on quantity. only set IF there is a compare at price for the item
-      let itemCompareAtPrice = cartItemContent.querySelector('.cart-item--compare-at-price');
-
-      if(itemCompareAtPrice) {
-        itemCompareAtPrice = parseInt(itemCompareAtPrice.innerText.substring(1))
+      if (itemCompareAtPriceElement) {
+        itemCompareAtPriceValue = parseInt(itemCompareAtPriceElement.innerText.substring(1))
       } else {
-        itemCompareAtPrice = itemActualPrice;
+        itemCompareAtPriceValue = itemActualPriceValue;
       }
 
-      let itemDiscountPerQuantity = itemCompareAtPrice - itemActualPrice;
+      let itemDiscountPerQuantity = itemCompareAtPriceValue - itemActualPriceValue;
     
 
       // update values when item quantity is incremented or decremented in the cart
-      if (buttonType === "increment") {
-        newQuantity = oldQuantity + 1;
-        savingsTotal += itemDiscountPerQuantity;
+      if (quantityButtonType === "increment") {
+        newQuantityValue = oldQuantityValue + 1;
+        savingsValue += itemDiscountPerQuantity;
 
-        if (itemCompareAtPrice) {
-          subtotalTotal += itemCompareAtPrice;
+        if (itemCompareAtPriceElement) {
+          subtotalValue += itemCompareAtPriceValue;
         } else {
-          subtotalTotal += itemActualPrice;
+          subtotalValue += itemActualPriceValue;
         }
       }
 
-      if (buttonType === "decrement") {
-        newQuantity = oldQuantity - 1;
-        savingsTotal -= itemDiscountPerQuantity;
+      if (quantityButtonType === "decrement") {
+        newQuantityValue = oldQuantityValue - 1;
+        savingsValue -= itemDiscountPerQuantity;
 
-        if (itemCompareAtPrice) {
-          subtotalTotal -= itemCompareAtPrice;
+        if (itemCompareAtPriceElement) {
+          subtotalValue -= itemCompareAtPriceValue;
         } else {
-          subtotalTotal -= itemActualPrice;
+          subtotalValue -= itemActualPriceValue;
         }
       }
+
 
       // set estimated total every time an item quantity is changed
-      estimatedTotal = subtotalTotal - savingsTotal;
+      estimatedTotalValue = subtotalValue - savingsValue;
       
-      // update subtotal display
-      document.querySelector('.cart-subtotal .cart-summary-value').innerText = "$" + subtotalTotal.toFixed(2);
-      // update Savings display
-      document.querySelector('.cart-compare-at-price-savings .cart-summary-value').innerText = "-$" + savingsTotal.toFixed(2);
-	    // update Estimated Total display
-      document.querySelector('.cart-estimated-total .cart-summary-value').innerText = "$" + estimatedTotal.toFixed(2);
 
+      // update subtotal display
+      subtotalElement.innerText = "$" + subtotalValue.toFixed(2);
+      // update Savings display
+      savingsElement.innerText = "-$" + savingsValue.toFixed(2);
+	    // update Estimated Total display
+      estimatedTotalElement.innerText = "$" + estimatedTotalValue.toFixed(2);
+    });
+  });
+  // end quantity button handling 
+
+
+
+  // Handles cart changes based on "remove" buttons clicked
+  ////////////////////////////////////////////////////
+  removeButtons.forEach(function(button) {
+    button.addEventListener('click', function(buttonClickEvent) {
+      // product quantity elementa between + - buttons
+      const itemQuantityElement = buttonClickEvent.target.parentElement.querySelector('[data-product-quantity]');
+      // get the value of the quantity displayed for the button clicked and make it an Int
+      let quantityValue = parseInt(itemQuantityElement.innerText);
+      const cartItemContent = buttonClickEvent.target.parentElement.parentElement.parentElement;
+      const itemActualPriceValue = parseInt(cartItemContent.querySelector('.cart-item--price > p').innerText.substring(1));
+      const itemCompareAtPriceElement = cartItemContent.querySelector('.cart-item--compare-at-price');
+      let valueToRemoveFromTotals = 0;
+
+      // If there is a compare at price
+      if (itemCompareAtPriceElement) {
+        itemCompareAtPriceValue = parseInt(itemCompareAtPriceElement.innerText.substring(1));
+        valueToRemoveFromTotals = quantityValue * itemCompareAtPriceValue;
+        let itemDiscountPerQuantity = (itemCompareAtPriceValue - itemActualPriceValue) * quantityValue;
+        // only update the savings value if it had a compare at price
+        savingsValue -= itemDiscountPerQuantity;
+      } else {
+        valueToRemoveFromTotals = quantityValue * itemActualPriceValue;
+      }
+
+
+      // update subtotal and estimated total values based on element removed
+      subtotalValue -= valueToRemoveFromTotals;
+      estimatedTotalValue = subtotalValue - savingsValue;
+
+
+      // update subtotal display
+      subtotalElement.innerText = "$" + subtotalValue.toFixed(2);
+      // update Savings display
+      savingsElement.innerText = "-$" + savingsValue.toFixed(2);
+	    // update Estimated Total display
+      estimatedTotalElement.innerText = "$" + estimatedTotalValue.toFixed(2);
     });
   });
 });
