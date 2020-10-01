@@ -15,7 +15,7 @@
           <p>{{ item.price | money | remove: ',' }}</p>
         
           {% if item.product.compare_at_price > item.price %}
-            <p><s data-compare-price class="cart-item--compare-at-price">{{ item.product.compare_at_price | money }}</s></p>
+            <p class="cart-item--compare-at-price"><s data-compare-price>{{ item.product.compare_at_price | money }}</s></p>
           {%endif%}
         {%endif%}
       </div>
