@@ -88,6 +88,10 @@
 }
 
 
+/* Input containers */
+.sdc-shopify-contact-page-content .input-container {
+	margin-bottom: 24px;
+}
 
 
 /* Form labels */
@@ -108,7 +112,6 @@
 .sdc-shopify-contact-page-content textarea {
 	width: 100%;
   	text-align: left;
-  	margin-bottom: 24px;
 }
 
 
@@ -136,15 +139,14 @@
   	border: 2px solid #F0615E;
 }
 
-.sdc-shopify-contact-page-content .email-input-error-message {
+.sdc-shopify-contact-page-content .input-error-message {
 	display: none;
   	color: #a84341;
   	font-size: 14px;
   	line-height: 1.5;
-  	margin-bottom: 24px;
-  	margin-top: -16px;
+  	margin-top: 4px;
 }
 
-.sdc-shopify-contact-page-content .email-input-error-message--showing {
+.sdc-shopify-contact-page-content .input-error-message--showing {
 	display: block;
 }

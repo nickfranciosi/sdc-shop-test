@@ -327,7 +327,10 @@ function addNewCartItem(product) {
         <div class="cart-item--info">
           <h4>${product.product_title}</h4>
           ${product.variant_title ? `<p class="cart-item--sub-title">${product.variant_title}</p>` : ''}
-          <p>${formatMoney(product.price).replace(',', '')}</p>
+          <div class="cart-item--price">
+            <p>${formatMoney(product.price).replace(',', '')}</p>
+            ${product.variant.compare_at_price ? `<p class="cart-item--compare-at-price"><s data-compare-price>${formatMoney(product.variant.compare_at_price).replace(',', '')}</s></p>` : ''}
+          </div>
         </div>
         <div class="cart-item--actions">
           <div class="cart-item--incrementer">
